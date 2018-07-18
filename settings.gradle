@@ -1,0 +1,1 @@
+include ':app', ':pocket-annotation', ':pocket-compiler', ':pocket-core', ':pocket-ec'
