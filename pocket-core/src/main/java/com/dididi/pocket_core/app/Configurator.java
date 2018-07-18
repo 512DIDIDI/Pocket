@@ -64,8 +64,7 @@ public class Configurator {
 
     //初始化icon
     private void initIcons() {
-        String[] fonts = GenericsUtil.getFields(
-                (Context) POCKET_CONFIGS.get(ConfigType.APPLICATION_CONTEXT.name()));
+        String[] fonts = GenericsUtil.getFields(Pocket.getApplicationContext());
         for (String fontsClassPath : fonts) {
             try {
                 ITypeface typeface = (ITypeface) Class.forName(fontsClassPath).newInstance();
@@ -75,6 +74,13 @@ public class Configurator {
                 LogUtil.e("Android-Iconics", "Can't init: " + fontsClassPath);
             }
         }
+    }
+
+    @SuppressWarnings("unchecked")
+    //获取配置文件
+    final <T> T getConfiguration(Enum<ConfigType> key) {
+        checkConfiguration();
+        return (T) POCKET_CONFIGS.get(key.name());
     }
 
     //确认是否配置完成
@@ -93,12 +99,5 @@ public class Configurator {
             throw new IllegalArgumentException(
                     "The mapping prefix of a font must be three characters long.");
         }
-    }
-
-    @SuppressWarnings("unchecked")
-    //获取配置文件
-    final <T> T getConfiguration(Enum<ConfigType> key) {
-        checkConfiguration();
-        return (T) POCKET_CONFIGS.get(key.name());
     }
 }

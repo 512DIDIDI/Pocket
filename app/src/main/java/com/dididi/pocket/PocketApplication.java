@@ -14,6 +14,7 @@ import com.mikepenz.google_material_typeface_library.GoogleMaterial;
  */
 
 public class PocketApplication extends Application {
+    //自定义application
     @Override
     public void onCreate() {
         super.onCreate();

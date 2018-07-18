@@ -12,8 +12,8 @@ import java.util.WeakHashMap;
 
 public final class Pocket {
 
+    //传入ApplicationContext,并将其存储到Configurator的HashMap中
     public static Configurator init(Context context) {
-        //传入全局context,提供全局访问context
         getConfigurations().put(ConfigType.APPLICATION_CONTEXT.name(),
                 context.getApplicationContext());
         return Configurator.getInstance();
@@ -21,5 +21,10 @@ public final class Pocket {
 
     private static HashMap<String, Object> getConfigurations() {
         return Configurator.getInstance().getPocketConfigs();
+    }
+    //获取全局context
+    public static Context getApplicationContext() {
+        return (Context) getConfigurations()
+                .get(ConfigType.APPLICATION_CONTEXT.name());
     }
 }

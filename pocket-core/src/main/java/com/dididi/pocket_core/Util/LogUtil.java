@@ -8,6 +8,7 @@ import android.util.Log;
  */
 
 public class LogUtil {
+    //日志工具类
 
     public static final int VERBOSE = 0;
     public static final int DEBUG = 1;
