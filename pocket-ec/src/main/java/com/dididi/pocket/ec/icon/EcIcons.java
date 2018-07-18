@@ -10,13 +10,14 @@ import com.mikepenz.iconics.typeface.ITypeface;
  */
 
 public enum EcIcons implements IIcon {
-    //自定义图标
+    //自定义图标  实现iconics的IIcon接口
+    //unicode编码
     icon_scan('\ue614'),
     icon_ali_pay('\ue806');
 
     char character;
 
-
+    //
     EcIcons(char character) {
         this.character = character;
     }

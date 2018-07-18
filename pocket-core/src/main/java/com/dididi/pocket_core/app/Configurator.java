@@ -17,14 +17,15 @@ import java.util.HashMap;
 
 public class Configurator {
     private static final String TAG = "Configurator";
-    //使用HashMap不用WeakHashMap,不会被自动回收,配置文件需要伴随整个app的生命周期
-    private static final HashMap<String, Object> POCKET_CONFIGS = new HashMap<>();
+    //使用HashMap不用WeakHashMap,不会被自动回收,配置文件需要伴随整个app的生命周期(使用key限制传入值)
+    private static final HashMap<Enum<ConfigType>, Object> POCKET_CONFIGS = new HashMap<>();
+    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     private static final HashMap<String, ITypeface> ICONS = new HashMap<>();
 
     //私有构造函数
     private Configurator() {
         //初始化配置为false
-        POCKET_CONFIGS.put(ConfigType.CONFIG_READY.name(), false);
+        POCKET_CONFIGS.put(ConfigType.CONFIG_READY, false);
     }
 
     //静态内部类单例模式
@@ -36,7 +37,7 @@ public class Configurator {
         return Holder.INSTANCE;
     }
 
-    final HashMap<String, Object> getPocketConfigs() {
+    final HashMap<Enum<ConfigType>, Object> getPocketConfigs() {
         return POCKET_CONFIGS;
     }
 
@@ -45,13 +46,13 @@ public class Configurator {
         LogUtil.d(TAG, "configure");
         initIcons();
         //配置已完成
-        POCKET_CONFIGS.put(ConfigType.CONFIG_READY.name(), true);
+        POCKET_CONFIGS.put(ConfigType.CONFIG_READY, true);
         LogUtil.d(TAG, "configure succeed");
     }
 
     //传入域名
     public final Configurator withApiHost(String host) {
-        POCKET_CONFIGS.put(ConfigType.API_HOST.name(), host);
+        POCKET_CONFIGS.put(ConfigType.API_HOST, host);
         return this;
     }
 
@@ -80,13 +81,18 @@ public class Configurator {
     //获取配置文件
     final <T> T getConfiguration(Enum<ConfigType> key) {
         checkConfiguration();
-        return (T) POCKET_CONFIGS.get(key.name());
+        return (T) POCKET_CONFIGS.get(key);
+    }
+
+    //设置配置文件
+    final void setConfiguration(Enum<ConfigType> key, Object object) {
+        POCKET_CONFIGS.put(key, object);
     }
 
     //确认是否配置完成
     private void checkConfiguration() {
         //写类变量和方法变量的时候尽量让它的不可变性达到最大(能用final修饰就用)
-        final boolean isReady = (boolean) POCKET_CONFIGS.get(ConfigType.CONFIG_READY.name());
+        final boolean isReady = (boolean) POCKET_CONFIGS.get(ConfigType.CONFIG_READY);
         if (!isReady) {
             //保证配置完成,如果没有准备好,抛出运行异常
             throw new RuntimeException("Configuration is not ready,call configure");

@@ -33,7 +33,7 @@ public class FontEcModule implements ITypeface {
     @Override
     public HashMap<String, Character> getCharacters() {
         if (mChars == null) {
-            HashMap<String, Character> aChars = new HashMap<String, Character>();
+            HashMap<String, Character> aChars = new HashMap<>();
             for (EcIcons ecIcons : EcIcons.values()) {
                 aChars.put(ecIcons.name(), ecIcons.character);
             }
@@ -43,11 +43,13 @@ public class FontEcModule implements ITypeface {
     }
 
     @Override
+    //前缀
     public String getMappingPrefix() {
         return "Ali";
     }
 
     @Override
+    //字体库名称
     public String getFontName() {
         return "Icon";
     }
@@ -64,7 +66,7 @@ public class FontEcModule implements ITypeface {
 
     @Override
     public Collection<String> getIcons() {
-        Collection<String> icons = new LinkedList<String>();
+        Collection<String> icons = new LinkedList<>();
         for (EcIcons value : EcIcons.values()) {
             icons.add(value.name());
         }
@@ -100,7 +102,8 @@ public class FontEcModule implements ITypeface {
     public Typeface getTypeface(Context ctx) {
         if (typeface == null) {
             try {
-                typeface = Typeface.createFromAsset(ctx.getAssets(), "fonts/" + TTF_FILE);
+                typeface = Typeface.createFromAsset(ctx.getAssets(),
+                        "fonts/" + TTF_FILE);
             } catch (Exception e) {
                 return null;
             }

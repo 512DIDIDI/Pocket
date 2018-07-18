@@ -6,4 +6,5 @@ package com.dididi.pocket_core.delegates;
  */
 
 public abstract class PermissionCheckerDelegate extends BaseDelegate {
+    //权限管理
 }
