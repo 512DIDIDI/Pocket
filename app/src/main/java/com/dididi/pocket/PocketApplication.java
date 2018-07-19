@@ -20,9 +20,9 @@ public class PocketApplication extends Application {
         super.onCreate();
         //获取context传入配置文件
         Pocket.init(this)
-//                引用自定义FontModule
                 .withIcon(new FontAwesome())
                 .withIcon(new GoogleMaterial())
+                //引用自定义FontModule
                 .withIcon(new FontEcModule())
                 .withApiHost("http://127.0.0.1/")
                 .configure();

@@ -19,7 +19,7 @@ public final class Pocket {
         return Configurator.getInstance();
     }
 
-    private static HashMap<Enum<ConfigType>, Object> getConfigurations() {
+    public static HashMap<Enum<ConfigType>, Object> getConfigurations() {
         return Configurator.getInstance().getPocketConfigs();
     }
 

@@ -36,11 +36,18 @@ dependencies {
     api 'com.mikepenz.iconics:google-material-typeface:1.1.1@aar'
     api 'com.mikepenz:fontawesome-typeface:5.0.13.0@aar'
     //view依赖
-    api "com.mikepenz:iconics-views:3.0.4@aar"
+    api 'com.mikepenz:iconics-views:3.0.4@aar'
     //fragment依赖
     api 'me.yokeyword:fragmentation:1.3.5'
     api 'me.yokeyword:fragmentation-swipeback:1.3.5'
     //ButterKnife依赖
     api 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    //网络依赖
+    api 'com.squareup.okio:okio:1.14.1'
+    api 'com.squareup.okhttp3:okhttp:3.11.0'
+    api 'com.squareup.retrofit2:retrofit:2.4.0'
+    api 'com.squareup.retrofit2:converter-scalars:2.4.0'
+    //load依赖
+    api 'com.wang.avi:library:2.1.3'
 }
