@@ -7,6 +7,7 @@ import android.util.Log;
  * on 18/07/2018 .
  */
 
+@SuppressWarnings("WeakerAccess")
 public class LogUtil {
     //日志工具类
 

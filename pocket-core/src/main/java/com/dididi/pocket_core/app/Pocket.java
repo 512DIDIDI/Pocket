@@ -18,7 +18,7 @@ public final class Pocket {
                 context.getApplicationContext());
         return Configurator.getInstance();
     }
-
+    //获取配置文件
     public static HashMap<Enum<ConfigType>, Object> getConfigurations() {
         return Configurator.getInstance().getPocketConfigs();
     }
