@@ -2,11 +2,15 @@ package com.dididi.pocket_core.net;
 
 import com.dididi.pocket_core.app.ConfigType;
 import com.dididi.pocket_core.app.Pocket;
+import com.dididi.pocket_core.net.rx.RxRestService;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
@@ -16,9 +20,6 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class RestCreator {
 
-    public static RestService getRestService() {
-        return RestServiceHolder.REST_SERVICE;
-    }
     //实例化Retrofit
     private static final class RetrofitHolder {
         //获取配置文件url
@@ -28,14 +29,30 @@ public class RestCreator {
                 .baseUrl(BASE_URL)
                 //惰性加载客户端
                 .client(OkHttpHolder.OK_HTTP_CLIENT)
+                //添加转换工厂
                 .addConverterFactory(ScalarsConverterFactory.create())
+                //添加rx适配器
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
     }
     //实例化OkHttpClient
     private static final class OkHttpHolder {
         //设置超时时间
         private static final int TIME_OUT = 60;
-        private static final OkHttpClient OK_HTTP_CLIENT = new OkHttpClient.Builder()
+        private static final OkHttpClient.Builder BUILDER = new OkHttpClient.Builder();
+        //添加拦截器
+        @SuppressWarnings("unchecked")
+        private static final ArrayList<Interceptor> INTERCEPTORS =
+                (ArrayList<Interceptor>) Pocket.getConfigurations().get(ConfigType.INTERCEPTOR);
+        private static OkHttpClient.Builder addInterceptor(){
+            if (INTERCEPTORS != null&&!INTERCEPTORS.isEmpty()){
+                for (Interceptor interceptor : INTERCEPTORS) {
+                    BUILDER.addInterceptor(interceptor);
+                }
+            }
+            return BUILDER;
+        }
+        private static final OkHttpClient OK_HTTP_CLIENT = addInterceptor()
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .build();
     }
@@ -43,5 +60,18 @@ public class RestCreator {
     private static final class RestServiceHolder {
         private static final RestService REST_SERVICE =
                 RetrofitHolder.RETROFIT.create(RestService.class);
+    }
+
+    public static RestService getRestService() {
+        return RestServiceHolder.REST_SERVICE;
+    }
+
+    private static final class RxRestServiceHolder {
+        private static final RxRestService REST_SERVICE =
+                RetrofitHolder.RETROFIT.create(RxRestService.class);
+    }
+    //获取RxRestService
+    public static RxRestService getRxRestService() {
+        return RxRestServiceHolder.REST_SERVICE;
     }
 }

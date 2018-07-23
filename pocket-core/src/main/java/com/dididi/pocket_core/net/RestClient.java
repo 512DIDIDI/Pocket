@@ -2,6 +2,7 @@ package com.dididi.pocket_core.net;
 
 import android.content.Context;
 
+import com.dididi.pocket_core.app.Pocket;
 import com.dididi.pocket_core.net.callback.IError;
 import com.dididi.pocket_core.net.callback.IFailure;
 import com.dididi.pocket_core.net.callback.IRequest;
@@ -10,9 +11,12 @@ import com.dididi.pocket_core.net.callback.RequestCallbacks;
 import com.dididi.pocket_core.ui.LoaderStyle;
 import com.dididi.pocket_core.ui.PocketLoader;
 
+import java.io.File;
 import java.util.Map;
 import java.util.WeakHashMap;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,12 +37,13 @@ public class RestClient {
     private final RequestBody BODY;
     private final Context CONTEXT;
     private final LoaderStyle STYLE;
+    private final File FILE;
 
     RestClient(String url, Map<String, Object> params,
                ISuccess iSuccess, IError iError,
                IFailure iFailure, IRequest iRequest,
                RequestBody body, Context context,
-               LoaderStyle style) {
+               LoaderStyle style, File file) {
         this.URL = url;
         PARAMS.putAll(params);
         this.SUCCESS = iSuccess;
@@ -48,6 +53,7 @@ public class RestClient {
         this.BODY = body;
         this.CONTEXT = context;
         this.STYLE = style;
+        this.FILE = file;
     }
 
     //使用建造者模式构建RestClient
@@ -82,12 +88,21 @@ public class RestClient {
                 call = service.delete(URL, PARAMS);
                 break;
             case UPLOAD:
+                //请求体文件类型
+                final RequestBody requestBody =
+                        RequestBody.create(MediaType.parse(MultipartBody.FORM.toString()), FILE);
+                //创建FormData对象
+                final MultipartBody.Part body =
+                        MultipartBody.Part.createFormData("file", FILE.getName(), requestBody);
+                call = service.upload(URL, body);
                 break;
             case PUT_RAM:
+                call = service.putRaw(URL, BODY);
                 break;
             case DOWNLOAD:
                 break;
             case POST_RAM:
+                call = service.postRaw(URL, BODY);
                 break;
             default:
                 break;
@@ -100,7 +115,7 @@ public class RestClient {
 
     //获取Callback
     private Callback<String> getRequestCallbacks() {
-        return new RequestCallbacks(SUCCESS, ERROR, FAILURE, REQUEST,STYLE);
+        return new RequestCallbacks(SUCCESS, ERROR, FAILURE, REQUEST, STYLE);
     }
 
     public final void get() {
@@ -108,11 +123,29 @@ public class RestClient {
     }
 
     public final void put() {
-        request(HttpMethod.PUT);
+        if (BODY == null) {
+            request(HttpMethod.PUT);
+        } else {
+            if (!PARAMS.isEmpty()) {
+                throw new RuntimeException("Params must be null");
+            }
+            request(HttpMethod.PUT_RAM);
+        }
     }
 
     public final void post() {
-        request(HttpMethod.POST);
+        if (BODY == null) {
+            request(HttpMethod.POST);
+        } else {
+            if (!PARAMS.isEmpty()) {
+                throw new RuntimeException("Params must be null");
+            }
+            request(HttpMethod.POST_RAM);
+        }
+    }
+
+    public final void upload() {
+        request(HttpMethod.UPLOAD);
     }
 
     public final void delete() {

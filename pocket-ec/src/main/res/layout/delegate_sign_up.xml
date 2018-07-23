@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".sign.SignUpDelegate">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/sign_up_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/toolbarColor">
+
+        <com.mikepenz.iconics.view.IconicsTextView
+            android:id="@+id/sign_up_back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/faw_chevron_left"
+            android:textColor="@color/textColorLight" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:foregroundGravity="center"
+            android:text="@string/sign_up"
+            android:textColor="@color/textColorLight"
+            android:textSize="20sp" />
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                app:iiv_color="@color/textColorDark"
+                app:iiv_icon="faw_get_pocket" />
+            <!--姓名-->
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <com.mikepenz.iconics.view.IconicsTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/faw_user_circle"
+                    android:textColor="@color/textColorDark" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/sign_up_name_edit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="6"
+                    android:hint="@string/hint_name" />
+            </android.support.v7.widget.LinearLayoutCompat>
+            <!--邮箱-->
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <com.mikepenz.iconics.view.IconicsTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/faw_envelope"
+                    android:textColor="@color/textColorDark" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/sign_up_email_edit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="6"
+                    android:hint="@string/hint_email" />
+            </android.support.v7.widget.LinearLayoutCompat>
+            <!--密码-->
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <com.mikepenz.iconics.view.IconicsTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/faw_unlock_alt"
+                    android:textColor="@color/textColorDark" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/sign_up_password_edit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="6"
+                    android:hint="@string/hint_password"
+                    android:inputType="textPassword" />
+            </android.support.v7.widget.LinearLayoutCompat>
+            <!--重复密码-->
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <com.mikepenz.iconics.view.IconicsTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/faw_unlock"
+                    android:textColor="@color/textColorDark" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/sign_up_rePassword_edit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="6"
+                    android:hint="@string/hint_rePassword"
+                    android:inputType="textPassword" />
+            </android.support.v7.widget.LinearLayoutCompat>
+
+            <Button
+                android:id="@+id/sign_up_btn"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/normalButtonColor"
+                android:gravity="center"
+                android:text="@string/sign_up"
+                android:textColor="@color/textColorDark" />
+
+            <TextView
+                android:id="@+id/sign_up_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/sign_up_login"
+                android:textColor="@color/textColorDark" />
+        </android.support.v7.widget.LinearLayoutCompat>
+    </ScrollView>
+
+
+</android.support.v7.widget.LinearLayoutCompat>

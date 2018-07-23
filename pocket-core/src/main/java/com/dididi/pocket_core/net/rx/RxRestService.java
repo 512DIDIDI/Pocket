@@ -1,6 +1,5 @@
-package com.dididi.pocket_core.net;
+package com.dididi.pocket_core.net.rx;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import okhttp3.MultipartBody;
@@ -18,46 +17,48 @@ import retrofit2.http.Part;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Streaming;
 import retrofit2.http.Url;
+import rx.Observable;
 
 /**
  * Created by dididi
  * on 22/07/2018 .
  */
 
-public interface RestService {
+public interface RxRestService {
+    //观察者模式
     @GET
-    Call<String> get(@Url String url, @QueryMap Map<String, Object> params);
+    Observable<String> get(@Url String url, @QueryMap Map<String, Object> params);
     //返回Call的回调,QueryMap自动拼接到url里
 
     @FormUrlEncoded
     @POST
-    Call<String> post(@Url String url, @FieldMap Map<String, Object> params);
+    Observable<String> post(@Url String url, @FieldMap Map<String, Object> params);
     //新增
 
     @POST
-    Call<String> postRaw(@Url String url, @Body RequestBody body);
+    Observable<String> postRaw(@Url String url, @Body RequestBody body);
     //post原始数据
 
     @FormUrlEncoded
     @PUT
-    Call<String> put(@Url String url, @FieldMap Map<String, Object> params);
+    Observable<String> put(@Url String url, @FieldMap Map<String, Object> params);
     //修改
 
     @PUT
-    Call<String> putRaw(@Url String url, @Body RequestBody body);
+    Observable<String> putRaw(@Url String url, @Body RequestBody body);
     //put原始数据
 
     @DELETE
-    Call<String> delete(@Url String url, @QueryMap Map<String, Object> params);
+    Observable<String> delete(@Url String url, @QueryMap Map<String, Object> params);
     //删除
 
     @Streaming
     @GET
-    Call<RequestBody> download(@Url String url, @QueryMap Map<String, Object> params);
+    Observable<RequestBody> download(@Url String url, @QueryMap Map<String, Object> params);
     //下载
 
     @Multipart
     @POST
-    Call<String> upload(@Url String url, @Part MultipartBody.Part file);
+    Observable<String> upload(@Url String url, @Part MultipartBody.Part file);
     //上传
 }

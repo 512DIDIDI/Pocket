@@ -33,6 +33,7 @@ public class RestClientBuilder {
     private RequestBody mBody;
     private LoaderStyle mStyle;
     private Context mContext;
+    private File mFile;
 
     RestClientBuilder() {
     }
@@ -77,14 +78,25 @@ public class RestClientBuilder {
         this.mBody = RequestBody.create(MediaType.parse("application/json;charset=UTF-8"), raw);
         return this;
     }
+
     //传入loading样式
-    public final RestClientBuilder loading(Context context,LoaderStyle style){
+    public final RestClientBuilder loading(Context context, LoaderStyle style) {
         this.mContext = context;
         this.mStyle = style;
         return this;
     }
 
-    public final RestClientBuilder loading(Context context){
+    public final RestClientBuilder file(File file) {
+        this.mFile = file;
+        return this;
+    }
+
+    public final RestClientBuilder file(String filePath) {
+        this.mFile = new File(filePath);
+        return this;
+    }
+
+    public final RestClientBuilder loading(Context context) {
         this.mContext = context;
         this.mStyle = (LoaderStyle) PocketLoader.DEFAULT_STYLE;
         return this;
@@ -92,6 +104,6 @@ public class RestClientBuilder {
 
     public final RestClient build() {
         return new RestClient(mUrl, PARAMS, mSuccess, mError, mFailure,
-                mRequest, mBody, mContext, mStyle);
+                mRequest, mBody, mContext, mStyle, mFile);
     }
 }

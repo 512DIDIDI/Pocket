@@ -13,5 +13,7 @@ public enum ConfigType {
     //配置是否完成
     CONFIG_READY,
     //图标库
-    ICON
+    ICON,
+    //拦截器
+    INTERCEPTOR
 }

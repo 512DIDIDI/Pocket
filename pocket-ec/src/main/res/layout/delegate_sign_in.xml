@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/sign_up_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/toolbarColor">
+        <!--隐藏back按钮-->
+        <com.mikepenz.iconics.view.IconicsTextView
+            android:id="@+id/sign_in_back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/faw_chevron_left"
+            android:textColor="@color/textColorLight"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:foregroundGravity="center"
+            android:text="@string/sign_in"
+            android:textColor="@color/textColorLight"
+            android:textSize="20sp" />
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:orientation="vertical">
+        <!--登录头像-->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/sign_in_"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/cat"
+            app:civ_border_color="@color/textColorDark"
+            app:civ_border_width="1dp" />
+        <!--登录邮箱-->
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <com.mikepenz.iconics.view.IconicsTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/faw_envelope"
+                android:textColor="@color/textColorDark" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/sign_in_email_edit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="6"
+                android:hint="@string/hint_email" />
+        </android.support.v7.widget.LinearLayoutCompat>
+        <!--登录密码-->
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <com.mikepenz.iconics.view.IconicsTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/faw_unlock_alt"
+                android:textColor="@color/textColorDark" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/sign_in_password_edit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="6"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword" />
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <Button
+            android:id="@+id/sign_in_btn"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/normalButtonColor"
+            android:gravity="center"
+            android:text="@string/sign_in"
+            android:textColor="@color/textColorDark" />
+
+        <TextView
+            android:id="@+id/sign_in_signUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/sign_in_signUP"
+            android:textColor="@color/textColorDark" />
+    </android.support.v7.widget.LinearLayoutCompat>
+
+</android.support.v7.widget.LinearLayoutCompat>

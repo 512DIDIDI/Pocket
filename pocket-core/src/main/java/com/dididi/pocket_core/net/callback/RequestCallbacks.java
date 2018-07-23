@@ -48,7 +48,7 @@ public class RequestCallbacks implements Callback<String> {
                 ERROR.onError(response.code(), response.message());
             }
         }
-        //这里是为了让loading显示做了延时操作...
+        //这里是为了让loading显示做了延时操作,设置了postDelayed()...
         if (STYLE != null) {
             HANDLER.postDelayed(new Runnable() {
                 @Override

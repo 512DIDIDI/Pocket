@@ -10,6 +10,8 @@ import com.mikepenz.iconics.utils.GenericsUtil;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import okhttp3.Interceptor;
+
 /**
  * Created by dididi
  * on 17/07/2018 .
@@ -21,6 +23,7 @@ public class Configurator {
     private static final HashMap<Enum<ConfigType>, Object> POCKET_CONFIGS = new HashMap<>();
     @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     private static final HashMap<String, ITypeface> ICONS = new HashMap<>();
+    private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
 
     //私有构造函数
     private Configurator() {
@@ -60,6 +63,18 @@ public class Configurator {
     public final Configurator withIcon(ITypeface iTypeface) {
         validateFont(iTypeface);
         ICONS.put(iTypeface.getMappingPrefix(), iTypeface);
+        return this;
+    }
+    //传入拦截器
+    public final Configurator withInterceptor(Interceptor interceptor) {
+        INTERCEPTORS.add(interceptor);
+        POCKET_CONFIGS.put(ConfigType.INTERCEPTOR, INTERCEPTORS);
+        return this;
+    }
+
+    public final Configurator withInterceptors(ArrayList<Interceptor> interceptors) {
+        INTERCEPTORS.addAll(interceptors);
+        POCKET_CONFIGS.put(ConfigType.INTERCEPTOR, INTERCEPTORS);
         return this;
     }
 

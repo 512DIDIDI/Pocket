@@ -7,8 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import me.yokeyword.fragmentation.ISupportFragment;
 import me.yokeyword.fragmentation_swipeback.SwipeBackFragment;
 
 
@@ -17,7 +19,7 @@ import me.yokeyword.fragmentation_swipeback.SwipeBackFragment;
  * on 18/07/2018 .
  */
 
-public abstract class BaseDelegate extends SwipeBackFragment {
+public abstract class BaseDelegate extends SwipeBackFragment implements ISupportFragment {
     //fragment基础类
 
     private Unbinder mUnbinder = null;
