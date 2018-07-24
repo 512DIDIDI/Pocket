@@ -14,4 +14,13 @@
     <string name="faw_get_pocket">{faw-get-pocket}</string>
     <string name="sign_in">登录</string>
     <string name="sign_in_signUP">没有账号?点击注册</string>
+    <string name="faw_weixin">{faw-weixin}</string>
+    <string name="faw_qq">{faw-qq}</string>
+    <string name="faw_weibo">{faw-weibo}</string>
+    <string name="forget_password">忘记密码?</string>
+    <string name="find_password">找回密码</string>
+    <string name="hint_signUp_email">请输入注册时的邮箱</string>
+    <string name="send_verify">发送验证码</string>
+    <string name="hint_verify">请输入验证码</string>
+    <string name="next_step">下一步</string>
 </resources>

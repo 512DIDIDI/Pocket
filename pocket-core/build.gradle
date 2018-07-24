@@ -56,4 +56,7 @@ dependencies {
     api 'com.rengwuxian.materialedittext:library:2.1.4'
     //circleImageView依赖
     api 'de.hdodenhof:circleimageview:2.2.0'
+    api 'com.google.code.gson:gson:2.8.5'
+    //litePal依赖
+    api 'org.litepal.android:core:2.0.0'
 }

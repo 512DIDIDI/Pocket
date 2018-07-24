@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.LinearLayoutCompat
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:orientation="vertical"
     tools:context=".sign.SignUpDelegate">
-
+    <!--toolbar-->
     <android.support.v7.widget.Toolbar
         android:id="@+id/sign_up_toolbar"
         android:layout_width="match_parent"
@@ -31,12 +32,13 @@
             android:foregroundGravity="center"
             android:text="@string/sign_up"
             android:textColor="@color/textColorLight"
-            android:textSize="20sp" />
+            android:textSize="@dimen/toolBarTextSize" />
     </android.support.v7.widget.Toolbar>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/backgroundColor">
 
         <android.support.v7.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -44,7 +46,7 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:orientation="vertical">
-
+            <!--logo-->
             <com.mikepenz.iconics.view.IconicsImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
@@ -74,7 +76,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="6"
-                    android:hint="@string/hint_name" />
+                    android:hint="@string/hint_name"
+                    android:textSize="@dimen/buttonTextSize" />
             </android.support.v7.widget.LinearLayoutCompat>
             <!--邮箱-->
             <android.support.v7.widget.LinearLayoutCompat
@@ -98,7 +101,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="6"
-                    android:hint="@string/hint_email" />
+                    android:hint="@string/hint_email"
+                    android:textSize="@dimen/buttonTextSize" />
             </android.support.v7.widget.LinearLayoutCompat>
             <!--密码-->
             <android.support.v7.widget.LinearLayoutCompat
@@ -123,7 +127,8 @@
                     android:layout_gravity="center"
                     android:layout_weight="6"
                     android:hint="@string/hint_password"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:textSize="@dimen/buttonTextSize" />
             </android.support.v7.widget.LinearLayoutCompat>
             <!--重复密码-->
             <android.support.v7.widget.LinearLayoutCompat
@@ -148,9 +153,10 @@
                     android:layout_gravity="center"
                     android:layout_weight="6"
                     android:hint="@string/hint_rePassword"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:textSize="@dimen/buttonTextSize" />
             </android.support.v7.widget.LinearLayoutCompat>
-
+            <!--注册按钮-->
             <Button
                 android:id="@+id/sign_up_btn"
                 android:layout_width="match_parent"
@@ -159,15 +165,17 @@
                 android:background="@color/normalButtonColor"
                 android:gravity="center"
                 android:text="@string/sign_up"
-                android:textColor="@color/textColorDark" />
-
+                android:textColor="@color/textColorDark"
+                android:textSize="@dimen/buttonTextSize" />
+            <!--登录文字-->
             <TextView
                 android:id="@+id/sign_up_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/sign_up_login"
-                android:textColor="@color/textColorDark" />
+                android:textColor="@color/textColorDark"
+                android:textSize="@dimen/textSmallSize" />
         </android.support.v7.widget.LinearLayoutCompat>
     </ScrollView>
 

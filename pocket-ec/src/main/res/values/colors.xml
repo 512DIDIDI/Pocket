@@ -11,4 +11,5 @@
     <color name="textColorDark">#454553</color>
     <color name="textColorLight">#f7fbfc</color>
     <color name="textColorRed">#ee2b27</color>
+    <color name="weChatColor">#1AAD19</color>
 </resources>

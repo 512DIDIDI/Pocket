@@ -8,6 +8,8 @@ import com.dididi.pocket_core.net.interceptor.DebugInterceptor;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 
+import org.litepal.LitePal;
+
 
 /**
  * Created by dididi
@@ -28,5 +30,7 @@ public class PocketApplication extends Application {
                 .withIcon(new FontEcModule())
                 .withApiHost("http://127.0.0.1/")
                 .configure();
+        //初始化litePal数据库
+        LitePal.initialize(this);
     }
 }

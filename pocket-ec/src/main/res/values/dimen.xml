@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textSmallSize">12sp</dimen>
+    <dimen name="buttonTextSize">15sp</dimen>
+    <dimen name="toolBarTextSize">18sp</dimen>
+</resources>

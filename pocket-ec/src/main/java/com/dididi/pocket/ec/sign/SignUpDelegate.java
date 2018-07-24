@@ -33,7 +33,7 @@ public class SignUpDelegate extends PocketDelegate {
     @OnClick(R2.id.sign_up_login)
     void onClickLogin() {
         //跳转登录界面
-        getSupportDelegate().startWithPop(new SignInDelegate());
+        startWithPop(new SignInDelegate());
     }
 
     //点击注册按钮

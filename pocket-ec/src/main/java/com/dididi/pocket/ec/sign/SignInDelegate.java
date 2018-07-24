@@ -15,6 +15,7 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -30,14 +31,16 @@ public class SignInDelegate extends PocketDelegate {
     MaterialEditText mEmail = null;
     @BindView(R2.id.sign_in_password_edit)
     MaterialEditText mPassword = null;
+    @BindView(R2.id.sign_in_head)
+    CircleImageView mHead = null;
 
     //登录按钮
     @OnClick(R2.id.sign_in_btn)
     void onClickSignIn() {
-        if (checkInputValid()){
+        if (checkInputValid()) {
             RestClient.builder()
                     .url("")
-                    .params("","")
+                    .params("", "")
                     .onSuccess(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
@@ -53,8 +56,28 @@ public class SignInDelegate extends PocketDelegate {
     //点击注册文字
     @OnClick(R2.id.sign_in_signUp)
     void onClickSignUp() {
-        //TODO:这里有bug,多次点击注册,虽然注册页面只有一个,但登录页面会产生多个
-        getSupportDelegate().start(new SignUpDelegate());
+        start(new SignUpDelegate(), SINGLETASK);
+    }
+
+    //点击忘记密码文字
+    @OnClick(R2.id.sign_in_find_password)
+    void onClickFindPassword() {
+        start(new FindPasswordDelegate());
+    }
+
+    //点击微信登录图标
+    @OnClick(R2.id.sign_in_weChat)
+    void onClickWeChat() {
+    }
+
+    //点击qq登录图标
+    @OnClick(R2.id.sign_in_qq)
+    void onClickQQ() {
+    }
+
+    //点击微博登录图标
+    @OnClick(R2.id.sign_in_weiBo)
+    void onClickWeiBo() {
     }
 
     @Override

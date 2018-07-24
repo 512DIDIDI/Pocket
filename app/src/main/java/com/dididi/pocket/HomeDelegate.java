@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Toast;
 
-import com.dididi.pocket_core.Util.LogUtil;
 import com.dididi.pocket_core.delegates.PocketDelegate;
 import com.dididi.pocket_core.net.RestClient;
 import com.dididi.pocket_core.net.callback.IError;
@@ -22,7 +21,7 @@ public class HomeDelegate extends PocketDelegate {
     @Override
     //返回布局id
     public Object setLayout() {
-        return R.layout.delegate_home;
+        return R.layout.delegate_mall_home;
     }
 
     @Override
