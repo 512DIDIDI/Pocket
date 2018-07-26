@@ -1,4 +1,4 @@
-package com.dididi.pocket_core.ui;
+package com.dididi.pocket_core.ui.loader;
 
 import android.content.Context;
 import android.support.v7.app.AppCompatDialog;
@@ -8,6 +8,7 @@ import android.view.WindowManager;
 
 import com.dididi.pocket_core.R;
 import com.dididi.pocket_core.Util.DimenUtil;
+import com.dididi.pocket_core.ui.loader.LoaderStyle;
 import com.wang.avi.AVLoadingIndicatorView;
 import com.wang.avi.Indicator;
 

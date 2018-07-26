@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 
-import com.dididi.pocket.ec.sign.SignInDelegate;
+import com.dididi.pocket.ec.main.PocketBottomDelegate;
 import com.dididi.pocket_core.activities.ProxyActivity;
 import com.dididi.pocket_core.delegates.PocketDelegate;
 
@@ -14,7 +14,7 @@ public class PocketActivity extends ProxyActivity {
     @Override
     //设置根布局
     public PocketDelegate setRootDelegate() {
-        return new SignInDelegate();
+        return new PocketBottomDelegate();
     }
 
     @Override

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:background="@color/textColorDark">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/home_item_nav_header_head"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/cat" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/home_item_nav_header_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/home_item_nav_header_head"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp"
+        android:text="@string/dididi"
+        android:textColor="@color/textColorLight"
+        android:textSize="@dimen/textSmallSize" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/home_item_nav_header_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/home_item_nav_header_name"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp"
+        android:text="@string/yc512yc_163_com"
+        android:textColor="@color/textColorLight"
+        android:textSize="@dimen/textSmallSize" />
+
+</RelativeLayout>

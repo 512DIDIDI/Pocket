@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <dimen name="textSmallSize">12sp</dimen>
+    <dimen name="textNormalSize">14sp</dimen>
     <dimen name="buttonTextSize">15sp</dimen>
     <dimen name="toolBarTextSize">18sp</dimen>
+    <dimen name="design_navigation_icon_size" tools:override="true">19dp</dimen>
 </resources>

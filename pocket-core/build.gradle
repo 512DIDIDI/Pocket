@@ -33,9 +33,7 @@ dependencies {
     api project(':pocket-annotation')
     //字体图标依赖
     api 'com.mikepenz:iconics-core:3.0.4@aar'
-    api 'com.mikepenz.iconics:google-material-typeface:1.1.1@aar'
     api 'com.mikepenz:fontawesome-typeface:5.0.13.0@aar'
-    //view依赖
     api 'com.mikepenz:iconics-views:3.0.4@aar'
     //fragment依赖
     api 'me.yokeyword:fragmentation:1.3.5'
@@ -50,13 +48,25 @@ dependencies {
     api 'com.squareup.retrofit2:converter-scalars:2.4.0'
     //load依赖
     api 'com.wang.avi:library:2.1.3'
+    //rxJava依赖
     api 'io.reactivex.rxjava2:rxjava:2.1.17'
     api 'io.reactivex.rxjava2:rxandroid:2.0.2'
     api 'com.squareup.retrofit2:adapter-rxjava:2.4.0'
+    //editText依赖
     api 'com.rengwuxian.materialedittext:library:2.1.4'
     //circleImageView依赖
     api 'de.hdodenhof:circleimageview:2.2.0'
+    //gson依赖
     api 'com.google.code.gson:gson:2.8.5'
     //litePal依赖
     api 'org.litepal.android:core:2.0.0'
+    //banner依赖
+    api 'com.youth.banner:banner:1.4.10'
+    //Glide依赖
+    api 'com.github.bumptech.glide:glide:4.7.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+    //material design依赖
+    api 'com.android.support:design:28.0.0-alpha3'
+    //recycler view 依赖
+    api 'com.android.support:recyclerview-v7:28.0.0-alpha3'
 }

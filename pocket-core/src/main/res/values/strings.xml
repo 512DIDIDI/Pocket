@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">pocket</string>
+    <string name="hint_search">请输入搜索内容</string>
+    <string name="faw_search">{faw-search}</string>
+    <string name="faw_ellipsis_v">{faw-ellipsis-v}</string>
+    <string name="faw_bars">{faw-bars}</string>
+    <string name="faw_chevron_left">{faw-chevron-left}</string>
 </resources>

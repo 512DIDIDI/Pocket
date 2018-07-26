@@ -2,6 +2,7 @@ package com.dididi.pocket.ec.sign;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.AppCompatButton;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
@@ -28,6 +29,9 @@ public class SignUpDelegate extends PocketDelegate {
     MaterialEditText mPassword = null;
     @BindView(R2.id.sign_up_rePassword_edit)
     MaterialEditText mRePassword = null;
+    @BindView(R2.id.sign_up_btn)
+    AppCompatButton mSignUp = null;
+
 
     //点击登录文字
     @OnClick(R2.id.sign_up_login)
@@ -39,6 +43,7 @@ public class SignUpDelegate extends PocketDelegate {
     //点击注册按钮
     @OnClick(R2.id.sign_up_btn)
     void onClickSignUp() {
+        mSignUp.setBackgroundColor(getResources().getColor(R.color.pressButtonColor));
         if (checkInputValid()) {
             RestClient.builder()
                     .url("")
@@ -57,8 +62,7 @@ public class SignUpDelegate extends PocketDelegate {
     //点击toolbar返回按钮
     @OnClick(R2.id.sign_up_back_btn)
     void onClickBack() {
-        //TODO:这里有bug,需要判断fragment堆是否为空
-        getSupportDelegate().pop();
+        pop();
     }
 
 

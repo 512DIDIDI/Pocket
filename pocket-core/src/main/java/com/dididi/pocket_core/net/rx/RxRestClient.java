@@ -4,8 +4,8 @@ import android.content.Context;
 
 import com.dididi.pocket_core.net.HttpMethod;
 import com.dididi.pocket_core.net.RestCreator;
-import com.dididi.pocket_core.ui.LoaderStyle;
-import com.dididi.pocket_core.ui.PocketLoader;
+import com.dididi.pocket_core.ui.loader.LoaderStyle;
+import com.dididi.pocket_core.ui.loader.PocketLoader;
 
 import java.io.File;
 import java.util.Map;

@@ -2,14 +2,13 @@ package com.dididi.pocket_core.net;
 
 import android.content.Context;
 
-import com.dididi.pocket_core.app.Pocket;
 import com.dididi.pocket_core.net.callback.IError;
 import com.dididi.pocket_core.net.callback.IFailure;
 import com.dididi.pocket_core.net.callback.IRequest;
 import com.dididi.pocket_core.net.callback.ISuccess;
 import com.dididi.pocket_core.net.callback.RequestCallbacks;
-import com.dididi.pocket_core.ui.LoaderStyle;
-import com.dididi.pocket_core.ui.PocketLoader;
+import com.dididi.pocket_core.ui.loader.LoaderStyle;
+import com.dididi.pocket_core.ui.loader.PocketLoader;
 
 import java.io.File;
 import java.util.Map;

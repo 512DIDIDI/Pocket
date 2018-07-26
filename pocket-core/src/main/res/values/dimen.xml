@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textSmallSize">12sp</dimen>
+    <dimen name="buttonTextSize">15sp</dimen>
+    <dimen name="toolBarTextSize">18sp</dimen>
+    <dimen name="normalIconHeight">20sp</dimen>
+    <dimen name="normalIconWidth">24sp</dimen>
+    <dimen name="bottomBarSize">48dp</dimen>
+    <dimen name="tinyTextSize">10sp</dimen>
+</resources>

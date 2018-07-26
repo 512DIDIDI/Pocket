@@ -1,4 +1,4 @@
-package com.dididi.pocket_core.ui;
+package com.dididi.pocket_core.ui.loader;
 
 /**
  * Created by dididi

@@ -6,11 +6,10 @@ import com.dididi.pocket_core.net.callback.IError;
 import com.dididi.pocket_core.net.callback.IFailure;
 import com.dididi.pocket_core.net.callback.IRequest;
 import com.dididi.pocket_core.net.callback.ISuccess;
-import com.dididi.pocket_core.ui.LoaderStyle;
-import com.dididi.pocket_core.ui.PocketLoader;
+import com.dididi.pocket_core.ui.loader.LoaderStyle;
+import com.dididi.pocket_core.ui.loader.PocketLoader;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.WeakHashMap;
 

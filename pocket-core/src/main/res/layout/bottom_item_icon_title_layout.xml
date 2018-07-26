@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:layout_weight="1">
+
+    <!--底部图标-->
+    <com.mikepenz.iconics.view.IconicsTextView
+        android:id="@+id/bottom_item_icon"
+        android:layout_width="@dimen/normalIconWidth"
+        android:layout_height="@dimen/normalIconHeight"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textColor="@color/textColorGray" />
+    <!--底部文字-->
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/bottom_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="2dp"
+        android:gravity="center"
+        android:textColor="@color/textColorGray"
+        android:textSize="@dimen/tinyTextSize" />
+
+</RelativeLayout>

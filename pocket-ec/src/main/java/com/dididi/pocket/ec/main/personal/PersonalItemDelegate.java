@@ -1,10 +1,11 @@
-package com.dididi.pocket.ec.main.shoppingCart;
+package com.dididi.pocket.ec.main.personal;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.dididi.pocket_core.delegates.PocketDelegate;
+import com.dididi.pocket.ec.R;
+import com.dididi.pocket_core.delegates.bottom.BottomItemDelegate;
 
 
 /**
@@ -12,10 +13,10 @@ import com.dididi.pocket_core.delegates.PocketDelegate;
  * on 24/07/2018 .
  */
 
-public class ShoppingCartDelegate extends PocketDelegate {
+public class PersonalItemDelegate extends BottomItemDelegate {
     @Override
     public Object setLayout() {
-        return null;
+        return R.layout.delegate_personal_personal;
     }
 
     @Override

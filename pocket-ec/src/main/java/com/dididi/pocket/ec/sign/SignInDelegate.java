@@ -2,12 +2,15 @@ package com.dididi.pocket.ec.sign;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.AppCompatButton;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
+import com.dididi.pocket.ec.main.PocketBottomDelegate;
 import com.dididi.pocket_core.delegates.PocketDelegate;
 import com.dididi.pocket_core.net.RestClient;
 import com.dididi.pocket_core.net.callback.ISuccess;
@@ -33,24 +36,14 @@ public class SignInDelegate extends PocketDelegate {
     MaterialEditText mPassword = null;
     @BindView(R2.id.sign_in_head)
     CircleImageView mHead = null;
+    @BindView(R2.id.sign_in_btn)
+    AppCompatButton mSignIn = null;
 
     //登录按钮
     @OnClick(R2.id.sign_in_btn)
     void onClickSignIn() {
-        if (checkInputValid()) {
-            RestClient.builder()
-                    .url("")
-                    .params("", "")
-                    .onSuccess(new ISuccess() {
-                        @Override
-                        public void onSuccess(String response) {
-
-                        }
-                    })
-                    .build()
-                    .get();
-            Toast.makeText(getContext(), "click this", Toast.LENGTH_LONG).show();
-        }
+        mSignIn.setBackgroundColor(getResources().getColor(R.color.pressButtonColor));
+        startWithPop(new PocketBottomDelegate());
     }
 
     //点击注册文字

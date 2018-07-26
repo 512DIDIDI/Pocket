@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.dididi.pocket_core.Util.LogUtil;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -23,8 +25,10 @@ public abstract class BaseDelegate extends SwipeBackFragment implements ISupport
     //fragment基础类
 
     private Unbinder mUnbinder = null;
+
     //抽象方法获取子类布局(可能传入view也可能是id，所以采用Object)
     public abstract Object setLayout();
+
     //抽象方法绑定控件
     public abstract void onBindView(@Nullable Bundle savedInstanceState,
                                     View rootView);

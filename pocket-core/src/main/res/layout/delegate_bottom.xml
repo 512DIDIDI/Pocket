@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--内容容器-->
+    <FrameLayout
+        android:id="@+id/delegate_bottom_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/delegate_bottom_bar" />
+    <!--View要大写-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/delegate_bottom_bar"
+        android:background="@color/textColorDark" />
+
+    <!--底部bar-->
+    <android.support.v7.widget.LinearLayoutCompat
+        android:id="@+id/delegate_bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottomBarSize"
+        android:layout_alignParentBottom="true"
+        android:background="@color/textColorLight"
+        android:orientation="horizontal" />
+</RelativeLayout>

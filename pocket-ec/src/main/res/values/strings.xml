@@ -23,4 +23,20 @@
     <string name="send_verify">发送验证码</string>
     <string name="hint_verify">请输入验证码</string>
     <string name="next_step">下一步</string>
+    <string name="message">消息</string>
+    <string name="shopping_cart">购物车</string>
+    <string name="personal">个人中心</string>
+    <string name="faw_bars">{faw-bars}</string>
+    <string name="faw_search">{faw-search}</string>
+    <string name="hint_search">请输入搜索内容</string>
+    <string name="myCollection">我的收藏</string>
+    <string name="myAttention">我的关注</string>
+    <string name="myFriends">我的好友</string>
+    <string name="dididi">dididi</string>
+    <string name="yc512yc_163_com">yc512yc@163.com</string>
+    <string name="myAccount">我的账户</string>
+    <string name="setting">设置</string>
+    <string name="help">帮助和反馈</string>
+    <string name="logOut">登出账号</string>
+    <string name="discover">发现</string>
 </resources>

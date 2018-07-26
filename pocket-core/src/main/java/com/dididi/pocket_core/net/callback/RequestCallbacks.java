@@ -3,8 +3,8 @@ package com.dididi.pocket_core.net.callback;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 
-import com.dididi.pocket_core.ui.LoaderStyle;
-import com.dididi.pocket_core.ui.PocketLoader;
+import com.dididi.pocket_core.ui.loader.LoaderStyle;
+import com.dididi.pocket_core.ui.loader.PocketLoader;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,15 +48,7 @@ public class RequestCallbacks implements Callback<String> {
                 ERROR.onError(response.code(), response.message());
             }
         }
-        //这里是为了让loading显示做了延时操作,设置了postDelayed()...
-        if (STYLE != null) {
-            HANDLER.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    PocketLoader.stopLoading();
-                }
-            }, 1000);
-        }
+        PocketLoader.stopLoading();
     }
 
     @Override

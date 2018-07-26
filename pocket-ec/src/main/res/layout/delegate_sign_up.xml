@@ -25,7 +25,7 @@
             android:text="@string/faw_chevron_left"
             android:textColor="@color/textColorLight" />
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -157,7 +157,7 @@
                     android:textSize="@dimen/buttonTextSize" />
             </android.support.v7.widget.LinearLayoutCompat>
             <!--注册按钮-->
-            <Button
+            <android.support.v7.widget.AppCompatButton
                 android:id="@+id/sign_up_btn"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -168,7 +168,7 @@
                 android:textColor="@color/textColorDark"
                 android:textSize="@dimen/buttonTextSize" />
             <!--登录文字-->
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/sign_up_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -30,4 +30,5 @@ dependencies {
     api project(':pocket-core')
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
 }
