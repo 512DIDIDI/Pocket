@@ -39,4 +39,8 @@
     <string name="help">帮助和反馈</string>
     <string name="logOut">登出账号</string>
     <string name="discover">发现</string>
+    <string name="photography">摄影</string>
+    <string name="purchase_agency">代购</string>
+    <string name="paint">手绘</string>
+    <string name="comment_dots">{faw-comment-dots}</string>
 </resources>

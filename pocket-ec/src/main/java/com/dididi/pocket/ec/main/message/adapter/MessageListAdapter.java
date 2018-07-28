@@ -1,4 +1,4 @@
-package com.dididi.pocket.ec.main.message.Adapter;
+package com.dididi.pocket.ec.main.message.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import com.dididi.pocket.ec.R;
-import com.dididi.pocket.ec.main.message.Entity.Message;
+import com.dididi.pocket.ec.main.message.entity.Message;
 
 import java.util.List;
 

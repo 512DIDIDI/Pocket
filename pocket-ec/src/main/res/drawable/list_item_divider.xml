@@ -3,6 +3,5 @@
 
     <solid android:color="@color/textColorGray"/>
     <size android:height="1dp" />
-    <padding android:left="10dp"/>
 
 </shape>

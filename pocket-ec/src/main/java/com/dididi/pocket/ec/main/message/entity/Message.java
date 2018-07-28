@@ -1,4 +1,4 @@
-package com.dididi.pocket.ec.main.message.Entity;
+package com.dididi.pocket.ec.main.message.entity;
 
 
 /**

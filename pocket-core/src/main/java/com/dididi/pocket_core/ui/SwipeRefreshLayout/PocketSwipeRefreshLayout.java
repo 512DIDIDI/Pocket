@@ -19,15 +19,14 @@ public class PocketSwipeRefreshLayout extends SwipeRefreshLayout {
     private float mStartX = 0;
     private float mStartY = 0;
     //记录ViewPager是否被拖拉
-    private boolean mIsVpDrag = false;
+    private boolean mIsVpDrag;
     private final int mTouchSlop;
-
     public PocketSwipeRefreshLayout(@NonNull Context context,
                                     @Nullable AttributeSet attrs) {
         super(context, attrs);
+        //获取滑动距离范围
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
     }
-
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         int action = ev.getAction();
@@ -39,7 +38,7 @@ public class PocketSwipeRefreshLayout extends SwipeRefreshLayout {
                 mIsVpDrag = false;
                 break;
             case MotionEvent.ACTION_MOVE:
-                //如果ViewPager正在拖拽,则禁用刷新事件
+                //如果ViewPager正在拖拽,则不拦截ViewPager事件
                 if (mIsVpDrag) {
                     return false;
                 }
@@ -47,7 +46,7 @@ public class PocketSwipeRefreshLayout extends SwipeRefreshLayout {
                 float endX = ev.getX();
                 float distanceX = Math.abs(endX - mStartX);
                 float distanceY = Math.abs(endY - mStartY);
-                //滑动x位移大于y位移时,禁用刷新事件
+                //滑动x位移大于y位移时,不拦截ViewPager事件
                 if (distanceX > mTouchSlop && distanceX > distanceY){
                     mIsVpDrag = true;
                     return false;
