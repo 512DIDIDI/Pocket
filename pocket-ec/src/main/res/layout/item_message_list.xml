@@ -3,7 +3,6 @@
     android:id="@+id/item_message_left_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/backgroundColor"
     android:divider="@drawable/list_item_divider"
     android:showDividers="end">
 
