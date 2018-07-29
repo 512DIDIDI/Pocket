@@ -5,6 +5,8 @@
     <dimen name="toolBarTextSize">18sp</dimen>
     <dimen name="normalIconHeight">20sp</dimen>
     <dimen name="normalIconWidth">24sp</dimen>
+    <dimen name="smallIconHeight">15sp</dimen>
+    <dimen name="smallIconWidth">18sp</dimen>
     <dimen name="bottomBarSize">48dp</dimen>
     <dimen name="tinyTextSize">10sp</dimen>
 </resources>

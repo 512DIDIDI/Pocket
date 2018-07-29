@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
@@ -52,7 +53,7 @@ public class MessageItemDelegate extends BottomItemDelegate {
         adapter.setOnTopDelListener(new PocketOnSwipeListener() {
             @Override
             public void onDelete(int position) {
-                if (position > 0 && position < mMsgList.size()) {
+                if (position >= 0 && position < mMsgList.size()) {
                     //移除列表中对应的消息对象
                     mMsgList.remove(position);
                     adapter.notifyDataSetChanged();
@@ -70,9 +71,11 @@ public class MessageItemDelegate extends BottomItemDelegate {
                     adapter.notifyItemInserted(0);
                     mMsgList.add(0, msg);
                     adapter.notifyItemRemoved(position + 1);
-                    if (layoutManager.findFirstVisibleItemPosition() == 0){
+                    if (layoutManager.findFirstVisibleItemPosition() == 0) {
                         mMsgRecyclerView.scrollToPosition(0);
                     }
+                } else {
+                    Toast.makeText(getContext(), "消息已置顶", Toast.LENGTH_SHORT).show();
                 }
             }
         });

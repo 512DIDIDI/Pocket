@@ -48,8 +48,8 @@
             <!--登录头像-->
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/sign_in_head"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
                 android:src="@drawable/cat"

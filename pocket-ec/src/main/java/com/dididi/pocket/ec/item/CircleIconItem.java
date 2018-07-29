@@ -2,7 +2,6 @@ package com.dididi.pocket.ec.item;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -53,15 +52,17 @@ public class CircleIconItem extends RelativeLayout {
         //获取自定义属性并设置默认值
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CircleIconItem);
         mTextTitle = typedArray.getText(R.styleable.CircleIconItem_circle_icon_text);
-        mIconDrawable = typedArray.getResourceId(R.styleable.CircleIconItem_circle_icon_src, 0);
+        mIconDrawable = typedArray
+                .getResourceId(R.styleable.CircleIconItem_circle_icon_src, 0);
         typedArray.recycle();
     }
 
     private void initView(Context context) {
         //获取控件实例
-        LayoutInflater.from(context).inflate(R.layout.item_home_icon_text, this, true);
-        mIcon = findViewById(R.id.item_home_icon);
-        mText = findViewById(R.id.item_home_text);
+        LayoutInflater.from(context)
+                .inflate(R.layout.item_home_entry_icon_text, this, true);
+        mIcon = findViewById(R.id.item_home_entry_icon);
+        mText = findViewById(R.id.item_home_entry_text);
         //控件实例赋值自定义属性
         mIcon.setImageResource(mIconDrawable);
         mText.setText(mTextTitle);

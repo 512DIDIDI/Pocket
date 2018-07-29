@@ -4,15 +4,15 @@
     android:layout_height="wrap_content">
 <!--快速入口组合控件-->
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/item_home_icon"
+        android:id="@+id/item_home_entry_icon"
         android:layout_width="50dp"
         android:layout_height="50dp" />
 
     <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/item_home_text"
+        android:id="@+id/item_home_entry_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/item_home_icon"
+        android:layout_below="@id/item_home_entry_icon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:textColor="@color/textColorDark"

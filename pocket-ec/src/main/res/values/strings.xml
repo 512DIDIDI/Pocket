@@ -45,4 +45,10 @@
     <string name="comment_dots">{faw-comment-dots}</string>
     <string name="top">置顶</string>
     <string name="delete">删除</string>
+    <string name="faw_circle">{faw-circle}</string>
+    <string name="faw_store">{faw-store}</string>
+    <string name="add_collect">加入收藏</string>
+    <string name="_1">1</string>
+    <string name="decrease">-</string>
+    <string name="increase">+</string>
 </resources>
