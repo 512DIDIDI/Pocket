@@ -27,6 +27,7 @@ import java.util.List;
  */
 
 public class ShopCartAdapter extends RecyclerView.Adapter<ShopCartAdapter.ViewHolder> {
+    //TODO:这里暂时还有bug 应该考虑同一个店铺下把商品归类到同一个cardView中
 
     private Context mContext;
     private List<Goods> mGoodsList;
