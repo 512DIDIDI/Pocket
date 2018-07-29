@@ -1,54 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/item_message_left_layout"
+<com.mcxtzhang.swipemenulib.SwipeMenuLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="70dp"
+    android:clickable="true"
     android:divider="@drawable/list_item_divider"
+    android:focusable="true"
     android:showDividers="end">
+    <!--显示的item布局-->
+    <RelativeLayout
+        android:id="@+id/item_message_main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/item_message_head_img"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_margin="10dp" />
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/item_message_head_img"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="10dp" />
 
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/item_message_user_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_toEndOf="@id/item_message_head_img"
-        android:layout_toRightOf="@id/item_message_head_img"
-        android:textColor="@color/textColorDark"
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/item_message_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@id/item_message_head_img"
+            android:layout_toRightOf="@id/item_message_head_img"
+            android:textColor="@color/textColorDark"
+            android:textSize="@dimen/textNormalSize" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/item_message_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_message_user_name"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/item_message_head_img"
+            android:layout_toRightOf="@id/item_message_head_img"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/textColorGray"
+            android:textSize="@dimen/textSmallSize" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/item_message_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/item_message_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/textColorTight"
+            android:textSize="@dimen/tinyTextSize" />
+    </RelativeLayout>
+    <!--置顶按钮-->
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/item_message_top"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:background="@color/toolbarColor"
+        android:text="@string/top"
+        android:textColor="@color/textColorLight"
+        android:textSize="@dimen/textNormalSize" />
+    <!--删除按钮-->
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/item_message_delete"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:background="@color/textColorRed"
+        android:text="@string/delete"
+        android:textColor="@color/textColorLight"
         android:textSize="@dimen/textNormalSize" />
 
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/item_message_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/item_message_user_name"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_toEndOf="@id/item_message_head_img"
-        android:layout_toRightOf="@id/item_message_head_img"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textColor="@color/textColorGray"
-        android:textSize="@dimen/textSmallSize" />
-
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/item_message_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/item_message_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="15dp"
-        android:textColor="@color/textColorTight"
-        android:textSize="@dimen/tinyTextSize" />
-</RelativeLayout>
+</com.mcxtzhang.swipemenulib.SwipeMenuLayout>
