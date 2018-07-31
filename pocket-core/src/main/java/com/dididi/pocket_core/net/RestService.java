@@ -1,6 +1,5 @@
 package com.dididi.pocket_core.net;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import okhttp3.MultipartBody;

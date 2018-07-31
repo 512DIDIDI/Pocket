@@ -6,34 +6,66 @@ package com.dididi.pocket.ec.main.shoppingCart.entity;
  */
 
 public class Goods {
-
+    //商品id
+    private int goodsId;
+    //商店id
+    private int shopId;
     private String shopName;
     private int goodsImg;
     private String goodsName;
     private String goodsStyle;
     private float goodsPrice;
     private int goodsCount;
-    //设置店铺选择文字
-    private String shopSelected;
-    //设置商品选择文字
-    private String goodsSelected;
     //商品对应的店铺是否选择
     private boolean isShopSelected = false;
     //商品是否选择
     private boolean isGoodsSelected = false;
+    //商品是否处于第一个(用于判断快速判断是否是同一个商店的东西)
+    private boolean isFirst = true;
 
-    public Goods(String shopName, int goodsImg, String goodsName,
-                 String goodsStyle, float goodsPrice, int goodsCount) {
-        this.shopName = shopName;
-        this.goodsImg = goodsImg;
-        this.goodsName = goodsName;
-        this.goodsStyle = goodsStyle;
-        this.goodsPrice = goodsPrice;
-        this.goodsCount = goodsCount;
+    public Goods setGoodsId(int goodsId) {
+        this.goodsId = goodsId;
+        return this;
     }
 
-    public void setGoodsCount(int goodsCount) {
+    public Goods setShopId(int shopId) {
+        this.shopId = shopId;
+        return this;
+    }
+
+    public Goods setShopName(String shopName) {
+        this.shopName = shopName;
+        return this;
+    }
+
+    public Goods setGoodsImg(int goodsImg) {
+        this.goodsImg = goodsImg;
+        return this;
+    }
+
+    public Goods setGoodsName(String goodsName) {
+        this.goodsName = goodsName;
+        return this;
+    }
+
+    public Goods setGoodsStyle(String goodsStyle) {
+        this.goodsStyle = goodsStyle;
+        return this;
+    }
+
+    public Goods setGoodsPrice(float goodsPrice) {
+        this.goodsPrice = goodsPrice;
+        return this;
+    }
+
+    public Goods setFirst(boolean first) {
+        this.isFirst = first;
+        return this;
+    }
+
+    public Goods setGoodsCount(int goodsCount) {
         this.goodsCount = goodsCount;
+        return this;
     }
 
     public void setShopSelected(boolean shopSelected) {
@@ -44,20 +76,12 @@ public class Goods {
         isGoodsSelected = goodsSelected;
     }
 
-    public void setShopSelected(String shopSelected) {
-        this.shopSelected = shopSelected;
+    public int getGoodsId() {
+        return goodsId;
     }
 
-    public void setGoodsSelected(String goodsSelected) {
-        this.goodsSelected = goodsSelected;
-    }
-
-    public String getShopSelected() {
-        return shopSelected;
-    }
-
-    public String getGoodsSelected() {
-        return goodsSelected;
+    public int getShopId() {
+        return shopId;
     }
 
     public String getShopName() {
@@ -91,4 +115,10 @@ public class Goods {
     public boolean isGoodsSelected() {
         return isGoodsSelected;
     }
+
+    public boolean isFirst() {
+        return isFirst;
+    }
+
+
 }

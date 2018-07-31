@@ -47,39 +47,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         }
         View view = LayoutInflater.from(mContext)
                 .inflate(R.layout.item_home_news, viewGroup, false);
-        final ViewHolder holder = new ViewHolder(view);
-        //点击头像
-        holder.mHead.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = holder.getAdapterPosition();
-                News news = mNews.get(position);
-                Toast.makeText(mContext, "你点击了" + news.getUserName() + "头像",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-        //点击名字
-        holder.mName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = holder.getAdapterPosition();
-                News news = mNews.get(position);
-                Toast.makeText(mContext, "你点击了" + news.getUserName() + "名字",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-        //点击评论
-        holder.mComment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(mContext, "点击评论", Toast.LENGTH_SHORT).show();
-            }
-        });
-        return holder;
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
         News news = mNews.get(i);
         viewHolder.mHead.setImageResource(news.getHeadId());
         viewHolder.mName.setText(news.getUserName());
@@ -94,6 +66,33 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         loadImgWithGlide(mContext, news.getImageGroup2_3(), viewHolder.mImageGroup2_image3);
         loadImgWithGlide(mContext, news.getImageGroup3_3(), viewHolder.mImageGroup3_image3);
         viewHolder.mDate.setText(news.getDate());
+        //点击头像
+        viewHolder.mHead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = viewHolder.getAdapterPosition();
+                News news = mNews.get(position);
+                Toast.makeText(mContext, "你点击了" + news.getUserName() + "头像",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+        //点击名字
+        viewHolder.mName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = viewHolder.getAdapterPosition();
+                News news = mNews.get(position);
+                Toast.makeText(mContext, "你点击了" + news.getUserName() + "名字",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+        //点击评论
+        viewHolder.mComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mContext, "点击评论", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -108,6 +107,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
                     .into(view);
         }
     }
+
     //获取控件实例
     static class ViewHolder extends RecyclerView.ViewHolder {
 

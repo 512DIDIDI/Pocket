@@ -20,7 +20,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
                 android:background="@color/toolbarColor"
-
                 app:layout_scrollFlags="scroll|enterAlways|snap">
                 <!--app:layout_scrollFlags设置隐藏方式 scroll向上滚动隐藏 enterAlways向下滚动显示
                             snap根据滚动距离选择自动隐藏还是显示-->

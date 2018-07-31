@@ -18,4 +18,6 @@ public interface OnGoodsPriceListener {
     void onShopSelected(int position);
 
     void onCollect(int position);
+
+    void onChangeStyle(int position);
 }

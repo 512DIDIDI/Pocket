@@ -10,6 +10,7 @@
     <color name="pressButtonColor">#769fcd</color>
     <color name="textColorDark">#454553</color>
     <color name="textColorLight">#f7fbfc</color>
+    <color name="textColorWhite">#ffffff</color>
     <color name="textColorTight">#757a79</color>
     <color name="textColorRed">#ee2b27</color>
     <color name="weChatColor">#1AAD19</color>

@@ -46,9 +46,14 @@
     <string name="top">置顶</string>
     <string name="delete">删除</string>
     <string name="faw_circle">{faw-circle}</string>
+    <string name="faw_check_circle">{faw-check-circle}</string>
     <string name="faw_store">{faw-store}</string>
     <string name="add_collect">加入收藏</string>
     <string name="_1">1</string>
     <string name="decrease">-</string>
     <string name="increase">+</string>
+    <string name="allSelected">全选</string>
+    <string name="allIn">共计:</string>
+    <string name="_yuan">￥0</string>
+    <string name="compute_price">结算</string>
 </resources>

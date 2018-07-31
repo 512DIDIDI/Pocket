@@ -1,32 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/msg_item_toolbar"
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        android:background="@color/toolbarColor">
-
-        <com.dididi.pocket.ec.item.SearchBarItem
-            android:id="@+id/msg_item_searchBar"
+        android:layout_height="match_parent">
+        <!--toolbar-->
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginEnd="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:layout_marginStart="12dp"
-            android:background="@drawable/search_bar_corner"
-            android:gravity="center" />
-    </android.support.v7.widget.Toolbar>
+            android:layout_height="wrap_content">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/msg_item_list_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/msg_item_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:background="@color/toolbarColor"
+                app:layout_scrollFlags="scroll|enterAlways|snap">
+
+                <com.dididi.pocket.ec.item.SearchBarItem
+                    android:id="@+id/msg_item_searchBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginStart="12dp"
+                    android:background="@drawable/search_bar_corner"
+                    android:gravity="center" />
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.AppBarLayout>
+        <!--消息列表-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/msg_item_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:ignore="PrivateResource" />
+    </android.support.design.widget.CoordinatorLayout>
 </android.support.v7.widget.LinearLayoutCompat>

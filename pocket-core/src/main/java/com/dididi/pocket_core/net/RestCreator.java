@@ -37,7 +37,7 @@ public class RestCreator {
     }
     //实例化OkHttpClient
     private static final class OkHttpHolder {
-        //设置超时时间
+        //设置超时时间(keep-alive持续时间)
         private static final int TIME_OUT = 60;
         private static final OkHttpClient.Builder BUILDER = new OkHttpClient.Builder();
         //添加拦截器

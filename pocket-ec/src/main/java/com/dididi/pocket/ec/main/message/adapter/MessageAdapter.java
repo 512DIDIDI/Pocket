@@ -45,7 +45,16 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.Holder> 
         }
         final View itemView = LayoutInflater.from(mContext)
                 .inflate(R.layout.item_message_list, viewGroup, false);
-        final Holder holder = new Holder(itemView);
+        return new Holder(itemView);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull final Holder holder, int i) {
+        Message message = mMessageList.get(i);
+        loadImgWithGlide(mContext, message.getHeadImg(), holder.headImage);
+        holder.userName.setText(message.getUserName());
+        holder.msgContent.setText(message.getMsgContent());
+        holder.msgDate.setText(message.getDate());
         //点击主布局
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,16 +82,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.Holder> 
                 mOnSwipeListener.onDelete(position);
             }
         });
-        return holder;
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull Holder holder, int i) {
-        Message message = mMessageList.get(i);
-        loadImgWithGlide(mContext, message.getHeadImg(), holder.headImage);
-        holder.userName.setText(message.getUserName());
-        holder.msgContent.setText(message.getMsgContent());
-        holder.msgDate.setText(message.getDate());
     }
 
     @Override
