@@ -64,6 +64,7 @@ public class ShoppingCartItemDelegate extends BottomItemDelegate {
                     //删除对应位置的商品
                     mGoodsList.remove(position);
                     mAdapter.notifyDataSetChanged();
+                    computeAllPrice();
                 }
             }
 
@@ -84,6 +85,7 @@ public class ShoppingCartItemDelegate extends BottomItemDelegate {
                     if(--count == 0){
                         //如果当前count为1时,再减少应该取消勾选
                         mGoodsList.get(position).setGoodsSelected(false);
+                        mGoodsList.get(position).setShopSelected(false);
                     }
                     mGoodsList.get(position).setGoodsCount(count);
                 }
