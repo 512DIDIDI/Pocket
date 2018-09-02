@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.main.shoppingCart.Listener.OnGoodsPriceListener;
-import com.dididi.pocket.ec.main.shoppingCart.entity.Goods;
+import com.dididi.pocket_core.Entity.Goods;
 import com.mikepenz.iconics.view.IconicsTextView;
 
 import java.util.List;

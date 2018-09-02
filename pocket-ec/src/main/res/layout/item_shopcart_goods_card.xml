@@ -34,8 +34,9 @@
             android:layout_marginRight="5dp"
             android:layout_toEndOf="@id/item_shopcart_shop_select"
             android:layout_toRightOf="@id/item_shopcart_shop_select"
+            android:gravity="center"
             android:text="@string/faw_store"
-            android:textColor="@color/textColorDark" />
+            android:textColor="@color/textColorGray" />
         <!--商店名字-->
         <com.mikepenz.iconics.view.IconicsTextView
             android:id="@+id/item_shopcart_shop_name"

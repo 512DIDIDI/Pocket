@@ -2,18 +2,19 @@ package com.dididi.pocket.ec.main.shoppingCart;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
 import com.dididi.pocket.ec.item.SearchBarItem;
 import com.dididi.pocket.ec.main.shoppingCart.Listener.OnGoodsPriceListener;
 import com.dididi.pocket.ec.main.shoppingCart.adapter.ShopCartAdapter;
-import com.dididi.pocket.ec.main.shoppingCart.entity.Goods;
+import com.dididi.pocket_core.Entity.Goods;
 import com.dididi.pocket_core.delegates.bottom.BottomItemDelegate;
 import com.mikepenz.iconics.view.IconicsTextView;
 
@@ -28,7 +29,7 @@ import butterknife.BindView;
  * on 24/07/2018 .
  */
 
-public class ShoppingCartItemDelegate extends BottomItemDelegate {
+public class ShoppingCartItemDelegate extends BottomItemDelegate implements View.OnClickListener {
 
     @BindView(R2.id.shop_cart_item_searchBar)
     SearchBarItem mSearchBar = null;
@@ -36,12 +37,17 @@ public class ShoppingCartItemDelegate extends BottomItemDelegate {
     RecyclerView mRecyclerView = null;
     @BindView(R2.id.shop_cart_item_all_selected)
     IconicsTextView mAllSelected = null;
+    @BindView(R2.id.shop_cart_item_all_selected_text)
+    AppCompatTextView mAllSelectedText = null;
     @BindView(R2.id.shop_cart_item_all_price)
     AppCompatTextView mAllPrice = null;
+    @BindView(R2.id.shop_cart_item_compute_price)
+    AppCompatButton mComputePrice = null;
 
     private ShopCartAdapter mAdapter;
     private List<Goods> mGoodsList = new ArrayList<>();
     private float mTotalPrice = 0;
+    private boolean isAllSelected = false;
 
     @Override
     public Object setLayout() {
@@ -82,7 +88,7 @@ public class ShoppingCartItemDelegate extends BottomItemDelegate {
                 //点击减少商品数量
                 int count = mGoodsList.get(position).getGoodsCount();
                 if (count != 0) {
-                    if(--count == 0){
+                    if (--count == 0) {
                         //如果当前count为1时,再减少应该取消勾选
                         mGoodsList.get(position).setGoodsSelected(false);
                         mGoodsList.get(position).setShopSelected(false);
@@ -115,7 +121,13 @@ public class ShoppingCartItemDelegate extends BottomItemDelegate {
 
             }
         });
+        //全选按钮
+        mAllSelected.setOnClickListener(this);
+        mAllSelectedText.setOnClickListener(this);
+
         mRecyclerView.setAdapter(mAdapter);
+        //结算按钮
+        mComputePrice.setOnClickListener(this);
     }
 
     private void initGoods() {
@@ -136,11 +148,12 @@ public class ShoppingCartItemDelegate extends BottomItemDelegate {
                     .setGoodsStyle("大吉它")
                     .setGoodsPrice(666)
                     .setGoodsCount(2);
+            if (i != 0) {
+                cat.setFirst(false);
+                guitar.setFirst(false);
+            }
             mGoodsList.add(cat);
             mGoodsList.add(guitar);
-            if (i != 0) {
-                mGoodsList.get(i).setFirst(false);
-            }
         }
     }
 
@@ -154,6 +167,44 @@ public class ShoppingCartItemDelegate extends BottomItemDelegate {
                 mTotalPrice += (price * count);
             }
         }
-        mAllPrice.setText(String.valueOf(mTotalPrice));
+        //改变文字
+        mAllPrice.setText(R.string.yuan);
+        mAllPrice.append(String.valueOf(mTotalPrice));
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == mAllSelected || view == mAllSelectedText) {
+            //全选按钮
+            //TODO:这里计算总价逻辑可能不是最优化的...
+            for (int i = 0; i < mGoodsList.size(); i++) {
+                if (mGoodsList.get(i).isFirst()) {
+                    //如果是第一个商品,则商店商品勾选状态与全选按钮一致
+                    mGoodsList.get(i).setShopSelected(!isAllSelected);
+                    mGoodsList.get(i).setGoodsSelected(!isAllSelected);
+                    for (int j = i; j < mGoodsList.size(); j++) {
+                        if (mGoodsList.get(i).getShopId() == mGoodsList.get(j).getShopId()) {
+                            //同一家店铺的商品也需勾选状态
+                            mGoodsList.get(j).setGoodsSelected(!isAllSelected);
+                        }
+                    }
+                }
+            }
+            //将全选状态更改
+            isAllSelected = !isAllSelected;
+            if (isAllSelected) {
+                //更改图标样式
+                mAllSelected.setText(R.string.faw_check_circle);
+            } else {
+                mAllSelected.setText(R.string.faw_circle);
+            }
+            mAdapter.notifyDataSetChanged();
+            //重新计算价格
+            computeAllPrice();
+        } else if (view == mComputePrice) {
+            //结算
+            Toast.makeText(getContext(), "共计" + mTotalPrice + "元",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 }

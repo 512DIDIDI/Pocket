@@ -28,4 +28,5 @@ public final class Pocket {
         return (Context) getConfigurations()
                 .get(ConfigType.APPLICATION_CONTEXT);
     }
+
 }

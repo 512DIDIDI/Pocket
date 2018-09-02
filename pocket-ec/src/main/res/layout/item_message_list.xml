@@ -3,9 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="70dp"
     android:clickable="true"
-    android:divider="@drawable/list_item_divider"
-    android:focusable="true"
-    android:showDividers="end">
+    android:focusable="true">
     <!--显示的item布局-->
     <RelativeLayout
         android:id="@+id/item_message_main_layout"

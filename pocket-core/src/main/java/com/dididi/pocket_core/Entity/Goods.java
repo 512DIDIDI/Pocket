@@ -1,4 +1,4 @@
-package com.dididi.pocket.ec.main.shoppingCart.entity;
+package com.dididi.pocket_core.Entity;
 
 /**
  * Created by dididi
@@ -22,6 +22,35 @@ public class Goods {
     private boolean isGoodsSelected = false;
     //商品是否处于第一个(用于判断快速判断是否是同一个商店的东西)
     private boolean isFirst = true;
+    //商品分类
+    private String belongTo;
+    //销量
+    private int sales;
+    //好评率
+    private float evaluate;
+
+    public int getSales() {
+        return sales;
+    }
+
+    public Goods setSales(int sales) {
+        this.sales = sales;
+        return this;
+    }
+
+    public float getEvaluate() {
+        return evaluate;
+    }
+
+    public Goods setEvaluate(float evaluate) {
+        this.evaluate = evaluate;
+        return this;
+    }
+
+    public Goods setBelongTo(String belongTo) {
+        this.belongTo = belongTo;
+        return this;
+    }
 
     public Goods setGoodsId(int goodsId) {
         this.goodsId = goodsId;
@@ -66,6 +95,10 @@ public class Goods {
     public Goods setGoodsCount(int goodsCount) {
         this.goodsCount = goodsCount;
         return this;
+    }
+
+    public String getBelongTo() {
+        return belongTo;
     }
 
     public void setShopSelected(boolean shopSelected) {
@@ -119,6 +152,4 @@ public class Goods {
     public boolean isFirst() {
         return isFirst;
     }
-
-
 }

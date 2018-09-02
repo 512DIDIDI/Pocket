@@ -50,10 +50,23 @@
     <string name="faw_store">{faw-store}</string>
     <string name="add_collect">加入收藏</string>
     <string name="_1">1</string>
+    <string name="yuan">￥</string>
     <string name="decrease">-</string>
     <string name="increase">+</string>
     <string name="allSelected">全选</string>
     <string name="allIn">共计:</string>
     <string name="_yuan">￥0</string>
     <string name="compute_price">结算</string>
+    <string name="all">全部</string>
+    <string name="best">精选</string>
+    <string name="store">商家</string>
+    <string name="sales">销量</string>
+    <string name="faw_grip_vertical">{faw-grip-vertical}</string>
+    <string name="enterShop"><![CDATA[进店 >]]></string>
+    <string-array name="spinner_goods_sort">
+        <item>综合排序</item>
+        <item>好评优先</item>
+        <item>价格降序</item>
+        <item>价格升序</item>
+    </string-array>
 </resources>

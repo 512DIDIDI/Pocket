@@ -2,6 +2,7 @@ package com.dididi.pocket.ec.main.message;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -45,9 +46,15 @@ public class MessageItemDelegate extends BottomItemDelegate {
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         mSearchBar.setLeftIcon("{faw-plus}");
         initMessage();
+        //设置布局方式
         final LinearLayoutManager layoutManager =
                 new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         mMsgRecyclerView.setLayoutManager(layoutManager);
+        if (getContext() != null) {
+            //添加分割线
+            mMsgRecyclerView.addItemDecoration(
+                    new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        }
         final MessageAdapter adapter = new MessageAdapter(mMsgList);
         //监听adapter点击删除置顶按钮的事件
         adapter.setOnTopDelListener(new PocketOnSwipeListener() {

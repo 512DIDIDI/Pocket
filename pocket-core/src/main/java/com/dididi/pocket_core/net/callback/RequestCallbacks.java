@@ -48,7 +48,7 @@ public class RequestCallbacks implements Callback<String> {
                 ERROR.onError(response.code(), response.message());
             }
         }
-        PocketLoader.stopLoading();
+        //PocketLoader.stopLoading();
     }
 
     @Override

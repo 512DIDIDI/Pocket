@@ -9,6 +9,9 @@ import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 
 import org.litepal.LitePal;
 
+import me.yokeyword.fragmentation.BuildConfig;
+import me.yokeyword.fragmentation.Fragmentation;
+
 
 /**
  * Created by dididi
@@ -26,7 +29,7 @@ public class PocketApplication extends Application {
                 //引用自定义FontModule
                 //.withInterceptor(new DebugInterceptor("index", R.raw.test))
                 .withIcon(new FontEcModule())
-                //.withApiHost("http://127.0.0.1/")
+                .withApiHost("http://192.168.1.105:3000/")
                 .configure();
         //初始化litePal数据库
         LitePal.initialize(this);

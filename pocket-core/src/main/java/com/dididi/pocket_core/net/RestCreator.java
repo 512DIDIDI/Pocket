@@ -1,5 +1,6 @@
 package com.dididi.pocket_core.net;
 
+import com.dididi.pocket_core.Util.PocketPreferences;
 import com.dididi.pocket_core.app.ConfigType;
 import com.dididi.pocket_core.app.Pocket;
 import com.dididi.pocket_core.net.rx.RxRestService;

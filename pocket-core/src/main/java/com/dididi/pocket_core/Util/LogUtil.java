@@ -2,6 +2,8 @@ package com.dididi.pocket_core.Util;
 
 import android.util.Log;
 
+import com.google.gson.JsonParser;
+
 /**
  * Created by dididi
  * on 18/07/2018 .
@@ -47,5 +49,9 @@ public class LogUtil {
         if (level <= ERROR) {
             Log.e(TAG, msg);
         }
+    }
+
+    public static void json(String TAG,String msg){
+        Log.d(TAG, new JsonParser().parse(msg).getAsJsonObject().toString());
     }
 }

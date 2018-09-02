@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_mall_goods_list_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--商品图片-->
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/item_mall_goods_list_img"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="5dp"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/item_mall_goods_list_img"
+        android:layout_toEndOf="@id/item_mall_goods_list_img"
+        android:layout_toRightOf="@id/item_mall_goods_list_img"
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        android:paddingEnd="5dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="5dp"
+        android:paddingStart="0dp"
+        android:paddingTop="5dp">
+        <!--商品名-->
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/item_mall_goods_list_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAllCaps="false"
+            android:textColor="@color/textColorDark"
+            android:textSize="@dimen/textNormalSize" />
+        <!--商品价格-->
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/item_mall_goods_list_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_mall_goods_list_name"
+            android:layout_marginBottom="3dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:textAllCaps="false"
+            android:textColor="@color/textColorRed"
+            android:textSize="@dimen/textNormalSize" />
+        <!--商品销量-->
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/item_mall_goods_list_sales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_mall_goods_list_price"
+            android:layout_marginBottom="3dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:textAllCaps="false"
+            android:textColor="@color/textColorGray"
+            android:textSize="@dimen/textSmallSize" />
+        <!--商品评价-->
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/item_mall_goods_list_evaluate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_mall_goods_list_price"
+            android:layout_toEndOf="@id/item_mall_goods_list_sales"
+            android:layout_toRightOf="@id/item_mall_goods_list_sales"
+            android:textColor="@color/textColorGray"
+            android:textSize="@dimen/textSmallSize" />
+        <!--商店名字-->
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/item_mall_goods_list_shop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_mall_goods_list_sales"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:maxWidth="100dp"
+            android:textColor="@color/textColorGray"
+            android:textSize="@dimen/textSmallSize" />
+        <!--进入商店-->
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/item_mall_goods_list_enter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_mall_goods_list_sales"
+            android:layout_toEndOf="@id/item_mall_goods_list_shop"
+            android:layout_toRightOf="@id/item_mall_goods_list_shop"
+            android:text="@string/enterShop"
+            android:textColor="@color/textColorDark"
+            android:textSize="@dimen/textSmallSize" />
+    </RelativeLayout>
+</RelativeLayout>

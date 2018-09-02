@@ -1,24 +1,35 @@
 package com.dididi.pocket_core.Entity;
 
+import java.io.Serializable;
+
 /**
  * Created by dididi
  * on 24/07/2018 .
  */
 //用户信息实体类
-public class UserIfo {
+public class User implements Serializable{
 
-    private int id;
+    private long id;
     private String Email;
     private String name;
     private String password;
     private int phone;
     private String address;
+    private String gender;
 
-    public int getId() {
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

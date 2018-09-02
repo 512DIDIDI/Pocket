@@ -1,25 +1,36 @@
 package com.dididi.pocket.ec.sign;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatButton;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
 
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
+import com.dididi.pocket_core.Util.LogUtil;
 import com.dididi.pocket_core.delegates.PocketDelegate;
 import com.dididi.pocket_core.net.RestClient;
+import com.dididi.pocket_core.net.callback.IError;
+import com.dididi.pocket_core.net.callback.IFailure;
 import com.dididi.pocket_core.net.callback.ISuccess;
+import com.google.gson.Gson;
 import com.rengwuxian.materialedittext.MaterialEditText;
+
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
 public class SignUpDelegate extends PocketDelegate {
 
+    private static final String TAG = "SignUpDelegate";
+
     private boolean isValid = true;
+    private ISignListener mISignListener = null;
 
     @BindView(R2.id.sign_up_name_edit)
     MaterialEditText mName = null;
@@ -32,6 +43,13 @@ public class SignUpDelegate extends PocketDelegate {
     @BindView(R2.id.sign_up_btn)
     AppCompatButton mSignUp = null;
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ISignListener) {
+            mISignListener = (ISignListener) activity;
+        }
+    }
 
     //点击登录文字
     @OnClick(R2.id.sign_up_login)
@@ -41,13 +59,16 @@ public class SignUpDelegate extends PocketDelegate {
     }
 
     //点击注册按钮
+    @SuppressWarnings("ConstantConditions")
     @OnClick(R2.id.sign_up_btn)
     void onClickSignUp() {
         mSignUp.setBackgroundColor(getResources().getColor(R.color.pressButtonColor));
         if (checkInputValid()) {
             RestClient.builder()
-                    .url("")
-                    .params("", "")
+                    .url("http://192.168.1.105:3000/signup")
+                    .params("user[name]", mName.getText().toString())
+                    .params("user[password]", mEmail.getText().toString())
+                    .params("user[email]", mPassword.getText().toString())
                     .onSuccess(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {

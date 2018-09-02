@@ -1,29 +1,38 @@
 package com.dididi.pocket.ec.main.mall;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.UiThread;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
+import com.dididi.pocket.ec.item.CircleIconItem;
 import com.dididi.pocket.ec.item.SearchBarItem;
+import com.dididi.pocket.ec.main.PocketBottomDelegate;
 import com.dididi.pocket.ec.main.mall.adapter.NewsAdapter;
 import com.dididi.pocket.ec.main.mall.entity.News;
 import com.dididi.pocket.ec.main.mall.list.FakeImageList;
-import com.dididi.pocket_core.app.Pocket;
+import com.dididi.pocket.ec.sign.SignInDelegate;
+import com.dididi.pocket_core.Util.PocketPreferences;
+import com.dididi.pocket_core.app.AccountManager;
+import com.dididi.pocket_core.app.IUserChecker;
+import com.dididi.pocket_core.delegates.PocketDelegate;
 import com.dididi.pocket_core.delegates.bottom.BottomItemDelegate;
+import com.dididi.pocket_core.ui.GlideApp;
 import com.dididi.pocket_core.ui.SwipeRefreshLayout.PocketSwipeRefreshLayout;
 import com.dididi.pocket_core.ui.banner.GlideImageLoader;
 import com.youth.banner.Banner;
@@ -36,6 +45,7 @@ import java.util.List;
 import java.util.Random;
 
 import butterknife.BindView;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by dididi
@@ -45,6 +55,8 @@ import butterknife.BindView;
 public class HomeItemDelegate extends BottomItemDelegate
         implements NavigationView.OnNavigationItemSelectedListener,
         View.OnClickListener {
+
+    private static final String TAG = "HomeItemDelegate";
 
     @BindView(R2.id.home_item_searchBar)
     SearchBarItem mSearchBarItem = null;
@@ -60,9 +72,19 @@ public class HomeItemDelegate extends BottomItemDelegate
     PocketSwipeRefreshLayout mRefresh = null;
     @BindView(R2.id.home_item_discover)
     RecyclerView mDiscover = null;
+    @BindView(R2.id.home_item_photography)
+    CircleIconItem mPhotography = null;
+    @BindView(R2.id.home_item_paint)
+    CircleIconItem mPaint = null;
+    @BindView(R2.id.home_item_purchase_agency)
+    CircleIconItem mAgency = null;
 
     private FakeImageList mFakeImages = new FakeImageList();
     private List<News> mNews = new ArrayList<>();
+    private View mNavigationView = null;
+    private AppCompatTextView mEmail = null;
+    private AppCompatTextView mName = null;
+    private CircleImageView mAvatar = null;
 
     private NewsAdapter mAdapter;
 
@@ -79,6 +101,11 @@ public class HomeItemDelegate extends BottomItemDelegate
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
+        //加载navigationView布局
+        mNavigationView = getLayoutInflater().inflate(R.layout.item_home_nav_header, mNav);
+        mEmail = mNavigationView.findViewById(R.id.home_item_nav_header_email);
+        mName = mNavigationView.findViewById(R.id.home_item_nav_header_name);
+        mAvatar = mNavigationView.findViewById(R.id.home_item_nav_header_head);
         //设置nav默认选中item
         mNav.setCheckedItem(R.id.home_item_nav_menu_discover);
         //设置刷新样式
@@ -107,6 +134,8 @@ public class HomeItemDelegate extends BottomItemDelegate
         mDiscover.setLayoutManager(layoutManager);
         mAdapter = new NewsAdapter(mNews);
         mDiscover.setAdapter(mAdapter);
+        //初始化用户信息
+        initUserIfo();
     }
 
     @Override
@@ -133,21 +162,23 @@ public class HomeItemDelegate extends BottomItemDelegate
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int itemId = menuItem.getItemId();
         if (itemId == R.id.home_item_nav_menu_discover) {
-            Toast.makeText(getContext(),"点击跳转发现界面",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "点击跳转发现界面", Toast.LENGTH_SHORT).show();
         } else if (itemId == R.id.home_item_nav_menu_collect) {
-            Toast.makeText(getContext(),"点击跳转我的收藏界面",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "点击跳转我的收藏界面", Toast.LENGTH_SHORT).show();
         } else if (itemId == R.id.home_item_nav_menu_attention) {
-            Toast.makeText(getContext(),"点击跳转我的关注界面",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "点击跳转我的关注界面", Toast.LENGTH_SHORT).show();
         } else if (itemId == R.id.home_item_nav_menu_friends) {
-            Toast.makeText(getContext(),"点击跳转我的朋友界面",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "点击跳转我的朋友界面", Toast.LENGTH_SHORT).show();
         } else if (itemId == R.id.home_item_nav_menu_account) {
-            Toast.makeText(getContext(),"点击跳转账户界面",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "点击跳转账户界面", Toast.LENGTH_SHORT).show();
         } else if (itemId == R.id.home_item_nav_menu_exit) {
-            Toast.makeText(getContext(),"点击登出账号",Toast.LENGTH_SHORT).show();
+            //清除sp中的内容以达到退出效果
+            PocketPreferences.clearPocketProfile();
+            //TODO:如何跳转至登录页面,当前栈顶fragment为homeItemDelegate,
         } else if (itemId == R.id.home_item_nav_menu_setting) {
-            Toast.makeText(getContext(),"点击跳转设置界面",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "点击跳转设置界面", Toast.LENGTH_SHORT).show();
         } else if (itemId == R.id.home_item_nav_menu_help) {
-            Toast.makeText(getContext(),"点击跳转帮助界面",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "点击跳转帮助界面", Toast.LENGTH_SHORT).show();
         }
         return true;
     }
@@ -180,6 +211,8 @@ public class HomeItemDelegate extends BottomItemDelegate
                     Toast.makeText(getContext(), "click search", Toast.LENGTH_SHORT).show();
                 }
             });
+        } else if (view.getId() == R.id.home_item_photography) {
+
         }
     }
 
@@ -188,8 +221,8 @@ public class HomeItemDelegate extends BottomItemDelegate
         News[] news = {
                 new News(R.drawable.cat, "大野猫", "我是一只大大大大野猫", "27/7/2018"),
                 new News(R.drawable.flower, "大菊花", "我是一朵大菊花", "28/7/2018"),
-                new News(R.drawable.guitar,"大吉它",
-                        "我是一把小吉他小呀小呀小呀小呀小呀小呀小呀小呀小吉他","26/7/2018"),
+                new News(R.drawable.guitar, "大吉它",
+                        "我是一把小吉他小呀小呀小呀小呀小呀小呀小呀小呀小吉他", "26/7/2018"),
         };
         for (int i = 0; i < 5; i++) {
             Random random = new Random();
@@ -197,6 +230,7 @@ public class HomeItemDelegate extends BottomItemDelegate
             mNews.add(news[index]);
         }
     }
+
     //刷新假数据
     private void refreshNews() {
         new Thread(new Runnable() {
@@ -208,7 +242,7 @@ public class HomeItemDelegate extends BottomItemDelegate
                     e.printStackTrace();
                 }
                 //切换回ui线程
-                if (getActivity()!=null){
+                if (getActivity() != null) {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -220,5 +254,32 @@ public class HomeItemDelegate extends BottomItemDelegate
                 }
             }
         }).start();
+    }
+
+    private void initUserIfo() {
+        AccountManager.checkAccount(new IUserChecker() {
+            @Override
+            public void onSignIn() {
+                String avatar = PocketPreferences
+                        .getCustomPocketProfile("userAvatar")
+                        .replace("\"", "");
+                String name = PocketPreferences
+                        .getCustomPocketProfile("userName")
+                        .replace("\"", "");
+                String email = PocketPreferences
+                        .getCustomPocketProfile("userEmail")
+                        .replace("\"", "");
+                GlideApp.with(HomeItemDelegate.this)
+                        .load(avatar)
+                        .into(mAvatar);
+                mName.setText(name);
+                mEmail.setText(email);
+            }
+
+            @Override
+            public void onNotSignIn() {
+
+            }
+        });
     }
 }
