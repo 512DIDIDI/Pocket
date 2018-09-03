@@ -15,5 +15,9 @@ public enum ConfigType {
     //图标库
     ICON,
     //拦截器
-    INTERCEPTOR
+    INTERCEPTOR,
+    //全局activity
+    ACTIVITY,
+    //全局fragment
+    BASEBOTTOMDELEGATE
 }

@@ -25,17 +25,14 @@
                 android:background="@color/toolbarColor"
                 app:layout_scrollFlags="scroll|enterAlways|snap">
 
-                <com.dididi.pocket.ec.item.SearchBarItem
-                    android:id="@+id/shop_cart_item_searchBar"
-                    android:layout_width="match_parent"
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginEnd="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_marginStart="12dp"
-                    android:background="@drawable/search_bar_corner"
-                    android:gravity="center" />
+                    android:foregroundGravity="center"
+                    android:text="@string/shopping_cart"
+                    android:textColor="@color/textColorLight"
+                    android:textSize="@dimen/toolBarTextSize" />
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
         <!--购物车页面-->

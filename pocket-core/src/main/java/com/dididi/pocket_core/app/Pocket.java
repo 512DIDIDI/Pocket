@@ -23,6 +23,11 @@ public final class Pocket {
         return Configurator.getInstance().getPocketConfigs();
     }
 
+    //获取配置文件实例
+    public static Configurator getConfigurator(){
+        return Configurator.getInstance();
+    }
+
     //获取全局context
     public static Context getApplicationContext() {
         return (Context) getConfigurations()

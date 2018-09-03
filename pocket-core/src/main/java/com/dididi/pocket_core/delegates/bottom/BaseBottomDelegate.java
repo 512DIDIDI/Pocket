@@ -1,20 +1,16 @@
 package com.dididi.pocket_core.delegates.bottom;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import com.dididi.pocket_core.R;
 import com.dididi.pocket_core.R2;
-import com.dididi.pocket_core.Util.LogUtil;
 import com.dididi.pocket_core.delegates.PocketDelegate;
 import com.mikepenz.iconics.view.IconicsTextView;
 
@@ -23,7 +19,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import butterknife.BindView;
-import me.yokeyword.fragmentation.SupportFragment;
+import me.yokeyword.fragmentation.ISupportFragment;
 
 
 /**
@@ -32,13 +28,16 @@ import me.yokeyword.fragmentation.SupportFragment;
  */
 
 @SuppressWarnings({"FieldCanBeLocal", "MismatchedQueryAndUpdateOfCollection"})
-public abstract class BaseBottomDelegate extends PocketDelegate implements View.OnClickListener {
+public abstract class BaseBottomDelegate extends PocketDelegate
+        implements View.OnClickListener,IHideBottomBarListener{
     //抽象带bottomBar的页面
 
     @BindView(R2.id.delegate_bottom_container)
     FrameLayout mContainer = null;
     @BindView(R2.id.delegate_bottom_bar)
     LinearLayoutCompat mBottomBar = null;
+    @BindView(R2.id.delegate_root_view)
+    RelativeLayout mRootView = null;
 
     private final ArrayList<BottomTabBean> TAB_BEANS = new ArrayList<>();
     private final ArrayList<BottomItemDelegate> ITEM_DELEGATE = new ArrayList<>();
@@ -79,6 +78,7 @@ public abstract class BaseBottomDelegate extends PocketDelegate implements View.
             TAB_BEANS.add(key);
             ITEM_DELEGATE.add(value);
         }
+
     }
 
     @Override
@@ -110,9 +110,10 @@ public abstract class BaseBottomDelegate extends PocketDelegate implements View.
             }
         }
         //获取存储的delegate转化为数组,具体原因查看源码
-        final SupportFragment[] delegateArray = ITEM_DELEGATE.toArray(new SupportFragment[size]);
+        final ISupportFragment[] delegateArray = ITEM_DELEGATE.toArray(new ISupportFragment[size]);
         //加载多个fragment
-        loadMultipleRootFragment(R.id.delegate_bottom_container, mIndexDelegate, delegateArray);
+        getSupportDelegate()
+                .loadMultipleRootFragment(R.id.delegate_bottom_container, mIndexDelegate, delegateArray);
     }
 
     //重置bar颜色
@@ -125,14 +126,51 @@ public abstract class BaseBottomDelegate extends PocketDelegate implements View.
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        final int height = getResources().getDimensionPixelSize(R.dimen.bottomBarSize);
+        mRootView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
+                if (i3 - i7 < -1) {
+                    RelativeLayout.LayoutParams params =
+                            new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, 0);
+                    params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                    mBottomBar.setLayoutParams(params);
+                } else if (i3 - i7 > 1) {
+                    RelativeLayout.LayoutParams params =
+                            new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
+                                    height);
+                    params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                    mBottomBar.setLayoutParams(params);
+                }
+            }
+        });
+    }
+
+    @Override
     public void onClick(View view) {
         final int tag = (int) view.getTag();
         resetColor();
         final RelativeLayout item = (RelativeLayout) view;
         item.setBackgroundColor(getResources().getColor(mPressColor));
         //隐藏当前fragment显示点击的fragment
-        showHideFragment(ITEM_DELEGATE.get(tag), ITEM_DELEGATE.get(mCurrentDelegate));
+        getSupportDelegate().showHideFragment(ITEM_DELEGATE.get(tag), ITEM_DELEGATE.get(mCurrentDelegate));
         //重置tag为当前所选中的fragment
         mCurrentDelegate = tag;
+    }
+
+    @Override
+    public void hide() {
+        mBottomBar.setVisibility(View.INVISIBLE);
+    }
+
+    public FrameLayout getmContainer() {
+        return mContainer;
+    }
+
+    @Override
+    public void show() {
+        mBottomBar.setVisibility(View.VISIBLE);
     }
 }

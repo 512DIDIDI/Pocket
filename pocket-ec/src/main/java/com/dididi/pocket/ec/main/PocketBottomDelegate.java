@@ -1,9 +1,5 @@
 package com.dididi.pocket.ec.main;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.View;
-
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.main.mall.HomeItemDelegate;
 import com.dididi.pocket.ec.main.message.MessageItemDelegate;
@@ -12,6 +8,7 @@ import com.dididi.pocket.ec.main.shoppingCart.ShoppingCartItemDelegate;
 import com.dididi.pocket_core.delegates.bottom.BaseBottomDelegate;
 import com.dididi.pocket_core.delegates.bottom.BottomItemDelegate;
 import com.dididi.pocket_core.delegates.bottom.BottomTabBean;
+import com.dididi.pocket_core.delegates.bottom.IHideBottomBarListener;
 import com.dididi.pocket_core.delegates.bottom.ItemFactory;
 
 import java.util.LinkedHashMap;
@@ -23,6 +20,7 @@ import java.util.LinkedHashMap;
  */
 
 public class PocketBottomDelegate extends BaseBottomDelegate {
+
     @Override
     public LinkedHashMap<BottomTabBean, BottomItemDelegate> setItems(ItemFactory factory) {
         final LinkedHashMap<BottomTabBean, BottomItemDelegate> items = new LinkedHashMap<>();

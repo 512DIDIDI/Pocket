@@ -11,6 +11,7 @@ import com.dididi.pocket.ec.sign.SignInDelegate;
 import com.dididi.pocket_core.activities.ProxyActivity;
 import com.dididi.pocket_core.app.AccountManager;
 import com.dididi.pocket_core.app.IUserChecker;
+import com.dididi.pocket_core.app.Pocket;
 import com.dididi.pocket_core.delegates.PocketDelegate;
 
 
@@ -41,6 +42,7 @@ public class PocketActivity extends ProxyActivity implements ISignListener {
         if (actionBar != null) {
             actionBar.hide();
         }
+        Pocket.getConfigurator().withActivity(this);
     }
 
     @Override

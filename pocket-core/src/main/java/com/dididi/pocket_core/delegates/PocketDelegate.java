@@ -6,4 +6,9 @@ package com.dididi.pocket_core.delegates;
  */
 
 public abstract class PocketDelegate extends PermissionCheckerDelegate {
+
+    @SuppressWarnings("unchecked")
+    public <T extends PocketDelegate> T getParentDelegate() {
+        return (T) getParentFragment();
+    }
 }

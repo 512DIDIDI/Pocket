@@ -18,7 +18,6 @@ public abstract class BottomItemDelegate extends PocketDelegate {
     private static final int EXIT_TIME = 2000;
 
     @Override
-    //TODO:双击退出程序, onKeyListener貌似有冲突
     public boolean onBackPressedSupport() {
         if ((System.currentTimeMillis() - mExitTime) < EXIT_TIME) {
             _mActivity.finish();

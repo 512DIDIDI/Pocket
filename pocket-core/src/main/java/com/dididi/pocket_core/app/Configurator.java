@@ -1,8 +1,10 @@
 package com.dididi.pocket_core.app;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.dididi.pocket_core.Util.LogUtil;
+import com.dididi.pocket_core.delegates.bottom.BaseBottomDelegate;
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.typeface.ITypeface;
 import com.mikepenz.iconics.utils.GenericsUtil;
@@ -46,7 +48,6 @@ public class Configurator {
 
     //配置方法
     public final void configure() {
-        LogUtil.d(TAG, "configure");
         initIcons();
         //配置已完成
         POCKET_CONFIGS.put(ConfigType.CONFIG_READY, true);
@@ -75,6 +76,16 @@ public class Configurator {
     public final Configurator withInterceptors(ArrayList<Interceptor> interceptors) {
         INTERCEPTORS.addAll(interceptors);
         POCKET_CONFIGS.put(ConfigType.INTERCEPTOR, INTERCEPTORS);
+        return this;
+    }
+
+    public final Configurator withActivity(Activity activity){
+        POCKET_CONFIGS.put(ConfigType.ACTIVITY,activity);
+        return this;
+    }
+
+    public final Configurator withBottomDelegate(BaseBottomDelegate delegate){
+        POCKET_CONFIGS.put(ConfigType.BASEBOTTOMDELEGATE,delegate);
         return this;
     }
 

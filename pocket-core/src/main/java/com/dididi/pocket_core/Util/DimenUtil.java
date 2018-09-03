@@ -2,6 +2,8 @@ package com.dididi.pocket_core.Util;
 
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
+import android.view.View;
+import android.view.ViewTreeObserver;
 
 import com.dididi.pocket_core.app.Pocket;
 
@@ -17,6 +19,7 @@ public class DimenUtil {
         final DisplayMetrics dm = RESOURCES.getDisplayMetrics();
         return dm.widthPixels;
     }
+
     //返回屏幕高度
     public static int getScreenHeight() {
         final Resources RESOURCES = Pocket.getApplicationContext().getResources();

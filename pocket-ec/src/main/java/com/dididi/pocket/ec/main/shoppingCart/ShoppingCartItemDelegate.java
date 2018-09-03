@@ -31,8 +31,6 @@ import butterknife.BindView;
 
 public class ShoppingCartItemDelegate extends BottomItemDelegate implements View.OnClickListener {
 
-    @BindView(R2.id.shop_cart_item_searchBar)
-    SearchBarItem mSearchBar = null;
     @BindView(R2.id.shop_cart_item_recycler_view)
     RecyclerView mRecyclerView = null;
     @BindView(R2.id.shop_cart_item_all_selected)
@@ -56,7 +54,6 @@ public class ShoppingCartItemDelegate extends BottomItemDelegate implements View
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-        mSearchBar.setLeftIconGone();
         initGoods();
         //设置RecyclerView布局方式
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());

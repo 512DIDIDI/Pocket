@@ -1,7 +1,5 @@
 package com.dididi.pocket.ec.main.mall;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,25 +11,28 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
 import com.dididi.pocket.ec.item.CircleIconItem;
 import com.dididi.pocket.ec.item.SearchBarItem;
-import com.dididi.pocket.ec.main.PocketBottomDelegate;
 import com.dididi.pocket.ec.main.mall.adapter.NewsAdapter;
 import com.dididi.pocket.ec.main.mall.entity.News;
 import com.dididi.pocket.ec.main.mall.list.FakeImageList;
 import com.dididi.pocket.ec.sign.SignInDelegate;
+import com.dididi.pocket.ec.sign.SignUpDelegate;
 import com.dididi.pocket_core.Util.PocketPreferences;
 import com.dididi.pocket_core.app.AccountManager;
+import com.dididi.pocket_core.app.ConfigType;
 import com.dididi.pocket_core.app.IUserChecker;
-import com.dididi.pocket_core.delegates.PocketDelegate;
+import com.dididi.pocket_core.app.Pocket;
 import com.dididi.pocket_core.delegates.bottom.BottomItemDelegate;
+import com.dididi.pocket_core.delegates.bottom.IHideBottomBarListener;
 import com.dididi.pocket_core.ui.GlideApp;
 import com.dididi.pocket_core.ui.SwipeRefreshLayout.PocketSwipeRefreshLayout;
 import com.dididi.pocket_core.ui.banner.GlideImageLoader;
@@ -81,6 +82,7 @@ public class HomeItemDelegate extends BottomItemDelegate
 
     private FakeImageList mFakeImages = new FakeImageList();
     private List<News> mNews = new ArrayList<>();
+    @SuppressWarnings("FieldCanBeLocal")
     private View mNavigationView = null;
     private AppCompatTextView mEmail = null;
     private AppCompatTextView mName = null;
@@ -91,6 +93,13 @@ public class HomeItemDelegate extends BottomItemDelegate
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return super.onCreateView(inflater, container, savedInstanceState);
+
     }
 
     @Override
@@ -174,7 +183,7 @@ public class HomeItemDelegate extends BottomItemDelegate
         } else if (itemId == R.id.home_item_nav_menu_exit) {
             //清除sp中的内容以达到退出效果
             PocketPreferences.clearPocketProfile();
-            //TODO:如何跳转至登录页面,当前栈顶fragment为homeItemDelegate,
+            getParentDelegate().getSupportDelegate().startWithPop(new SignInDelegate());
         } else if (itemId == R.id.home_item_nav_menu_setting) {
             Toast.makeText(getContext(), "点击跳转设置界面", Toast.LENGTH_SHORT).show();
         } else if (itemId == R.id.home_item_nav_menu_help) {
@@ -202,6 +211,7 @@ public class HomeItemDelegate extends BottomItemDelegate
                 public void onClick(View view) {
                     //开启滑动菜单
                     mDrawer.openDrawer(GravityCompat.START);
+                    //TODO:如何获取当前的BaseBottomDelegate以回调隐藏底部按钮功能?
                 }
             });
         } else if (view.getId() == mSearchBarItem.getSearchIconId()) {
@@ -278,7 +288,23 @@ public class HomeItemDelegate extends BottomItemDelegate
 
             @Override
             public void onNotSignIn() {
-
+                GlideApp.with(HomeItemDelegate.this)
+                        .load(R.drawable.cat)
+                        .into(mAvatar);
+                mName.setText("尚未登录");
+                mEmail.setText("点击登录账号");
+                mName.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        getParentDelegate().getSupportDelegate().startWithPop(new SignInDelegate());
+                    }
+                });
+                mEmail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        getParentDelegate().getSupportDelegate().startWithPop(new SignInDelegate());
+                    }
+                });
             }
         });
     }

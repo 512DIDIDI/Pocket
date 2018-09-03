@@ -55,7 +55,7 @@ public class SignUpDelegate extends PocketDelegate {
     @OnClick(R2.id.sign_up_login)
     void onClickLogin() {
         //跳转登录界面
-        startWithPop(new SignInDelegate());
+        getSupportDelegate().startWithPop(new SignInDelegate());
     }
 
     //点击注册按钮
@@ -83,7 +83,7 @@ public class SignUpDelegate extends PocketDelegate {
     //点击toolbar返回按钮
     @OnClick(R2.id.sign_up_back_btn)
     void onClickBack() {
-        pop();
+        getSupportDelegate().pop();
     }
 
 

@@ -14,9 +14,11 @@ import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
 import com.dididi.pocket.ec.main.PocketBottomDelegate;
 import com.dididi.pocket_core.Util.LogUtil;
+import com.dididi.pocket_core.Util.PocketPreferences;
 import com.dididi.pocket_core.app.Pocket;
 import com.dididi.pocket_core.delegates.PocketDelegate;
 import com.dididi.pocket_core.net.RestClient;
+import com.dididi.pocket_core.net.callback.IError;
 import com.dididi.pocket_core.net.callback.IFailure;
 import com.dididi.pocket_core.net.callback.ISuccess;
 import com.rengwuxian.materialedittext.MaterialEditText;
@@ -62,25 +64,26 @@ public class SignInDelegate extends PocketDelegate {
     @OnClick(R2.id.sign_in_btn)
     void onClickSignIn() {
         mSignIn.setBackgroundColor(getResources().getColor(R.color.pressButtonColor));
-        RestClient.builder()
-                .url("http://192.168.1.105:3000/login")
-                .params("user[name]", mEmail.getText().toString())
-                .params("user[password]", mPassword.getText().toString())
-                .onSuccess(new ISuccess() {
-                    @Override
-                    public void onSuccess(String response) {
-                        if (response.contains("\"code\":1")) {
-                            LogUtil.d(TAG, response);
-                            SignHandler.onSignIn(response, mISignListener);
-                            startWithPop(new PocketBottomDelegate());
-                        } else {
-                            Toast.makeText(Pocket.getApplicationContext(),
-                                    "登录失败,请重新输入用户名和密码", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                })
-                .build()
-                .post();
+//        RestClient.builder()
+//                .url("http://192.168.1.105:3000/login")
+//                .params("user[name]", mEmail.getText().toString())
+//                .params("user[password]", mPassword.getText().toString())
+//                .onSuccess(new ISuccess() {
+//                               @Override
+//                               public void onSuccess(String response) {
+//                                   if (response.contains("\"code\":1")) {
+//                                       LogUtil.d(TAG, response);
+//                                       SignHandler.onSignIn(response, mISignListener);
+                                       getSupportDelegate().startWithPop(new PocketBottomDelegate());
+//                                   } else {
+//                                       Toast.makeText(Pocket.getApplicationContext(),
+//                                               "登录失败,请重新输入用户名和密码", Toast.LENGTH_SHORT).show();
+//                                   }
+//                               }
+//                           }
+//                )
+//                .build()
+//                .post();
     }
 
     //点击注册文字
@@ -98,6 +101,32 @@ public class SignInDelegate extends PocketDelegate {
     //点击微信登录图标
     @OnClick(R2.id.sign_in_weChat)
     void onClickWeChat() {
+        RestClient.builder()
+                .url("http://192.168.1.105:3000/mymessage")
+                .params("token", PocketPreferences.getCustomPocketProfile("token"))
+                .onSuccess(new ISuccess() {
+                               @Override
+                               public void onSuccess(String response) {
+                                   if (response.contains("\"code\":1")) {
+                                       LogUtil.d(TAG, response);
+                                       SignHandler.onSignIn(response, mISignListener);
+                                       getSupportDelegate().startWithPop(new PocketBottomDelegate());
+                                   } else {
+                                       LogUtil.d(TAG, response);
+                                       Toast.makeText(Pocket.getApplicationContext(),
+                                               "登录失败,请重新输入用户名和密码", Toast.LENGTH_SHORT).show();
+                                   }
+                               }
+                           }
+                )
+                .onError(new IError() {
+                    @Override
+                    public void onError(int code, String msg) {
+                        LogUtil.d("response:", code + msg);
+                    }
+                })
+                .build()
+                .get();
     }
 
     //点击qq登录图标

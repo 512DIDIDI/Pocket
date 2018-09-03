@@ -26,8 +26,14 @@ public class GoodsListDelegate extends PocketDelegate {
 
     }
 
-    public static void startIntent(Context context){
+    /**
+     * 传入GoodsListDelegate的参数
+     * @param context 上下文
+     * @param goodsBelongTo 商品分类
+     */
+    public static void startIntent(Context context,String goodsBelongTo){
         Intent intent = new Intent(context,GoodsListDelegate.class);
-        intent.getExtras();
+        intent.putExtra("belongTo",goodsBelongTo);
+        context.startActivity(intent);
     }
 }
