@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/item_mall_goods_list_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
     <!--商品图片-->
-    <android.support.v7.widget.AppCompatImageView
+    <com.dididi.pocket.ec.item.RoundRectImageView
         android:id="@+id/item_mall_goods_list_img"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_margin="5dp"/>
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_margin="8dp"
+        app:roundRect_corner="10dp"/>
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,9 +20,9 @@
         android:gravity="center"
         android:paddingBottom="5dp"
         android:paddingEnd="5dp"
-        android:paddingLeft="0dp"
+        android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:paddingStart="0dp"
+        android:paddingStart="5dp"
         android:paddingTop="5dp">
         <!--商品名-->
         <android.support.v7.widget.AppCompatTextView

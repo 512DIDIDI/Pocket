@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.dididi.pocket.ec.R;
+import com.dididi.pocket.ec.item.RoundRectImageView;
 import com.dididi.pocket.ec.main.message.entity.Message;
 import com.dididi.pocket.ec.main.message.listener.PocketOnSwipeListener;
 import com.dididi.pocket_core.ui.GlideApp;
@@ -91,7 +92,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.Holder> 
 
     static class Holder extends RecyclerView.ViewHolder {
         private RelativeLayout mainLayout;
-        private AppCompatImageView headImage;
+        private RoundRectImageView headImage;
         private AppCompatTextView userName;
         private AppCompatTextView msgContent;
         private AppCompatTextView msgDate;

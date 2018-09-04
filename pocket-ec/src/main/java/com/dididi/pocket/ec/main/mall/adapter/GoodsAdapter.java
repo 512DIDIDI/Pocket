@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.dididi.pocket.ec.R;
+import com.dididi.pocket.ec.item.RoundRectImageView;
 import com.dididi.pocket_core.Entity.Goods;
 import com.dididi.pocket_core.ui.GlideApp;
 
@@ -29,7 +30,7 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.ViewHolder> 
     private List<Goods> mGoodsList;
     private Context mContext;
 
-    public GoodsAdapter(ArrayList<Goods> goods) {
+    public GoodsAdapter(List<Goods> goods) {
         this.mGoodsList = goods;
     }
 
@@ -40,7 +41,7 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.ViewHolder> 
             mContext = viewGroup.getContext();
         }
         View itemView = LayoutInflater.from(mContext)
-                .inflate(R.layout.delegate_mall_goods_list, viewGroup, false);
+                .inflate(R.layout.item_mall_goods_list, viewGroup, false);
         return new ViewHolder(itemView);
     }
 
@@ -52,7 +53,7 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.ViewHolder> 
                 .into(viewHolder.goodsImg);
         viewHolder.goodsName.setText(goods.getGoodsName());
         viewHolder.goodsPrice.setText(String.valueOf(goods.getGoodsPrice()));
-        viewHolder.goodsSales.setText(goods.getSales());
+        viewHolder.goodsSales.setText(String.valueOf(goods.getSales()));
         viewHolder.goodsEvaluate.setText(String.valueOf(goods.getEvaluate()));
         viewHolder.shopName.setText(goods.getShopName());
         //点击进入商店
@@ -80,7 +81,7 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.ViewHolder> 
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         RelativeLayout mainLayout;
-        AppCompatImageView goodsImg;
+        RoundRectImageView goodsImg;
         AppCompatTextView goodsName;
         AppCompatTextView goodsPrice;
         AppCompatTextView goodsSales;

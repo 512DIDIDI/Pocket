@@ -61,8 +61,8 @@
     <string name="best">精选</string>
     <string name="store">商家</string>
     <string name="sales">销量</string>
-    <string name="faw_grip_vertical">{faw-grip-vertical}</string>
     <string name="enterShop"><![CDATA[进店 >]]></string>
+    <string name="faw_th_list">{faw-th-list}</string>
     <string-array name="spinner_goods_sort">
         <item>综合排序</item>
         <item>好评优先</item>

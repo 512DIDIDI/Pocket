@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.dididi.pocket.ec.R;
+import com.dididi.pocket.ec.item.RoundRectImageView;
 import com.dididi.pocket.ec.main.shoppingCart.Listener.OnGoodsPriceListener;
 import com.dididi.pocket_core.Entity.Goods;
 import com.mikepenz.iconics.view.IconicsTextView;
@@ -207,7 +208,7 @@ public class ShopCartAdapter extends RecyclerView.Adapter<ShopCartAdapter.ViewHo
         IconicsTextView shopSelected;
         AppCompatTextView shopName;
         IconicsTextView goodsSelected;
-        AppCompatImageView goodsImg;
+        RoundRectImageView goodsImg;
         AppCompatTextView goodsName;
         AppCompatTextView goodsStyle;
         AppCompatTextView goodsPrice;

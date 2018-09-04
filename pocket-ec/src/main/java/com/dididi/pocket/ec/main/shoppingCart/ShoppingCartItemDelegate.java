@@ -42,7 +42,7 @@ public class ShoppingCartItemDelegate extends BottomItemDelegate implements View
     @BindView(R2.id.shop_cart_item_compute_price)
     AppCompatButton mComputePrice = null;
 
-    private ShopCartAdapter mAdapter;
+    private ShopCartAdapter mAdapter = null;
     private List<Goods> mGoodsList = new ArrayList<>();
     private float mTotalPrice = 0;
     private boolean isAllSelected = false;
@@ -56,7 +56,7 @@ public class ShoppingCartItemDelegate extends BottomItemDelegate implements View
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         initGoods();
         //设置RecyclerView布局方式
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
         mRecyclerView.setLayoutManager(layoutManager);
         //设置适配器
         mAdapter = new ShopCartAdapter(mGoodsList);

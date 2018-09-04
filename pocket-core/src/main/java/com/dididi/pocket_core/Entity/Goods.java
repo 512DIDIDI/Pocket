@@ -25,9 +25,9 @@ public class Goods {
     //商品分类
     private String belongTo;
     //销量
-    private int sales;
+    private int sales = 0;
     //好评率
-    private float evaluate;
+    private float evaluate = 0;
 
     public int getSales() {
         return sales;

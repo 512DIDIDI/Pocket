@@ -4,5 +4,9 @@
         <attr name="circle_icon_src" format="reference" />
         <attr name="circle_icon_text" format="string" />
     </declare-styleable>
+    
+    <declare-styleable name="RoundRectImageView">
+        <attr name="roundRect_corner" format="dimension"/>
+    </declare-styleable>
 
 </resources>

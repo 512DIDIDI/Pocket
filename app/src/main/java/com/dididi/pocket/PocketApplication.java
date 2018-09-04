@@ -29,7 +29,7 @@ public class PocketApplication extends Application {
                 //引用自定义FontModule
                 //.withInterceptor(new DebugInterceptor("index", R.raw.test))
                 .withIcon(new FontEcModule())
-                .withApiHost("http://192.168.1.105:3000/")
+                //.withApiHost("http://192.168.1.105:3000/")
                 .configure();
         //初始化litePal数据库
         LitePal.initialize(this);

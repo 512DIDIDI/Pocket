@@ -46,6 +46,7 @@ import java.util.List;
 import java.util.Random;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -79,6 +80,10 @@ public class HomeItemDelegate extends BottomItemDelegate
     CircleIconItem mPaint = null;
     @BindView(R2.id.home_item_purchase_agency)
     CircleIconItem mAgency = null;
+    @OnClick(R2.id.home_item_photography)
+    public void setmPhotography(){
+        getParentDelegate().getSupportDelegate().start(new GoodsListDelegate());
+    }
 
     private FakeImageList mFakeImages = new FakeImageList();
     private List<News> mNews = new ArrayList<>();
@@ -93,13 +98,6 @@ public class HomeItemDelegate extends BottomItemDelegate
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
-
     }
 
     @Override
@@ -221,8 +219,6 @@ public class HomeItemDelegate extends BottomItemDelegate
                     Toast.makeText(getContext(), "click search", Toast.LENGTH_SHORT).show();
                 }
             });
-        } else if (view.getId() == R.id.home_item_photography) {
-
         }
     }
 

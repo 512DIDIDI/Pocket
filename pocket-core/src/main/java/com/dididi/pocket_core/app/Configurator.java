@@ -84,11 +84,6 @@ public class Configurator {
         return this;
     }
 
-    public final Configurator withBottomDelegate(BaseBottomDelegate delegate){
-        POCKET_CONFIGS.put(ConfigType.BASEBOTTOMDELEGATE,delegate);
-        return this;
-    }
-
     //初始化icon
     private void initIcons() {
         String[] fonts = GenericsUtil.getFields(Pocket.getApplicationContext());

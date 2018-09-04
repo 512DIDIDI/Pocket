@@ -2,6 +2,7 @@
 <com.mcxtzhang.swipemenulib.SwipeMenuLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="70dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clickable="true"
     android:focusable="true">
     <!--显示的item布局-->
@@ -10,13 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.AppCompatImageView
+        <com.dididi.pocket.ec.item.RoundRectImageView
             android:id="@+id/item_message_head_img"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_margin="10dp" />
+            android:layout_margin="10dp"
+            app:roundRect_corner="5dp"/>
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/item_message_user_name"

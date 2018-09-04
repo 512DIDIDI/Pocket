@@ -33,123 +33,102 @@
                     android:background="@drawable/search_bar_corner"
                     android:gravity="center" />
             </android.support.v7.widget.Toolbar>
+            <!--商品选择入口-->
+            <android.support.v7.widget.LinearLayoutCompat
+                android:id="@+id/goods_delegate_chooseBar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:orientation="horizontal"
+                app:layout_scrollFlags="scroll|enterAlways|snap">
+                <!--全部商品-->
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/goods_delegate_chooseBar_all"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/all"
+                    android:textColor="@color/textColorWhite"
+                    android:textSize="@dimen/textNormalSize" />
+                <!--精选商品-->
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/goods_delegate_chooseBar_best"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/best"
+                    android:textColor="@color/textColorWhite"
+                    android:textSize="@dimen/textNormalSize" />
+                <!--商家-->
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/goods_delegate_chooseBar_store"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/store"
+                    android:textColor="@color/textColorWhite"
+                    android:textSize="@dimen/textNormalSize" />
+            </android.support.v7.widget.LinearLayoutCompat>
         </android.support.design.widget.AppBarLayout>
-        <!--商品选择入口-->
-        <android.support.v7.widget.LinearLayoutCompat
-            android:id="@+id/goods_delegate_chooseBar"
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
-            android:orientation="horizontal">
-            <!--全部商品-->
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/goods_delegate_chooseBar_all"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:text="@string/all"
-                android:textColor="@color/textColorDark"
-                android:textSize="@dimen/textNormalSize" />
-            <!--精选商品-->
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/goods_delegate_chooseBar_best"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:text="@string/best"
-                android:textColor="@color/textColorDark"
-                android:textSize="@dimen/textNormalSize" />
-            <!--商家-->
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/goods_delegate_chooseBar_store"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:text="@string/store"
-                android:textColor="@color/textColorDark"
-                android:textSize="@dimen/textNormalSize" />
-        </android.support.v7.widget.LinearLayoutCompat>
-        <!--商品排序-->
-        <android.support.v7.widget.LinearLayoutCompat
-            android:id="@+id/goods_delegate_sortBar"
-            android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
-            android:orientation="horizontal">
-            <!--排序方式-->
-            <android.support.v7.widget.AppCompatSpinner
-                android:id="@+id/goods_delegate_sortBar_sort"
-                android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            <!--商品排序-->
+            <android.support.v7.widget.LinearLayoutCompat
+                android:id="@+id/goods_delegate_sortBar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:layout_alignParentTop="true"
+                android:orientation="horizontal">
+                <!--排序方式-->
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/goods_delegate_sortBar_sort"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:entries="@array/spinner_goods_sort"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="@color/textColorDark"
+                    android:textSize="@dimen/textNormalSize" />
+                <!--销量排序-->
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/goods_delegate_sortBar_sales"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/sales"
+                    android:textColor="@color/textColorDark"
+                    android:textSize="@dimen/textNormalSize" />
+                <!--改变网格排序-->
+                <com.mikepenz.iconics.view.IconicsTextView
+                    android:id="@+id/goods_delegate_sortBar_grid"
+                    android:layout_width="@dimen/normalIconWidth"
+                    android:layout_height="@dimen/normalIconHeight"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:text="@string/faw_th_list"
+                    android:textColor="@color/textColorDark" />
+            </android.support.v7.widget.LinearLayoutCompat>
+            <!--商品list-->
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/goods_delegate_goodsList"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:entries="@array/spinner_goods_sort"
-                android:textColor="@color/textColorDark"
-                android:textSize="@dimen/textNormalSize" />
-            <!--销量排序-->
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/goods_delegate_sortBar_sales"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:text="@string/sales"
-                android:textColor="@color/textColorDark"
-                android:textSize="@dimen/textNormalSize" />
-            <!--改变网格排序-->
-            <com.mikepenz.iconics.view.IconicsTextView
-                android:id="@+id/goods_delegate_sortBar_grid"
-                android:layout_width="@dimen/normalIconWidth"
-                android:layout_height="@dimen/normalIconHeight"
-                android:layout_margin="10dp"
-                android:text="@string/faw_grip_vertical"
-                android:textColor="@color/textColorDark" />
-        </android.support.v7.widget.LinearLayoutCompat>
-        <!--商品排序置顶-->
-        <android.support.v7.widget.LinearLayoutCompat
-            android:id="@+id/goods_delegate_sortBar_top"
-            android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
-            android:orientation="horizontal"
-            android:layout_alignParentTop="true"
-            android:visibility="gone">
-            <!--排序方式-->
-            <android.support.v7.widget.AppCompatSpinner
-                android:id="@+id/goods_delegate_sortBar_top_sort"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:entries="@array/spinner_goods_sort"
-                android:textColor="@color/textColorDark"
-                android:textSize="@dimen/textNormalSize" />
-            <!--销量排序-->
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/goods_delegate_sortBar_top_sales"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:text="@string/sales"
-                android:textColor="@color/textColorDark"
-                android:textSize="@dimen/textNormalSize" />
-            <!--改变网格排序-->
-            <com.mikepenz.iconics.view.IconicsTextView
-                android:id="@+id/goods_delegate_sortBar_top_grid"
-                android:layout_width="@dimen/normalIconWidth"
-                android:layout_height="@dimen/normalIconHeight"
-                android:layout_margin="10dp"
-                android:text="@string/faw_grip_vertical"
-                android:textColor="@color/textColorDark" />
-        </android.support.v7.widget.LinearLayoutCompat>
-        <!--商品list-->
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/goods_delegate_goodsList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:ignore="PrivateResource" />
+                android:layout_below="@id/goods_delegate_sortBar"
+                tools:ignore="PrivateResource" />
+        </RelativeLayout>
     </android.support.design.widget.CoordinatorLayout>
 
 </android.support.v7.widget.LinearLayoutCompat>

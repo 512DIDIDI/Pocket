@@ -18,6 +18,4 @@ public enum ConfigType {
     INTERCEPTOR,
     //全局activity
     ACTIVITY,
-    //全局fragment
-    BASEBOTTOMDELEGATE
 }

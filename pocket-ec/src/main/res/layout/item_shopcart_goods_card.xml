@@ -75,14 +75,15 @@
                     android:text="@string/faw_circle"
                     android:textColor="@color/textColorGray" />
                 <!--商品图片-->
-                <android.support.v7.widget.AppCompatImageView
+                <com.dididi.pocket.ec.item.RoundRectImageView
                     android:id="@+id/item_shopcart_goods_img"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_toEndOf="@id/item_shopcart_goods_select"
-                    android:layout_toRightOf="@id/item_shopcart_goods_select" />
+                    android:layout_toRightOf="@id/item_shopcart_goods_select"
+                    app:roundRect_corner="10dp"/>
                 <!--商品名字-->
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/item_shopcart_goods_name"
