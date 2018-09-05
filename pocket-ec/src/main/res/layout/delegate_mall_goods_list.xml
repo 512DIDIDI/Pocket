@@ -26,10 +26,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginEnd="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="@dimen/screenLRGap"
+                    android:layout_marginLeft="@dimen/screenLRGap"
+                    android:layout_marginRight="@dimen/screenLRGap"
+                    android:layout_marginStart="@dimen/screenLRGap"
                     android:background="@drawable/search_bar_corner"
                     android:gravity="center" />
             </android.support.v7.widget.Toolbar>
@@ -37,8 +37,10 @@
             <android.support.v7.widget.LinearLayoutCompat
                 android:id="@+id/goods_delegate_chooseBar"
                 android:layout_width="match_parent"
-                android:layout_height="?android:attr/actionBarSize"
+                android:layout_height="@dimen/searchBarSize"
                 android:orientation="horizontal"
+                android:paddingLeft="@dimen/screenLRGap"
+                android:paddingRight="@dimen/screenLRGap"
                 app:layout_scrollFlags="scroll|enterAlways|snap">
                 <!--全部商品-->
                 <android.support.v7.widget.AppCompatTextView
@@ -84,9 +86,11 @@
             <android.support.v7.widget.LinearLayoutCompat
                 android:id="@+id/goods_delegate_sortBar"
                 android:layout_width="match_parent"
-                android:layout_height="?android:attr/actionBarSize"
+                android:layout_height="@dimen/searchBarSize"
                 android:layout_alignParentTop="true"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/screenLRGap"
+                android:paddingRight="@dimen/screenLRGap">
                 <!--排序方式-->
                 <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/goods_delegate_sortBar_sort"
@@ -105,6 +109,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/dividerGap"
+                    android:layout_marginRight="@dimen/dividerGap"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/sales"
@@ -113,10 +119,11 @@
                 <!--改变网格排序-->
                 <com.mikepenz.iconics.view.IconicsTextView
                     android:id="@+id/goods_delegate_sortBar_grid"
-                    android:layout_width="@dimen/normalIconWidth"
-                    android:layout_height="@dimen/normalIconHeight"
+                    android:layout_width="@dimen/normalIconSize"
+                    android:layout_height="@dimen/normalIconSize"
                     android:layout_gravity="center"
-                    android:layout_margin="10dp"
+                    android:layout_marginLeft="@dimen/dividerGap"
+                    android:layout_marginStart="@dimen/dividerGap"
                     android:gravity="center"
                     android:text="@string/faw_th_list"
                     android:textColor="@color/textColorDark" />

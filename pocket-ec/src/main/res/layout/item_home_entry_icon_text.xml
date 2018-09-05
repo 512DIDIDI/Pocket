@@ -2,11 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
-<!--快速入口组合控件-->
+    <!--快速入口组合控件-->
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/item_home_entry_icon"
-        android:layout_width="50dp"
-        android:layout_height="50dp" />
+        android:layout_width="@dimen/entryIconSize"
+        android:layout_height="@dimen/entryIconSize"
+        android:layout_centerHorizontal="true"/>
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/item_home_entry_text"
@@ -14,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/item_home_entry_icon"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/dividerGap"
         android:textColor="@color/textColorDark"
         android:textSize="@dimen/textSmallSize" />
 </RelativeLayout>

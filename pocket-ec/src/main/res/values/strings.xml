@@ -47,7 +47,6 @@
     <string name="delete">删除</string>
     <string name="faw_circle">{faw-circle}</string>
     <string name="faw_check_circle">{faw-check-circle}</string>
-    <string name="faw_store">{faw-store}</string>
     <string name="add_collect">加入收藏</string>
     <string name="_1">1</string>
     <string name="yuan">￥</string>
@@ -63,6 +62,9 @@
     <string name="sales">销量</string>
     <string name="enterShop"><![CDATA[进店 >]]></string>
     <string name="faw_th_list">{faw-th-list}</string>
+    <string name="faw_gg">{faw-gg}</string>
+    <string name="alreadybuy">人已购买</string>
+    <string name="evaluation">好评率:</string>
     <string-array name="spinner_goods_sort">
         <item>综合排序</item>
         <item>好评优先</item>

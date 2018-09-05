@@ -46,21 +46,21 @@
     <!--底部结算布局-->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
+        android:layout_height="@dimen/bottomBarSize"
         android:background="@color/textColorWhite"
         android:layout_alignParentBottom="true">
         <!--全选按钮-->
         <com.mikepenz.iconics.view.IconicsTextView
             android:id="@+id/shop_cart_item_all_selected"
-            android:layout_width="@dimen/normalIconWidth"
-            android:layout_height="@dimen/normalIconHeight"
+            android:layout_width="@dimen/normalIconSize"
+            android:layout_height="@dimen/normalIconSize"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginEnd="@dimen/dividerGap"
+            android:layout_marginLeft="@dimen/screenLRGap"
+            android:layout_marginRight="@dimen/dividerGap"
+            android:layout_marginStart="@dimen/screenLRGap"
             android:text="@string/faw_circle"
             android:textColor="@color/textColorDark" />
 
@@ -102,9 +102,11 @@
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/shop_cart_item_compute_price"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/searchBarSize"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:layout_marginLeft="@dimen/screenLRGap"
+            android:layout_marginRight="@dimen/screenLRGap"
             android:layout_centerVertical="true"
             android:background="@color/normalButtonColor"
             android:text="@string/compute_price"

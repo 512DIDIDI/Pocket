@@ -96,6 +96,11 @@ public class SignUpDelegate extends PocketDelegate {
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
     }
 
+    @Override
+    public void setSwipeBackEnable(boolean enable) {
+        super.setSwipeBackEnable(true);
+    }
+
     private boolean checkInputValid() {
         if (mName.getText() == null || mEmail.getText() == null
                 || mRePassword.getText() == null || mPassword.getText() == null) {

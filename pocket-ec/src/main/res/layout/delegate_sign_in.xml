@@ -19,8 +19,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:layout_marginLeft="@dimen/screenLRGap"
+            android:layout_marginStart="@dimen/screenLRGap"
             android:text="@string/faw_chevron_left"
             android:textColor="@color/textColorLight"
             android:visibility="invisible" />
@@ -39,89 +39,94 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.LinearLayoutCompat
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:orientation="vertical">
+            android:padding="@dimen/screenLRGap">
             <!--登录头像-->
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/sign_in_head"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/screenLRGap"
                 android:src="@drawable/cat"
                 app:civ_border_color="@color/backgroundColor"
                 app:civ_border_width="1dp" />
             <!--登录邮箱-->
-            <android.support.v7.widget.LinearLayoutCompat
+            <com.mikepenz.iconics.view.IconicsTextView
+                android:id="@+id/sign_in_email"
+                android:layout_width="@dimen/normalIconSize"
+                android:layout_height="@dimen/normalIconSize"
+                android:layout_alignBottom="@id/sign_in_email_edit"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="@dimen/dividerGap"
+                android:layout_marginEnd="@dimen/screenLRGap"
+                android:layout_marginRight="@dimen/screenLRGap"
+                android:text="@string/faw_envelope"
+                android:textColor="@color/textColorDark" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/sign_in_email_edit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:orientation="horizontal">
-
-                <com.mikepenz.iconics.view.IconicsTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/faw_envelope"
-                    android:textColor="@color/textColorDark" />
-
-                <com.rengwuxian.materialedittext.MaterialEditText
-                    android:id="@+id/sign_in_email_edit"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="6"
-                    android:hint="@string/hint_email"
-                    android:textSize="@dimen/buttonTextSize" />
-            </android.support.v7.widget.LinearLayoutCompat>
+                android:layout_height="@dimen/searchBarSize"
+                android:layout_below="@id/sign_in_head"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="@dimen/dividerGap"
+                android:layout_toEndOf="@id/sign_in_email"
+                android:layout_toRightOf="@id/sign_in_email"
+                android:hint="@string/hint_email"
+                android:textSize="@dimen/buttonTextSize" />
             <!--登录密码-->
-            <android.support.v7.widget.LinearLayoutCompat
+            <com.mikepenz.iconics.view.IconicsTextView
+                android:id="@+id/sign_in_password"
+                android:layout_width="@dimen/normalIconSize"
+                android:layout_height="@dimen/normalIconSize"
+                android:layout_alignBottom="@id/sign_in_password_edit"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="@dimen/dividerGap"
+                android:layout_marginEnd="@dimen/screenLRGap"
+                android:layout_marginRight="@dimen/screenLRGap"
+                android:text="@string/faw_unlock_alt"
+                android:textColor="@color/textColorDark" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/sign_in_password_edit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:orientation="horizontal">
-
-                <com.mikepenz.iconics.view.IconicsTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/faw_unlock_alt"
-                    android:textColor="@color/textColorDark" />
-
-                <com.rengwuxian.materialedittext.MaterialEditText
-                    android:id="@+id/sign_in_password_edit"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="6"
-                    android:hint="@string/hint_password"
-                    android:inputType="textPassword"
-                    android:textSize="@dimen/buttonTextSize" />
-            </android.support.v7.widget.LinearLayoutCompat>
+                android:layout_height="@dimen/searchBarSize"
+                android:layout_below="@id/sign_in_email_edit"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="@dimen/dividerGap"
+                android:layout_toEndOf="@id/sign_in_password"
+                android:layout_toRightOf="@id/sign_in_password"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword"
+                android:textSize="@dimen/buttonTextSize" />
             <!--忘记密码-->
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/sign_in_find_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginBottom="10dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/sign_in_password_edit"
+                android:layout_marginBottom="@dimen/elementGap"
                 android:text="@string/forget_password"
-                android:textColor="@color/textColorDark"
+                android:textColor="@color/textHintColor"
                 android:textSize="@dimen/textSmallSize" />
             <!--登录按钮-->
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/sign_in_btn"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginBottom="10dp"
+                android:layout_height="@dimen/searchBarSize"
+                android:layout_below="@id/sign_in_find_password"
+                android:layout_marginBottom="@dimen/dividerGap"
                 android:background="@color/normalButtonColor"
                 android:gravity="center"
                 android:text="@string/sign_in"
@@ -132,23 +137,26 @@
                 android:id="@+id/sign_in_signUp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
+                android:layout_below="@id/sign_in_btn"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/elementGap"
                 android:text="@string/sign_in_signUP"
-                android:textColor="@color/textColorDark"
+                android:textColor="@color/textHintColor"
                 android:textSize="@dimen/textSmallSize" />
 
             <android.support.v7.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center_horizontal"
+                android:layout_below="@id/sign_in_signUp"
+                android:layout_centerHorizontal="true"
                 android:orientation="horizontal">
                 <!--微信登录-->
                 <com.mikepenz.iconics.view.IconicsTextView
                     android:id="@+id/sign_in_weChat"
-                    android:layout_width="24dp"
-                    android:layout_height="20dp"
-                    android:layout_margin="10dp"
+                    android:layout_width="@dimen/normalIconSize"
+                    android:layout_height="@dimen/normalIconSize"
+                    android:layout_marginLeft="@dimen/dividerGap"
+                    android:layout_marginRight="@dimen/dividerGap"
                     android:gravity="center"
                     android:text="@string/faw_weixin"
                     android:textColor="@color/textColorDark" />
@@ -156,9 +164,10 @@
                 <!--qq登录-->
                 <com.mikepenz.iconics.view.IconicsTextView
                     android:id="@+id/sign_in_qq"
-                    android:layout_width="24dp"
-                    android:layout_height="20dp"
-                    android:layout_margin="10dp"
+                    android:layout_width="@dimen/normalIconSize"
+                    android:layout_height="@dimen/normalIconSize"
+                    android:layout_marginLeft="@dimen/dividerGap"
+                    android:layout_marginRight="@dimen/dividerGap"
                     android:gravity="center"
                     android:text="@string/faw_qq"
                     android:textColor="@color/textColorDark" />
@@ -166,15 +175,16 @@
                 <!--微博登录-->
                 <com.mikepenz.iconics.view.IconicsTextView
                     android:id="@+id/sign_in_weiBo"
-                    android:layout_width="24dp"
-                    android:layout_height="20dp"
-                    android:layout_margin="10dp"
+                    android:layout_width="@dimen/normalIconSize"
+                    android:layout_height="@dimen/normalIconSize"
+                    android:layout_marginLeft="@dimen/dividerGap"
+                    android:layout_marginRight="@dimen/dividerGap"
                     android:gravity="center"
                     android:text="@string/faw_weibo"
                     android:textColor="@color/textColorDark" />
             </android.support.v7.widget.LinearLayoutCompat>
 
-        </android.support.v7.widget.LinearLayoutCompat>
+        </RelativeLayout>
 
     </ScrollView>
 

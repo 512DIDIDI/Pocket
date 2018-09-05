@@ -59,19 +59,19 @@ public class GoodsListDelegate extends PocketDelegate implements View.OnClickLis
                     .setShopId(1)
                     .setShopName("我是一家店铺")
                     .setGoodsImg(R.drawable.cat)
-                    .setGoodsName("我是一只大猫")
+                    .setGoodsName("我的名字很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长")
                     .setSales(20)
                     .setGoodsStyle("橘喵")
                     .setGoodsPrice(233)
                     .setGoodsCount(1);
             Goods guitar = new Goods()
                     .setShopId(2)
-                    .setShopName("我也是一家店铺")
+                    .setShopName("我也是一家店铺也是一家店铺也是一家店铺也是一家店铺")
                     .setGoodsImg(R.drawable.guitar)
-                    .setGoodsName("我是一把小吉他")
+                    .setGoodsName("我的销量很高价格很贵店铺名很长")
                     .setGoodsStyle("大吉它")
-                    .setSales(50)
-                    .setGoodsPrice(666)
+                    .setSales(1111111111)
+                    .setGoodsPrice(564564)
                     .setGoodsCount(2);
             if (i != 0) {
                 cat.setFirst(false);
@@ -80,6 +80,11 @@ public class GoodsListDelegate extends PocketDelegate implements View.OnClickLis
             mGoodsList.add(cat);
             mGoodsList.add(guitar);
         }
+    }
+
+    @Override
+    public void setSwipeBackEnable(boolean enable) {
+        super.setSwipeBackEnable(true);
     }
 
     @Override

@@ -3,24 +3,27 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:divider="@drawable/list_item_divider"
-    android:showDividers="end"
-    android:padding="10dp">
+    android:paddingBottom="@dimen/dividerGap"
+    android:paddingLeft="@dimen/screenLRGap"
+    android:paddingRight="@dimen/screenLRGap"
+    android:paddingTop="@dimen/dividerGap"
+    android:showDividers="end">
     <!--头像-->
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/item_home_news_head"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/smallAvatarSize"
+        android:layout_height="@dimen/smallAvatarSize"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"/>
+        android:layout_alignParentTop="true" />
     <!--用户名-->
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/item_home_news_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginStart="5dp"
+        android:layout_marginBottom="@dimen/dividerGap"
+        android:layout_marginLeft="@dimen/elementGap"
+        android:layout_marginStart="@dimen/elementGap"
         android:layout_toEndOf="@id/item_home_news_head"
         android:layout_toRightOf="@id/item_home_news_head"
         android:textAllCaps="false"
@@ -32,8 +35,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/item_home_news_name"
-        android:layout_marginLeft="5dp"
-        android:layout_marginStart="5dp"
+        android:layout_marginLeft="@dimen/elementGap"
+        android:layout_marginStart="@dimen/elementGap"
         android:layout_toEndOf="@id/item_home_news_head"
         android:layout_toRightOf="@id/item_home_news_head"
         android:maxLines="3"
@@ -46,9 +49,9 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_below="@id/item_home_news_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginLeft="@dimen/elementGap"
+        android:layout_marginStart="@dimen/elementGap"
+        android:layout_marginTop="@dimen/dividerGap"
         android:layout_toEndOf="@id/item_home_news_head"
         android:layout_toRightOf="@id/item_home_news_head"
         android:visibility="gone">
@@ -64,7 +67,7 @@
                 android:id="@+id/item_home_news_image_group1_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/item_home_news_image_group1_2"
@@ -138,22 +141,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/item_home_news_image_group"
-        android:layout_marginLeft="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginLeft="@dimen/elementGap"
+        android:layout_marginStart="@dimen/elementGap"
+        android:layout_marginTop="@dimen/dividerGap"
         android:layout_toEndOf="@id/item_home_news_head"
         android:layout_toRightOf="@id/item_home_news_head"
         android:textColor="@color/textColorTight"
         android:textSize="@dimen/tinyTextSize" />
-
+    <!--评论-->
     <com.mikepenz.iconics.view.IconicsTextView
         android:id="@+id/item_home_news_comment"
-        android:layout_width="@dimen/normalIconWidth"
-        android:layout_height="@dimen/normalIconHeight"
+        android:layout_width="@dimen/normalIconSize"
+        android:layout_height="@dimen/normalIconSize"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_below="@id/item_home_news_image_group"
-        android:layout_marginTop="5dp"
+        android:layout_marginBottom="@dimen/dividerGap"
+        android:layout_marginTop="@dimen/dividerGap"
         android:text="@string/comment_dots"
         android:textColor="@color/textColorDark" />
+    <!--分割线-->
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/elementGap"
+        android:layout_marginStart="@dimen/elementGap"
+        android:layout_toEndOf="@id/item_home_news_head"
+        android:layout_toRightOf="@id/item_home_news_head"
+        android:background="@color/dividerColor" />
 </RelativeLayout>

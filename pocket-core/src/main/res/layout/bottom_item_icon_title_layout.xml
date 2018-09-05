@@ -7,11 +7,11 @@
     <!--底部图标-->
     <com.mikepenz.iconics.view.IconicsTextView
         android:id="@+id/bottom_item_icon"
-        android:layout_width="@dimen/normalIconWidth"
-        android:layout_height="@dimen/normalIconHeight"
+        android:layout_width="@dimen/normalIconSize"
+        android:layout_height="@dimen/normalIconSize"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/bottomBarTopNormalGap"
         android:gravity="center"
         android:textColor="@color/textColorGray" />
     <!--底部文字-->
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="2dp"
+        android:layout_marginBottom="@dimen/bottomBarBottomGap"
         android:gravity="center"
         android:textColor="@color/textColorGray"
         android:textSize="@dimen/tinyTextSize" />

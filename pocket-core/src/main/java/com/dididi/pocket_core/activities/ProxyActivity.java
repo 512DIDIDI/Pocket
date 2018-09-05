@@ -79,7 +79,7 @@ public abstract class ProxyActivity extends AppCompatActivity implements ISuppor
 
     @Override
     public FragmentAnimator onCreateFragmentAnimator() {
-        return DELEGATE.onCreateFragmentAnimator();
+        return new DefaultHorizontalAnimator();
     }
 
     @Override

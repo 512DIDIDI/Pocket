@@ -50,11 +50,6 @@ public class MessageItemDelegate extends BottomItemDelegate {
         final LinearLayoutManager layoutManager =
                 new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         mMsgRecyclerView.setLayoutManager(layoutManager);
-        if (getContext() != null) {
-            //添加分割线
-            mMsgRecyclerView.addItemDecoration(
-                    new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-        }
         final MessageAdapter adapter = new MessageAdapter(mMsgList);
         //监听adapter点击删除置顶按钮的事件
         adapter.setOnTopDelListener(new PocketOnSwipeListener() {

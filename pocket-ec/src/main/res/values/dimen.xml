@@ -1,8 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <!--提示文字大小-->
     <dimen name="textSmallSize">12sp</dimen>
+    <!--普通按钮文字大小-->
     <dimen name="textNormalSize">14sp</dimen>
-    <dimen name="buttonTextSize">15sp</dimen>
-    <dimen name="toolBarTextSize">18sp</dimen>
+    <dimen name="buttonTextSize">14sp</dimen>
+    <!--普通标题文字大小-->
+    <dimen name="normalTitleSize">16sp</dimen>
+    <!--toolbar文字大小-->
+    <dimen name="toolBarTextSize">20sp</dimen>
+    <!--快速入口图标大小-->
+    <dimen name="entryIconSize">40dp</dimen>
+    <!--大标题文字大小-->
+    <dimen name="bigTitleSize">24sp</dimen>
+    <!--底部导航栏高度-->
+    <dimen name="bottomBarSize">48dp</dimen>
+    <!--消息item高度-->
+    <dimen name="messageItemSize">56dp</dimen>
+    <!--appbar高度-->
+    <dimen name="appBarSize">48dp</dimen>
+    <!--搜索框高度-->
+    <dimen name="searchBarSize">40dp</dimen>
+    <!--大头像大小-->
+    <dimen name="bigAvatarSize">64dp</dimen>
+    <!--小头像大小-->
+    <dimen name="smallAvatarSize">40dp</dimen>
+    <!--卡片间距-->
+    <dimen name="cardViewGap">8dp</dimen>
+    <!--分割线上下留白-->
+    <dimen name="dividerGap">8dp</dimen>
+    <!--普通元素留白-->
+    <dimen name="elementGap">16dp</dimen>
+    <!--屏幕左右留白-->
+    <dimen name="screenLRGap">16dp</dimen>
+    <!--文字左边距-->
+    <dimen name="textLeftGap">72dp</dimen>
     <dimen name="design_navigation_icon_size" tools:override="true">19dp</dimen>
 </resources>

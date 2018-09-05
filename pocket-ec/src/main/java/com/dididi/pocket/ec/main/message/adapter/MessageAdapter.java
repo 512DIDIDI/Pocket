@@ -3,7 +3,6 @@ package com.dididi.pocket.ec.main.message.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatButton;
-import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -101,8 +100,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.Holder> 
 
         Holder(@NonNull View itemView) {
             super(itemView);
-            headImage = itemView.findViewById(R.id.item_message_head_img);
-            userName = itemView.findViewById(R.id.item_message_user_name);
+            headImage = itemView.findViewById(R.id.item_message_avatar);
+            userName = itemView.findViewById(R.id.item_message_name);
             msgContent = itemView.findViewById(R.id.item_message_content);
             msgDate = itemView.findViewById(R.id.item_message_date);
             mainLayout = itemView.findViewById(R.id.item_message_main_layout);

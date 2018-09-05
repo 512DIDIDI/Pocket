@@ -12,6 +12,10 @@
     <color name="textColorLight">#f7fbfc</color>
     <color name="textColorWhite">#ffffff</color>
     <color name="textColorTight">#757a79</color>
+    <color name="textNormalColor">#212121</color>
+    <color name="textIconColor">#757575</color>
+    <color name="textHintColor">#BDBDBD</color>
+    <color name="dividerColor">#E0E0E0</color>
     <color name="textColorRed">#ee2b27</color>
     <color name="weChatColor">#1AAD19</color>
 </resources>

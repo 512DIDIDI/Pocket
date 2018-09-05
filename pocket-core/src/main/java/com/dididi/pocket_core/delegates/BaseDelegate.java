@@ -20,13 +20,14 @@ import me.yokeyword.fragmentation.ExtraTransaction;
 import me.yokeyword.fragmentation.ISupportFragment;
 import me.yokeyword.fragmentation.SupportFragmentDelegate;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
+import me.yokeyword.fragmentation_swipeback.SwipeBackFragment;
 
 /**
  * Created by dididi
  * on 18/07/2018 .
  */
 
-public abstract class BaseDelegate extends Fragment implements ISupportFragment {
+public abstract class BaseDelegate extends SwipeBackFragment implements ISupportFragment {
     //fragment基础类
 
     private final SupportFragmentDelegate DELEGATE = new SupportFragmentDelegate(this);
@@ -59,7 +60,8 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
             mUnbinder = ButterKnife.bind(this, rootView);
             onBindView(savedInstanceState, rootView);
         }
-        return rootView;
+        setSwipeBackEnable(false);
+        return attachToSwipeBack(rootView);
     }
 
     public final ProxyActivity getProxyActivity(){
@@ -149,11 +151,6 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
     }
 
     @Override
-    public void enqueueAction(Runnable runnable) {
-        DELEGATE.enqueueAction(runnable);
-    }
-
-    @Override
     public void onEnterAnimationEnd(Bundle savedInstanceState) {
         DELEGATE.onEnterAnimationEnd(savedInstanceState);
     }
@@ -171,11 +168,6 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
     @Override
     public void onSupportInvisible() {
         DELEGATE.onSupportInvisible();
-    }
-
-    @Override
-    public final boolean isSupportVisible() {
-        return DELEGATE.isSupportVisible();
     }
 
     @Override

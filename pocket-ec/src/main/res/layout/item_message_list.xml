@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.mcxtzhang.swipemenulib.SwipeMenuLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="70dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clickable="true"
     android:focusable="true">
     <!--显示的item布局-->
@@ -10,41 +10,42 @@
         android:id="@+id/item_message_main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+        <!--头像-->
         <com.dididi.pocket.ec.item.RoundRectImageView
-            android:id="@+id/item_message_head_img"
+            android:id="@+id/item_message_avatar"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_margin="10dp"
-            app:roundRect_corner="5dp"/>
-
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/screenLRGap"
+            android:layout_marginRight="@dimen/screenLRGap"
+            app:roundRect_corner="5dp" />
+        <!--用户名-->
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/item_message_user_name"
+            android:id="@+id/item_message_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_toEndOf="@id/item_message_head_img"
-            android:layout_toRightOf="@id/item_message_head_img"
+            android:layout_alignTop="@id/item_message_avatar"
+            android:layout_toEndOf="@id/item_message_avatar"
+            android:layout_toRightOf="@id/item_message_avatar"
             android:textColor="@color/textColorDark"
             android:textSize="@dimen/textNormalSize" />
-
+        <!--消息内容-->
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/item_message_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/item_message_user_name"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_toEndOf="@id/item_message_head_img"
-            android:layout_toRightOf="@id/item_message_head_img"
+            android:layout_alignBottom="@id/item_message_avatar"
+            android:layout_marginEnd="@dimen/screenLRGap"
+            android:layout_marginRight="@dimen/screenLRGap"
+            android:layout_toEndOf="@id/item_message_avatar"
+            android:layout_toRightOf="@id/item_message_avatar"
             android:ellipsize="end"
             android:maxLines="1"
             android:textColor="@color/textColorGray"
             android:textSize="@dimen/textSmallSize" />
-
+        <!--消息日期-->
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/item_message_date"
             android:layout_width="wrap_content"
@@ -52,11 +53,21 @@
             android:layout_above="@id/item_message_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="15dp"
-            android:textColor="@color/textColorTight"
+            android:layout_alignTop="@id/item_message_avatar"
+            android:layout_marginEnd="@dimen/screenLRGap"
+            android:layout_marginRight="@dimen/screenLRGap"
+            android:textColor="@color/textHintColor"
             android:textSize="@dimen/tinyTextSize" />
+        <!--分割线-->
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="@dimen/elementGap"
+            android:layout_marginRight="@dimen/elementGap"
+            android:layout_toEndOf="@id/item_message_avatar"
+            android:layout_toRightOf="@id/item_message_avatar"
+            android:background="@color/dividerColor" />
     </RelativeLayout>
     <!--置顶按钮-->
     <android.support.v7.widget.AppCompatButton

@@ -36,6 +36,11 @@ public class FindPasswordDelegate extends PocketDelegate {
     }
 
     @Override
+    public void setSwipeBackEnable(boolean enable) {
+        super.setSwipeBackEnable(true);
+    }
+
+    @Override
     public Object setLayout() {
         return R.layout.delegate_sign_find_password;
     }

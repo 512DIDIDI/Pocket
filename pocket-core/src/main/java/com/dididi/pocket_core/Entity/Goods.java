@@ -1,11 +1,13 @@
 package com.dididi.pocket_core.Entity;
 
+import java.io.Serializable;
+
 /**
  * Created by dididi
  * on 29/07/2018 .
  */
 
-public class Goods {
+public class Goods implements Serializable{
     //商品id
     private int goodsId;
     //商店id
