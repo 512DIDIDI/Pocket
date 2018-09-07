@@ -7,12 +7,13 @@ import java.io.Serializable;
  * on 24/07/2018 .
  */
 //用户信息实体类
-public class User implements Serializable{
+public class User implements Serializable {
 
     private long id;
     private String Email;
     private String name;
     private String password;
+    private String avatar;
     private int phone;
     private String address;
     private String gender;
@@ -71,5 +72,13 @@ public class User implements Serializable{
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
+import com.andexert.library.RippleView;
 import com.dididi.pocket_core.R;
 import com.dididi.pocket_core.R2;
 import com.dididi.pocket_core.delegates.PocketDelegate;
@@ -19,6 +20,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import me.yokeyword.fragmentation.ISupportFragment;
 
 
@@ -29,7 +31,7 @@ import me.yokeyword.fragmentation.ISupportFragment;
 
 @SuppressWarnings({"FieldCanBeLocal", "MismatchedQueryAndUpdateOfCollection"})
 public abstract class BaseBottomDelegate extends PocketDelegate
-        implements View.OnClickListener,IHideBottomBarListener{
+        implements View.OnClickListener, IHideBottomBarListener {
     //抽象带bottomBar的页面
 
     @BindView(R2.id.delegate_bottom_container)
@@ -94,10 +96,11 @@ public abstract class BaseBottomDelegate extends PocketDelegate
             LayoutInflater.from(getContext())
                     .inflate(R.layout.bottom_item_icon_title_layout, mBottomBar);
             //获取mBottomBar的子布局(即bottom_item的外层布局)
-            final RelativeLayout item = (RelativeLayout) mBottomBar.getChildAt(i);
+            final RippleView itemRipple = (RippleView) mBottomBar.getChildAt(i);
+            final RelativeLayout item = (RelativeLayout) itemRipple.getChildAt(0);
             //设置item点击事件
-            item.setTag(i);
-            item.setOnClickListener(this);
+            itemRipple.setTag(i);
+            itemRipple.setOnClickListener(this);
             //获取item的icon和title
             final IconicsTextView icon = (IconicsTextView) item.getChildAt(0);
             final AppCompatTextView title = (AppCompatTextView) item.getChildAt(1);
@@ -106,7 +109,7 @@ public abstract class BaseBottomDelegate extends PocketDelegate
             icon.setText(bean.getIcon());
             title.setText(bean.getTitle());
             if (i == mIndexDelegate) {
-                item.setBackgroundColor(getResources().getColor(mPressColor));
+                itemRipple.setBackgroundColor(getResources().getColor(mPressColor));
             }
         }
         //获取存储的delegate转化为数组,具体原因查看源码
@@ -129,6 +132,7 @@ public abstract class BaseBottomDelegate extends PocketDelegate
     public void onResume() {
         super.onResume();
         final int height = getResources().getDimensionPixelSize(R.dimen.bottomBarSize);
+        //解决软键盘弹起时顶起底部导航栏
         mRootView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
             public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
@@ -152,7 +156,7 @@ public abstract class BaseBottomDelegate extends PocketDelegate
     public void onClick(View view) {
         final int tag = (int) view.getTag();
         resetColor();
-        final RelativeLayout item = (RelativeLayout) view;
+        final RippleView item = (RippleView) view;
         item.setBackgroundColor(getResources().getColor(mPressColor));
         //隐藏当前fragment显示点击的fragment
         getSupportDelegate().showHideFragment(ITEM_DELEGATE.get(tag), ITEM_DELEGATE.get(mCurrentDelegate));

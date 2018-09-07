@@ -2,19 +2,17 @@ package com.dididi.pocket.ec.main.message;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
 import com.dididi.pocket.ec.item.SearchBarItem;
 import com.dididi.pocket.ec.main.message.adapter.MessageAdapter;
-import com.dididi.pocket.ec.main.message.entity.Message;
 import com.dididi.pocket.ec.main.message.listener.PocketOnSwipeListener;
+import com.dididi.pocket_core.Entity.Message;
 import com.dididi.pocket_core.delegates.bottom.BottomItemDelegate;
 
 import java.util.ArrayList;
@@ -45,7 +43,7 @@ public class MessageItemDelegate extends BottomItemDelegate {
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         mSearchBar.setLeftIcon("{faw-plus}");
-        initMessage();
+        initFakeMessage();
         //设置布局方式
         final LinearLayoutManager layoutManager =
                 new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
@@ -86,19 +84,34 @@ public class MessageItemDelegate extends BottomItemDelegate {
     }
 
     //初始化消息列表
-    private void initMessage() {
+    private void initFakeMessage() {
         for (int i = 0; i < 3; i++) {
-            Message msg1 = new Message(R.drawable.cat, "大野猫",
-                    "我是一只大大大大大大大大大大大大大大大大大大大大大大大大大大大大大大大大大野猫",
+            Message msg1 =
+                    new Message("我是一只大大大大大大大大大大大大大大大大大大大大大大大大大大大大大大大大大野猫",
+                            Message.TYPE_RECEIVED, 1, 10 + i,
+                            "我的名字", "大野猫",
+                            String.valueOf(R.mipmap.avatarman01), String.valueOf(R.mipmap.avatarwoman06),
+                            "27/7/2018");
+            Message msg2 = new Message("我是小野喵",
+                    Message.TYPE_RECEIVED, 1, 20 + i,
+                    "我的名字", "小野喵",
+                    String.valueOf(R.mipmap.avatarman01), String.valueOf(R.mipmap.avatarwoman04),
                     "27/7/2018");
-            Message msg2 = new Message(R.drawable.cat2, "小野喵",
-                    "我是小野喵", "27/7/2018");
-            Message msg3 = new Message(R.drawable.flower, "大菊花",
-                    "我是一朵大菊花", "27/7/2018");
-            Message msg4 = new Message(R.drawable.guitar, "大吉他",
-                    "我是一把小吉他", "27/7/2018");
-            Message msg5 = new Message(R.drawable.penguin, "笨企鹅",
-                    "我是一只聪明的企鹅", "27/7/2018");
+            Message msg3 = new Message("我是一朵大菊花",
+                    Message.TYPE_RECEIVED, 1, 30 + i,
+                    "我的名字", "大菊花",
+                    String.valueOf(R.mipmap.avatarman01), String.valueOf(R.mipmap.avatarwoman03),
+                    "27/7/2018");
+            Message msg4 = new Message("我是一把小吉他",
+                    Message.TYPE_RECEIVED, 1, 40 + i,
+                    "我的名字", "大吉他",
+                    String.valueOf(R.mipmap.avatarman01), String.valueOf(R.mipmap.avatarman05),
+                    "27/7/2018");
+            Message msg5 = new Message("我是一只聪明的企鹅",
+                    Message.TYPE_RECEIVED, 1, 10 + i,
+                    "我的名字", "笨企鹅",
+                    String.valueOf(R.mipmap.avatarman01), String.valueOf(R.mipmap.avatarman03),
+                    "27/7/2018");
             mMsgList.add(msg1);
             mMsgList.add(msg2);
             mMsgList.add(msg3);

@@ -33,6 +33,7 @@
                     android:background="@drawable/search_bar_corner"
                     android:gravity="center" />
             </android.support.v7.widget.Toolbar>
+            <!--TODO:这里有点细节需要优化,scroll的应该是chooseBar而toolbar不能动-->
             <!--商品选择入口-->
             <android.support.v7.widget.LinearLayoutCompat
                 android:id="@+id/goods_delegate_chooseBar"

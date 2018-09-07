@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.dididi.pocket.ec.R;
@@ -225,9 +226,9 @@ public class HomeItemDelegate extends BottomItemDelegate
     private void initFakeNews() {
         mNews.clear();
         News[] news = {
-                new News(R.drawable.cat, "大野猫", "我是一只大大大大野猫", "27/7/2018"),
-                new News(R.drawable.flower, "大菊花", "我是一朵大菊花", "28/7/2018"),
-                new News(R.drawable.guitar, "大吉它",
+                new News(R.mipmap.avatarman02, "大野猫", "我是一只大大大大野猫", "27/7/2018"),
+                new News(R.mipmap.avatarwoman01, "大菊花", "我是一朵大菊花", "28/7/2018"),
+                new News(R.mipmap.avatarwoman03, "大吉它",
                         "我是一把小吉他小呀小呀小呀小呀小呀小呀小呀小呀小吉他", "26/7/2018"),
         };
         for (int i = 0; i < 5; i++) {
@@ -285,7 +286,7 @@ public class HomeItemDelegate extends BottomItemDelegate
             @Override
             public void onNotSignIn() {
                 GlideApp.with(HomeItemDelegate.this)
-                        .load(R.drawable.cat)
+                        .load(R.mipmap.avatarman01)
                         .into(mAvatar);
                 mName.setText("尚未登录");
                 mEmail.setText("点击登录账号");

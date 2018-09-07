@@ -11,11 +11,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/dividerGap"
-        android:paddingLeft="@dimen/dividerGap"
-        android:paddingRight="@dimen/dividerGap"
-        android:paddingTop="@dimen/dividerGap">
+        android:layout_height="wrap_content">
         <!--商店是否选择-->
         <com.mikepenz.iconics.view.IconicsTextView
             android:id="@+id/item_shopcart_shop_select"
@@ -24,6 +20,9 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:layout_marginLeft="@dimen/dividerGap"
+            android:layout_marginStart="@dimen/dividerGap"
+            android:layout_marginTop="@dimen/dividerGap"
             android:gravity="center"
             android:text="@string/faw_circle"
             android:textColor="@color/textColorGray" />
@@ -34,11 +33,11 @@
             android:layout_height="@dimen/normalIconSize"
             android:layout_marginLeft="@dimen/dividerGap"
             android:layout_marginStart="@dimen/dividerGap"
+            android:layout_marginTop="@dimen/dividerGap"
             android:layout_toEndOf="@id/item_shopcart_shop_select"
             android:layout_toRightOf="@id/item_shopcart_shop_select"
-            android:gravity="center"
             android:text="@string/faw_gg"
-            android:textColor="@color/textColorGray" />
+            android:textColor="@color/textIconColor" />
         <!--商店名字-->
         <com.mikepenz.iconics.view.IconicsTextView
             android:id="@+id/item_shopcart_shop_name"
@@ -46,13 +45,14 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/dividerGap"
             android:layout_marginRight="@dimen/dividerGap"
+            android:layout_marginTop="@dimen/dividerGap"
             android:layout_toEndOf="@id/item_shopcart_shop_icon"
             android:layout_toRightOf="@id/item_shopcart_shop_icon"
-            android:textAlignment="center"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="@color/textColorDark"
-            android:textSize="@dimen/normalTitleSize" />
+            android:textAlignment="center"
+            android:textColor="@color/textIconColor"
+            android:textSize="@dimen/textSmallSize" />
         <!--侧滑布局-->
         <com.mcxtzhang.swipemenulib.SwipeMenuLayout
             android:layout_width="match_parent"
@@ -71,6 +71,8 @@
                     android:layout_width="@dimen/normalIconSize"
                     android:layout_height="@dimen/normalIconSize"
                     android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dividerGap"
+                    android:layout_marginStart="@dimen/dividerGap"
                     android:text="@string/faw_circle"
                     android:textColor="@color/textColorGray" />
                 <!--商品图片-->
@@ -78,6 +80,7 @@
                     android:id="@+id/item_shopcart_goods_img"
                     android:layout_width="@dimen/bigAvatarSize"
                     android:layout_height="@dimen/bigAvatarSize"
+                    android:layout_marginBottom="@dimen/dividerGap"
                     android:layout_marginLeft="@dimen/dividerGap"
                     android:layout_marginStart="@dimen/dividerGap"
                     android:layout_toEndOf="@id/item_shopcart_goods_select"
@@ -88,15 +91,15 @@
                     android:id="@+id/item_shopcart_goods_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/item_shopcart_goods_img"
                     android:layout_marginLeft="@dimen/dividerGap"
                     android:layout_marginRight="@dimen/dividerGap"
                     android:layout_toEndOf="@id/item_shopcart_goods_img"
                     android:layout_toRightOf="@id/item_shopcart_goods_img"
-                    android:layout_alignTop="@id/item_shopcart_goods_img"
                     android:ellipsize="end"
-                    android:maxLines="2"
+                    android:maxLines="1"
                     android:textColor="@color/textColorDark"
-                    android:textSize="@dimen/textSmallSize"
+                    android:textSize="@dimen/textNormalSize"
                     tools:ignore="RelativeOverlap" />
                 <!--商品样式-->
                 <android.support.v7.widget.AppCompatTextView
@@ -104,14 +107,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/item_shopcart_goods_name"
+                    android:layout_marginBottom="5dp"
                     android:layout_marginLeft="@dimen/dividerGap"
                     android:layout_marginRight="@dimen/dividerGap"
-                    android:layout_marginTop="@dimen/dividerGap"
-                    android:layout_marginBottom="@dimen/dividerGap"
+                    android:layout_marginTop="5dp"
                     android:layout_toEndOf="@id/item_shopcart_goods_img"
                     android:layout_toRightOf="@id/item_shopcart_goods_img"
-                    android:background="@color/backgroundColor"
-                    android:textColor="@color/textColorGray"
+                    android:background="@color/dividerColor"
+                    android:padding="2dp"
+                    android:textColor="@color/textColorLight"
                     android:textSize="@dimen/tinyTextSize" />
                 <!--商品价格-->
                 <android.support.v7.widget.AppCompatTextView
@@ -119,14 +123,29 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@id/item_shopcart_goods_img"
-                    android:layout_below="@id/item_shopcart_goods_style"
+                    android:layout_marginEnd="2dp"
                     android:layout_marginLeft="@dimen/dividerGap"
-                    android:layout_marginRight="@dimen/dividerGap"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginStart="@dimen/dividerGap"
                     android:layout_toEndOf="@id/item_shopcart_goods_img"
                     android:layout_toRightOf="@id/item_shopcart_goods_img"
                     android:gravity="center"
                     android:textColor="@color/textColorRed"
                     android:textSize="@dimen/textNormalSize" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/item_shopcart_goods_img"
+                    android:layout_marginEnd="@dimen/dividerGap"
+                    android:layout_marginRight="@dimen/dividerGap"
+                    android:layout_toEndOf="@id/item_shopcart_goods_price"
+                    android:layout_toRightOf="@id/item_shopcart_goods_price"
+                    android:gravity="center"
+                    android:text="@string/yuan"
+                    android:textColor="@color/textColorRed"
+                    android:textSize="@dimen/textNormalSize"
+                    tools:ignore="RelativeOverlap" />
                 <!--商品数量-->
                 <RelativeLayout
                     android:layout_width="wrap_content"

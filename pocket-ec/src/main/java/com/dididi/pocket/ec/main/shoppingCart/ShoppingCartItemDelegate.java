@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 
 /**
@@ -41,6 +42,13 @@ public class ShoppingCartItemDelegate extends BottomItemDelegate implements View
     AppCompatTextView mAllPrice = null;
     @BindView(R2.id.shop_cart_item_compute_price)
     AppCompatButton mComputePrice = null;
+
+    @OnClick({R2.id.shop_cart_item_compute_price,R2.id.shop_cart_item_compute_price_ripple})
+    void clickComputePrice(){
+        //结算
+        Toast.makeText(getContext(), "共计" + mTotalPrice + "元",
+                Toast.LENGTH_SHORT).show();
+    }
 
     private ShopCartAdapter mAdapter = null;
     private List<Goods> mGoodsList = new ArrayList<>();
@@ -123,15 +131,13 @@ public class ShoppingCartItemDelegate extends BottomItemDelegate implements View
         mAllSelectedText.setOnClickListener(this);
 
         mRecyclerView.setAdapter(mAdapter);
-        //结算按钮
-        mComputePrice.setOnClickListener(this);
     }
 
     private void initGoods() {
         for (int i = 0; i < 3; i++) {
             Goods cat = new Goods()
                     .setShopId(1)
-                    .setShopName("我是一家店铺")
+                    .setShopName("我的店铺名很长价格很贵")
                     .setGoodsImg(R.drawable.cat)
                     .setGoodsName("我是一只大猫")
                     .setGoodsStyle("橘喵")
@@ -198,10 +204,6 @@ public class ShoppingCartItemDelegate extends BottomItemDelegate implements View
             mAdapter.notifyDataSetChanged();
             //重新计算价格
             computeAllPrice();
-        } else if (view == mComputePrice) {
-            //结算
-            Toast.makeText(getContext(), "共计" + mTotalPrice + "元",
-                    Toast.LENGTH_SHORT).show();
         }
     }
 }

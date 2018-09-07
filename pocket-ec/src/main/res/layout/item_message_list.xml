@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <!--头像-->
-        <com.dididi.pocket.ec.item.RoundRectImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/item_message_avatar"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -19,8 +19,7 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/screenLRGap"
-            android:layout_marginRight="@dimen/screenLRGap"
-            app:roundRect_corner="5dp" />
+            android:layout_marginRight="@dimen/screenLRGap" />
         <!--用户名-->
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/item_message_name"

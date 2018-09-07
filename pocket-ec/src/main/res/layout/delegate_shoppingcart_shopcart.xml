@@ -47,8 +47,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottomBarSize"
-        android:background="@color/textColorWhite"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:background="@color/textColorWhite">
         <!--全选按钮-->
         <com.mikepenz.iconics.view.IconicsTextView
             android:id="@+id/shop_cart_item_all_selected"
@@ -93,25 +93,34 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_toLeftOf="@id/shop_cart_item_compute_price"
-            android:layout_toStartOf="@id/shop_cart_item_compute_price"
+            android:layout_toLeftOf="@id/shop_cart_item_compute_price_ripple"
+            android:layout_toStartOf="@id/shop_cart_item_compute_price_ripple"
             android:text="@string/_yuan"
             android:textColor="@color/textColorRed"
             android:textSize="@dimen/textNormalSize" />
         <!--结算按钮-->
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/shop_cart_item_compute_price"
+        <com.andexert.library.RippleView
+            android:id="@+id/shop_cart_item_compute_price_ripple"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/searchBarSize"
+            android:layout_height="40dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/screenLRGap"
             android:layout_marginRight="@dimen/screenLRGap"
-            android:layout_centerVertical="true"
-            android:background="@color/normalButtonColor"
-            android:text="@string/compute_price"
-            android:textColor="@color/textColorDark"
-            android:textSize="@dimen/textNormalSize" />
+            app:rv_framerate="15">
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/shop_cart_item_compute_price"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/searchBarSize"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:background="@color/normalButtonColor"
+                android:text="@string/compute_price"
+                android:textColor="@color/textColorDark"
+                android:textSize="@dimen/textNormalSize" />
+        </com.andexert.library.RippleView>
 
     </RelativeLayout>
 </RelativeLayout>

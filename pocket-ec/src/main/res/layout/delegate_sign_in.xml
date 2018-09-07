@@ -52,7 +52,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/screenLRGap"
-                android:src="@drawable/cat"
+                android:src="@mipmap/avatarman01"
                 app:civ_border_color="@color/backgroundColor"
                 app:civ_border_width="1dp" />
             <!--登录邮箱-->
@@ -108,37 +108,39 @@
                 android:hint="@string/hint_password"
                 android:inputType="textPassword"
                 android:textSize="@dimen/buttonTextSize" />
-            <!--忘记密码-->
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/sign_in_find_password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_below="@id/sign_in_password_edit"
-                android:layout_marginBottom="@dimen/elementGap"
-                android:text="@string/forget_password"
-                android:textColor="@color/textHintColor"
-                android:textSize="@dimen/textSmallSize" />
+
             <!--登录按钮-->
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/sign_in_btn"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/searchBarSize"
-                android:layout_below="@id/sign_in_find_password"
-                android:layout_marginBottom="@dimen/dividerGap"
+                android:layout_below="@id/sign_in_password_edit"
+                android:layout_marginBottom="@dimen/elementGap"
                 android:background="@color/normalButtonColor"
                 android:gravity="center"
                 android:text="@string/sign_in"
                 android:textColor="@color/textColorDark"
                 android:textSize="@dimen/buttonTextSize" />
+            <!--忘记密码-->
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/sign_in_find_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/sign_in_btn"
+                android:layout_marginBottom="@dimen/elementGap"
+                android:text="@string/forget_password"
+                android:textColor="@color/textHintColor"
+                android:textSize="@dimen/textSmallSize" />
             <!--注册文字-->
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/sign_in_signUp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/sign_in_btn"
-                android:layout_centerHorizontal="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_marginBottom="@dimen/elementGap"
                 android:text="@string/sign_in_signUP"
                 android:textColor="@color/textHintColor"

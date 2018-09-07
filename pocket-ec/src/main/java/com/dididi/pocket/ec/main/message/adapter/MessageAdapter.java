@@ -13,13 +13,13 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.dididi.pocket.ec.R;
-import com.dididi.pocket.ec.item.RoundRectImageView;
-import com.dididi.pocket.ec.main.message.entity.Message;
 import com.dididi.pocket.ec.main.message.listener.PocketOnSwipeListener;
+import com.dididi.pocket_core.Entity.Message;
 import com.dididi.pocket_core.ui.GlideApp;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -51,16 +51,16 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.Holder> 
     @Override
     public void onBindViewHolder(@NonNull final Holder holder, int i) {
         Message message = mMessageList.get(i);
-        loadImgWithGlide(mContext, message.getHeadImg(), holder.headImage);
-        holder.userName.setText(message.getUserName());
-        holder.msgContent.setText(message.getMsgContent());
+        loadImgWithGlide(mContext, Integer.parseInt(message.getReceivedUserAvatar()), holder.headImage);
+        holder.userName.setText(message.getReceivedUserName());
+        holder.msgContent.setText(message.getContent());
         holder.msgDate.setText(message.getDate());
         //点击主布局
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int position = holder.getAdapterPosition();
-                Toast.makeText(mContext, "向" + mMessageList.get(position).getUserName()
+                Toast.makeText(mContext, "向" + mMessageList.get(position).getReceivedUserName()
                         + "发起消息", Toast.LENGTH_SHORT).show();
             }
         });
@@ -91,7 +91,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.Holder> 
 
     static class Holder extends RecyclerView.ViewHolder {
         private RelativeLayout mainLayout;
-        private RoundRectImageView headImage;
+        private CircleImageView headImage;
         private AppCompatTextView userName;
         private AppCompatTextView msgContent;
         private AppCompatTextView msgDate;

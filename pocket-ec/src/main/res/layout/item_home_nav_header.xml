@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/home_item_nav_header"
     android:layout_width="match_parent"
     android:layout_height="152dp"
-    android:background="@color/textColorDark">
+    android:background="@mipmap/header">
     <!--头像-->
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/home_item_nav_header_head"
