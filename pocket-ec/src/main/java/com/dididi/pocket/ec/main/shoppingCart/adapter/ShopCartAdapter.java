@@ -71,127 +71,94 @@ public class ShopCartAdapter extends RecyclerView.Adapter<ShopCartAdapter.ViewHo
         }
 
         //点击选择店铺
-        viewHolder.shopSelected.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = viewHolder.getAdapterPosition();
-                //点击勾选商店时,改变选择状态
-                mGoodsList.get(position)
-                        .setShopSelected(!mGoodsList.get(position).isShopSelected());
-                for (int i = 0; i < mGoodsList.size(); i++) {
-                    //商店id相同,则该商店下的所有商品都应该与商店勾选情况一致
-                    if (mGoodsList.get(i).getShopId() == mGoodsList.get(position).getShopId()) {
-                        mGoodsList.get(i)
-                                .setGoodsSelected(mGoodsList.get(position).isShopSelected());
-                    }
+        viewHolder.shopSelected.setOnClickListener(view -> {
+            int position = viewHolder.getAdapterPosition();
+            //点击勾选商店时,改变选择状态
+            mGoodsList.get(position)
+                    .setShopSelected(!mGoodsList.get(position).isShopSelected());
+            for (int i1 = 0; i1 < mGoodsList.size(); i1++) {
+                //商店id相同,则该商店下的所有商品都应该与商店勾选情况一致
+                if (mGoodsList.get(i1).getShopId() == mGoodsList.get(position).getShopId()) {
+                    mGoodsList.get(i1)
+                            .setGoodsSelected(mGoodsList.get(position).isShopSelected());
                 }
-                notifyDataSetChanged();
-                //交由外界处理(通知价格变化)
-                onGoodsPriceListener.onShopSelected(position);
             }
+            notifyDataSetChanged();
+            //交由外界处理(通知价格变化)
+            onGoodsPriceListener.onShopSelected(position);
         });
         //点击店铺名字
-        viewHolder.shopName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = viewHolder.getAdapterPosition();
-                Toast.makeText(mContext, "点击进入" + mGoodsList.get(position).getShopName(),
-                        Toast.LENGTH_SHORT).show();
-            }
+        viewHolder.shopName.setOnClickListener(view -> {
+            int position = viewHolder.getAdapterPosition();
+            Toast.makeText(mContext, "点击进入" + mGoodsList.get(position).getShopName(),
+                    Toast.LENGTH_SHORT).show();
         });
         //点击选择商品
-        viewHolder.goodsSelected.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = viewHolder.getAdapterPosition();
-                //设置商品选择取反
-                mGoodsList.get(position)
-                        .setGoodsSelected(!mGoodsList.get(position).isGoodsSelected());
-                for (int i = 0; i < mGoodsList.size(); i++) {
-                    //遍历获取店铺的第一个商品
-                    if (mGoodsList.get(i).isFirst()) {
-                        for (int j = 0; j < mGoodsList.size(); j++) {
-                            if (mGoodsList.get(j).getShopId() == mGoodsList.get(i).getShopId()
-                                    && !mGoodsList.get(j).isGoodsSelected()) {
-                                //如果同一家商品中有一个商品未选择,则店铺取消勾选
-                                mGoodsList.get(i).setShopSelected(false);
-                                break;
-                            } else {
-                                mGoodsList.get(i).setShopSelected(true);
-                            }
+        viewHolder.goodsSelected.setOnClickListener(view -> {
+            int position = viewHolder.getAdapterPosition();
+            //设置商品选择取反
+            mGoodsList.get(position)
+                    .setGoodsSelected(!mGoodsList.get(position).isGoodsSelected());
+            for (int i12 = 0; i12 < mGoodsList.size(); i12++) {
+                //遍历获取店铺的第一个商品
+                if (mGoodsList.get(i12).isFirst()) {
+                    for (int j = 0; j < mGoodsList.size(); j++) {
+                        if (mGoodsList.get(j).getShopId() == mGoodsList.get(i12).getShopId()
+                                && !mGoodsList.get(j).isGoodsSelected()) {
+                            //如果同一家商品中有一个商品未选择,则店铺取消勾选
+                            mGoodsList.get(i12).setShopSelected(false);
+                            break;
+                        } else {
+                            mGoodsList.get(i12).setShopSelected(true);
                         }
                     }
                 }
-                notifyDataSetChanged();
-                onGoodsPriceListener.onGoodsSelected(position);
             }
+            notifyDataSetChanged();
+            onGoodsPriceListener.onGoodsSelected(position);
         });
         //点击商品图片
-        viewHolder.goodsImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = viewHolder.getAdapterPosition();
-                Toast.makeText(mContext, "点击进入" + mGoodsList.get(position).getShopName(),
-                        Toast.LENGTH_SHORT).show();
-            }
+        viewHolder.goodsImg.setOnClickListener(view -> {
+            int position = viewHolder.getAdapterPosition();
+            Toast.makeText(mContext, "点击进入" + mGoodsList.get(position).getShopName(),
+                    Toast.LENGTH_SHORT).show();
         });
         //点击商品名字
-        viewHolder.goodsName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = viewHolder.getAdapterPosition();
-                Toast.makeText(mContext, "点击进入" + mGoodsList.get(position).getShopName(),
-                        Toast.LENGTH_SHORT).show();
-            }
+        viewHolder.goodsName.setOnClickListener(view -> {
+            int position = viewHolder.getAdapterPosition();
+            Toast.makeText(mContext, "点击进入" + mGoodsList.get(position).getShopName(),
+                    Toast.LENGTH_SHORT).show();
         });
         //点击更改样式
-        viewHolder.goodsStyle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = viewHolder.getAdapterPosition();
-                onGoodsPriceListener.onChangeStyle(position);
-            }
+        viewHolder.goodsStyle.setOnClickListener(view -> {
+            int position = viewHolder.getAdapterPosition();
+            onGoodsPriceListener.onChangeStyle(position);
         });
         //点击减少商品数量
-        viewHolder.goodsDecrease.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = viewHolder.getAdapterPosition();
-                onGoodsPriceListener.onDecrease(position);
-            }
+        viewHolder.goodsDecrease.setOnClickListener(view -> {
+            int position = viewHolder.getAdapterPosition();
+            onGoodsPriceListener.onDecrease(position);
         });
         //点击商品数量更改
-        viewHolder.goodsCount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = viewHolder.getAdapterPosition();
-                Toast.makeText(mContext, "商品数量" + mGoodsList.get(position).getGoodsCount(),
-                        Toast.LENGTH_SHORT).show();
-            }
+        viewHolder.goodsCount.setOnClickListener(view -> {
+            int position = viewHolder.getAdapterPosition();
+            Toast.makeText(mContext, "商品数量" + mGoodsList.get(position).getGoodsCount(),
+                    Toast.LENGTH_SHORT).show();
         });
         //点击增加商品数量
-        viewHolder.goodsIncrease.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = viewHolder.getAdapterPosition();
-                onGoodsPriceListener.onIncrease(position);
-            }
+        viewHolder.goodsIncrease.setOnClickListener(view -> {
+            int position = viewHolder.getAdapterPosition();
+            onGoodsPriceListener.onIncrease(position);
         });
         //点击收藏按钮
-        viewHolder.collect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = viewHolder.getAdapterPosition();
-                onGoodsPriceListener.onCollect(position);
-            }
+        viewHolder.collect.setOnClickListener(view -> {
+            int position = viewHolder.getAdapterPosition();
+            onGoodsPriceListener.onCollect(position);
         });
         //点击删除按钮
-        viewHolder.delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = viewHolder.getAdapterPosition();
-                onGoodsPriceListener.onDelete(position);
-            }
+        viewHolder.delete.setOnClickListener(view -> {
+            int position = viewHolder.getAdapterPosition();
+            onGoodsPriceListener.onDelete(position);
         });
     }
 

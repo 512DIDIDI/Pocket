@@ -11,4 +11,5 @@ public abstract class PocketDelegate extends PermissionCheckerDelegate {
     public <T extends PocketDelegate> T getParentDelegate() {
         return (T) getParentFragment();
     }
+
 }

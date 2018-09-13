@@ -27,6 +27,7 @@ import com.dididi.pocket.ec.main.mall.entity.News;
 import com.dididi.pocket.ec.main.mall.list.FakeImageList;
 import com.dididi.pocket.ec.sign.SignInDelegate;
 import com.dididi.pocket.ec.sign.SignUpDelegate;
+import com.dididi.pocket_core.Util.LogUtil;
 import com.dididi.pocket_core.Util.PocketPreferences;
 import com.dididi.pocket_core.app.AccountManager;
 import com.dididi.pocket_core.app.ConfigType;
@@ -81,8 +82,9 @@ public class HomeItemDelegate extends BottomItemDelegate
     CircleIconItem mPaint = null;
     @BindView(R2.id.home_item_purchase_agency)
     CircleIconItem mAgency = null;
+
     @OnClick(R2.id.home_item_photography)
-    public void setmPhotography(){
+    public void setmPhotography() {
         getParentDelegate().getSupportDelegate().start(new GoodsListDelegate());
     }
 
@@ -118,12 +120,7 @@ public class HomeItemDelegate extends BottomItemDelegate
         mNav.setCheckedItem(R.id.home_item_nav_menu_discover);
         //设置刷新样式
         mRefresh.setColorSchemeColors(getResources().getColor(R.color.textColorDark));
-        mRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                refreshNews();
-            }
-        });
+        mRefresh.setOnRefreshListener(this::refreshNews);
         //初始化banner
         initBanner();
         //设置左侧图标样式
@@ -205,21 +202,14 @@ public class HomeItemDelegate extends BottomItemDelegate
     @Override
     public void onClick(View view) {
         if (view.getId() == mSearchBarItem.getLeftIconId()) {
-            mSearchBarItem.setLeftIconListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //开启滑动菜单
-                    mDrawer.openDrawer(GravityCompat.START);
-                    //TODO:如何获取当前的BaseBottomDelegate以回调隐藏底部按钮功能?
-                }
+            mSearchBarItem.setLeftIconListener(view1 -> {
+                //开启滑动菜单
+                mDrawer.openDrawer(GravityCompat.START);
+                //TODO:如何获取当前的BaseBottomDelegate以回调隐藏底部按钮功能?
             });
         } else if (view.getId() == mSearchBarItem.getSearchIconId()) {
-            mSearchBarItem.setSearchIconListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(getContext(), "click search", Toast.LENGTH_SHORT).show();
-                }
-            });
+            mSearchBarItem.setSearchIconListener(view12 ->
+                    Toast.makeText(getContext(), "click search", Toast.LENGTH_SHORT).show());
         }
     }
 
@@ -240,25 +230,19 @@ public class HomeItemDelegate extends BottomItemDelegate
 
     //刷新假数据
     private void refreshNews() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                //切换回ui线程
-                if (getActivity() != null) {
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            initFakeNews();
-                            mAdapter.notifyDataSetChanged();
-                            mRefresh.setRefreshing(false);
-                        }
-                    });
-                }
+        new Thread(() -> {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            //切换回ui线程
+            if (getActivity() != null) {
+                getActivity().runOnUiThread(() -> {
+                    initFakeNews();
+                    mAdapter.notifyDataSetChanged();
+                    mRefresh.setRefreshing(false);
+                });
             }
         }).start();
     }
@@ -290,18 +274,10 @@ public class HomeItemDelegate extends BottomItemDelegate
                         .into(mAvatar);
                 mName.setText("尚未登录");
                 mEmail.setText("点击登录账号");
-                mName.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        getParentDelegate().getSupportDelegate().startWithPop(new SignInDelegate());
-                    }
-                });
-                mEmail.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        getParentDelegate().getSupportDelegate().startWithPop(new SignInDelegate());
-                    }
-                });
+                mName.setOnClickListener(view ->
+                        getParentDelegate().getSupportDelegate().startWithPop(new SignInDelegate()));
+                mEmail.setOnClickListener(view ->
+                        getParentDelegate().getSupportDelegate().startWithPop(new SignInDelegate()));
             }
         });
     }

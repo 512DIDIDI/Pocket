@@ -69,11 +69,8 @@ public class SignUpDelegate extends PocketDelegate {
                     .params("user[name]", mName.getText().toString())
                     .params("user[password]", mEmail.getText().toString())
                     .params("user[email]", mPassword.getText().toString())
-                    .onSuccess(new ISuccess() {
-                        @Override
-                        public void onSuccess(String response) {
+                    .onSuccess(response -> {
 
-                        }
                     })
                     .build()
                     .post();

@@ -57,20 +57,12 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.ViewHolder> 
         viewHolder.goodsEvaluate.setText(String.valueOf(goods.getEvaluate()));
         viewHolder.shopName.setText(goods.getShopName());
         //点击进入商店
-        viewHolder.enterShop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        viewHolder.enterShop.setOnClickListener(view ->
                 Toast.makeText(mContext, "进入" + goods.getShopName(),
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-        viewHolder.mainLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                Toast.LENGTH_SHORT).show());
+        viewHolder.mainLayout.setOnClickListener(view ->
                 Toast.makeText(mContext, "进入" + goods.getGoodsName() + "详情页",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
+                        Toast.LENGTH_SHORT).show());
     }
 
     @Override

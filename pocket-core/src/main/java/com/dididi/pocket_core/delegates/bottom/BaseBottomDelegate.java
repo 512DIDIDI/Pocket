@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import com.andexert.library.RippleView;
 import com.dididi.pocket_core.R;
 import com.dididi.pocket_core.R2;
+import com.dididi.pocket_core.Util.LogUtil;
 import com.dididi.pocket_core.delegates.PocketDelegate;
 import com.mikepenz.iconics.view.IconicsTextView;
 
@@ -80,7 +81,6 @@ public abstract class BaseBottomDelegate extends PocketDelegate
             TAB_BEANS.add(key);
             ITEM_DELEGATE.add(value);
         }
-
     }
 
     @Override
@@ -150,6 +150,7 @@ public abstract class BaseBottomDelegate extends PocketDelegate
                 }
             }
         });
+
     }
 
     @Override
@@ -167,10 +168,6 @@ public abstract class BaseBottomDelegate extends PocketDelegate
     @Override
     public void hide() {
         mBottomBar.setVisibility(View.INVISIBLE);
-    }
-
-    public FrameLayout getmContainer() {
-        return mContainer;
     }
 
     @Override

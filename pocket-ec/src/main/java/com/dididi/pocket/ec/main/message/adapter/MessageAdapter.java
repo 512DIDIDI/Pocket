@@ -56,31 +56,22 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.Holder> 
         holder.msgContent.setText(message.getContent());
         holder.msgDate.setText(message.getDate());
         //点击主布局
-        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = holder.getAdapterPosition();
-                Toast.makeText(mContext, "向" + mMessageList.get(position).getReceivedUserName()
-                        + "发起消息", Toast.LENGTH_SHORT).show();
-            }
+        holder.mainLayout.setOnClickListener(view -> {
+            int position = holder.getAdapterPosition();
+            Toast.makeText(mContext, "向" + mMessageList.get(position).getReceivedUserName()
+                    + "发起消息", Toast.LENGTH_SHORT).show();
         });
         //点击置顶按钮
-        holder.top.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //交由外界处理置顶
-                int position = holder.getAdapterPosition();
-                mOnSwipeListener.onTop(position);
-            }
+        holder.top.setOnClickListener(view -> {
+            //交由外界处理置顶
+            int position = holder.getAdapterPosition();
+            mOnSwipeListener.onTop(position);
         });
         //点击删除按钮
-        holder.delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //交由外界处理删除
-                int position = holder.getAdapterPosition();
-                mOnSwipeListener.onDelete(position);
-            }
+        holder.delete.setOnClickListener(view -> {
+            //交由外界处理删除
+            int position = holder.getAdapterPosition();
+            mOnSwipeListener.onDelete(position);
         });
     }
 

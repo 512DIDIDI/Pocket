@@ -104,27 +104,19 @@ public class SignInDelegate extends PocketDelegate {
         RestClient.builder()
                 .url("http://192.168.1.105:3000/mymessage")
                 .params("token", PocketPreferences.getCustomPocketProfile("token"))
-                .onSuccess(new ISuccess() {
-                               @Override
-                               public void onSuccess(String response) {
-                                   if (response.contains("\"code\":1")) {
-                                       LogUtil.d(TAG, response);
-                                       SignHandler.onSignIn(response, mISignListener);
-                                       getSupportDelegate().startWithPop(new PocketBottomDelegate());
-                                   } else {
-                                       LogUtil.d(TAG, response);
-                                       Toast.makeText(Pocket.getApplicationContext(),
-                                               "登录失败,请重新输入用户名和密码", Toast.LENGTH_SHORT).show();
-                                   }
-                               }
-                           }
-                )
-                .onError(new IError() {
-                    @Override
-                    public void onError(int code, String msg) {
-                        LogUtil.d("response:", code + msg);
+                .onSuccess(response -> {
+                    if (response.contains("\"code\":1")) {
+                        LogUtil.d(TAG, response);
+                        SignHandler.onSignIn(response, mISignListener);
+                        getSupportDelegate().startWithPop(new PocketBottomDelegate());
+                    } else {
+                        LogUtil.d(TAG, response);
+                        Toast.makeText(Pocket.getApplicationContext(),
+                                "登录失败,请重新输入用户名和密码", Toast.LENGTH_SHORT).show();
                     }
-                })
+                }
+                )
+                .onError((code, msg) -> LogUtil.d("response:", code + msg))
                 .build()
                 .get();
     }

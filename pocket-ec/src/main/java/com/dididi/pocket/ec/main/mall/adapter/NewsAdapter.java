@@ -67,32 +67,22 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         loadImgWithGlide(mContext, news.getImageGroup3_3(), viewHolder.mImageGroup3_image3);
         viewHolder.mDate.setText(news.getDate());
         //点击头像
-        viewHolder.mHead.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = viewHolder.getAdapterPosition();
-                News news = mNews.get(position);
-                Toast.makeText(mContext, "你点击了" + news.getUserName() + "头像",
-                        Toast.LENGTH_SHORT).show();
-            }
+        viewHolder.mHead.setOnClickListener(view -> {
+            int position = viewHolder.getAdapterPosition();
+            News news1 = mNews.get(position);
+            Toast.makeText(mContext, "你点击了" + news1.getUserName() + "头像",
+                    Toast.LENGTH_SHORT).show();
         });
         //点击名字
-        viewHolder.mName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = viewHolder.getAdapterPosition();
-                News news = mNews.get(position);
-                Toast.makeText(mContext, "你点击了" + news.getUserName() + "名字",
-                        Toast.LENGTH_SHORT).show();
-            }
+        viewHolder.mName.setOnClickListener(view -> {
+            int position = viewHolder.getAdapterPosition();
+            News news12 = mNews.get(position);
+            Toast.makeText(mContext, "你点击了" + news12.getUserName() + "名字",
+                    Toast.LENGTH_SHORT).show();
         });
         //点击评论
-        viewHolder.mComment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(mContext, "点击评论", Toast.LENGTH_SHORT).show();
-            }
-        });
+        viewHolder.mComment.setOnClickListener(view ->
+                Toast.makeText(mContext, "点击评论", Toast.LENGTH_SHORT).show());
     }
 
     @Override

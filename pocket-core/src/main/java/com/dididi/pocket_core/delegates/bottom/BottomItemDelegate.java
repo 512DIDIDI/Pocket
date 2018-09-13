@@ -29,4 +29,5 @@ public abstract class BottomItemDelegate extends PocketDelegate {
         }
         return true;
     }
+
 }
