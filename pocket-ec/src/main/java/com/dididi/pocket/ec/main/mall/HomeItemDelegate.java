@@ -104,7 +104,6 @@ public class HomeItemDelegate extends BottomItemDelegate
     }
 
     @Override
-    //setLayout().onBindView()在onCreateView()方法中.
     public Object setLayout() {
         return R.layout.delegate_mall_home;
     }
@@ -163,7 +162,6 @@ public class HomeItemDelegate extends BottomItemDelegate
     }
 
     @Override
-    //设置navigationItem监听事件
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int itemId = menuItem.getItemId();
         if (itemId == R.id.home_item_nav_menu_discover) {
@@ -188,7 +186,6 @@ public class HomeItemDelegate extends BottomItemDelegate
         return true;
     }
 
-    //设置banner
     private void initBanner() {
         mBanner.setBannerAnimation(Transformer.Default)
                 .setBannerStyle(BannerConfig.CIRCLE_INDICATOR)
@@ -228,7 +225,6 @@ public class HomeItemDelegate extends BottomItemDelegate
         }
     }
 
-    //刷新假数据
     private void refreshNews() {
         new Thread(() -> {
             try {

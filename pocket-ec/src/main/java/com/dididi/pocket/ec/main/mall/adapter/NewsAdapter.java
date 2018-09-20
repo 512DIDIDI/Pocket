@@ -76,8 +76,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         //点击名字
         viewHolder.mName.setOnClickListener(view -> {
             int position = viewHolder.getAdapterPosition();
-            News news12 = mNews.get(position);
-            Toast.makeText(mContext, "你点击了" + news12.getUserName() + "名字",
+            News news2 = mNews.get(position);
+            Toast.makeText(mContext, "你点击了" + news2.getUserName() + "名字",
                     Toast.LENGTH_SHORT).show();
         });
         //点击评论
