@@ -6,7 +6,7 @@ import android.view.View;
 
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
-import com.dididi.pocket_core.delegates.PocketDelegate;
+import com.dididi.pocket.core.delegates.PocketDelegate;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import butterknife.BindView;

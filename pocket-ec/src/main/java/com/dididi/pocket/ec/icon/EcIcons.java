@@ -17,7 +17,6 @@ public enum EcIcons implements IIcon {
 
     char character;
 
-    //
     EcIcons(char character) {
         this.character = character;
     }

@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.dididi.pocket.ec.R;
-import com.dididi.pocket_core.delegates.bottom.BottomItemDelegate;
+import com.dididi.pocket.core.delegates.bottom.BottomItemDelegate;
 
 
 /**

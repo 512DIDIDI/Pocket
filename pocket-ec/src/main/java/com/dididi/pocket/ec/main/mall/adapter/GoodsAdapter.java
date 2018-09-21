@@ -1,96 +1,39 @@
 package com.dididi.pocket.ec.main.mall.adapter;
 
-import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
+import android.support.annotation.Nullable;
+import android.widget.ImageView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.dididi.pocket.ec.R;
-import com.dididi.pocket.ec.item.RoundRectImageView;
-import com.dididi.pocket_core.Entity.Goods;
-import com.dididi.pocket_core.ui.GlideApp;
+import com.dididi.pocket.core.entity.Goods;
+import com.dididi.pocket.core.ui.GlideApp;
 
-import java.util.ArrayList;
 import java.util.List;
 
-
 /**
- * Created by dididi
- * on 06/08/2018 .
+ * @author dididi
+ * @describe 商品列表页面商品adapter
+ * @since 21/09/2018
  */
 
-public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.ViewHolder> {
+public class GoodsAdapter extends BaseQuickAdapter<Goods,BaseViewHolder> {
 
-    private List<Goods> mGoodsList;
-    private Context mContext;
-
-    public GoodsAdapter(List<Goods> goods) {
-        this.mGoodsList = goods;
-    }
-
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        if (mContext == null) {
-            mContext = viewGroup.getContext();
-        }
-        View itemView = LayoutInflater.from(mContext)
-                .inflate(R.layout.item_mall_goods_list, viewGroup, false);
-        return new ViewHolder(itemView);
+    public GoodsAdapter(int layoutResId, @Nullable List<Goods> data) {
+        super(layoutResId, data);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        final Goods goods = mGoodsList.get(i);
+    protected void convert(BaseViewHolder helper, Goods item) {
+        //todo:先写死load内传入的参数 id 以后再改
         GlideApp.with(mContext)
-                .load(goods.getGoodsImg())
-                .into(viewHolder.goodsImg);
-        viewHolder.goodsName.setText(goods.getGoodsName());
-        viewHolder.goodsPrice.setText(String.valueOf(goods.getGoodsPrice()));
-        viewHolder.goodsSales.setText(String.valueOf(goods.getSales()));
-        viewHolder.goodsEvaluate.setText(String.valueOf(goods.getEvaluate()));
-        viewHolder.shopName.setText(goods.getShopName());
-        //点击进入商店
-        viewHolder.enterShop.setOnClickListener(view ->
-                Toast.makeText(mContext, "进入" + goods.getShopName(),
-                Toast.LENGTH_SHORT).show());
-        viewHolder.mainLayout.setOnClickListener(view ->
-                Toast.makeText(mContext, "进入" + goods.getGoodsName() + "详情页",
-                        Toast.LENGTH_SHORT).show());
-    }
-
-    @Override
-    public int getItemCount() {
-        return mGoodsList.size();
-    }
-
-
-    static class ViewHolder extends RecyclerView.ViewHolder {
-        RelativeLayout mainLayout;
-        RoundRectImageView goodsImg;
-        AppCompatTextView goodsName;
-        AppCompatTextView goodsPrice;
-        AppCompatTextView goodsSales;
-        AppCompatTextView goodsEvaluate;
-        AppCompatTextView shopName;
-        AppCompatTextView enterShop;
-
-        ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            mainLayout = itemView.findViewById(R.id.item_mall_goods_list_layout);
-            goodsImg = itemView.findViewById(R.id.item_mall_goods_list_img);
-            goodsName = itemView.findViewById(R.id.item_mall_goods_list_name);
-            goodsPrice = itemView.findViewById(R.id.item_mall_goods_list_price);
-            goodsSales = itemView.findViewById(R.id.item_mall_goods_list_sales);
-            goodsEvaluate = itemView.findViewById(R.id.item_mall_goods_list_evaluate);
-            shopName = itemView.findViewById(R.id.item_mall_goods_list_shop);
-            enterShop = itemView.findViewById(R.id.item_mall_goods_list_enter);
-        }
+                .load(Integer.parseInt(item.getGoodsImg()))
+                .into((ImageView) helper.getView(R.id.item_mall_goods_list_img));
+        helper.setText(R.id.item_mall_goods_list_name,item.getGoodsName())
+                .setText(R.id.item_mall_goods_list_price,String.valueOf(item.getGoodsPrice()))
+                .setText(R.id.item_mall_goods_list_sales,String.valueOf(item.getSales()))
+                .setText(R.id.item_mall_goods_list_evaluate,String.valueOf(item.getEvaluate()))
+                .setText(R.id.item_mall_goods_list_shop,item.getShopName())
+                .addOnClickListener(R.id.item_mall_goods_list_enter);
     }
 }
