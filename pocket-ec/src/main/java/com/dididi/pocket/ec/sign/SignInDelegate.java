@@ -35,13 +35,13 @@ public class SignInDelegate extends PocketDelegate {
     private boolean isValid = true;
     private ISignListener mISignListener = null;
 
-    @BindView(R2.id.sign_in_email_edit)
+    @BindView(R2.id.delegate_sign_in_email_edit)
     MaterialEditText mEmail = null;
-    @BindView(R2.id.sign_in_password_edit)
+    @BindView(R2.id.delegate_sign_in_password_edit)
     MaterialEditText mPassword = null;
-    @BindView(R2.id.sign_in_head)
-    CircleImageView mHead = null;
-    @BindView(R2.id.sign_in_btn)
+    @BindView(R2.id.delegate_sign_in_avatar)
+    CircleImageView mAvatar = null;
+    @BindView(R2.id.delegate_sign_in_btn)
     AppCompatButton mSignIn = null;
 
     @Override
@@ -54,7 +54,7 @@ public class SignInDelegate extends PocketDelegate {
 
     //登录按钮
     @SuppressWarnings("ConstantConditions")
-    @OnClick(R2.id.sign_in_btn)
+    @OnClick(R2.id.delegate_sign_in_btn)
     void onClickSignIn() {
         mSignIn.setBackgroundColor(getResources().getColor(R.color.pressButtonColor));
 //        RestClient.builder()
@@ -80,19 +80,19 @@ public class SignInDelegate extends PocketDelegate {
     }
 
     //点击注册文字
-    @OnClick(R2.id.sign_in_signUp)
+    @OnClick(R2.id.delegate_sign_in_sign_up)
     void onClickSignUp() {
         start(new SignUpDelegate(), SINGLETASK);
     }
 
     //点击忘记密码文字
-    @OnClick(R2.id.sign_in_find_password)
+    @OnClick(R2.id.delegate_sign_in_find_password)
     void onClickFindPassword() {
         start(new FindPasswordDelegate());
     }
 
     //点击微信登录图标
-    @OnClick(R2.id.sign_in_weChat)
+    @OnClick(R2.id.delegate_sign_in_weChat)
     void onClickWeChat() {
         RestClient.builder()
                 .url("http://192.168.1.105:3000/mymessage")
@@ -115,12 +115,12 @@ public class SignInDelegate extends PocketDelegate {
     }
 
     //点击qq登录图标
-    @OnClick(R2.id.sign_in_qq)
+    @OnClick(R2.id.delegate_sign_in_qq)
     void onClickQQ() {
     }
 
     //点击微博登录图标
-    @OnClick(R2.id.sign_in_weiBo)
+    @OnClick(R2.id.delegate_sign_in_weiBo)
     void onClickWeiBo() {
     }
 

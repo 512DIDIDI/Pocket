@@ -65,6 +65,10 @@
     <string name="faw_gg">{faw-gg}</string>
     <string name="alreadybuy">人已购买</string>
     <string name="evaluation">好评率:</string>
+    <string name="send">发送</string>
+    <string name="faw_user">{faw-user}</string>
+    <string name="faw_microphone">{faw-microphone}</string>
+    <string name="faw_chevron_circle_down">{faw-chevron-circle-down}</string>
     <string-array name="spinner_goods_sort">
         <item>综合排序</item>
         <item>好评优先</item>

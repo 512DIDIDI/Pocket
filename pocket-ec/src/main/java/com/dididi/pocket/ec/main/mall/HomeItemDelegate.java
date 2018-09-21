@@ -55,28 +55,28 @@ public class HomeItemDelegate extends BottomItemDelegate
 
     private static final String TAG = "HomeItemDelegate";
 
-    @BindView(R2.id.home_item_searchBar)
+    @BindView(R2.id.delegate_mall_home_searchBar)
     SearchBarItem mSearchBarItem = null;
-    @BindView(R2.id.home_item_nav)
+    @BindView(R2.id.delegate_mall_home_nav)
     NavigationView mNav = null;
     @BindView(R2.id.home_item_drawer)
     DrawerLayout mDrawer = null;
-    @BindView(R2.id.home_item_banner)
+    @BindView(R2.id.delegate_mall_home_banner)
     Banner mBanner = null;
-    @BindView(R2.id.home_item_scroll_view)
+    @BindView(R2.id.delegate_mall_home_scroll_view)
     NestedScrollView mScrollView = null;
-    @BindView(R2.id.home_item_swipe_refresh)
+    @BindView(R2.id.delegate_mall_home_swipe_refresh)
     PocketSwipeRefreshLayout mRefresh = null;
-    @BindView(R2.id.home_item_discover)
+    @BindView(R2.id.delegate_mall_home_discover)
     RecyclerView mDiscover = null;
-    @BindView(R2.id.home_item_photography)
+    @BindView(R2.id.delegate_mall_home_photography)
     CircleIconItem mPhotography = null;
-    @BindView(R2.id.home_item_paint)
+    @BindView(R2.id.delegate_mall_home_paint)
     CircleIconItem mPaint = null;
-    @BindView(R2.id.home_item_purchase_agency)
+    @BindView(R2.id.delegate_mall_home_purchaseAgency)
     CircleIconItem mAgency = null;
 
-    @OnClick(R2.id.home_item_photography)
+    @OnClick(R2.id.delegate_mall_home_photography)
     public void setmPhotography() {
         getParentDelegate().getSupportDelegate().start(new GoodsListDelegate());
     }
@@ -105,11 +105,11 @@ public class HomeItemDelegate extends BottomItemDelegate
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         //加载navigationView布局
         mNavigationView = getLayoutInflater().inflate(R.layout.item_home_nav_header, mNav);
-        mEmail = mNavigationView.findViewById(R.id.home_item_nav_header_email);
-        mName = mNavigationView.findViewById(R.id.home_item_nav_header_name);
-        mAvatar = mNavigationView.findViewById(R.id.home_item_nav_header_avatar);
+        mEmail = mNavigationView.findViewById(R.id.item_home_nav_header_email);
+        mName = mNavigationView.findViewById(R.id.item_home_nav_header_name);
+        mAvatar = mNavigationView.findViewById(R.id.item_home_nav_header_avatar);
         //设置nav默认选中item
-        mNav.setCheckedItem(R.id.home_item_nav_menu_discover);
+        mNav.setCheckedItem(R.id.menu_home_item_nav_discover);
         //设置刷新样式
         mRefresh.setColorSchemeColors(getResources().getColor(R.color.textColorDark));
         mRefresh.setOnRefreshListener(this::refreshNews);
@@ -158,23 +158,23 @@ public class HomeItemDelegate extends BottomItemDelegate
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int itemId = menuItem.getItemId();
-        if (itemId == R.id.home_item_nav_menu_discover) {
+        if (itemId == R.id.menu_home_item_nav_discover) {
             Toast.makeText(getContext(), "点击跳转发现界面", Toast.LENGTH_SHORT).show();
-        } else if (itemId == R.id.home_item_nav_menu_collect) {
+        } else if (itemId == R.id.menu_home_item_nav_collect) {
             Toast.makeText(getContext(), "点击跳转我的收藏界面", Toast.LENGTH_SHORT).show();
-        } else if (itemId == R.id.home_item_nav_menu_attention) {
+        } else if (itemId == R.id.menu_home_item_nav_attention) {
             Toast.makeText(getContext(), "点击跳转我的关注界面", Toast.LENGTH_SHORT).show();
-        } else if (itemId == R.id.home_item_nav_menu_friends) {
+        } else if (itemId == R.id.menu_home_item_nav_friends) {
             Toast.makeText(getContext(), "点击跳转我的朋友界面", Toast.LENGTH_SHORT).show();
-        } else if (itemId == R.id.home_item_nav_menu_account) {
+        } else if (itemId == R.id.menu_home_item_nav_account) {
             Toast.makeText(getContext(), "点击跳转账户界面", Toast.LENGTH_SHORT).show();
-        } else if (itemId == R.id.home_item_nav_menu_exit) {
+        } else if (itemId == R.id.menu_home_item_nav_exit) {
             //清除sp中的内容以达到退出效果
             PocketPreferences.clearPocketProfile();
             getParentDelegate().getSupportDelegate().startWithPop(new SignInDelegate());
-        } else if (itemId == R.id.home_item_nav_menu_setting) {
+        } else if (itemId == R.id.menu_home_item_nav_setting) {
             Toast.makeText(getContext(), "点击跳转设置界面", Toast.LENGTH_SHORT).show();
-        } else if (itemId == R.id.home_item_nav_menu_help) {
+        } else if (itemId == R.id.menu_home_item_nav_help) {
             Toast.makeText(getContext(), "点击跳转帮助界面", Toast.LENGTH_SHORT).show();
         }
         return true;

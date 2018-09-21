@@ -10,6 +10,7 @@ import com.dididi.pocket.core.Util.PocketPreferences;
 public class AccountManager {
 
     private enum SignTag {
+        /*登录标签*/
         SIGN_TAG
     }
 

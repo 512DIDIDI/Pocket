@@ -29,9 +29,9 @@ import butterknife.BindView;
 public class MessageItemDelegate extends BottomItemDelegate
         implements BaseQuickAdapter.OnItemChildClickListener {
 
-    @BindView(R2.id.msg_item_searchBar)
+    @BindView(R2.id.delegate_msg_message_searchBar)
     SearchBarItem mSearchBar = null;
-    @BindView(R2.id.msg_item_list_view)
+    @BindView(R2.id.delegate_msg_message_list_view)
     RecyclerView mMsgRecyclerView = null;
 
     private List<Message> mMsgList = new ArrayList<>();
@@ -123,8 +123,12 @@ public class MessageItemDelegate extends BottomItemDelegate
             }
         }
         if (view.getId() == R.id.item_message_main_layout) {
-            Toast.makeText(getContext(), "向" + message.getReceivedUserName() + "发起消息",
-                    Toast.LENGTH_SHORT).show();
+            //利用bundle向chatDelegate传输数据
+            ChatDelegate chatDelegate = new ChatDelegate();
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("message",message);
+            chatDelegate.setArguments(bundle);
+            getParentDelegate().getSupportDelegate().start(chatDelegate);
         }
     }
 }

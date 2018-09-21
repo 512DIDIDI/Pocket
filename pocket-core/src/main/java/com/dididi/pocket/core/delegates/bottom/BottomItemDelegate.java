@@ -20,10 +20,10 @@ public abstract class BottomItemDelegate extends PocketDelegate {
     @Override
     public boolean onBackPressedSupport() {
         if ((System.currentTimeMillis() - mExitTime) < EXIT_TIME) {
-            _mActivity.finish();
+            mActivity.finish();
         } else {
             mExitTime = System.currentTimeMillis();
-            Toast.makeText(_mActivity,
+            Toast.makeText(mActivity,
                     "双击退出" + Pocket.getApplicationContext().getString(R.string.app_name),
                     Toast.LENGTH_SHORT).show();
         }
