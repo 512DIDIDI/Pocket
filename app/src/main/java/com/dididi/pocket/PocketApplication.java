@@ -3,14 +3,10 @@ package com.dididi.pocket;
 import android.app.Application;
 
 import com.dididi.pocket.ec.icon.FontEcModule;
-import com.dididi.pocket_core.app.Pocket;
-import com.dididi.pocket_core.net.interceptor.DebugInterceptor;
+import com.dididi.pocket.core.app.Pocket;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 
 import org.litepal.LitePal;
-
-import me.yokeyword.fragmentation.BuildConfig;
-import me.yokeyword.fragmentation.Fragmentation;
 
 
 /**

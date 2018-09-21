@@ -2,6 +2,13 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
+
+    /*解决Invoke-customs are only supported starting with android 0 --min-api 26*/
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     defaultConfig {
         applicationId "com.dididi.pocket"
         minSdkVersion 16
@@ -21,5 +28,4 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':pocket-ec')
-    annotationProcessor project(':pocket-compiler')
 }

@@ -19,13 +19,12 @@ import java.util.LinkedList;
 
 public class FontEcModule implements ITypeface {
     //自定义FontModule,扩展图标库
-    //ttf文件名
+    /** ttf文件名 */
     private static final String TTF_FILE = "fonts/iconfont.ttf";
     private static Typeface typeface = null;
     private static HashMap<String, Character> mChars;
 
     @Override
-    //获取图标
     public IIcon getIcon(String key) {
         return EcIcons.valueOf(key);
     }

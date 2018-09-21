@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.dididi.pocket_core.delegates.PocketDelegate;
+import com.dididi.pocket.core.delegates.PocketDelegate;
 
 
 /**

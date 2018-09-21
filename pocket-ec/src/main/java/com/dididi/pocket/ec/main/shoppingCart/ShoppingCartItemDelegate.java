@@ -11,11 +11,10 @@ import android.widget.Toast;
 
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
-import com.dididi.pocket.ec.item.SearchBarItem;
 import com.dididi.pocket.ec.main.shoppingCart.Listener.OnGoodsPriceListener;
 import com.dididi.pocket.ec.main.shoppingCart.adapter.ShopCartAdapter;
-import com.dididi.pocket_core.Entity.Goods;
-import com.dididi.pocket_core.delegates.bottom.BottomItemDelegate;
+import com.dididi.pocket.core.entity.Goods;
+import com.dididi.pocket.core.delegates.bottom.BottomItemDelegate;
 import com.mikepenz.iconics.view.IconicsTextView;
 
 import java.util.ArrayList;
@@ -138,7 +137,7 @@ public class ShoppingCartItemDelegate extends BottomItemDelegate implements View
             Goods cat = new Goods()
                     .setShopId(1)
                     .setShopName("我的店铺名很长价格很贵")
-                    .setGoodsImg(R.drawable.cat)
+                    .setGoodsImg(String.valueOf(R.drawable.cat))
                     .setGoodsName("我是一只大猫")
                     .setGoodsStyle("橘喵")
                     .setGoodsPrice(233)
@@ -146,7 +145,7 @@ public class ShoppingCartItemDelegate extends BottomItemDelegate implements View
             Goods guitar = new Goods()
                     .setShopId(2)
                     .setShopName("我也是一家店铺")
-                    .setGoodsImg(R.drawable.guitar)
+                    .setGoodsImg(String.valueOf(R.drawable.guitar))
                     .setGoodsName("我是一把小吉他")
                     .setGoodsStyle("大吉它")
                     .setGoodsPrice(666)

@@ -4,26 +4,19 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatButton;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
 import com.dididi.pocket.ec.main.PocketBottomDelegate;
-import com.dididi.pocket_core.Util.LogUtil;
-import com.dididi.pocket_core.Util.PocketPreferences;
-import com.dididi.pocket_core.app.Pocket;
-import com.dididi.pocket_core.delegates.PocketDelegate;
-import com.dididi.pocket_core.net.RestClient;
-import com.dididi.pocket_core.net.callback.IError;
-import com.dididi.pocket_core.net.callback.IFailure;
-import com.dididi.pocket_core.net.callback.ISuccess;
+import com.dididi.pocket.core.Util.LogUtil;
+import com.dididi.pocket.core.Util.PocketPreferences;
+import com.dididi.pocket.core.app.Pocket;
+import com.dididi.pocket.core.delegates.PocketDelegate;
+import com.dididi.pocket.core.net.RestClient;
 import com.rengwuxian.materialedittext.MaterialEditText;
-
-import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -142,20 +135,20 @@ public class SignInDelegate extends PocketDelegate {
     }
 
     private boolean checkInputValid() {
-        if (mEmail.getText() == null || mEmail.getText().toString().equals("")
-                || mPassword.getText() == null || mPassword.getText().toString().equals("")) {
+        if (mEmail.getText() == null || "".equals(mEmail.getText().toString())
+                || mPassword.getText() == null || "".equals(mPassword.getText().toString())) {
             Toast.makeText(getContext(), "不能输入为空", Toast.LENGTH_SHORT).show();
             isValid = false;
         } else {
-            final String EMAIL = mEmail.getText().toString();
-            final String PASSWORD = mPassword.getText().toString();
-            if (!Patterns.EMAIL_ADDRESS.matcher(EMAIL).matches()) {
+            final String email = mEmail.getText().toString();
+            final String password = mPassword.getText().toString();
+            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 isValid = false;
                 mEmail.setError("错误的邮箱格式");
             } else {
                 mEmail.setError(null);
             }
-            if (PASSWORD.length() <= 6) {
+            if (password.length() <= 6) {
                 isValid = false;
                 mPassword.setError("密码错误");
             } else {

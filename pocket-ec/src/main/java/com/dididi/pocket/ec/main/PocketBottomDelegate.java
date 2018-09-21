@@ -5,11 +5,10 @@ import com.dididi.pocket.ec.main.mall.HomeItemDelegate;
 import com.dididi.pocket.ec.main.message.MessageItemDelegate;
 import com.dididi.pocket.ec.main.personal.PersonalItemDelegate;
 import com.dididi.pocket.ec.main.shoppingCart.ShoppingCartItemDelegate;
-import com.dididi.pocket_core.delegates.bottom.BaseBottomDelegate;
-import com.dididi.pocket_core.delegates.bottom.BottomItemDelegate;
-import com.dididi.pocket_core.delegates.bottom.BottomTabBean;
-import com.dididi.pocket_core.delegates.bottom.IHideBottomBarListener;
-import com.dididi.pocket_core.delegates.bottom.ItemFactory;
+import com.dididi.pocket.core.delegates.bottom.BaseBottomDelegate;
+import com.dididi.pocket.core.delegates.bottom.BottomItemDelegate;
+import com.dididi.pocket.core.delegates.bottom.BottomTabBean;
+import com.dididi.pocket.core.delegates.bottom.ItemFactory;
 
 import java.util.LinkedHashMap;
 

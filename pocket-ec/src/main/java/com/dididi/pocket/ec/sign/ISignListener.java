@@ -6,6 +6,8 @@ package com.dididi.pocket.ec.sign;
  */
 
 public interface ISignListener {
+    /** 注册成功回调 */
     void onSignUpSuccess();
+    /** 登录成功回调 */
     void onSignInSuccess();
 }

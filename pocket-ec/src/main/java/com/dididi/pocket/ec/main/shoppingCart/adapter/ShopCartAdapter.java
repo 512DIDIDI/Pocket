@@ -3,7 +3,6 @@ package com.dididi.pocket.ec.main.shoppingCart.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatButton;
-import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,7 +14,7 @@ import android.widget.Toast;
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.item.RoundRectImageView;
 import com.dididi.pocket.ec.main.shoppingCart.Listener.OnGoodsPriceListener;
-import com.dididi.pocket_core.Entity.Goods;
+import com.dididi.pocket.core.entity.Goods;
 import com.mikepenz.iconics.view.IconicsTextView;
 
 import java.util.List;
@@ -52,7 +51,8 @@ public class ShopCartAdapter extends RecyclerView.Adapter<ShopCartAdapter.ViewHo
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
         final Goods goods = mGoodsList.get(i);
         viewHolder.shopName.setText(goods.getShopName());
-        viewHolder.goodsImg.setImageResource(goods.getGoodsImg());
+        //todo:先写死了传入id 后期再改
+        viewHolder.goodsImg.setImageResource(Integer.parseInt(goods.getGoodsImg()));
         viewHolder.goodsName.setText(goods.getGoodsName());
         viewHolder.goodsStyle.setText(goods.getGoodsStyle());
         viewHolder.goodsPrice.setText(String.valueOf(goods.getGoodsPrice()));

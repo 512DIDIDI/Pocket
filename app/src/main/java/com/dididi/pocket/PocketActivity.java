@@ -8,11 +8,11 @@ import android.widget.Toast;
 import com.dididi.pocket.ec.main.PocketBottomDelegate;
 import com.dididi.pocket.ec.sign.ISignListener;
 import com.dididi.pocket.ec.sign.SignInDelegate;
-import com.dididi.pocket_core.activities.ProxyActivity;
-import com.dididi.pocket_core.app.AccountManager;
-import com.dididi.pocket_core.app.IUserChecker;
-import com.dididi.pocket_core.app.Pocket;
-import com.dididi.pocket_core.delegates.PocketDelegate;
+import com.dididi.pocket.core.activities.ProxyActivity;
+import com.dididi.pocket.core.app.AccountManager;
+import com.dididi.pocket.core.app.IUserChecker;
+import com.dididi.pocket.core.app.Pocket;
+import com.dididi.pocket.core.delegates.PocketDelegate;
 
 
 public class PocketActivity extends ProxyActivity implements ISignListener {

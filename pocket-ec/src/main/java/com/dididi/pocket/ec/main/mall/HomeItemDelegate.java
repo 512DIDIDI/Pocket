@@ -7,37 +7,29 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
 import com.dididi.pocket.ec.item.CircleIconItem;
 import com.dididi.pocket.ec.item.SearchBarItem;
 import com.dididi.pocket.ec.main.mall.adapter.NewsAdapter;
-import com.dididi.pocket.ec.main.mall.entity.News;
+import com.dididi.pocket.core.entity.News;
 import com.dididi.pocket.ec.main.mall.list.FakeImageList;
 import com.dididi.pocket.ec.sign.SignInDelegate;
-import com.dididi.pocket.ec.sign.SignUpDelegate;
-import com.dididi.pocket_core.Util.LogUtil;
-import com.dididi.pocket_core.Util.PocketPreferences;
-import com.dididi.pocket_core.app.AccountManager;
-import com.dididi.pocket_core.app.ConfigType;
-import com.dididi.pocket_core.app.IUserChecker;
-import com.dididi.pocket_core.app.Pocket;
-import com.dididi.pocket_core.delegates.bottom.BottomItemDelegate;
-import com.dididi.pocket_core.delegates.bottom.IHideBottomBarListener;
-import com.dididi.pocket_core.ui.GlideApp;
-import com.dididi.pocket_core.ui.SwipeRefreshLayout.PocketSwipeRefreshLayout;
-import com.dididi.pocket_core.ui.banner.GlideImageLoader;
+import com.dididi.pocket.core.Util.PocketPreferences;
+import com.dididi.pocket.core.app.AccountManager;
+import com.dididi.pocket.core.app.IUserChecker;
+import com.dididi.pocket.core.delegates.bottom.BottomItemDelegate;
+import com.dididi.pocket.core.ui.GlideApp;
+import com.dididi.pocket.core.ui.SwipeRefreshLayout.PocketSwipeRefreshLayout;
+import com.dididi.pocket.core.ui.banner.GlideImageLoader;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -52,13 +44,14 @@ import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
- * Created by dididi
- * on 24/07/2018 .
+ * @author dididi
+ * @since 24/07/2018
+ * @describe 首页fragment
  */
 
 public class HomeItemDelegate extends BottomItemDelegate
         implements NavigationView.OnNavigationItemSelectedListener,
-        View.OnClickListener {
+        View.OnClickListener,BaseQuickAdapter.OnItemChildClickListener {
 
     private static final String TAG = "HomeItemDelegate";
 
@@ -114,7 +107,7 @@ public class HomeItemDelegate extends BottomItemDelegate
         mNavigationView = getLayoutInflater().inflate(R.layout.item_home_nav_header, mNav);
         mEmail = mNavigationView.findViewById(R.id.home_item_nav_header_email);
         mName = mNavigationView.findViewById(R.id.home_item_nav_header_name);
-        mAvatar = mNavigationView.findViewById(R.id.home_item_nav_header_head);
+        mAvatar = mNavigationView.findViewById(R.id.home_item_nav_header_avatar);
         //设置nav默认选中item
         mNav.setCheckedItem(R.id.home_item_nav_menu_discover);
         //设置刷新样式
@@ -136,7 +129,8 @@ public class HomeItemDelegate extends BottomItemDelegate
         LinearLayoutManager layoutManager =
                 new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         mDiscover.setLayoutManager(layoutManager);
-        mAdapter = new NewsAdapter(mNews);
+        mAdapter = new NewsAdapter(R.layout.item_home_news,mNews);
+        mAdapter.setOnItemChildClickListener(this);
         mDiscover.setAdapter(mAdapter);
         //初始化用户信息
         initUserIfo();
@@ -210,12 +204,15 @@ public class HomeItemDelegate extends BottomItemDelegate
         }
     }
 
+
     private void initFakeNews() {
         mNews.clear();
         News[] news = {
-                new News(R.mipmap.avatarman02, "大野猫", "我是一只大大大大野猫", "27/7/2018"),
-                new News(R.mipmap.avatarwoman01, "大菊花", "我是一朵大菊花", "28/7/2018"),
-                new News(R.mipmap.avatarwoman03, "大吉它",
+                new News(String.valueOf(R.mipmap.avatarman02),
+                        "大野猫", "我是一只大大大大野猫", "27/7/2018"),
+                new News(String.valueOf(R.mipmap.avatarwoman01),
+                        "大菊花", "我是一朵大菊花", "28/7/2018"),
+                new News(String.valueOf(R.mipmap.avatarwoman03), "大吉它",
                         "我是一把小吉他小呀小呀小呀小呀小呀小呀小呀小呀小吉他", "26/7/2018"),
         };
         for (int i = 0; i < 5; i++) {
@@ -243,10 +240,12 @@ public class HomeItemDelegate extends BottomItemDelegate
         }).start();
     }
 
+    /** 初始化抽屉布局用户信息 */
     private void initUserIfo() {
         AccountManager.checkAccount(new IUserChecker() {
             @Override
             public void onSignIn() {
+                //如果登录，从sp中获取用户信息
                 String avatar = PocketPreferences
                         .getCustomPocketProfile("userAvatar")
                         .replace("\"", "");
@@ -276,5 +275,34 @@ public class HomeItemDelegate extends BottomItemDelegate
                         getParentDelegate().getSupportDelegate().startWithPop(new SignInDelegate()));
             }
         });
+    }
+
+    /**
+     * newsAdapter的子控件点击事件
+     * @param adapter newsAdapter
+     * @param view 子控件
+     * @param position item位置
+     */
+    @Override
+    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+        StringBuilder content = new StringBuilder();
+        News news = (News) adapter.getItem(position);
+        if (null == news){
+            throw new RuntimeException("news can not be null");
+        }
+        if (view.getId() == R.id.item_home_news_head){
+            content.append("你点击了")
+                    .append(news.getUserName())
+                    .append("头像");
+        }else if (view.getId() == R.id.item_home_news_name){
+            content.append("你点击了")
+                    .append(news.getUserName())
+                    .append("名字");
+        }else if (view.getId() == R.id.item_home_news_comment){
+            content.append("你点击了")
+                    .append(news.getUserName())
+                    .append("评论");
+        }
+        Toast.makeText(getContext(),content.toString(),Toast.LENGTH_SHORT).show();
     }
 }
