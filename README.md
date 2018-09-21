@@ -9,4 +9,4 @@ this is Pocket version 0.0.1
 
 统一了整体风格,增加了一些页面:
 
-<img src="https://github.com/Ffffvf/Pocket/blob/master/pocket-ec/src/main/assets/gif/.gif" width="200" height="400"/>
+<img src="https://github.com/Ffffvf/Pocket/blob/brvah/pocket-ec/src/main/assets/gif/message.gif" width="200" height="400"/>
