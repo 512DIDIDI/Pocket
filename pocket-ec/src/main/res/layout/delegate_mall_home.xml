@@ -16,7 +16,7 @@
             android:layout_height="wrap_content">
             <!--toolbar-->
             <android.support.v7.widget.Toolbar
-                android:id="@+id/home_item_toolbar"
+                android:id="@+id/delegate_mall_home_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
                 android:background="@color/toolbarColor"
@@ -24,7 +24,7 @@
                 <!--app:layout_scrollFlags设置隐藏方式 scroll向上滚动隐藏 enterAlways向下滚动显示
                             snap根据滚动距离选择自动隐藏还是显示-->
                 <com.dididi.pocket.ec.item.SearchBarItem
-                    android:id="@+id/home_item_searchBar"
+                    android:id="@+id/delegate_mall_home_searchBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -38,14 +38,14 @@
         </android.support.design.widget.AppBarLayout>
         <!--下拉刷新-->
         <com.dididi.pocket.core.ui.SwipeRefreshLayout.PocketSwipeRefreshLayout
-            android:id="@+id/home_item_swipe_refresh"
+            android:id="@+id/delegate_mall_home_swipe_refresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:ignore="PrivateResource">
 
             <android.support.v4.widget.NestedScrollView
-                android:id="@+id/home_item_scroll_view"
+                android:id="@+id/delegate_mall_home_scroll_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -55,18 +55,18 @@
                     android:orientation="vertical">
                     <!--首页banner-->
                     <com.youth.banner.Banner
-                        android:id="@+id/home_item_banner"
+                        android:id="@+id/delegate_mall_home_banner"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
                         android:layout_alignParentTop="true" />
                     <!--摄影快速入口-->
                     <com.dididi.pocket.ec.item.CircleIconItem
-                        android:id="@+id/home_item_photography"
+                        android:id="@+id/delegate_mall_home_photography"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:layout_below="@id/home_item_banner"
+                        android:layout_below="@id/delegate_mall_home_banner"
                         android:layout_marginBottom="@dimen/dividerGap"
                         android:layout_marginLeft="40dp"
                         android:layout_marginStart="40dp"
@@ -75,10 +75,10 @@
                         app:circle_icon_text="@string/photography" />
                     <!--手绘快速入口-->
                     <com.dididi.pocket.ec.item.CircleIconItem
-                        android:id="@+id/home_item_paint"
+                        android:id="@+id/delegate_mall_home_paint"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/home_item_banner"
+                        android:layout_below="@id/delegate_mall_home_banner"
                         android:layout_centerHorizontal="true"
                         android:layout_marginBottom="@dimen/dividerGap"
                         android:layout_marginTop="@dimen/elementGap"
@@ -86,12 +86,12 @@
                         app:circle_icon_text="@string/paint" />
                     <!--代购快速入口-->
                     <com.dididi.pocket.ec.item.CircleIconItem
-                        android:id="@+id/home_item_purchase_agency"
+                        android:id="@+id/delegate_mall_home_purchaseAgency"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
-                        android:layout_below="@id/home_item_banner"
+                        android:layout_below="@id/delegate_mall_home_banner"
                         android:layout_marginBottom="@dimen/dividerGap"
                         android:layout_marginEnd="40dp"
                         android:layout_marginRight="40dp"
@@ -101,17 +101,17 @@
 
 
                     <View
-                        android:id="@+id/home_item_divider"
+                        android:id="@+id/delegate_mall_home_divider"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_below="@id/home_item_purchase_agency"
+                        android:layout_below="@id/delegate_mall_home_purchaseAgency"
                         android:background="@color/dividerColor" />
                     <!--发现-->
                     <TextView
-                        android:id="@+id/home_item_discover_title"
+                        android:id="@+id/delegate_mall_home_discover_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/home_item_divider"
+                        android:layout_below="@id/delegate_mall_home_divider"
                         android:layout_marginBottom="@dimen/dividerGap"
                         android:layout_marginTop="@dimen/dividerGap"
                         android:gravity="center"
@@ -122,14 +122,14 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_below="@id/home_item_discover_title"
+                        android:layout_below="@id/delegate_mall_home_discover_title"
                         android:background="@color/dividerColor" />
 
                     <android.support.v7.widget.RecyclerView
-                        android:id="@+id/home_item_discover"
+                        android:id="@+id/delegate_mall_home_discover"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/home_item_discover_title"
+                        android:layout_below="@id/delegate_mall_home_discover_title"
                         android:layout_marginTop="@dimen/dividerGap" />
                 </RelativeLayout>
             </android.support.v4.widget.NestedScrollView>
@@ -137,10 +137,10 @@
     </android.support.design.widget.CoordinatorLayout>
     <!--导航控件内容-->
     <android.support.design.widget.NavigationView
-        android:id="@+id/home_item_nav"
+        android:id="@+id/delegate_mall_home_nav"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/item_home_nav_header"
-        app:menu="@menu/home_item_nav_menu" />
+        app:menu="@menu/menu_home_item_nav" />
 </android.support.v4.widget.DrawerLayout>

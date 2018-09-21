@@ -30,9 +30,9 @@ public class GoodsListDelegate extends PocketDelegate
         implements View.OnClickListener, BaseQuickAdapter.OnItemChildClickListener,
         BaseQuickAdapter.OnItemClickListener {
 
-    @BindView(R2.id.goods_delegate_goodsList)
+    @BindView(R2.id.delegate_mall_goods_goodsList)
     RecyclerView mRecyclerView = null;
-    @BindView(R2.id.goods_list_searchBar)
+    @BindView(R2.id.delegate_mall_goods_searchBar)
     SearchBarItem mSearchBar = null;
 
     private List<Goods> mGoodsList = new ArrayList<>();

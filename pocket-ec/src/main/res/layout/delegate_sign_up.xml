@@ -10,16 +10,16 @@
     tools:context=".sign.SignUpDelegate">
     <!--toolbar-->
     <android.support.v7.widget.Toolbar
-        android:id="@+id/sign_up_toolbar"
+        android:id="@+id/delegate_sign_up_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:background="@color/toolbarColor">
 
         <com.mikepenz.iconics.view.IconicsTextView
-            android:id="@+id/sign_up_back_btn"
+            android:id="@+id/delegate_sign_up_back_btn"
             android:layout_width="@dimen/normalIconSize"
             android:layout_height="@dimen/normalIconSize"
-            android:layout_gravity="start"
+            android:layout_gravity="start|center_vertical"
             android:layout_marginLeft="@dimen/screenLRGap"
             android:layout_marginStart="@dimen/screenLRGap"
             android:text="@string/faw_chevron_left"
@@ -46,7 +46,7 @@
             android:padding="@dimen/screenLRGap">
             <!--logo-->
             <com.mikepenz.iconics.view.IconicsImageView
-                android:id="@+id/sign_up_logo"
+                android:id="@+id/delegate_sign_up_logo"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_alignParentTop="true"
@@ -56,10 +56,10 @@
                 app:iiv_icon="faw_get_pocket" />
             <!--姓名-->
             <com.mikepenz.iconics.view.IconicsTextView
-                android:id="@+id/sign_up_name"
+                android:id="@+id/delegate_sign_up_name"
                 android:layout_width="@dimen/normalIconSize"
                 android:layout_height="@dimen/normalIconSize"
-                android:layout_alignBottom="@id/sign_up_name_edit"
+                android:layout_alignBottom="@id/delegate_sign_up_name_edit"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
@@ -70,22 +70,22 @@
                 android:textColor="@color/textColorDark" />
 
             <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/sign_up_name_edit"
+                android:id="@+id/delegate_sign_up_name_edit"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/searchBarSize"
-                android:layout_below="@id/sign_up_logo"
+                android:layout_below="@id/delegate_sign_up_logo"
                 android:layout_centerVertical="true"
                 android:layout_marginBottom="@dimen/dividerGap"
-                android:layout_toEndOf="@id/sign_up_name"
-                android:layout_toRightOf="@id/sign_up_name"
+                android:layout_toEndOf="@id/delegate_sign_up_name"
+                android:layout_toRightOf="@id/delegate_sign_up_name"
                 android:hint="@string/hint_name"
                 android:textSize="@dimen/buttonTextSize" />
             <!--邮箱-->
             <com.mikepenz.iconics.view.IconicsTextView
-                android:id="@+id/sign_up_email"
+                android:id="@+id/delegate_sign_up_email"
                 android:layout_width="@dimen/normalIconSize"
                 android:layout_height="@dimen/normalIconSize"
-                android:layout_alignBottom="@id/sign_up_email_edit"
+                android:layout_alignBottom="@id/delegate_sign_up_email_edit"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
@@ -96,22 +96,22 @@
                 android:textColor="@color/textColorDark" />
 
             <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/sign_up_email_edit"
+                android:id="@+id/delegate_sign_up_email_edit"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/searchBarSize"
-                android:layout_below="@id/sign_up_name_edit"
+                android:layout_below="@id/delegate_sign_up_name_edit"
                 android:layout_centerVertical="true"
                 android:layout_marginBottom="@dimen/dividerGap"
-                android:layout_toEndOf="@id/sign_up_email"
-                android:layout_toRightOf="@id/sign_up_email"
+                android:layout_toEndOf="@id/delegate_sign_up_email"
+                android:layout_toRightOf="@id/delegate_sign_up_email"
                 android:hint="@string/hint_email"
                 android:textSize="@dimen/buttonTextSize" />
             <!--密码-->
             <com.mikepenz.iconics.view.IconicsTextView
-                android:id="@+id/sign_up_password"
+                android:id="@+id/delegate_sign_up_password"
                 android:layout_width="@dimen/normalIconSize"
                 android:layout_height="@dimen/normalIconSize"
-                android:layout_alignBottom="@id/sign_up_password_edit"
+                android:layout_alignBottom="@id/delegate_sign_up_password_edit"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
@@ -122,23 +122,23 @@
                 android:textColor="@color/textColorDark" />
 
             <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/sign_up_password_edit"
+                android:id="@+id/delegate_sign_up_password_edit"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/searchBarSize"
-                android:layout_below="@id/sign_up_email_edit"
+                android:layout_below="@id/delegate_sign_up_email_edit"
                 android:layout_centerVertical="true"
                 android:layout_marginBottom="@dimen/dividerGap"
-                android:layout_toEndOf="@id/sign_up_password"
-                android:layout_toRightOf="@id/sign_up_password"
+                android:layout_toEndOf="@id/delegate_sign_up_password"
+                android:layout_toRightOf="@id/delegate_sign_up_password"
                 android:hint="@string/hint_password"
                 android:inputType="textPassword"
                 android:textSize="@dimen/buttonTextSize" />
             <!--重复密码-->
             <com.mikepenz.iconics.view.IconicsTextView
-                android:id="@+id/sign_up_rePassword"
+                android:id="@+id/delegate_sign_up_rePassword"
                 android:layout_width="@dimen/normalIconSize"
                 android:layout_height="@dimen/normalIconSize"
-                android:layout_alignBottom="@id/sign_up_rePassword_edit"
+                android:layout_alignBottom="@id/delegate_sign_up_rePassword_edit"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
@@ -149,23 +149,23 @@
                 android:textColor="@color/textColorDark" />
 
             <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/sign_up_rePassword_edit"
+                android:id="@+id/delegate_sign_up_rePassword_edit"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/searchBarSize"
-                android:layout_below="@id/sign_up_password_edit"
+                android:layout_below="@id/delegate_sign_up_password_edit"
                 android:layout_centerVertical="true"
                 android:layout_marginBottom="@dimen/elementGap"
-                android:layout_toEndOf="@id/sign_up_rePassword"
-                android:layout_toRightOf="@id/sign_up_rePassword"
+                android:layout_toEndOf="@id/delegate_sign_up_rePassword"
+                android:layout_toRightOf="@id/delegate_sign_up_rePassword"
                 android:hint="@string/hint_rePassword"
                 android:inputType="textPassword"
                 android:textSize="@dimen/buttonTextSize" />
             <!--注册按钮-->
             <android.support.v7.widget.AppCompatButton
-                android:id="@+id/sign_up_btn"
+                android:id="@+id/delegate_sign_up_btn"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/searchBarSize"
-                android:layout_below="@id/sign_up_rePassword_edit"
+                android:layout_below="@id/delegate_sign_up_rePassword_edit"
                 android:layout_marginBottom="@dimen/elementGap"
                 android:background="@color/normalButtonColor"
                 android:gravity="center"
@@ -174,10 +174,10 @@
                 android:textSize="@dimen/buttonTextSize" />
             <!--登录文字-->
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/sign_up_login"
+                android:id="@+id/delegate_sign_up_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/sign_up_btn"
+                android:layout_below="@id/delegate_sign_up_btn"
                 android:layout_centerHorizontal="true"
                 android:text="@string/sign_up_login"
                 android:textColor="@color/textHintColor"

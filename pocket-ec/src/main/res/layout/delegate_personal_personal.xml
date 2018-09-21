@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/personal_item_toolbar"
+        android:id="@+id/delegate_personal_personal_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:background="@color/toolbarColor">

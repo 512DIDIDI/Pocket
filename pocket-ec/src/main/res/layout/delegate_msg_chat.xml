@@ -1,6 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/delegate_msg_chat_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:background="@color/toolbarColor">
+
+                <com.mikepenz.iconics.view.IconicsTextView
+                    android:id="@+id/delegate_msg_chat_back_btn"
+                    android:layout_width="@dimen/normalIconSize"
+                    android:layout_height="@dimen/normalIconSize"
+                    android:layout_gravity="start|center_vertical"
+                    android:layout_marginLeft="@dimen/screenLRGap"
+                    android:layout_marginStart="@dimen/screenLRGap"
+                    android:gravity="center"
+                    android:text="@string/faw_chevron_left"
+                    android:textColor="@color/textColorLight" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/delegate_msg_chat_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:foregroundGravity="center"
+                    android:textColor="@color/textColorLight"
+                    android:textSize="@dimen/toolBarTextSize" />
+
+                <com.mikepenz.iconics.view.IconicsTextView
+                    android:id="@+id/delegate_msg_chat_personal"
+                    android:layout_width="@dimen/normalIconSize"
+                    android:layout_height="@dimen/normalIconSize"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="@dimen/screenLRGap"
+                    android:layout_marginRight="@dimen/screenLRGap"
+                    android:gravity="center"
+                    android:text="@string/faw_user"
+                    android:textColor="@color/textColorLight" />
+
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/delegate_msg_chat_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/dividerColor"
+            android:paddingBottom="@dimen/bottomBarSize"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    </android.support.design.widget.CoordinatorLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottomBarSize"
+        android:layout_alignParentBottom="true"
+        android:background="@color/backgroundColor"
+        android:orientation="horizontal">
+
+        <com.mikepenz.iconics.view.IconicsTextView
+            android:id="@+id/delegate_msg_chat_voice"
+            android:layout_width="@dimen/normalIconSize"
+            android:layout_height="@dimen/normalIconSize"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/screenLRGap"
+            android:layout_marginRight="@dimen/screenLRGap"
+            android:gravity="center"
+            android:text="@string/faw_microphone"
+            android:textColor="@color/textColorDark" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/delegate_msg_chat_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="@dimen/dividerGap"
+            android:layout_toEndOf="@id/delegate_msg_chat_voice"
+            android:layout_toLeftOf="@id/delegate_msg_chat_more"
+            android:layout_toRightOf="@id/delegate_msg_chat_voice"
+            android:layout_toStartOf="@id/delegate_msg_chat_more"
+            android:imeOptions="actionSend"
+            android:inputType="text"
+            android:textColor="@color/textNormalColor"
+            android:textSize="@dimen/textNormalSize" />
+
+        <com.mikepenz.iconics.view.IconicsTextView
+            android:id="@+id/delegate_msg_chat_more"
+            android:layout_width="@dimen/normalIconSize"
+            android:layout_height="@dimen/normalIconSize"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/screenLRGap"
+            android:layout_marginRight="@dimen/screenLRGap"
+            android:gravity="center"
+            android:text="@string/faw_chevron_circle_down"
+            android:textColor="@color/textColorDark" />
+    </RelativeLayout>
+</RelativeLayout>

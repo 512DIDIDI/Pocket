@@ -17,14 +17,14 @@
             android:layout_height="wrap_content">
 
             <android.support.v7.widget.Toolbar
-                android:id="@+id/msg_item_toolbar"
+                android:id="@+id/delegate_msg_message_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
                 android:background="@color/toolbarColor"
                 app:layout_scrollFlags="scroll|enterAlways|snap">
 
                 <com.dididi.pocket.ec.item.SearchBarItem
-                    android:id="@+id/msg_item_searchBar"
+                    android:id="@+id/delegate_msg_message_searchBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -38,7 +38,7 @@
         </android.support.design.widget.AppBarLayout>
         <!--消息列表-->
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/msg_item_list_view"
+            android:id="@+id/delegate_msg_message_list_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"

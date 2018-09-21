@@ -9,16 +9,16 @@
     <!--focusable.focusableInTouchMode取消editText自动获取焦点-->
     <!--toolbar-->
     <android.support.v7.widget.Toolbar
-        android:id="@+id/sign_in_toolbar"
+        android:id="@+id/delegate_sign_in_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:background="@color/toolbarColor">
         <!--隐藏back按钮-->
         <com.mikepenz.iconics.view.IconicsTextView
-            android:id="@+id/sign_in_back_btn"
+            android:id="@+id/delegate_sign_in_back_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
+            android:layout_gravity="start|center_vertical"
             android:layout_marginLeft="@dimen/screenLRGap"
             android:layout_marginStart="@dimen/screenLRGap"
             android:text="@string/faw_chevron_left"
@@ -46,7 +46,7 @@
             android:padding="@dimen/screenLRGap">
             <!--登录头像-->
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/sign_in_head"
+                android:id="@+id/delegate_sign_in_avatar"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_alignParentTop="true"
@@ -57,10 +57,10 @@
                 app:civ_border_width="1dp" />
             <!--登录邮箱-->
             <com.mikepenz.iconics.view.IconicsTextView
-                android:id="@+id/sign_in_email"
+                android:id="@+id/delegate_sign_in_email"
                 android:layout_width="@dimen/normalIconSize"
                 android:layout_height="@dimen/normalIconSize"
-                android:layout_alignBottom="@id/sign_in_email_edit"
+                android:layout_alignBottom="@id/delegate_sign_in_email_edit"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
@@ -71,22 +71,22 @@
                 android:textColor="@color/textColorDark" />
 
             <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/sign_in_email_edit"
+                android:id="@+id/delegate_sign_in_email_edit"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/searchBarSize"
-                android:layout_below="@id/sign_in_head"
+                android:layout_below="@id/delegate_sign_in_avatar"
                 android:layout_centerVertical="true"
                 android:layout_marginBottom="@dimen/dividerGap"
-                android:layout_toEndOf="@id/sign_in_email"
-                android:layout_toRightOf="@id/sign_in_email"
+                android:layout_toEndOf="@id/delegate_sign_in_email"
+                android:layout_toRightOf="@id/delegate_sign_in_email"
                 android:hint="@string/hint_email"
                 android:textSize="@dimen/buttonTextSize" />
             <!--登录密码-->
             <com.mikepenz.iconics.view.IconicsTextView
-                android:id="@+id/sign_in_password"
+                android:id="@+id/delegate_sign_in_password"
                 android:layout_width="@dimen/normalIconSize"
                 android:layout_height="@dimen/normalIconSize"
-                android:layout_alignBottom="@id/sign_in_password_edit"
+                android:layout_alignBottom="@id/delegate_sign_in_password_edit"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
@@ -97,24 +97,24 @@
                 android:textColor="@color/textColorDark" />
 
             <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/sign_in_password_edit"
+                android:id="@+id/delegate_sign_in_password_edit"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/searchBarSize"
-                android:layout_below="@id/sign_in_email_edit"
+                android:layout_below="@id/delegate_sign_in_email_edit"
                 android:layout_centerVertical="true"
                 android:layout_marginBottom="@dimen/dividerGap"
-                android:layout_toEndOf="@id/sign_in_password"
-                android:layout_toRightOf="@id/sign_in_password"
+                android:layout_toEndOf="@id/delegate_sign_in_password"
+                android:layout_toRightOf="@id/delegate_sign_in_password"
                 android:hint="@string/hint_password"
                 android:inputType="textPassword"
                 android:textSize="@dimen/buttonTextSize" />
 
             <!--登录按钮-->
             <android.support.v7.widget.AppCompatButton
-                android:id="@+id/sign_in_btn"
+                android:id="@+id/delegate_sign_in_btn"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/searchBarSize"
-                android:layout_below="@id/sign_in_password_edit"
+                android:layout_below="@id/delegate_sign_in_password_edit"
                 android:layout_marginBottom="@dimen/elementGap"
                 android:background="@color/normalButtonColor"
                 android:gravity="center"
@@ -123,22 +123,22 @@
                 android:textSize="@dimen/buttonTextSize" />
             <!--忘记密码-->
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/sign_in_find_password"
+                android:id="@+id/delegate_sign_in_find_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
-                android:layout_below="@id/sign_in_btn"
+                android:layout_below="@id/delegate_sign_in_btn"
                 android:layout_marginBottom="@dimen/elementGap"
                 android:text="@string/forget_password"
                 android:textColor="@color/textHintColor"
                 android:textSize="@dimen/textSmallSize" />
             <!--注册文字-->
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/sign_in_signUp"
+                android:id="@+id/delegate_sign_in_sign_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/sign_in_btn"
+                android:layout_below="@id/delegate_sign_in_btn"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginBottom="@dimen/elementGap"
@@ -149,12 +149,12 @@
             <android.support.v7.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/sign_in_signUp"
+                android:layout_below="@id/delegate_sign_in_sign_up"
                 android:layout_centerHorizontal="true"
                 android:orientation="horizontal">
                 <!--微信登录-->
                 <com.mikepenz.iconics.view.IconicsTextView
-                    android:id="@+id/sign_in_weChat"
+                    android:id="@+id/delegate_sign_in_weChat"
                     android:layout_width="@dimen/normalIconSize"
                     android:layout_height="@dimen/normalIconSize"
                     android:layout_marginLeft="@dimen/dividerGap"
@@ -165,7 +165,7 @@
 
                 <!--qq登录-->
                 <com.mikepenz.iconics.view.IconicsTextView
-                    android:id="@+id/sign_in_qq"
+                    android:id="@+id/delegate_sign_in_qq"
                     android:layout_width="@dimen/normalIconSize"
                     android:layout_height="@dimen/normalIconSize"
                     android:layout_marginLeft="@dimen/dividerGap"
@@ -176,7 +176,7 @@
 
                 <!--微博登录-->
                 <com.mikepenz.iconics.view.IconicsTextView
-                    android:id="@+id/sign_in_weiBo"
+                    android:id="@+id/delegate_sign_in_weiBo"
                     android:layout_width="@dimen/normalIconSize"
                     android:layout_height="@dimen/normalIconSize"
                     android:layout_marginLeft="@dimen/dividerGap"

@@ -20,17 +20,17 @@ import butterknife.OnClick;
 
 public class FindPasswordDelegate extends PocketDelegate {
 
-    @BindView(R2.id.find_password_email_edit)
+    @BindView(R2.id.delegate_sign_find_password_email_edit)
     MaterialEditText mEmail = null;
-    @BindView(R2.id.find_password_verify)
+    @BindView(R2.id.delegate_sign_find_password_verify)
     MaterialEditText mVerify = null;
 
-    @OnClick(R2.id.find_password_send_verify)
+    @OnClick(R2.id.delegate_sign_find_password_send_verify)
     void onClickSendVerify(){
 
     }
 
-    @OnClick(R2.id.find_password_back_btn)
+    @OnClick(R2.id.delegate_sign_find_password_back_btn)
     void onClickBack(){
 
     }

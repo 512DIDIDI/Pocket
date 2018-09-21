@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/home_item_nav_header"
+    android:id="@+id/item_home_nav_header"
     android:layout_width="match_parent"
     android:layout_height="152dp"
     android:background="@mipmap/header">
     <!--头像-->
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/home_item_nav_header_avatar"
+        android:id="@+id/item_home_nav_header_avatar"
         android:layout_width="@dimen/bigAvatarSize"
         android:layout_height="@dimen/bigAvatarSize"
         android:layout_alignParentLeft="true"
@@ -17,10 +17,10 @@
         android:layout_marginStart="@dimen/screenLRGap" />
     <!--名字-->
     <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/home_item_nav_header_name"
+        android:id="@+id/item_home_nav_header_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/home_item_nav_header_avatar"
+        android:layout_below="@id/item_home_nav_header_avatar"
         android:layout_marginStart="@dimen/screenLRGap"
         android:layout_marginLeft="@dimen/screenLRGap"
         android:layout_marginTop="@dimen/screenLRGap"
@@ -28,10 +28,10 @@
         android:textSize="@dimen/textSmallSize" />
     <!--邮箱-->
     <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/home_item_nav_header_email"
+        android:id="@+id/item_home_nav_header_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/home_item_nav_header_name"
+        android:layout_below="@id/item_home_nav_header_name"
         android:layout_marginStart="@dimen/screenLRGap"
         android:layout_marginLeft="@dimen/screenLRGap"
         android:layout_marginTop="@dimen/dividerGap"

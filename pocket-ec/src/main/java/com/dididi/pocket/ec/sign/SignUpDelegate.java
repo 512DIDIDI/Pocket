@@ -23,15 +23,15 @@ public class SignUpDelegate extends PocketDelegate {
     private boolean isValid = true;
     private ISignListener mISignListener = null;
 
-    @BindView(R2.id.sign_up_name_edit)
+    @BindView(R2.id.delegate_sign_up_name_edit)
     MaterialEditText mName = null;
-    @BindView(R2.id.sign_up_email_edit)
+    @BindView(R2.id.delegate_sign_up_email_edit)
     MaterialEditText mEmail = null;
-    @BindView(R2.id.sign_up_password_edit)
+    @BindView(R2.id.delegate_sign_up_password_edit)
     MaterialEditText mPassword = null;
-    @BindView(R2.id.sign_up_rePassword_edit)
+    @BindView(R2.id.delegate_sign_up_rePassword_edit)
     MaterialEditText mRePassword = null;
-    @BindView(R2.id.sign_up_btn)
+    @BindView(R2.id.delegate_sign_up_btn)
     AppCompatButton mSignUp = null;
 
     @Override
@@ -43,7 +43,7 @@ public class SignUpDelegate extends PocketDelegate {
     }
 
     /** 点击登录文字 */
-    @OnClick(R2.id.sign_up_login)
+    @OnClick(R2.id.delegate_sign_up_login)
     void onClickLogin() {
         //跳转登录界面
         getSupportDelegate().startWithPop(new SignInDelegate());
@@ -51,7 +51,7 @@ public class SignUpDelegate extends PocketDelegate {
 
     /** 点击注册按钮 */
     @SuppressWarnings("ConstantConditions")
-    @OnClick(R2.id.sign_up_btn)
+    @OnClick(R2.id.delegate_sign_up_btn)
     void onClickSignUp() {
         mSignUp.setBackgroundColor(getResources().getColor(R.color.pressButtonColor));
         if (checkInputValid()) {
@@ -69,7 +69,7 @@ public class SignUpDelegate extends PocketDelegate {
     }
 
     /** 点击toolbar返回按钮 */
-    @OnClick(R2.id.sign_up_back_btn)
+    @OnClick(R2.id.delegate_sign_up_back_btn)
     void onClickBack() {
         getSupportDelegate().pop();
     }

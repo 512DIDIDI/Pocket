@@ -31,18 +31,19 @@ import butterknife.OnClick;
 
 public class ShoppingCartItemDelegate extends BottomItemDelegate implements View.OnClickListener {
 
-    @BindView(R2.id.shop_cart_item_recycler_view)
+    @BindView(R2.id.delegate_shoppingCart_shopcart_recyclerView)
     RecyclerView mRecyclerView = null;
-    @BindView(R2.id.shop_cart_item_all_selected)
+    @BindView(R2.id.delegate_shoppingCart_shopcart_all_selected)
     IconicsTextView mAllSelected = null;
-    @BindView(R2.id.shop_cart_item_all_selected_text)
+    @BindView(R2.id.delegate_shoppingCart_shopcart_all_selected_text)
     AppCompatTextView mAllSelectedText = null;
-    @BindView(R2.id.shop_cart_item_all_price)
+    @BindView(R2.id.delegate_shoppingCart_shopcart_all_price)
     AppCompatTextView mAllPrice = null;
-    @BindView(R2.id.shop_cart_item_compute_price)
+    @BindView(R2.id.delegate_shoppingCart_shopcart_compute_price)
     AppCompatButton mComputePrice = null;
 
-    @OnClick({R2.id.shop_cart_item_compute_price,R2.id.shop_cart_item_compute_price_ripple})
+    @OnClick({R2.id.delegate_shoppingCart_shopcart_compute_price,
+            R2.id.delegate_shoppingCart_shopcart_compute_price_ripple})
     void clickComputePrice(){
         //结算
         Toast.makeText(getContext(), "共计" + mTotalPrice + "元",

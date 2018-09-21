@@ -54,20 +54,21 @@ public abstract class BaseDelegate extends SwipeBackFragment implements ISupport
             //如果setLayout()返回的是view，直接等于view
             rootView = (View) setLayout();
         }
-        if (rootView != null) {
-            //绑定视图
-            mUnbinder = ButterKnife.bind(this, rootView);
-            onBindView(savedInstanceState, rootView);
+        if (null == rootView) {
+            throw new RuntimeException("请检查setLayout()是否为null");
         }
+        //绑定视图
+        mUnbinder = ButterKnife.bind(this, rootView);
+        onBindView(savedInstanceState, rootView);
         setSwipeBackEnable(false);
         return attachToSwipeBack(rootView);
     }
 
-    public final ProxyActivity getProxyActivity(){
-        return (ProxyActivity) _mActivity;
+    public final ProxyActivity getProxyActivity() {
+        return (ProxyActivity) mActivity;
     }
 
-    protected FragmentActivity _mActivity;
+    protected FragmentActivity mActivity;
 
     @Override
     public SupportFragmentDelegate getSupportDelegate() {
@@ -83,7 +84,7 @@ public abstract class BaseDelegate extends SwipeBackFragment implements ISupport
     public void onAttach(Context context) {
         super.onAttach(context);
         DELEGATE.onAttach((Activity) context);
-        _mActivity = DELEGATE.getActivity();
+        mActivity = DELEGATE.getActivity();
     }
 
     @Override
