@@ -1,6 +1,6 @@
 package com.dididi.pocket.ec.sign;
 
-import com.dididi.pocket.core.Util.PocketPreferences;
+import com.dididi.pocket.core.util.PocketPreferences;
 import com.dididi.pocket.core.app.AccountManager;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

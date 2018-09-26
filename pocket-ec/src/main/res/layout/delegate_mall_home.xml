@@ -37,7 +37,7 @@
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
         <!--下拉刷新-->
-        <com.dididi.pocket.core.ui.SwipeRefreshLayout.PocketSwipeRefreshLayout
+        <com.dididi.pocket.core.ui.PocketSwipeRefreshLayout
             android:id="@+id/delegate_mall_home_swipe_refresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -133,7 +133,7 @@
                         android:layout_marginTop="@dimen/dividerGap" />
                 </RelativeLayout>
             </android.support.v4.widget.NestedScrollView>
-        </com.dididi.pocket.core.ui.SwipeRefreshLayout.PocketSwipeRefreshLayout>
+        </com.dididi.pocket.core.ui.PocketSwipeRefreshLayout>
     </android.support.design.widget.CoordinatorLayout>
     <!--导航控件内容-->
     <android.support.design.widget.NavigationView

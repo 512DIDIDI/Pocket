@@ -4,18 +4,23 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.Toolbar;
 import android.util.Patterns;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
+import com.dididi.pocket.core.ui.animation.PocketAnimation;
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
 import com.dididi.pocket.ec.main.PocketBottomDelegate;
-import com.dididi.pocket.core.Util.LogUtil;
-import com.dididi.pocket.core.Util.PocketPreferences;
+import com.dididi.pocket.core.util.LogUtil;
+import com.dididi.pocket.core.util.PocketPreferences;
 import com.dididi.pocket.core.app.Pocket;
 import com.dididi.pocket.core.delegates.PocketDelegate;
 import com.dididi.pocket.core.net.RestClient;
+import com.dididi.pocket.ec.test.TestDelegate;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import butterknife.BindView;
@@ -52,7 +57,7 @@ public class SignInDelegate extends PocketDelegate {
         }
     }
 
-    //登录按钮
+    /** 登录按钮 */
     @SuppressWarnings("ConstantConditions")
     @OnClick(R2.id.delegate_sign_in_btn)
     void onClickSignIn() {
@@ -67,6 +72,7 @@ public class SignInDelegate extends PocketDelegate {
 //                                   if (response.contains("\"code\":1")) {
 //                                       LogUtil.d(TAG, response);
 //                                       SignHandler.onSignIn(response, mISignListener);
+
                                        getSupportDelegate().startWithPop(new PocketBottomDelegate());
 //                                   } else {
 //                                       Toast.makeText(Pocket.getApplicationContext(),
@@ -79,19 +85,20 @@ public class SignInDelegate extends PocketDelegate {
 //                .post();
     }
 
-    //点击注册文字
+    /** 点击注册文字 */
     @OnClick(R2.id.delegate_sign_in_sign_up)
     void onClickSignUp() {
         start(new SignUpDelegate(), SINGLETASK);
+
     }
 
-    //点击忘记密码文字
+    /** 点击忘记密码文字 */
     @OnClick(R2.id.delegate_sign_in_find_password)
     void onClickFindPassword() {
         start(new FindPasswordDelegate());
     }
 
-    //点击微信登录图标
+    /** 点击微信登录图标 */
     @OnClick(R2.id.delegate_sign_in_weChat)
     void onClickWeChat() {
         RestClient.builder()
@@ -114,12 +121,13 @@ public class SignInDelegate extends PocketDelegate {
                 .get();
     }
 
-    //点击qq登录图标
+    /** 点击qq登录图标 */
     @OnClick(R2.id.delegate_sign_in_qq)
     void onClickQQ() {
+        getSupportDelegate().startWithPop(new TestDelegate());
     }
 
-    //点击微博登录图标
+    /** 点击微博登录图标 */
     @OnClick(R2.id.delegate_sign_in_weiBo)
     void onClickWeiBo() {
     }

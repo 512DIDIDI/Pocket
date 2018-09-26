@@ -3,7 +3,7 @@ package com.dididi.pocket.core.net.interceptor;
 import android.support.annotation.NonNull;
 import android.support.annotation.RawRes;
 
-import com.dididi.pocket.core.Util.FileUtil;
+import com.dididi.pocket.core.util.FileUtil;
 
 import java.io.IOException;
 
