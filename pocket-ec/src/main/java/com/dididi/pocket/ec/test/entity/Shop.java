@@ -10,7 +10,7 @@ import com.chad.library.adapter.base.entity.SectionEntity;
 
 public class Shop extends SectionEntity<Goods> {
 
-    /** 商店id */
+    /** 商店id1 */
     private long shopId;
 
     /** 商店名字 */
