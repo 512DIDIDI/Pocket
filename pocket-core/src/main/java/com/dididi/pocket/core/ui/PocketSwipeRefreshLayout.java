@@ -1,4 +1,4 @@
-package com.dididi.pocket.core.ui.SwipeRefreshLayout;
+package com.dididi.pocket.core.ui;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

@@ -2,7 +2,7 @@ package com.dididi.pocket.core.app;
 
 import android.app.Activity;
 
-import com.dididi.pocket.core.Util.LogUtil;
+import com.dididi.pocket.core.util.LogUtil;
 import com.mikepenz.iconics.typeface.ITypeface;
 import com.mikepenz.iconics.utils.GenericsUtil;
 

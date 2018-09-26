@@ -1,4 +1,4 @@
-package com.dididi.pocket.core.Util;
+package com.dididi.pocket.core.util;
 
 import android.util.Log;
 

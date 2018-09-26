@@ -7,7 +7,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.dididi.pocket.core.R;
-import com.dididi.pocket.core.Util.DimenUtil;
+import com.dididi.pocket.core.util.DimenUtil;
 import com.wang.avi.AVLoadingIndicatorView;
 import com.wang.avi.Indicator;
 
