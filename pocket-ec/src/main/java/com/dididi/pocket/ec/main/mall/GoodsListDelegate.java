@@ -109,7 +109,7 @@ public class GoodsListDelegate extends PocketDelegate
         StringBuilder content = new StringBuilder();
         Goods goods = (Goods) adapter.getItem(position);
         if (goods == null) {
-            throw new RuntimeException("goods can not be null");
+            throw new RuntimeException("goods can not be null!");
         }
         if (view.getId() == R.id.item_mall_goods_list_enter) {
             content.append("点击进入")
