@@ -56,7 +56,7 @@
             android:id="@+id/delegate_msg_chat_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/dividerColor"
+            android:background="@color/backgroundColorGray"
             android:paddingBottom="@dimen/bottomBarSize"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
     </android.support.design.widget.CoordinatorLayout>
@@ -65,7 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottomBarSize"
         android:layout_alignParentBottom="true"
-        android:background="@color/backgroundColor"
+        android:background="@color/backgroundColorWhite"
         android:orientation="horizontal">
 
         <com.mikepenz.iconics.view.IconicsTextView
@@ -93,7 +93,7 @@
             android:layout_toStartOf="@id/delegate_msg_chat_more"
             android:imeOptions="actionSend"
             android:inputType="text"
-            android:textColor="@color/textNormalColor"
+            android:textColor="@color/textColorBlack"
             android:textSize="@dimen/textNormalSize" />
 
         <com.mikepenz.iconics.view.IconicsTextView

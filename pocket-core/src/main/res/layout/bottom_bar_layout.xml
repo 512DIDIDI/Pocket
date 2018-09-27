@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_bar_layout"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:layout_weight="1">
+    <!--底部图标-->
+    <com.mikepenz.iconics.view.IconicsTextView
+        android:id="@+id/bottom_bar_layout_icon"
+        android:layout_width="@dimen/normalIconSize"
+        android:layout_height="@dimen/normalIconSize"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/bottomBarTopNormalGap"
+        android:gravity="center"
+        android:textColor="@color/textColorLight" />
+    <!--底部文字-->
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/bottom_bar_layout_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/bottomBarBottomGap"
+        android:gravity="center"
+        android:textColor="@color/textColorLight"
+        android:textSize="@dimen/tinyTextSize" />
+</RelativeLayout>

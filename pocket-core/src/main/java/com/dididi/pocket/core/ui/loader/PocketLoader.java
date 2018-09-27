@@ -7,7 +7,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.dididi.pocket.core.R;
-import com.dididi.pocket.core.Util.DimenUtil;
+import com.dididi.pocket.core.util.DimenUtil;
 import com.wang.avi.AVLoadingIndicatorView;
 import com.wang.avi.Indicator;
 
@@ -20,16 +20,16 @@ import java.util.ArrayList;
 
 @SuppressWarnings("WeakerAccess")
 public class PocketLoader {
-    //缩放倍数
+    /** 缩放倍数 */
     private static final int LOADER_SIZE_SCALE = 8;
-    //偏移量
+    /** 偏移量 */
     private static final int LOADER_OFF_SIZE_SCALE = 10;
-    //dialog集合
+    /** dialog集合 */
     private static final ArrayList<AppCompatDialog> DIALOGS = new ArrayList<>();
-    //默认loading样式
+    /** 默认loading样式 */
     public static final Enum<LoaderStyle> DEFAULT_STYLE = LoaderStyle.LineScalePartyIndicator;
 
-    //传入自定义loading
+    /** 传入自定义loading */
     public static void showLoading(Context context, String type) {
         final AppCompatDialog dialog = new AppCompatDialog(context, R.style.dialog);
         final AVLoadingIndicatorView avLoadingIndicatorView = getLoading(context, type);
@@ -50,17 +50,17 @@ public class PocketLoader {
         dialog.show();
     }
 
-    //显示默认loading
+    /** 显示默认loading */
     public static void showLoading(Context context) {
         showLoading(context, DEFAULT_STYLE.name());
     }
 
-    //传入key值
+    /** 传入key值 */
     public static void showLoading(Context context, Enum<LoaderStyle> style) {
         showLoading(context, style.name());
     }
 
-    //统一关闭loading
+    /** 统一关闭loading */
     public static void stopLoading() {
         for (AppCompatDialog dialog : DIALOGS) {
             if (dialog != null) {
@@ -70,7 +70,7 @@ public class PocketLoader {
         }
     }
 
-    //获取AVLoadingIndicatorView
+    /** 获取AVLoadingIndicatorView */
     private static AVLoadingIndicatorView getLoading(Context context, String type) {
         final AVLoadingIndicatorView avLoadingIndicatorView = new AVLoadingIndicatorView(context);
         final Indicator indicator = getIndicator(type);
@@ -78,7 +78,7 @@ public class PocketLoader {
         return avLoadingIndicatorView;
     }
 
-    //获取Indicator
+    /** 获取Indicator */
     private static Indicator getIndicator(String name) {
         if (name == null || name.isEmpty()) {
             return null;

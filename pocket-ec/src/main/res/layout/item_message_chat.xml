@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:maxWidth="200dp"
-                android:textColor="@color/textNormalColor" />
+                android:textColor="@color/textColorBlack" />
         </LinearLayout>
     </RelativeLayout>
     <!--发出的消息布局-->
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:maxWidth="200dp"
-                android:textColor="@color/textNormalColor" />
+                android:textColor="@color/textColorBlack" />
         </LinearLayout>
 
         <ImageView

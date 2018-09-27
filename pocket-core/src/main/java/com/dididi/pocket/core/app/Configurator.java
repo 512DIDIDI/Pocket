@@ -2,7 +2,7 @@ package com.dididi.pocket.core.app;
 
 import android.app.Activity;
 
-import com.dididi.pocket.core.Util.LogUtil;
+import com.dididi.pocket.core.util.LogUtil;
 import com.mikepenz.iconics.typeface.ITypeface;
 import com.mikepenz.iconics.utils.GenericsUtil;
 
@@ -49,7 +49,7 @@ public class Configurator {
         return POCKET_CONFIGS;
     }
 
-    //配置方法
+    /** 配置方法 */
     public final void configure() {
         initIcons();
         //配置已完成
@@ -57,19 +57,19 @@ public class Configurator {
         LogUtil.d(TAG, "configure succeed");
     }
 
-    //传入域名
+    /** 传入域名 */
     public final Configurator withApiHost(String host) {
         POCKET_CONFIGS.put(ConfigType.API_HOST, host);
         return this;
     }
 
-    //传入自定义Icon
+    /** 传入自定义Icon */
     public final Configurator withIcon(ITypeface iTypeface) {
         validateFont(iTypeface);
         ICONS.put(iTypeface.getMappingPrefix(), iTypeface);
         return this;
     }
-    //传入拦截器
+    /** 传入拦截器 */
     public final Configurator withInterceptor(Interceptor interceptor) {
         INTERCEPTORS.add(interceptor);
         POCKET_CONFIGS.put(ConfigType.INTERCEPTOR, INTERCEPTORS);
@@ -87,7 +87,7 @@ public class Configurator {
         return this;
     }
 
-    //初始化icon
+    /** 初始化icon */
     private void initIcons() {
         String[] fonts = GenericsUtil.getFields(Pocket.getApplicationContext());
         for (String fontsClassPath : fonts) {
@@ -102,18 +102,18 @@ public class Configurator {
     }
 
     @SuppressWarnings("unchecked")
-    //获取配置文件
+    /** 获取配置文件 */
     final <T> T getConfiguration(Enum<ConfigType> key) {
         checkConfiguration();
         return (T) POCKET_CONFIGS.get(key);
     }
 
-    //设置配置文件
+    /** 设置配置文件 */
     final void setConfiguration(Enum<ConfigType> key, Object object) {
         POCKET_CONFIGS.put(key, object);
     }
 
-    //确认是否配置完成
+    /** 确认是否配置完成 */
     private void checkConfiguration() {
         //写类变量和方法变量的时候尽量让它的不可变性达到最大(能用final修饰就用)
         final boolean isReady = (boolean) POCKET_CONFIGS.get(ConfigType.CONFIG_READY);
@@ -123,7 +123,7 @@ public class Configurator {
         }
     }
 
-    //是否是有效字体库
+    /** 是否是有效字体库 */
     private static void validateFont(ITypeface font) {
         if (font.getMappingPrefix().length() != 3) {
             throw new IllegalArgumentException(

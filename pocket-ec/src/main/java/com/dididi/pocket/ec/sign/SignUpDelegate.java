@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.Toolbar;
 import android.util.Patterns;
 import android.view.View;
 
+import com.dididi.pocket.core.ui.animation.PocketAnimation;
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
 import com.dididi.pocket.core.delegates.PocketDelegate;
@@ -33,6 +35,8 @@ public class SignUpDelegate extends PocketDelegate {
     MaterialEditText mRePassword = null;
     @BindView(R2.id.delegate_sign_up_btn)
     AppCompatButton mSignUp = null;
+    @BindView(R2.id.delegate_sign_up_toolbar)
+    Toolbar mToolBar = null;
 
     @Override
     public void onAttach(Activity activity) {
@@ -53,7 +57,7 @@ public class SignUpDelegate extends PocketDelegate {
     @SuppressWarnings("ConstantConditions")
     @OnClick(R2.id.delegate_sign_up_btn)
     void onClickSignUp() {
-        mSignUp.setBackgroundColor(getResources().getColor(R.color.pressButtonColor));
+        mSignUp.setBackgroundColor(getResources().getColor(R.color.buttonPressColor));
         if (checkInputValid()) {
             RestClient.builder()
                     .url("http://192.168.1.105:3000/signup")

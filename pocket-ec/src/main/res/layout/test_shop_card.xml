@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/test" />
+
+    <RelativeLayout
+        android:id="@+id/test_shop_card_shop_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dividerGap"
+        android:layout_marginRight="@dimen/dividerGap"
+        android:background="@drawable/goods_card_corner"
+        android:paddingBottom="@dimen/dividerGap"
+        android:paddingTop="@dimen/dividerGap">
+        <!--商店是否选择-->
+        <com.mikepenz.iconics.view.IconicsTextView
+            android:id="@+id/test_shop_card_shop_select"
+            android:layout_width="@dimen/normalIconSize"
+            android:layout_height="@dimen/normalIconSize"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dividerGap"
+            android:layout_marginStart="@dimen/dividerGap"
+            android:gravity="center"
+            android:text="@string/faw_circle"
+            android:textColor="@color/textColorGray" />
+        <!--商店icon-->
+        <com.mikepenz.iconics.view.IconicsTextView
+            android:id="@+id/test_shop_card_shop_icon"
+            android:layout_width="@dimen/normalIconSize"
+            android:layout_height="@dimen/normalIconSize"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dividerGap"
+            android:layout_marginStart="@dimen/dividerGap"
+            android:layout_toEndOf="@id/test_shop_card_shop_select"
+            android:layout_toRightOf="@id/test_shop_card_shop_select"
+            android:gravity="center"
+            android:text="@string/faw_gg"
+            android:textColor="@color/textColorIcon" />
+        <!--商店名字-->
+        <com.mikepenz.iconics.view.IconicsTextView
+            android:id="@+id/test_shop_card_shop_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/dividerGap"
+            android:layout_marginRight="@dimen/dividerGap"
+            android:layout_toEndOf="@id/test_shop_card_shop_icon"
+            android:layout_toRightOf="@id/test_shop_card_shop_icon"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textAlignment="center"
+            android:textColor="@color/textColorIcon"
+            android:textSize="@dimen/textSmallSize" />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -171,7 +171,7 @@ public class ShopCartAdapter extends RecyclerView.Adapter<ShopCartAdapter.ViewHo
     //实例化控件
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        RelativeLayout mainLayout;
+        RelativeLayout goodsLayout;
         IconicsTextView shopSelected;
         AppCompatTextView shopName;
         IconicsTextView goodsSelected;
@@ -187,7 +187,7 @@ public class ShopCartAdapter extends RecyclerView.Adapter<ShopCartAdapter.ViewHo
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mainLayout = itemView.findViewById(R.id.item_shopcart_main_layout);
+            goodsLayout = itemView.findViewById(R.id.item_shopcart_goods_layout);
             shopSelected = itemView.findViewById(R.id.item_shopcart_shop_select);
             shopName = itemView.findViewById(R.id.item_shopcart_shop_name);
             goodsSelected = itemView.findViewById(R.id.item_shopcart_goods_select);

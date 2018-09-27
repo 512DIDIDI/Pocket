@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColorWhite"
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:orientation="vertical">
@@ -53,7 +54,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/screenLRGap"
                 android:src="@mipmap/avatarman01"
-                app:civ_border_color="@color/backgroundColor"
+                app:civ_border_color="@color/backgroundColorWhite"
                 app:civ_border_width="1dp" />
             <!--登录邮箱-->
             <com.mikepenz.iconics.view.IconicsTextView
@@ -116,7 +117,7 @@
                 android:layout_height="@dimen/searchBarSize"
                 android:layout_below="@id/delegate_sign_in_password_edit"
                 android:layout_marginBottom="@dimen/elementGap"
-                android:background="@color/normalButtonColor"
+                android:background="@color/buttonNormalColor"
                 android:gravity="center"
                 android:text="@string/sign_in"
                 android:textColor="@color/textColorDark"
@@ -126,24 +127,24 @@
                 android:id="@+id/delegate_sign_in_find_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_below="@id/delegate_sign_in_btn"
                 android:layout_marginBottom="@dimen/elementGap"
                 android:text="@string/forget_password"
-                android:textColor="@color/textHintColor"
+                android:textColor="@color/textColorHint"
                 android:textSize="@dimen/textSmallSize" />
             <!--注册文字-->
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/delegate_sign_in_sign_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/delegate_sign_in_btn"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
+                android:layout_below="@id/delegate_sign_in_btn"
                 android:layout_marginBottom="@dimen/elementGap"
                 android:text="@string/sign_in_signUP"
-                android:textColor="@color/textHintColor"
+                android:textColor="@color/textColorHint"
                 android:textSize="@dimen/textSmallSize" />
 
             <android.support.v7.widget.LinearLayoutCompat

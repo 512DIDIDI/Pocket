@@ -1,6 +1,6 @@
 package com.dididi.pocket.core.app;
 
-import com.dididi.pocket.core.Util.PocketPreferences;
+import com.dididi.pocket.core.util.PocketPreferences;
 
 /**
  * Created by dididi

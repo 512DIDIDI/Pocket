@@ -69,6 +69,7 @@
     <string name="faw_user">{faw-user}</string>
     <string name="faw_microphone">{faw-microphone}</string>
     <string name="faw_chevron_circle_down">{faw-chevron-circle-down}</string>
+    <string name="test">test</string>
     <string-array name="spinner_goods_sort">
         <item>综合排序</item>
         <item>好评优先</item>

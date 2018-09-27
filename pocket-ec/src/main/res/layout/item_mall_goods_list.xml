@@ -77,7 +77,7 @@
             android:layout_toStartOf="@id/item_mall_goods_list_sales_buy"
             android:textAlignment="center"
             android:textAllCaps="false"
-            android:textColor="@color/textHintColor"
+            android:textColor="@color/textColorHint"
             android:textSize="@dimen/textSmallSize" />
 
         <android.support.v7.widget.AppCompatTextView
@@ -90,7 +90,7 @@
             android:text="@string/alreadybuy"
             android:textAlignment="center"
             android:textAllCaps="false"
-            android:textColor="@color/textHintColor"
+            android:textColor="@color/textColorHint"
             android:textSize="@dimen/textSmallSize" />
         <!--商品评价-->
         <android.support.v7.widget.AppCompatTextView
@@ -101,7 +101,7 @@
             android:layout_marginEnd="3dp"
             android:layout_marginRight="3dp"
             android:text="@string/evaluation"
-            android:textColor="@color/textHintColor"
+            android:textColor="@color/textColorHint"
             android:textSize="@dimen/textSmallSize" />
 
         <android.support.v7.widget.AppCompatTextView
@@ -111,7 +111,7 @@
             android:layout_below="@id/item_mall_goods_list_price"
             android:layout_toEndOf="@id/item_mall_goods_list_evaluate_name"
             android:layout_toRightOf="@id/item_mall_goods_list_evaluate_name"
-            android:textColor="@color/textHintColor"
+            android:textColor="@color/textColorHint"
             android:textSize="@dimen/textSmallSize" />
         <!--商店名字-->
         <android.support.v7.widget.AppCompatTextView
@@ -126,7 +126,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:maxWidth="100dp"
-            android:textColor="@color/textIconColor"
+            android:textColor="@color/textColorIcon"
             android:textSize="@dimen/textSmallSize" />
         <!--进入商店-->
         <android.support.v7.widget.AppCompatTextView
@@ -137,7 +137,7 @@
             android:layout_alignParentRight="true"
             android:layout_below="@id/item_mall_goods_list_price"
             android:text="@string/enterShop"
-            android:textColor="@color/textIconColor"
+            android:textColor="@color/textColorIcon"
             android:textSize="@dimen/textSmallSize" />
     </RelativeLayout>
     <!--分割线-->

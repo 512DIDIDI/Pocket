@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColorWhite"
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
@@ -167,10 +168,10 @@
                 android:layout_height="@dimen/searchBarSize"
                 android:layout_below="@id/delegate_sign_up_rePassword_edit"
                 android:layout_marginBottom="@dimen/elementGap"
-                android:background="@color/normalButtonColor"
+                android:background="@color/buttonNormalColor"
                 android:gravity="center"
                 android:text="@string/sign_up"
-                android:textColor="@color/textIconColor"
+                android:textColor="@color/textColorIcon"
                 android:textSize="@dimen/buttonTextSize" />
             <!--登录文字-->
             <android.support.v7.widget.AppCompatTextView
@@ -180,7 +181,7 @@
                 android:layout_below="@id/delegate_sign_up_btn"
                 android:layout_centerHorizontal="true"
                 android:text="@string/sign_up_login"
-                android:textColor="@color/textHintColor"
+                android:textColor="@color/textColorHint"
                 android:textSize="@dimen/textSmallSize" />
         </RelativeLayout>
     </ScrollView>

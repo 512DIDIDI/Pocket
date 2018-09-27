@@ -7,7 +7,13 @@ package com.dididi.pocket.core.app;
 
 public interface IUserChecker {
 
+    /**
+     * 已登录
+     */
     void onSignIn();
 
+    /**
+     * 未登录
+     */
     void onNotSignIn();
 }
