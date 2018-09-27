@@ -39,12 +39,12 @@ public class DebugInterceptor extends BaseInterceptor {
                 .build();
     }
 
-    //@RawRes强制只能传入id
+    /** @RawRes 强制只能传入id */
     private Response debugResponse(Chain chain, @RawRes int rawId) {
         final String JSON = FileUtil.getRawFile(rawId);
         return getResponse(chain, JSON);
     }
-    //职责链模式(okHttp的拦截链)
+    /** 职责链模式(okHttp的拦截链) */
     @Override
     public Response intercept(@NonNull Chain chain) throws IOException {
         final String URL = chain.request().url().toString();

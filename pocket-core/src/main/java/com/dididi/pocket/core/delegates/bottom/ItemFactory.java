@@ -9,7 +9,7 @@ import java.util.LinkedHashMap;
 
 public class ItemFactory {
     //简单工厂模式
-    //将tab与item形成映射,linkedHashMap产生有序map
+    /** 将tab与item形成映射,linkedHashMap产生有序map */
     private final LinkedHashMap<BottomTabBean, BottomItemDelegate> ITEMS = new LinkedHashMap<>();
 
     static ItemFactory builder() {
@@ -25,7 +25,7 @@ public class ItemFactory {
         ITEMS.putAll(items);
         return this;
     }
-    //返回产品LinkedHashMap<>
+    /** 返回产品LinkedHashMap<> */
     public final LinkedHashMap<BottomTabBean, BottomItemDelegate> build() {
         return ITEMS;
     }

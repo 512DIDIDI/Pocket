@@ -44,13 +44,13 @@ public class RxRestClientBuilder {
         return this;
     }
 
-    //原始数据请求体
+    /** 原始数据请求体 */
     public final RxRestClientBuilder raw(String raw) {
         this.mBody = RequestBody.create(MediaType.parse("application/json;charset=UTF-8"), raw);
         return this;
     }
 
-    //传入loading样式
+    /** 传入loading样式 */
     public final RxRestClientBuilder loading(Context context, LoaderStyle style) {
         this.mContext = context;
         this.mStyle = style;

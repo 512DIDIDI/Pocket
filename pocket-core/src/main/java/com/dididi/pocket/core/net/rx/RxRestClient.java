@@ -41,7 +41,7 @@ public class RxRestClient {
         this.FILE = file;
     }
 
-    //使用建造者模式构建RestClient
+    /** 使用建造者模式构建RestClient */
     public static RxRestClientBuilder builder() {
         return new RxRestClientBuilder();
     }

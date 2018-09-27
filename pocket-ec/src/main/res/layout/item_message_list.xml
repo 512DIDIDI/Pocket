@@ -55,7 +55,7 @@
             android:layout_alignTop="@id/item_message_avatar"
             android:layout_marginEnd="@dimen/screenLRGap"
             android:layout_marginRight="@dimen/screenLRGap"
-            android:textColor="@color/textHintColor"
+            android:textColor="@color/textColorHint"
             android:textSize="@dimen/tinyTextSize" />
         <!--分割线-->
         <View

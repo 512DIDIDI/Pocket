@@ -20,9 +20,9 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class RestCreator {
 
-    //实例化Retrofit
+    /** 实例化Retrofit */
     private static final class RetrofitHolder {
-        //获取配置文件url
+        /** 获取配置文件url */
         private static final String BASE_URL =
                 (String) Pocket.getConfigurations().get(ConfigType.API_HOST);
         private static final Retrofit RETROFIT = new Retrofit.Builder()
@@ -35,12 +35,12 @@ public class RestCreator {
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
     }
-    //实例化OkHttpClient
+    /** 实例化OkHttpClient */
     private static final class OkHttpHolder {
-        //设置超时时间(keep-alive持续时间)
+        /** 设置超时时间(keep-alive持续时间) */
         private static final int TIME_OUT = 60;
         private static final OkHttpClient.Builder BUILDER = new OkHttpClient.Builder();
-        //添加拦截器
+        /** 添加拦截器 */
         @SuppressWarnings("unchecked")
         private static final ArrayList<Interceptor> INTERCEPTORS =
                 (ArrayList<Interceptor>) Pocket.getConfigurations().get(ConfigType.INTERCEPTOR);
@@ -56,7 +56,7 @@ public class RestCreator {
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .build();
     }
-    //实例化RestService
+    /** 实例化RestService */
     private static final class RestServiceHolder {
         private static final RestService REST_SERVICE =
                 RetrofitHolder.RETROFIT.create(RestService.class);
@@ -70,7 +70,7 @@ public class RestCreator {
         private static final RxRestService REST_SERVICE =
                 RetrofitHolder.RETROFIT.create(RxRestService.class);
     }
-    //获取RxRestService
+    /** 获取RxRestService */
     public static RxRestService getRxRestService() {
         return RxRestServiceHolder.REST_SERVICE;
     }

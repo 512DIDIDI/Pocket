@@ -44,7 +44,7 @@
                 android:layout_toRightOf="@id/item_shopcart_shop_select"
                 android:gravity="center"
                 android:text="@string/faw_gg"
-                android:textColor="@color/textIconColor" />
+                android:textColor="@color/textColorIcon" />
             <!--商店名字-->
             <com.mikepenz.iconics.view.IconicsTextView
                 android:id="@+id/item_shopcart_shop_name"
@@ -59,7 +59,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:textAlignment="center"
-                android:textColor="@color/textIconColor"
+                android:textColor="@color/textColorIcon"
                 android:textSize="@dimen/textSmallSize" />
         </RelativeLayout>
         <!--侧滑布局-->

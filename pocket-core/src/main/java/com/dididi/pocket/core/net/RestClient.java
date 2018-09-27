@@ -55,7 +55,7 @@ public class RestClient {
         this.FILE = file;
     }
 
-    //使用建造者模式构建RestClient
+    /** 使用建造者模式构建RestClient */
     public static RestClientBuilder builder() {
         return new RestClientBuilder();
     }
@@ -112,7 +112,7 @@ public class RestClient {
         }
     }
 
-    //获取Callback
+    /** 获取Callback */
     private Callback<String> getRequestCallbacks() {
         return new RequestCallbacks(SUCCESS, ERROR, FAILURE, REQUEST, STYLE);
     }

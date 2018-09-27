@@ -15,10 +15,10 @@ import android.view.ViewConfiguration;
  */
 
 public class PocketSwipeRefreshLayout extends SwipeRefreshLayout {
-    //解决SwipeRefreshLayout与ViewPager冲突问题
+    /** 解决SwipeRefreshLayout与ViewPager冲突问题 */
     private float mStartX = 0;
     private float mStartY = 0;
-    //记录ViewPager是否被拖拉
+    /** 记录ViewPager是否被拖拉 */
     private boolean mIsVpDrag;
     private final int mTouchSlop;
     public PocketSwipeRefreshLayout(@NonNull Context context,

@@ -1,5 +1,11 @@
 package com.dididi.pocket.ec.main;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.util.Log;
+import android.view.View;
+
+import com.dididi.pocket.core.ui.animation.PocketAnimation;
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.main.mall.HomeItemDelegate;
 import com.dididi.pocket.ec.main.message.MessageItemDelegate;
@@ -21,6 +27,8 @@ import java.util.LinkedHashMap;
 public class PocketBottomDelegate extends BaseBottomDelegate {
     //底部导航栏
 
+
+
     @Override
     public LinkedHashMap<BottomTabBean, BottomItemDelegate> setItems(ItemFactory factory) {
         final LinkedHashMap<BottomTabBean, BottomItemDelegate> items = new LinkedHashMap<>();
@@ -37,7 +45,7 @@ public class PocketBottomDelegate extends BaseBottomDelegate {
 
     @Override
     public int setPressColor() {
-        return R.color.pressButtonColor;
+        return R.color.tabPressColor;
     }
 
     @Override
@@ -45,4 +53,13 @@ public class PocketBottomDelegate extends BaseBottomDelegate {
         return 0;
     }
 
+    public void setBottomBarVisible(int visible){
+        //解决跳到首页时 drawerLayout开启情况下 动画的重复播放
+        if (visible == View.VISIBLE && mBottomBar.getVisibility() == View.GONE){
+            mBottomBar.startAnimation(PocketAnimation.fadeIn(getContext()));
+        }else if (visible == View.GONE && mBottomBar.getVisibility() == View.VISIBLE){
+            mBottomBar.startAnimation(PocketAnimation.fadeOut(getContext()));
+        }
+        mBottomBar.setVisibility(visible);
+    }
 }

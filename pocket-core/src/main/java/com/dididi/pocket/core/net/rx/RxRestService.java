@@ -24,7 +24,7 @@ import rx.Observable;
  */
 
 public interface RxRestService {
-    //观察者模式
+    /** 观察者模式 */
     @GET
     Observable<String> get(@Url String url, @QueryMap Map<String, Object> params);
     //返回Call的回调,QueryMap自动拼接到url里
