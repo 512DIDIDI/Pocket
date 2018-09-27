@@ -14,10 +14,12 @@ import com.dididi.pocket.core.R;
 
 public final class PocketAnimation {
 
+    /** 淡入 */
     public static Animation fadeIn(Context context){
         return AnimationUtils.loadAnimation(context,R.anim.fade_in);
     }
 
+    /** 淡出 */
     public static Animation fadeOut(Context context){
         return AnimationUtils.loadAnimation(context,R.anim.fade_out);
     }

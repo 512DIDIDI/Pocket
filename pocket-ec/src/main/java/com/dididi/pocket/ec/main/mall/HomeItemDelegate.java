@@ -19,6 +19,7 @@ import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
 import com.dididi.pocket.ec.item.CircleIconItem;
 import com.dididi.pocket.ec.item.SearchBarItem;
+import com.dididi.pocket.ec.main.PocketBottomDelegate;
 import com.dididi.pocket.ec.main.mall.adapter.NewsAdapter;
 import com.dididi.pocket.core.entity.News;
 import com.dididi.pocket.ec.main.mall.list.FakeImageList;
@@ -51,7 +52,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeItemDelegate extends BottomItemDelegate
         implements NavigationView.OnNavigationItemSelectedListener,
-        View.OnClickListener,BaseQuickAdapter.OnItemChildClickListener {
+        View.OnClickListener,BaseQuickAdapter.OnItemChildClickListener,DrawerLayout.DrawerListener{
 
     private static final String TAG = "HomeItemDelegate";
 
@@ -123,6 +124,8 @@ public class HomeItemDelegate extends BottomItemDelegate
         mSearchBarItem.setLeftIconListener(this);
         //toolbar搜索按钮点击事件监听
         mSearchBarItem.setSearchIconListener(this);
+        //drawerLayout事件监听
+        mDrawer.addDrawerListener(this);
         //初始化发现消息
         initFakeNews();
         //设置RecyclerView布局方式及加入适配器
@@ -196,7 +199,7 @@ public class HomeItemDelegate extends BottomItemDelegate
             mSearchBarItem.setLeftIconListener(view1 -> {
                 //开启滑动菜单
                 mDrawer.openDrawer(GravityCompat.START);
-                //TODO:如何获取当前的BaseBottomDelegate以回调隐藏底部按钮功能?
+
             });
         } else if (view.getId() == mSearchBarItem.getSearchIconId()) {
             mSearchBarItem.setSearchIconListener(view12 ->
@@ -304,5 +307,31 @@ public class HomeItemDelegate extends BottomItemDelegate
                     .append("评论");
         }
         Toast.makeText(getContext(),content.toString(),Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDrawerSlide(@NonNull View view, float v) {
+
+    }
+
+    @Override
+    public void onDrawerOpened(@NonNull View view) {
+        //隐藏bottomBar
+        PocketBottomDelegate pocketBottomDelegate =
+                getParentDelegate().findFragment(PocketBottomDelegate.class);
+        pocketBottomDelegate.setBottomBarVisible(View.GONE);
+    }
+
+    @Override
+    public void onDrawerClosed(@NonNull View view) {
+        //显示bottomBar
+        PocketBottomDelegate pocketBottomDelegate =
+                getParentDelegate().findFragment(PocketBottomDelegate.class);
+        pocketBottomDelegate.setBottomBarVisible(View.VISIBLE);
+    }
+
+    @Override
+    public void onDrawerStateChanged(int i) {
+
     }
 }

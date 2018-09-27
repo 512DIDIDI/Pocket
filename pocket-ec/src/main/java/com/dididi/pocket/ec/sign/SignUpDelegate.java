@@ -57,7 +57,7 @@ public class SignUpDelegate extends PocketDelegate {
     @SuppressWarnings("ConstantConditions")
     @OnClick(R2.id.delegate_sign_up_btn)
     void onClickSignUp() {
-        mSignUp.setBackgroundColor(getResources().getColor(R.color.pressButtonColor));
+        mSignUp.setBackgroundColor(getResources().getColor(R.color.buttonPressColor));
         if (checkInputValid()) {
             RestClient.builder()
                     .url("http://192.168.1.105:3000/signup")

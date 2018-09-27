@@ -61,7 +61,7 @@ public class SignInDelegate extends PocketDelegate {
     @SuppressWarnings("ConstantConditions")
     @OnClick(R2.id.delegate_sign_in_btn)
     void onClickSignIn() {
-        mSignIn.setBackgroundColor(getResources().getColor(R.color.pressButtonColor));
+        mSignIn.setBackgroundColor(getResources().getColor(R.color.buttonPressColor));
 //        RestClient.builder()
 //                .url("http://192.168.1.105:3000/login")
 //                .params("user[name]", mEmail.getText().toString())

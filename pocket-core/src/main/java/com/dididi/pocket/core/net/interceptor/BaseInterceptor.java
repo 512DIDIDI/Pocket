@@ -17,7 +17,7 @@ import okhttp3.Response;
 
 public abstract class BaseInterceptor implements Interceptor {
 
-    //获取有序排列的url参数
+    /** 获取有序排列的url参数 */
     protected LinkedHashMap<String, String> getUrlParameters(Chain chain) {
         final HttpUrl URL = chain.request().url();
         int size = URL.querySize();
@@ -29,13 +29,13 @@ public abstract class BaseInterceptor implements Interceptor {
         return PARAMS;
     }
 
-    //根据key值获取参数
+    /** 根据key值获取参数 */
     protected String getUrlParameters(Chain chain, String key) {
         final Request REQUEST = chain.request();
         return REQUEST.url().queryParameter(key);
     }
 
-    //获取报文参数
+    /** 获取报文参数 */
     @SuppressWarnings("WeakerAccess")
     protected LinkedHashMap<String, String> getBodyParameters(Chain chain) {
         final FormBody FORMBODY = (FormBody) chain.request().body();

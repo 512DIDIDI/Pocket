@@ -41,6 +41,7 @@
             android:id="@+id/delegate_msg_message_list_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/backgroundColorWhite"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:ignore="PrivateResource" />
     </android.support.design.widget.CoordinatorLayout>

@@ -25,7 +25,7 @@ public abstract class ProxyActivity extends AppCompatActivity implements ISuppor
     private final SupportActivityDelegate DELEGATE = new SupportActivityDelegate(this);
 
     //提供唯一的activity容器(采用单activity多fragment架构)
-    //获取根Delegate
+    /** 获取根Delegate */
     public abstract PocketDelegate setRootDelegate();
 
     @Override
@@ -34,7 +34,7 @@ public abstract class ProxyActivity extends AppCompatActivity implements ISuppor
         DELEGATE.onCreate(savedInstanceState);
         initContainer(savedInstanceState);
     }
-    //初始化activity容器
+    /** 初始化activity容器 */
     private void initContainer(@Nullable Bundle savedInstanceState) {
         final FrameLayout container = new FrameLayout(this);
         container.setId(R.id.delegate_container);

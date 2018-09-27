@@ -13,7 +13,7 @@ import com.youth.banner.loader.ImageLoader;
  */
 
 public class GlideImageLoader extends ImageLoader {
-    /**使用glide加载banner图片*/
+    /** 使用glide加载banner图片 */
     @Override
     public void displayImage(Context context, Object path, ImageView imageView) {
         GlideApp.with(context)

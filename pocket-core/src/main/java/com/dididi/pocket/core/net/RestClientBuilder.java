@@ -72,13 +72,13 @@ public class RestClientBuilder {
         return this;
     }
 
-    //原始数据请求体
+    /** 原始数据请求体 */
     public final RestClientBuilder raw(String raw) {
         this.mBody = RequestBody.create(MediaType.parse("application/json;charset=UTF-8"), raw);
         return this;
     }
 
-    //传入loading样式
+    /** 传入loading样式 */
     public final RestClientBuilder loading(Context context, LoaderStyle style) {
         this.mContext = context;
         this.mStyle = style;
