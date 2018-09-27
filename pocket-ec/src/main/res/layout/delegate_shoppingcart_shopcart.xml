@@ -14,12 +14,12 @@
         android:paddingBottom="?android:attr/actionBarSize">
         <!--toolbar-->
         <android.support.design.widget.AppBarLayout
-            android:id="@+id/delegate_shoppingCart_shopcart_appbar"
+            android:id="@+id/delegate_test_appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <android.support.v7.widget.Toolbar
-                android:id="@+id/delegate_shoppingCart_shopcart_toolbar"
+                android:id="@+id/delegate_test_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
                 android:background="@color/toolbarColor"

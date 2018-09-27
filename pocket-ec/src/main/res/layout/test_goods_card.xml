@@ -10,12 +10,12 @@
     android:focusable="true">
 
     <RelativeLayout
-        android:id="@+id/item_shopcart_goods_layout"
+        android:id="@+id/test_goods_card_goods_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <!--商品是否选择-->
         <com.mikepenz.iconics.view.IconicsTextView
-            android:id="@+id/item_shopcart_goods_select"
+            android:id="@+id/test_goods_card_goods_select"
             android:layout_width="@dimen/normalIconSize"
             android:layout_height="@dimen/normalIconSize"
             android:layout_centerVertical="true"
@@ -25,73 +25,69 @@
             android:textColor="@color/textColorGray" />
         <!--商品图片-->
         <com.dididi.pocket.ec.item.RoundRectImageView
-            android:id="@+id/item_shopcart_goods_img"
+            android:id="@+id/test_goods_card_goods_img"
             android:layout_width="@dimen/bigAvatarSize"
             android:layout_height="@dimen/bigAvatarSize"
             android:layout_marginBottom="@dimen/dividerGap"
             android:layout_marginLeft="@dimen/dividerGap"
             android:layout_marginStart="@dimen/dividerGap"
-            android:layout_toEndOf="@id/item_shopcart_goods_select"
-            android:layout_toRightOf="@id/item_shopcart_goods_select"
-            android:src="@mipmap/banner_01"
+            android:layout_toEndOf="@id/test_goods_card_goods_select"
+            android:layout_toRightOf="@id/test_goods_card_goods_select"
             app:roundRect_corner="@dimen/dividerGap" />
         <!--商品名字-->
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/item_shopcart_goods_name"
+            android:id="@+id/test_goods_card_goods_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@id/item_shopcart_goods_img"
+            android:layout_alignTop="@id/test_goods_card_goods_img"
             android:layout_marginLeft="@dimen/dividerGap"
             android:layout_marginRight="@dimen/dividerGap"
-            android:layout_toEndOf="@id/item_shopcart_goods_img"
-            android:layout_toRightOf="@id/item_shopcart_goods_img"
+            android:layout_toEndOf="@id/test_goods_card_goods_img"
+            android:layout_toRightOf="@id/test_goods_card_goods_img"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="@string/test"
             android:textColor="@color/textColorDark"
             android:textSize="@dimen/textNormalSize" />
         <!--商品样式-->
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/item_shopcart_goods_style"
+            android:id="@+id/test_goods_card_goods_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/item_shopcart_goods_name"
+            android:layout_below="@id/test_goods_card_goods_name"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="@dimen/dividerGap"
             android:layout_marginRight="@dimen/dividerGap"
             android:layout_marginTop="5dp"
-            android:layout_toEndOf="@id/item_shopcart_goods_img"
-            android:layout_toRightOf="@id/item_shopcart_goods_img"
+            android:layout_toEndOf="@id/test_goods_card_goods_img"
+            android:layout_toRightOf="@id/test_goods_card_goods_img"
             android:background="@color/dividerColor"
             android:padding="2dp"
-            android:text="@string/test"
             android:textColor="@color/textColorLight"
             android:textSize="@dimen/tinyTextSize" />
         <!--商品价格-->
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/item_shopcart_goods_price"
+            android:id="@+id/test_goods_card_goods_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/item_shopcart_goods_style"
+            android:layout_below="@id/test_goods_card_goods_style"
             android:layout_marginEnd="2dp"
             android:layout_marginLeft="@dimen/dividerGap"
             android:layout_marginRight="2dp"
             android:layout_marginStart="@dimen/dividerGap"
-            android:layout_toEndOf="@id/item_shopcart_goods_img"
-            android:layout_toRightOf="@id/item_shopcart_goods_img"
+            android:layout_toEndOf="@id/test_goods_card_goods_img"
+            android:layout_toRightOf="@id/test_goods_card_goods_img"
             android:gravity="center"
-            android:text="1213"
             android:textColor="@color/textColorRed"
             android:textSize="@dimen/textNormalSize" />
 
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/item_shopcart_goods_style"
+            android:layout_below="@id/test_goods_card_goods_style"
             android:layout_marginEnd="@dimen/dividerGap"
             android:layout_marginRight="@dimen/dividerGap"
-            android:layout_toEndOf="@id/item_shopcart_goods_price"
-            android:layout_toRightOf="@id/item_shopcart_goods_price"
+            android:layout_toEndOf="@id/test_goods_card_goods_price"
+            android:layout_toRightOf="@id/test_goods_card_goods_price"
             android:gravity="center"
             android:text="@string/yuan"
             android:textColor="@color/textColorRed"
@@ -101,12 +97,12 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/item_shopcart_goods_img"
+            android:layout_alignBottom="@id/test_goods_card_goods_img"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true">
             <!--减少商品数量-->
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/item_shopcart_goods_decrease"
+                android:id="@+id/test_goods_card_goods_decrease"
                 android:layout_width="@dimen/normalIconSize"
                 android:layout_height="@dimen/normalIconSize"
                 android:gravity="center"
@@ -115,22 +111,22 @@
                 android:textSize="@dimen/textNormalSize" />
             <!--商品数量-->
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/item_shopcart_goods_number"
+                android:id="@+id/test_goods_card_goods_number"
                 android:layout_width="@dimen/normalIconSize"
                 android:layout_height="@dimen/normalIconSize"
-                android:layout_toEndOf="@id/item_shopcart_goods_decrease"
-                android:layout_toRightOf="@id/item_shopcart_goods_decrease"
+                android:layout_toEndOf="@id/test_goods_card_goods_decrease"
+                android:layout_toRightOf="@id/test_goods_card_goods_decrease"
                 android:gravity="center"
                 android:inputType="number"
                 android:text="@string/_1"
                 android:textSize="@dimen/textNormalSize" />
             <!--增加商品数量-->
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/item_shopcart_goods_increase"
+                android:id="@+id/test_goods_card_goods_increase"
                 android:layout_width="@dimen/normalIconSize"
                 android:layout_height="@dimen/normalIconSize"
-                android:layout_toEndOf="@id/item_shopcart_goods_number"
-                android:layout_toRightOf="@id/item_shopcart_goods_number"
+                android:layout_toEndOf="@id/test_goods_card_goods_number"
+                android:layout_toRightOf="@id/test_goods_card_goods_number"
                 android:gravity="center"
                 android:text="@string/increase"
                 android:textSize="@dimen/textNormalSize" />
@@ -139,7 +135,7 @@
     </RelativeLayout>
     <!--加入收藏按钮-->
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/item_shopcart_goods_collect"
+        android:id="@+id/test_goods_card_goods_collect"
         android:layout_width="60dp"
         android:layout_height="match_parent"
         android:background="@color/toolbarColor"
@@ -148,7 +144,7 @@
         android:textSize="@dimen/textNormalSize" />
     <!--删除按钮-->
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/item_shopcart_goods_delete"
+        android:id="@+id/test_goods_card_goods_delete"
         android:layout_width="60dp"
         android:layout_height="match_parent"
         android:background="@color/textColorRed"
