@@ -42,7 +42,7 @@ public class CircleIconItem extends RelativeLayout {
         initView(context);
     }
 
-    //设置点击监听
+    /** 设置点击监听 */
     @Override
     public void setOnClickListener(OnClickListener listener) {
         mIcon.setOnClickListener(listener);

@@ -35,5 +35,7 @@
     <dimen name="screenLRGap">16dp</dimen>
     <!--文字左边距-->
     <dimen name="textLeftGap">72dp</dimen>
+    <!--头部高度-->
+    <dimen name="headerHeight">152dp</dimen>
     <dimen name="design_navigation_icon_size" tools:override="true">19dp</dimen>
 </resources>

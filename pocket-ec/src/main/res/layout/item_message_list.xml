@@ -9,14 +9,15 @@
     <RelativeLayout
         android:id="@+id/item_message_main_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/selector_list_item">
         <!--头像-->
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/item_message_avatar"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/screenLRGap"
             android:layout_marginRight="@dimen/screenLRGap" />
@@ -50,9 +51,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/item_message_content"
+            android:layout_alignTop="@id/item_message_avatar"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_alignTop="@id/item_message_avatar"
             android:layout_marginEnd="@dimen/screenLRGap"
             android:layout_marginRight="@dimen/screenLRGap"
             android:textColor="@color/textColorHint"

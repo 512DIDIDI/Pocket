@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_button_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selector_list_item"
+    android:clickable="true"
+    android:focusable="true">
+    <!--按钮-->
+    <com.mikepenz.iconics.view.IconicsTextView
+        android:id="@+id/item_button_icon"
+        android:layout_width="@dimen/normalIconSize"
+        android:layout_height="@dimen/normalIconSize"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/screenLRGap"
+        android:layout_marginLeft="@dimen/screenLRGap"
+        android:layout_marginEnd="@dimen/dividerGap"
+        android:layout_marginRight="@dimen/dividerGap"
+        android:gravity="center_vertical"
+        android:textColor="@color/textColorDark" />
+    <!--内容-->
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/item_button_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/elementGap"
+        android:layout_marginBottom="@dimen/elementGap"
+        android:layout_toEndOf="@id/item_button_icon"
+        android:layout_toRightOf="@id/item_button_icon"
+        android:textColor="@color/textColorDark"
+        android:textSize="@dimen/textNormalSize" />
+    <!--分割线-->
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="@dimen/screenLRGap"
+        android:layout_marginRight="@dimen/screenLRGap"
+        android:layout_toEndOf="@id/item_button_icon"
+        android:layout_toRightOf="@id/item_button_icon"
+        android:background="@color/dividerColor" />
+
+</RelativeLayout>

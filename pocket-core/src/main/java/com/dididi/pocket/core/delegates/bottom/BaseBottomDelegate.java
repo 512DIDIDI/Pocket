@@ -136,8 +136,8 @@ public abstract class BaseBottomDelegate extends PocketDelegate
             final IconicsTextView icon = (IconicsTextView) item.getChildAt(0);
             final AppCompatTextView title = (AppCompatTextView) item.getChildAt(1);
             item.setBackgroundColor(getResources().getColor(mNormalColor));
-            icon.setTextColor(getResources().getColor(R.color.textColorLight));
-            title.setTextColor(getResources().getColor(R.color.textColorLight));
+            icon.setTextColor(getResources().getColor(R.color.textColorHint));
+            title.setTextColor(getResources().getColor(R.color.textColorHint));
         }
     }
 

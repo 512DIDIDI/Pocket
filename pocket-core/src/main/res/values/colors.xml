@@ -23,6 +23,9 @@
     <color name="dividerColor">#E0E0E0</color>
     <color name="weChatColor">#1AAD19</color>
 
+    <drawable name="list_item_press_color">#E0E0E0</drawable>
+    <drawable name="list_item_normal_color">#ffffff</drawable>
+
     <!--不知道哪里用了这个id 先保留-->
     <color name="normalButtonColor"/>
 

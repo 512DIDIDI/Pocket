@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/bottomBarTopNormalGap"
         android:gravity="center"
-        android:textColor="@color/textColorLight" />
+        android:textColor="@color/textColorHint" />
     <!--底部文字-->
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/bottom_bar_layout_title"
@@ -24,6 +24,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/bottomBarBottomGap"
         android:gravity="center"
-        android:textColor="@color/textColorLight"
+        android:textColor="@color/textColorHint"
         android:textSize="@dimen/tinyTextSize" />
 </RelativeLayout>

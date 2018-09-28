@@ -70,10 +70,22 @@
     <string name="faw_microphone">{faw-microphone}</string>
     <string name="faw_chevron_circle_down">{faw-chevron-circle-down}</string>
     <string name="test">test</string>
+    <string name="faw_wallet">{faw-wallet}</string>
+    <string name="wallet">钱包</string>
+    <string name="comment">评价</string>
+    <string name="order">订单</string>
+    <string name="faw_collect">{faw-gratipay}</string>
+    <string name="collect">收藏</string>
+    <string name="faw_attention">{faw-thumbs-up}</string>
+    <string name="attention">关注</string>
+    <string name="faw_shoe_prints">{faw-shoe-prints}</string>
+    <string name="foot">足迹</string>
+    <string name="faw_shopping_basket">{faw-shopping-basket}</string>
     <string-array name="spinner_goods_sort">
         <item>综合排序</item>
         <item>好评优先</item>
         <item>价格降序</item>
         <item>价格升序</item>
     </string-array>
+
 </resources>
