@@ -1,21 +1,19 @@
-package com.dididi.pocket.ec.main.message;
+package com.dididi.pocket.ec.main.message.chat;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dididi.pocket.core.delegates.PocketDelegate;
 import com.dididi.pocket.core.entity.Message;
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
-import com.dididi.pocket.ec.main.message.adapter.ChatAdapter;
+import com.dididi.pocket.ec.main.message.chat.adapter.ChatAdapter;
 import com.mikepenz.iconics.view.IconicsTextView;
 import com.rengwuxian.materialedittext.MaterialEditText;
 

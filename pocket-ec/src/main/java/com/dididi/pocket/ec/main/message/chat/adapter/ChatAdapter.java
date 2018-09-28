@@ -1,4 +1,4 @@
-package com.dididi.pocket.ec.main.message.adapter;
+package com.dididi.pocket.ec.main.message.chat.adapter;
 
 import android.support.annotation.Nullable;
 import android.view.View;

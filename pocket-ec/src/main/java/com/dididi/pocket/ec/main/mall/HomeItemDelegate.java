@@ -22,6 +22,7 @@ import com.dididi.pocket.ec.item.SearchBarItem;
 import com.dididi.pocket.ec.main.PocketBottomDelegate;
 import com.dididi.pocket.ec.main.mall.adapter.NewsAdapter;
 import com.dididi.pocket.core.entity.News;
+import com.dididi.pocket.ec.main.mall.goods.GoodsListDelegate;
 import com.dididi.pocket.ec.main.mall.list.FakeImageList;
 import com.dididi.pocket.ec.sign.SignInDelegate;
 import com.dididi.pocket.core.util.PocketPreferences;

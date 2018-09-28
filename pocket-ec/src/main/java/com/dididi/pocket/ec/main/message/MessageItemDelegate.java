@@ -14,6 +14,7 @@ import com.dididi.pocket.ec.item.SearchBarItem;
 import com.dididi.pocket.core.entity.Message;
 import com.dididi.pocket.core.delegates.bottom.BottomItemDelegate;
 import com.dididi.pocket.ec.main.message.adapter.MessageAdapter;
+import com.dididi.pocket.ec.main.message.chat.ChatDelegate;
 
 import java.util.ArrayList;
 import java.util.List;

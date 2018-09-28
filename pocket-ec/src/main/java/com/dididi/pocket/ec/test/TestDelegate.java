@@ -17,7 +17,7 @@ public class TestDelegate extends PocketDelegate {
 
     @Override
     public Object setLayout() {
-        return R.layout.delegate_test;
+        return null;
     }
 
     @Override

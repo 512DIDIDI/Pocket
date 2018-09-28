@@ -12,7 +12,8 @@
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/delegate_mall_goods_toolbar"
@@ -26,30 +27,43 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginEnd="@dimen/screenLRGap"
-                    android:layout_marginLeft="@dimen/screenLRGap"
-                    android:layout_marginRight="@dimen/screenLRGap"
                     android:layout_marginStart="@dimen/screenLRGap"
+                    android:layout_marginLeft="@dimen/screenLRGap"
+                    android:layout_marginEnd="@dimen/screenLRGap"
+                    android:layout_marginRight="@dimen/screenLRGap"
                     android:background="@drawable/search_bar_corner"
                     android:gravity="center" />
             </android.support.v7.widget.Toolbar>
             <!--TODO:这里有点细节需要优化,scroll的应该是chooseBar而toolbar不能动-->
+
+        </android.support.design.widget.AppBarLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/backgroundColorWhite"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
             <!--商品选择入口-->
             <android.support.v7.widget.LinearLayoutCompat
                 android:id="@+id/delegate_mall_goods_chooseBar"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/searchBarSize"
+                android:layout_alignParentTop="true"
+                android:background="@color/toolbarColor"
                 android:orientation="horizontal"
                 android:paddingLeft="@dimen/screenLRGap"
-                android:paddingRight="@dimen/screenLRGap"
-                app:layout_scrollFlags="scroll|enterAlways|snap">
+                android:paddingRight="@dimen/screenLRGap">
                 <!--全部商品-->
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/delegate_mall_goods_chooseBar_all"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:background="@drawable/selector_mall_top_bar"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:gravity="center"
                     android:text="@string/all"
                     android:textColor="@color/textColorWhite"
@@ -58,9 +72,12 @@
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/delegate_mall_goods_chooseBar_best"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:background="@drawable/selector_mall_top_bar"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:gravity="center"
                     android:text="@string/best"
                     android:textColor="@color/textColorWhite"
@@ -69,26 +86,26 @@
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/delegate_mall_goods_chooseBar_store"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:background="@drawable/selector_mall_top_bar"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:gravity="center"
                     android:text="@string/store"
                     android:textColor="@color/textColorWhite"
                     android:textSize="@dimen/textNormalSize" />
-            </android.support.v7.widget.LinearLayoutCompat>
-        </android.support.design.widget.AppBarLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            </android.support.v7.widget.LinearLayoutCompat>
+
             <!--商品排序-->
             <android.support.v7.widget.LinearLayoutCompat
                 android:id="@+id/delegate_mall_goods_sortBar"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/searchBarSize"
-                android:layout_alignParentTop="true"
+                android:layout_below="@id/delegate_mall_goods_chooseBar"
+                android:background="@color/backgroundColorWhite"
                 android:orientation="horizontal"
                 android:paddingLeft="@dimen/screenLRGap"
                 android:paddingRight="@dimen/screenLRGap">
@@ -123,8 +140,8 @@
                     android:layout_width="@dimen/normalIconSize"
                     android:layout_height="@dimen/normalIconSize"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/dividerGap"
                     android:layout_marginStart="@dimen/dividerGap"
+                    android:layout_marginLeft="@dimen/dividerGap"
                     android:gravity="center"
                     android:text="@string/faw_th_list"
                     android:textColor="@color/textColorDark" />

@@ -1,4 +1,4 @@
-package com.dididi.pocket.ec.main.mall.adapter;
+package com.dididi.pocket.ec.main.mall.goods.adapter;
 
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
