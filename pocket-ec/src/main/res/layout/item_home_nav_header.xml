@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/item_home_nav_header"
     android:layout_width="match_parent"
-    android:layout_height="152dp"
+    android:layout_height="@dimen/headerHeight"
     android:background="@mipmap/header">
     <!--头像-->
     <de.hdodenhof.circleimageview.CircleImageView

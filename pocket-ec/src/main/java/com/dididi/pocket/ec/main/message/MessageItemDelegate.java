@@ -55,6 +55,7 @@ public class MessageItemDelegate extends BottomItemDelegate
         mMsgRecyclerView.setAdapter(mAdapter);
     }
 
+
     /**
      * 初始化消息列表
      */
@@ -126,7 +127,7 @@ public class MessageItemDelegate extends BottomItemDelegate
             //利用bundle向chatDelegate传输数据
             ChatDelegate chatDelegate = new ChatDelegate();
             Bundle bundle = new Bundle();
-            bundle.putParcelable("message",message);
+            bundle.putParcelable("message", message);
             chatDelegate.setArguments(bundle);
             getParentDelegate().getSupportDelegate().start(chatDelegate);
         }
