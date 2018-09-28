@@ -1,7 +1,8 @@
-package com.dididi.pocket.ec.main.mall;
+package com.dididi.pocket.ec.main.mall.goods;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -11,7 +12,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
 import com.dididi.pocket.ec.item.SearchBarItem;
-import com.dididi.pocket.ec.main.mall.adapter.GoodsAdapter;
+import com.dididi.pocket.ec.main.mall.goods.adapter.GoodsAdapter;
 import com.dididi.pocket.core.entity.Goods;
 import com.dididi.pocket.core.delegates.PocketDelegate;
 
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 
 /**
@@ -34,6 +36,35 @@ public class GoodsListDelegate extends PocketDelegate
     RecyclerView mRecyclerView = null;
     @BindView(R2.id.delegate_mall_goods_searchBar)
     SearchBarItem mSearchBar = null;
+    @BindView(R2.id.delegate_mall_goods_chooseBar_all)
+    AppCompatTextView mAll = null;
+    @BindView(R2.id.delegate_mall_goods_chooseBar_best)
+    AppCompatTextView mBest = null;
+    @BindView(R2.id.delegate_mall_goods_chooseBar_store)
+    AppCompatTextView mStore = null;
+
+    @OnClick(R2.id.delegate_mall_goods_chooseBar_all)
+    public void onSelectAll() {
+        resetColor();
+        mAll.setSelected(true);
+        mAll.setTextColor(getResources().getColor(R.color.textColorDark));
+        Toast.makeText(getContext(), "select all", Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R2.id.delegate_mall_goods_chooseBar_best)
+    public void onSelectBest() {
+        resetColor();
+        mBest.setSelected(true);
+        mBest.setTextColor(getResources().getColor(R.color.textColorDark));
+    }
+
+    @OnClick(R2.id.delegate_mall_goods_chooseBar_store)
+    public void onSelectStore() {
+        resetColor();
+        mStore.setSelected(true);
+        mStore.setTextColor(getResources().getColor(R.color.textColorDark));
+    }
+
 
     private List<Goods> mGoodsList = new ArrayList<>();
     @SuppressWarnings("FieldCanBeLocal")
@@ -56,6 +87,8 @@ public class GoodsListDelegate extends PocketDelegate
         mRecyclerView.setAdapter(mAdapter);
         mSearchBar.setLeftIcon("{faw-chevron-left}");
         mSearchBar.setLeftIconListener(this);
+        mAll.setSelected(true);
+        mAll.setTextColor(getResources().getColor(R.color.textColorDark));
     }
 
     private void initGoods() {
@@ -127,5 +160,14 @@ public class GoodsListDelegate extends PocketDelegate
         }
         Toast.makeText(getContext(), "点击进入" + goods.getGoodsName() + "商品页面",
                 Toast.LENGTH_SHORT).show();
+    }
+
+    private void resetColor() {
+        mAll.setSelected(false);
+        mBest.setSelected(false);
+        mStore.setSelected(false);
+        mAll.setTextColor(getResources().getColor(R.color.textColorWhite));
+        mBest.setTextColor(getResources().getColor(R.color.textColorWhite));
+        mStore.setTextColor(getResources().getColor(R.color.textColorWhite));
     }
 }

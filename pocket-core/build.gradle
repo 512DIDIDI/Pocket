@@ -69,8 +69,6 @@ dependencies {
     //material design依赖
     //noinspection GradleDependency
     api 'com.android.support:design:28.0.0-rc01'
-    //material design 涟漪动画依赖
-    api 'com.github.emanzanoaxa:RippleEffect:52ea2a0ab6'
     //recycler view 依赖
     //noinspection GradleDependency
     api 'com.android.support:recyclerview-v7:28.0.0-rc01'

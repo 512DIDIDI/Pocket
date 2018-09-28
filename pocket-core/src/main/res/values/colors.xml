@@ -11,6 +11,7 @@
     <color name="tabPressColor">#ffffff</color>
     <color name="buttonPressColor">#769fcd</color>
     <color name="buttonNormalColor">#b9d7ea</color>
+    <color name="buttonNormalColorRed">#FF4364</color>
     <color name="textColorBlack">#212121</color>
     <color name="textColorDark">#454553</color>
     <color name="textColorGray">#59606d</color>
