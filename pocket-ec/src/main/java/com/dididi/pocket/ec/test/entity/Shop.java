@@ -13,9 +13,6 @@ public class Shop extends SectionEntity<Goods> {
     /** 商店id1 */
     private long shopId;
 
-    /** 商店名字 */
-    private String shopName;
-
     /** 商店是否选择 */
     private boolean isShopSelected;
 
@@ -33,15 +30,6 @@ public class Shop extends SectionEntity<Goods> {
 
     public Shop setShopId(long shopId) {
         this.shopId = shopId;
-        return this;
-    }
-
-    public String getShopName() {
-        return shopName;
-    }
-
-    public Shop setShopName(String shopName) {
-        this.shopName = shopName;
         return this;
     }
 
