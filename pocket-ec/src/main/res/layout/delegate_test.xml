@@ -39,7 +39,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/delegate_test_recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginBottom="@dimen/bottomBarSize"
             android:background="@color/backgroundColorWhite"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
