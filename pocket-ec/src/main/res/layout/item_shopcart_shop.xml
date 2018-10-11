@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/test_shop_card_shop_layout"
+    android:id="@+id/item_shop_cart_shop_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/dividerGap"
+    android:layout_marginTop="@dimen/dividerGap"
     android:layout_marginRight="@dimen/dividerGap"
-    android:background="@drawable/goods_card_corner"
+    android:background="@drawable/shop_card_corner"
     android:paddingTop="@dimen/dividerGap"
     android:paddingBottom="@dimen/dividerGap">
     <!--商店是否选择-->
     <com.mikepenz.iconics.view.IconicsTextView
-        android:id="@+id/test_shop_card_shop_select"
+        android:id="@+id/item_shop_cart_shop_select"
         android:layout_width="@dimen/normalIconSize"
         android:layout_height="@dimen/normalIconSize"
         android:layout_alignParentStart="true"
@@ -24,32 +25,32 @@
         android:textColor="@color/textColorGray" />
     <!--商店icon-->
     <com.mikepenz.iconics.view.IconicsTextView
-        android:id="@+id/test_shop_card_shop_icon"
+        android:id="@+id/item_shop_cart_shop_chat"
         android:layout_width="@dimen/normalIconSize"
         android:layout_height="@dimen/normalIconSize"
         android:layout_centerVertical="true"
         android:layout_marginStart="@dimen/dividerGap"
         android:layout_marginLeft="@dimen/dividerGap"
-        android:layout_toEndOf="@id/test_shop_card_shop_select"
-        android:layout_toRightOf="@id/test_shop_card_shop_select"
+        android:layout_toEndOf="@id/item_shop_cart_shop_select"
+        android:layout_toRightOf="@id/item_shop_cart_shop_select"
         android:gravity="center"
-        android:text="@string/faw_gg"
+        android:text="@string/comment_dots"
         android:textColor="@color/textColorIcon" />
     <!--商店名字-->
-    <com.mikepenz.iconics.view.IconicsTextView
-        android:id="@+id/test_shop_card_shop_name"
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/item_shop_cart_shop_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginEnd="@dimen/dividerGap"
         android:layout_marginRight="@dimen/dividerGap"
-        android:layout_toEndOf="@id/test_shop_card_shop_icon"
-        android:layout_toRightOf="@id/test_shop_card_shop_icon"
+        android:layout_toEndOf="@id/item_shop_cart_shop_chat"
+        android:layout_toRightOf="@id/item_shop_cart_shop_chat"
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="1"
         android:textAlignment="center"
         android:textColor="@color/textColorIcon"
         android:textSize="@dimen/textSmallSize" />
-</RelativeLayout>
 
+</RelativeLayout>

@@ -11,7 +11,9 @@
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="?android:attr/actionBarSize">
+        android:background="@color/backgroundColorGray"
+        android:layout_marginBottom="@dimen/dividerGap"
+        android:paddingBottom="@dimen/bottomBarSize">
         <!--toolbar-->
         <android.support.design.widget.AppBarLayout
             android:id="@+id/delegate_test_appbar"
@@ -40,8 +42,7 @@
             android:id="@+id/delegate_shoppingCart_shopcart_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/bottomBarSize"
-            android:background="@color/backgroundColorWhite"
+            android:background="@color/backgroundColorGray"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:ignore="PrivateResource" />
     </android.support.design.widget.CoordinatorLayout>

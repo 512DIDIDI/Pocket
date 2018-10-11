@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="@dimen/bottomBarSize"
-            android:background="@color/backgroundColorWhite"
+            android:background="@color/dividerColor"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:ignore="PrivateResource" />
     </android.support.design.widget.CoordinatorLayout>

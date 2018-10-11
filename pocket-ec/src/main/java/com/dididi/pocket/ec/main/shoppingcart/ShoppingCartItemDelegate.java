@@ -1,8 +1,7 @@
-package com.dididi.pocket.ec.main.shoppingCart;
+package com.dididi.pocket.ec.main.shoppingcart;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,8 +10,8 @@ import android.widget.Toast;
 
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
-import com.dididi.pocket.ec.main.shoppingCart.Listener.OnGoodsPriceListener;
-import com.dididi.pocket.ec.main.shoppingCart.adapter.ShopCartAdapter;
+import com.dididi.pocket.ec.main.shoppingcart.Listener.OnGoodsPriceListener;
+import com.dididi.pocket.ec.main.shoppingcart.adapter.OldShopCartAdapter;
 import com.dididi.pocket.core.entity.Goods;
 import com.dididi.pocket.core.delegates.bottom.BottomItemDelegate;
 import com.mikepenz.iconics.view.IconicsTextView;
@@ -29,25 +28,25 @@ import butterknife.OnClick;
  * on 24/07/2018 .
  */
 
-public class ShoppingCartItemDelegate extends BottomItemDelegate implements View.OnClickListener {
+public class ShoppingCartItemDelegate extends BottomItemDelegate {
 
     @BindView(R2.id.delegate_shoppingCart_shopcart_recyclerView)
     RecyclerView mRecyclerView = null;
-    @BindView(R2.id.delegate_shoppingCart_shopcart_all_selected)
-    IconicsTextView mAllSelected = null;
-    @BindView(R2.id.delegate_shoppingCart_shopcart_all_selected_text)
-    AppCompatTextView mAllSelectedText = null;
-    @BindView(R2.id.delegate_shoppingCart_shopcart_all_price)
-    AppCompatTextView mAllPrice = null;
+//    @BindView(R2.id.delegate_shoppingCart_shopcart_all_selected)
+//    IconicsTextView mAllSelected = null;
+//    @BindView(R2.id.delegate_shoppingCart_shopcart_all_selected_text)
+//    AppCompatTextView mAllSelectedText = null;
+//    @BindView(R2.id.delegate_shoppingCart_shopcart_all_price)
+//    AppCompatTextView mAllPrice = null;
+//
+//    @OnClick(R2.id.delegate_shoppingCart_shopcart_compute_price)
+//    void clickComputePrice(){
+//        //结算
+//        Toast.makeText(getContext(), "共计" + mTotalPrice + "元",
+//                Toast.LENGTH_SHORT).show();
+//    }
 
-    @OnClick(R2.id.delegate_shoppingCart_shopcart_compute_price)
-    void clickComputePrice(){
-        //结算
-        Toast.makeText(getContext(), "共计" + mTotalPrice + "元",
-                Toast.LENGTH_SHORT).show();
-    }
-
-    private ShopCartAdapter mAdapter = null;
+    private OldShopCartAdapter mAdapter = null;
     private List<Goods> mGoodsList = new ArrayList<>();
     private float mTotalPrice = 0;
     private boolean isAllSelected = false;
@@ -64,7 +63,7 @@ public class ShoppingCartItemDelegate extends BottomItemDelegate implements View
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
         mRecyclerView.setLayoutManager(layoutManager);
         //设置适配器
-        mAdapter = new ShopCartAdapter(mGoodsList);
+        mAdapter = new OldShopCartAdapter(mGoodsList);
         mAdapter.setOnGoodsPriceListener(new OnGoodsPriceListener() {
             @Override
             public void onDelete(int position) {
@@ -124,8 +123,8 @@ public class ShoppingCartItemDelegate extends BottomItemDelegate implements View
             }
         });
         //全选按钮
-        mAllSelected.setOnClickListener(this);
-        mAllSelectedText.setOnClickListener(this);
+//        mAllSelected.setOnClickListener(this);
+//        mAllSelectedText.setOnClickListener(this);
 
         mRecyclerView.setAdapter(mAdapter);
     }
@@ -168,39 +167,39 @@ public class ShoppingCartItemDelegate extends BottomItemDelegate implements View
             }
         }
         //改变文字
-        mAllPrice.setText(R.string.yuan);
-        mAllPrice.append(String.valueOf(mTotalPrice));
+//        mAllPrice.setText(R.string.yuan);
+//        mAllPrice.append(String.valueOf(mTotalPrice));
     }
 
-    @Override
-    public void onClick(View view) {
-        if (view == mAllSelected || view == mAllSelectedText) {
-            //全选按钮
-            //TODO:这里计算总价逻辑可能不是最优化的...
-            for (int i = 0; i < mGoodsList.size(); i++) {
-                if (mGoodsList.get(i).isFirst()) {
-                    //如果是第一个商品,则商店商品勾选状态与全选按钮一致
-                    mGoodsList.get(i).setShopSelected(!isAllSelected);
-                    mGoodsList.get(i).setGoodsSelected(!isAllSelected);
-                    for (int j = i; j < mGoodsList.size(); j++) {
-                        if (mGoodsList.get(i).getShopId() == mGoodsList.get(j).getShopId()) {
-                            //同一家店铺的商品也需勾选状态
-                            mGoodsList.get(j).setGoodsSelected(!isAllSelected);
-                        }
-                    }
-                }
-            }
-            //将全选状态更改
-            isAllSelected = !isAllSelected;
-            if (isAllSelected) {
-                //更改图标样式
-                mAllSelected.setText(R.string.faw_check_circle);
-            } else {
-                mAllSelected.setText(R.string.faw_circle);
-            }
-            mAdapter.notifyDataSetChanged();
-            //重新计算价格
-            computeAllPrice();
-        }
-    }
+//    @Override
+//    public void onClick(View view) {
+//        if (view == mAllSelected || view == mAllSelectedText) {
+//            //全选按钮
+//            //TODO:这里计算总价逻辑可能不是最优化的...
+//            for (int i = 0; i < mGoodsList.size(); i++) {
+//                if (mGoodsList.get(i).isFirst()) {
+//                    //如果是第一个商品,则商店商品勾选状态与全选按钮一致
+//                    mGoodsList.get(i).setShopSelected(!isAllSelected);
+//                    mGoodsList.get(i).setGoodsSelected(!isAllSelected);
+//                    for (int j = i; j < mGoodsList.size(); j++) {
+//                        if (mGoodsList.get(i).getShopId() == mGoodsList.get(j).getShopId()) {
+//                            //同一家店铺的商品也需勾选状态
+//                            mGoodsList.get(j).setGoodsSelected(!isAllSelected);
+//                        }
+//                    }
+//                }
+//            }
+//            //将全选状态更改
+//            isAllSelected = !isAllSelected;
+//            if (isAllSelected) {
+//                //更改图标样式
+//                mAllSelected.setText(R.string.faw_check_circle);
+//            } else {
+//                mAllSelected.setText(R.string.faw_circle);
+//            }
+//            mAdapter.notifyDataSetChanged();
+//            //重新计算价格
+//            computeAllPrice();
+//        }
+//    }
 }

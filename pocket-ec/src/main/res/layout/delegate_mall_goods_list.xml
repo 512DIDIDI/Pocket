@@ -54,48 +54,6 @@
                 android:orientation="horizontal"
                 android:paddingLeft="@dimen/screenLRGap"
                 android:paddingRight="@dimen/screenLRGap">
-                <!--全部商品-->
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/delegate_mall_goods_chooseBar_all"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:background="@drawable/selector_mall_top_bar"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:text="@string/all"
-                    android:textColor="@color/textColorWhite"
-                    android:textSize="@dimen/textNormalSize" />
-                <!--精选商品-->
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/delegate_mall_goods_chooseBar_best"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:background="@drawable/selector_mall_top_bar"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:text="@string/best"
-                    android:textColor="@color/textColorWhite"
-                    android:textSize="@dimen/textNormalSize" />
-                <!--商家-->
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/delegate_mall_goods_chooseBar_store"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:background="@drawable/selector_mall_top_bar"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:text="@string/store"
-                    android:textColor="@color/textColorWhite"
-                    android:textSize="@dimen/textNormalSize" />
 
             </android.support.v7.widget.LinearLayoutCompat>
 
