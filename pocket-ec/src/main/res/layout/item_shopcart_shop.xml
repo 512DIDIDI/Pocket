@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/item_shop_cart_shop_layout"
+    android:id="@+id/item_shopcart_shop_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/dividerGap"
@@ -12,7 +12,7 @@
     android:paddingBottom="@dimen/dividerGap">
     <!--商店是否选择-->
     <com.mikepenz.iconics.view.IconicsTextView
-        android:id="@+id/item_shop_cart_shop_select"
+        android:id="@+id/item_shopcart_shop_select"
         android:layout_width="@dimen/normalIconSize"
         android:layout_height="@dimen/normalIconSize"
         android:layout_alignParentStart="true"
@@ -25,27 +25,27 @@
         android:textColor="@color/textColorGray" />
     <!--商店icon-->
     <com.mikepenz.iconics.view.IconicsTextView
-        android:id="@+id/item_shop_cart_shop_chat"
+        android:id="@+id/item_shopcart_shop_chat"
         android:layout_width="@dimen/normalIconSize"
         android:layout_height="@dimen/normalIconSize"
         android:layout_centerVertical="true"
         android:layout_marginStart="@dimen/dividerGap"
         android:layout_marginLeft="@dimen/dividerGap"
-        android:layout_toEndOf="@id/item_shop_cart_shop_select"
-        android:layout_toRightOf="@id/item_shop_cart_shop_select"
+        android:layout_toEndOf="@id/item_shopcart_shop_select"
+        android:layout_toRightOf="@id/item_shopcart_shop_select"
         android:gravity="center"
         android:text="@string/comment_dots"
         android:textColor="@color/textColorIcon" />
     <!--商店名字-->
     <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/item_shop_cart_shop_name"
+        android:id="@+id/item_shopcart_shop_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginEnd="@dimen/dividerGap"
         android:layout_marginRight="@dimen/dividerGap"
-        android:layout_toEndOf="@id/item_shop_cart_shop_chat"
-        android:layout_toRightOf="@id/item_shop_cart_shop_chat"
+        android:layout_toEndOf="@id/item_shopcart_shop_chat"
+        android:layout_toRightOf="@id/item_shopcart_shop_chat"
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="1"

@@ -43,7 +43,7 @@ public class OldShopCartAdapter extends RecyclerView.Adapter<OldShopCartAdapter.
             mContext = viewGroup.getContext();
         }
         View itemView = LayoutInflater.from(mContext)
-                .inflate(R.layout.item_shopcart_goods_card, viewGroup, false);
+                .inflate(R.layout.item_shopcart_shop, viewGroup, false);
         return new ViewHolder(itemView);
     }
 
