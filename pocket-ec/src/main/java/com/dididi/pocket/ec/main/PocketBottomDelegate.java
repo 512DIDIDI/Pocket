@@ -1,8 +1,5 @@
 package com.dididi.pocket.ec.main;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 
 import com.dididi.pocket.core.ui.animation.PocketAnimation;
@@ -10,7 +7,8 @@ import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.main.mall.HomeItemDelegate;
 import com.dididi.pocket.ec.main.message.MessageItemDelegate;
 import com.dididi.pocket.ec.main.personal.PersonalItemDelegate;
-import com.dididi.pocket.ec.main.shoppingCart.ShoppingCartItemDelegate;
+import com.dididi.pocket.ec.main.shoppingcart.ShopCartItemDelegate;
+import com.dididi.pocket.ec.main.shoppingcart.ShoppingCartItemDelegate;
 import com.dididi.pocket.core.delegates.bottom.BaseBottomDelegate;
 import com.dididi.pocket.core.delegates.bottom.BottomItemDelegate;
 import com.dididi.pocket.core.delegates.bottom.BottomTabBean;
@@ -37,7 +35,7 @@ public class PocketBottomDelegate extends BaseBottomDelegate {
         items.put(new BottomTabBean("{faw-comments}", "消息"),
                 new MessageItemDelegate());
         items.put(new BottomTabBean("{faw-shopping-cart}", "购物车"),
-                new ShoppingCartItemDelegate());
+                new ShopCartItemDelegate());
         items.put(new BottomTabBean("{faw-user}", "我的"),
                 new PersonalItemDelegate());
         return factory.addItem(items).build();

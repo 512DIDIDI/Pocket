@@ -5,12 +5,17 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Toast;
 
+import com.chad.library.adapter.base.util.TouchEventUtil;
 import com.dididi.pocket.core.delegates.PocketDelegate;
 import com.dididi.pocket.core.entity.Message;
+import com.dididi.pocket.core.ui.animation.PocketAnimation;
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
 import com.dididi.pocket.ec.main.message.chat.adapter.ChatAdapter;
@@ -22,6 +27,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import me.yokeyword.fragmentation.SwipeBackLayout;
 
 
 /**
@@ -38,6 +44,8 @@ public class ChatDelegate extends PocketDelegate {
 
     @BindView(R2.id.delegate_msg_chat_recyclerView)
     RecyclerView mRecyclerView = null;
+    @BindView(R2.id.delegate_msg_chat_toolbar)
+    Toolbar mToolbar = null;
     @BindView(R2.id.delegate_msg_chat_back_btn)
     IconicsTextView mBack = null;
     @BindView(R2.id.delegate_msg_chat_personal)
@@ -118,4 +126,6 @@ public class ChatDelegate extends PocketDelegate {
     public void setSwipeBackEnable(boolean enable) {
         super.setSwipeBackEnable(true);
     }
+
+
 }

@@ -1,4 +1,4 @@
-package com.dididi.pocket.ec.main.shoppingCart.Listener;
+package com.dididi.pocket.ec.main.shoppingcart.Listener;
 
 /**
  * Created by dididi

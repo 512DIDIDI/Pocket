@@ -1,4 +1,4 @@
-package com.dididi.pocket.ec.main.shoppingCart.adapter;
+package com.dididi.pocket.ec.main.shoppingcart.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.item.RoundRectImageView;
-import com.dididi.pocket.ec.main.shoppingCart.Listener.OnGoodsPriceListener;
+import com.dididi.pocket.ec.main.shoppingcart.Listener.OnGoodsPriceListener;
 import com.dididi.pocket.core.entity.Goods;
 import com.mikepenz.iconics.view.IconicsTextView;
 
@@ -25,14 +25,14 @@ import java.util.List;
  * on 29/07/2018 .
  */
 
-public class ShopCartAdapter extends RecyclerView.Adapter<ShopCartAdapter.ViewHolder> {
+public class OldShopCartAdapter extends RecyclerView.Adapter<OldShopCartAdapter.ViewHolder> {
     //TODO:这里暂时还有bug 应该考虑同一个店铺下把商品归类到同一个cardView中
 
     private Context mContext;
     private List<Goods> mGoodsList;
     private OnGoodsPriceListener onGoodsPriceListener;
 
-    public ShopCartAdapter(List<Goods> goods) {
+    public OldShopCartAdapter(List<Goods> goods) {
         this.mGoodsList = goods;
     }
 

@@ -1,4 +1,4 @@
-package com.dididi.pocket.ec.test.entity;
+package com.dididi.pocket.core.entity;
 
 import com.chad.library.adapter.base.entity.SectionEntity;
 
@@ -15,6 +15,8 @@ public class Shop extends SectionEntity<Goods> {
 
     /** 商店是否选择 */
     private boolean isShopSelected;
+
+    private String userName;
 
     public Shop(boolean isHeader, String header) {
         super(isHeader, header);
@@ -39,6 +41,15 @@ public class Shop extends SectionEntity<Goods> {
 
     public Shop setShopSelected(boolean shopSelected) {
         isShopSelected = shopSelected;
+        return this;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public Shop setUserName(String userName) {
+        this.userName = userName;
         return this;
     }
 }
