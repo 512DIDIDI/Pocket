@@ -24,19 +24,29 @@ public class ShopCartAdapter extends BaseSectionQuickAdapter<Shop,BaseViewHolder
 
     @Override
     protected void convertHead(BaseViewHolder helper, Shop item) {
-        helper.setText(R.id.item_shop_cart_shop_name,item.header)
-                .addOnClickListener(R.id.item_shop_cart_shop_name)
-                .addOnClickListener(R.id.item_shop_cart_shop_chat);
+        helper.setText(R.id.item_shopcart_shop_name,item.header)
+                .addOnClickListener(R.id.item_shopcart_shop_name)
+                .addOnClickListener(R.id.item_shopcart_shop_chat);
+        if (item.isShopSelected()){
+            helper.setText(R.id.item_shopcart_shop_select,R.string.faw_check_circle);
+        }else{
+            helper.setText(R.id.item_shopcart_shop_select,R.string.faw_circle);
+        }
     }
 
     @Override
     protected void convert(BaseViewHolder helper, Shop item) {
-        helper.setText(R.id.item_goods_cart_goods_name,item.t.getShopName())
-                .setText(R.id.item_goods_cart_goods_price,String.valueOf(item.t.getGoodsPrice()))
-                .setText(R.id.item_goods_cart_goods_style,item.t.getGoodsStyle())
-                .setText(R.id.item_goods_cart_goods_number,String.valueOf(item.t.getGoodsCount()));
+        helper.setText(R.id.item_shopcart_goods_name,item.t.getShopName())
+                .setText(R.id.item_shopcart_goods_price,String.valueOf(item.t.getGoodsPrice()))
+                .setText(R.id.item_shopcart_goods_style,item.t.getGoodsStyle())
+                .setText(R.id.item_shopcart_goods_number,String.valueOf(item.t.getGoodsCount()));
+        if (item.t.isGoodsSelected()){
+            helper.setText(R.id.item_shopcart_goods_select,R.string.faw_check_circle);
+        }else {
+            helper.setText(R.id.item_shopcart_goods_select,R.string.faw_circle);
+        }
         GlideApp.with(mContext)
                 .load(Integer.parseInt(item.t.getGoodsImg()))
-                .into((ImageView) helper.getView(R.id.item_goods_cart_goods_img));
+                .into((ImageView) helper.getView(R.id.item_shopcart_goods_img));
     }
 }
