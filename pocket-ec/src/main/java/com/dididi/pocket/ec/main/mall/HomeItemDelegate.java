@@ -289,25 +289,31 @@ public class HomeItemDelegate extends BottomItemDelegate
      */
     @Override
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-        StringBuilder content = new StringBuilder();
+        StringBuilder content = null;
         News news = (News) adapter.getItem(position);
         if (null == news){
             throw new RuntimeException("news can not be null");
         }
-        if (view.getId() == R.id.item_home_news_head){
+        int id = view.getId();
+        if (id == R.id.item_home_news_head){
+            content = new StringBuilder();
             content.append("你点击了")
                     .append(news.getUserName())
                     .append("头像");
-        }else if (view.getId() == R.id.item_home_news_name){
+        }else if (id == R.id.item_home_news_name){
+            content = new StringBuilder();
             content.append("你点击了")
                     .append(news.getUserName())
                     .append("名字");
-        }else if (view.getId() == R.id.item_home_news_comment){
+        }else if (id == R.id.item_home_news_comment){
+            content = new StringBuilder();
             content.append("你点击了")
                     .append(news.getUserName())
                     .append("评论");
         }
-        Toast.makeText(getContext(),content.toString(),Toast.LENGTH_SHORT).show();
+        if (content != null){
+            Toast.makeText(getContext(),content.toString(),Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

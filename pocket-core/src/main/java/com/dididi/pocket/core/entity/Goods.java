@@ -3,6 +3,8 @@ package com.dididi.pocket.core.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.math.BigDecimal;
+
 /**
  * Created by dididi
  * on 29/07/2018 .
@@ -10,9 +12,9 @@ import android.os.Parcelable;
 
 public class Goods implements Parcelable {
     /** 商品 id*/
-    private int goodsId;
+    private long goodsId;
     /** 商店 id*/
-    private int shopId;
+    private long shopId;
     /** 商店名字 */
     private String shopName;
     /** 商品图片 */
@@ -22,7 +24,7 @@ public class Goods implements Parcelable {
     /** 商品样式 */
     private String goodsStyle;
     /** 商品价格 */
-    private float goodsPrice;
+    private double goodsPrice;
     /** 商品数量 */
     private int goodsCount;
     /** 商品对应的店铺是否选择 */
@@ -61,12 +63,12 @@ public class Goods implements Parcelable {
         return this;
     }
 
-    public Goods setGoodsId(int goodsId) {
+    public Goods setGoodsId(long goodsId) {
         this.goodsId = goodsId;
         return this;
     }
 
-    public Goods setShopId(int shopId) {
+    public Goods setShopId(long shopId) {
         this.shopId = shopId;
         return this;
     }
@@ -91,7 +93,7 @@ public class Goods implements Parcelable {
         return this;
     }
 
-    public Goods setGoodsPrice(float goodsPrice) {
+    public Goods setGoodsPrice(double goodsPrice) {
         this.goodsPrice = goodsPrice;
         return this;
     }
@@ -118,11 +120,11 @@ public class Goods implements Parcelable {
         isGoodsSelected = goodsSelected;
     }
 
-    public int getGoodsId() {
+    public long getGoodsId() {
         return goodsId;
     }
 
-    public int getShopId() {
+    public long getShopId() {
         return shopId;
     }
 
@@ -142,7 +144,7 @@ public class Goods implements Parcelable {
         return goodsStyle;
     }
 
-    public float getGoodsPrice() {
+    public double getGoodsPrice() {
         return goodsPrice;
     }
 
@@ -170,13 +172,13 @@ public class Goods implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.goodsId);
-        dest.writeInt(this.shopId);
+        dest.writeLong(this.goodsId);
+        dest.writeLong(this.shopId);
         dest.writeString(this.shopName);
         dest.writeString(this.goodsImg);
         dest.writeString(this.goodsName);
         dest.writeString(this.goodsStyle);
-        dest.writeFloat(this.goodsPrice);
+        dest.writeDouble(this.goodsPrice);
         dest.writeInt(this.goodsCount);
         dest.writeByte(this.isShopSelected ? (byte) 1 : (byte) 0);
         dest.writeByte(this.isGoodsSelected ? (byte) 1 : (byte) 0);
