@@ -8,7 +8,6 @@ import com.dididi.pocket.ec.main.mall.HomeItemDelegate;
 import com.dididi.pocket.ec.main.message.MessageItemDelegate;
 import com.dididi.pocket.ec.main.personal.PersonalItemDelegate;
 import com.dididi.pocket.ec.main.shoppingcart.ShopCartItemDelegate;
-import com.dididi.pocket.ec.main.shoppingcart.ShoppingCartItemDelegate;
 import com.dididi.pocket.core.delegates.bottom.BaseBottomDelegate;
 import com.dididi.pocket.core.delegates.bottom.BottomItemDelegate;
 import com.dididi.pocket.core.delegates.bottom.BottomTabBean;

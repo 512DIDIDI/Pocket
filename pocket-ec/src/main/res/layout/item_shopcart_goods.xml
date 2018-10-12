@@ -32,7 +32,6 @@
             android:layout_height="@dimen/bigAvatarSize"
             android:layout_marginStart="@dimen/dividerGap"
             android:layout_marginLeft="@dimen/dividerGap"
-            android:layout_marginTop="@dimen/dividerGap"
             android:layout_marginBottom="@dimen/dividerGap"
             android:layout_toEndOf="@id/item_shopcart_goods_select"
             android:layout_toRightOf="@id/item_shopcart_goods_select"
@@ -102,7 +101,9 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/item_shopcart_goods_img"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true">
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="@dimen/dividerGap"
+            android:layout_marginRight="@dimen/dividerGap">
             <!--减少商品数量-->
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/item_shopcart_goods_decrease"

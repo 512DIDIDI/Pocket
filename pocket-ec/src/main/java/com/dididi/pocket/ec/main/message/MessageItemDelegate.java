@@ -56,6 +56,43 @@ public class MessageItemDelegate extends BottomItemDelegate
         mMsgRecyclerView.setAdapter(mAdapter);
     }
 
+    @Override
+    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+        Message message = (Message) adapter.getItem(position);
+        if (null == message) {
+            throw new RuntimeException("message can not be null");
+        }
+        //删除消息
+        if (view.getId() == R.id.item_message_delete) {
+            mMsgList.remove(message);
+            adapter.notifyDataSetChanged();
+        }
+        //置顶消息
+        if (view.getId() == R.id.item_message_top) {
+            if (position > 0 && position < mMsgList.size()) {
+                //先移除该条消息
+                mMsgList.remove(message);
+                //插入一条位置0的消息
+                adapter.notifyItemInserted(0);
+                mMsgList.add(0, message);
+                //移除position+1的消息（即原来的消息）
+                adapter.notifyItemRemoved(position + 1);
+                if (0 == layoutManager.findFirstVisibleItemPosition()) {
+                    mMsgRecyclerView.scrollToPosition(0);
+                }
+            } else {
+                Toast.makeText(getContext(), "消息已置顶", Toast.LENGTH_SHORT).show();
+            }
+        }
+        if (view.getId() == R.id.item_message_main_layout) {
+            //利用bundle向chatDelegate传输数据
+            ChatDelegate chatDelegate = new ChatDelegate();
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("message", message);
+            chatDelegate.setArguments(bundle);
+            getParentDelegate().getSupportDelegate().start(chatDelegate);
+        }
+    }
 
     /**
      * 初始化消息列表
@@ -93,44 +130,6 @@ public class MessageItemDelegate extends BottomItemDelegate
             mMsgList.add(msg3);
             mMsgList.add(msg4);
             mMsgList.add(msg5);
-        }
-    }
-
-    @Override
-    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-        Message message = (Message) adapter.getItem(position);
-        if (null == message) {
-            throw new RuntimeException("message can not be null");
-        }
-        //删除消息
-        if (view.getId() == R.id.item_message_delete) {
-            mMsgList.remove(message);
-            adapter.notifyDataSetChanged();
-        }
-        //置顶消息
-        if (view.getId() == R.id.item_message_top) {
-            if (position > 0 && position < mMsgList.size()) {
-                //先移除该条消息
-                mMsgList.remove(message);
-                //插入一条位置0的消息
-                adapter.notifyItemInserted(0);
-                mMsgList.add(0, message);
-                //移除position+1的消息（即原来的消息）
-                adapter.notifyItemRemoved(position + 1);
-                if (0 == layoutManager.findFirstVisibleItemPosition()) {
-                    mMsgRecyclerView.scrollToPosition(0);
-                }
-            } else {
-                Toast.makeText(getContext(), "消息已置顶", Toast.LENGTH_SHORT).show();
-            }
-        }
-        if (view.getId() == R.id.item_message_main_layout) {
-            //利用bundle向chatDelegate传输数据
-            ChatDelegate chatDelegate = new ChatDelegate();
-            Bundle bundle = new Bundle();
-            bundle.putParcelable("message", message);
-            chatDelegate.setArguments(bundle);
-            getParentDelegate().getSupportDelegate().start(chatDelegate);
         }
     }
 }
