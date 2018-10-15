@@ -11,14 +11,18 @@ import com.dididi.pocket.core.app.Pocket;
  */
 
 public class DimenUtil {
-    //返回屏幕宽度
+    /**
+     * 返回屏幕宽度
+     */
     public static int getScreenWidth() {
         final Resources RESOURCES = Pocket.getApplicationContext().getResources();
         final DisplayMetrics dm = RESOURCES.getDisplayMetrics();
         return dm.widthPixels;
     }
 
-    //返回屏幕高度
+    /**
+     * 返回屏幕高度
+     */
     public static int getScreenHeight() {
         final Resources RESOURCES = Pocket.getApplicationContext().getResources();
         final DisplayMetrics dm = RESOURCES.getDisplayMetrics();

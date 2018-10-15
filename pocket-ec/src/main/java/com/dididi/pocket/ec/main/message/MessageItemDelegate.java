@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.dididi.pocket.core.entity.User;
+import com.dididi.pocket.core.fakedata.FakeUser;
+import com.dididi.pocket.core.ui.dialog.PocketDialog;
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
 import com.dididi.pocket.ec.item.SearchBarItem;
@@ -64,8 +67,17 @@ public class MessageItemDelegate extends BottomItemDelegate
         }
         //删除消息
         if (view.getId() == R.id.item_message_delete) {
-            mMsgList.remove(message);
-            adapter.notifyDataSetChanged();
+            PocketDialog dialog = PocketDialog.getInstance(getContext());
+            dialog.setTitle("删除聊天")
+                    .setContent("确认删除这条聊天记录吗？")
+                    .isCancelableOnTouchOutside(true)
+                    .setConfirmClickListener(v -> {
+                        mMsgList.remove(message);
+                        adapter.notifyDataSetChanged();
+                        dialog.dismiss();
+                    })
+                    .setCancelClickListener(v -> dialog.dismiss())
+                    .show();
         }
         //置顶消息
         if (view.getId() == R.id.item_message_top) {
@@ -85,51 +97,61 @@ public class MessageItemDelegate extends BottomItemDelegate
             }
         }
         if (view.getId() == R.id.item_message_main_layout) {
-            //利用bundle向chatDelegate传输数据
-            ChatDelegate chatDelegate = new ChatDelegate();
-            Bundle bundle = new Bundle();
-            bundle.putParcelable("message", message);
-            chatDelegate.setArguments(bundle);
-            getParentDelegate().getSupportDelegate().start(chatDelegate);
+            //点击跳转Chat页面
+            getParentDelegate().getSupportDelegate().start(ChatDelegate.getStartChat(message));
         }
     }
 
     /**
-     * 初始化消息列表
+     * 初始化消息列表 不用管它什么意思
      */
     private void initFakeMessage() {
-        for (int i = 0; i < 3; i++) {
-            Message msg1 =
-                    new Message("我是一只大大大大大大大大大大大大大大大大大大大大大大大大大大大大大大大大大野猫",
-                            Message.TYPE_RECEIVED, 1, 10 + i,
-                            "我的名字", "大野猫",
-                            String.valueOf(R.mipmap.avatarman01), String.valueOf(R.mipmap.avatarwoman06),
-                            "27/7/2018");
-            Message msg2 = new Message("我是小野喵",
-                    Message.TYPE_RECEIVED, 1, 20 + i,
-                    "我的名字", "小野喵",
-                    String.valueOf(R.mipmap.avatarman01), String.valueOf(R.mipmap.avatarwoman04),
-                    "27/7/2018");
-            Message msg3 = new Message("我是一朵大菊花",
-                    Message.TYPE_RECEIVED, 1, 30 + i,
-                    "我的名字", "大菊花",
-                    String.valueOf(R.mipmap.avatarman01), String.valueOf(R.mipmap.avatarwoman03),
-                    "27/7/2018");
-            Message msg4 = new Message("我是一把小吉他",
-                    Message.TYPE_RECEIVED, 1, 40 + i,
-                    "我的名字", "大吉他",
-                    String.valueOf(R.mipmap.avatarman01), String.valueOf(R.mipmap.avatarman05),
-                    "27/7/2018");
-            Message msg5 = new Message("我是一只聪明的企鹅",
-                    Message.TYPE_RECEIVED, 1, 10 + i,
-                    "我的名字", "笨企鹅",
-                    String.valueOf(R.mipmap.avatarman01), String.valueOf(R.mipmap.avatarman03),
-                    "27/7/2018");
-            mMsgList.add(msg1);
-            mMsgList.add(msg2);
-            mMsgList.add(msg3);
-            mMsgList.add(msg4);
-            mMsgList.add(msg5);
-        }
+        User sendUser = FakeUser.getUser("1");
+        Message msg1 =
+                new Message(sendUser.getName() + " 祝您长命百岁",
+                        Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("2"),
+                        "27/7/2018");
+        Message msg2 = new Message(sendUser.getName() + " 祝您万事如意",
+                Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("3"),
+                "27/7/2018");
+        Message msg3 = new Message(sendUser.getName() + " 祝您心想事成",
+                Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("4"),
+                "27/7/2018");
+        Message msg4 = new Message(sendUser.getName() + " 祝您吉祥如意",
+                Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("5"),
+                "27/7/2018");
+        Message msg5 = new Message(sendUser.getName() + " 祝您事事顺心",
+                Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("6"),
+                "27/7/2018");
+        Message msg6 =
+                new Message(sendUser.getName() + " 祝您财源滚滚",
+                        Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("7"),
+                        "27/7/2018");
+        Message msg7 = new Message(sendUser.getName() + " 祝您阖家欢乐",
+                Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("8"),
+                "27/7/2018");
+        Message msg8 = new Message(sendUser.getName() + " 祝您六六大顺",
+                Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("9"),
+                "27/7/2018");
+        Message msg9 = new Message(sendUser.getName() + " 祝您福星高照",
+                Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("10"),
+                "27/7/2018");
+        Message msg10 = new Message(sendUser.getName() + " 祝您福如东海",
+                Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("11"),
+                "27/7/2018");
+        Message msg11 = new Message(sendUser.getName() + " 祝您寿比南山",
+                Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("12"),
+                "27/7/2018");
+        mMsgList.add(msg1);
+        mMsgList.add(msg2);
+        mMsgList.add(msg3);
+        mMsgList.add(msg4);
+        mMsgList.add(msg5);
+        mMsgList.add(msg6);
+        mMsgList.add(msg7);
+        mMsgList.add(msg8);
+        mMsgList.add(msg9);
+        mMsgList.add(msg10);
+        mMsgList.add(msg11);
     }
 }

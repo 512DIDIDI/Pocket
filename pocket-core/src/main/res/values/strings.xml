@@ -5,4 +5,6 @@
     <string name="faw_ellipsis_v">{faw-ellipsis-v}</string>
     <string name="faw_bars">{faw-bars}</string>
     <string name="faw_chevron_left">{faw-chevron-left}</string>
+    <string name="confirm">确认</string>
+    <string name="cancel">取消</string>
 </resources>

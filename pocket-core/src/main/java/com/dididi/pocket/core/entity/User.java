@@ -20,7 +20,7 @@ public class User implements Parcelable {
     /** 用户头像 */
     private String avatar;
     /** 用户手机 */
-    private int phone;
+    private String phone;
     /** 用户地址 */
     private String address;
     /** 用户性别 */
@@ -30,64 +30,72 @@ public class User implements Parcelable {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public User setGender(String gender) {
         this.gender = gender;
+        return this;
     }
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public User setId(long id) {
         this.id = id;
+        return this;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public User setEmail(String email) {
         this.email = email;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public User setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public User setPassword(String password) {
         this.password = password;
+        return this;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public User setPhone(String phone) {
         this.phone = phone;
+        return this;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public User setAddress(String address) {
         this.address = address;
+        return this;
     }
 
     public String getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(String avatar) {
+    public User setAvatar(String avatar) {
         this.avatar = avatar;
+        return this;
     }
 
 
@@ -103,7 +111,7 @@ public class User implements Parcelable {
         dest.writeString(this.name);
         dest.writeString(this.password);
         dest.writeString(this.avatar);
-        dest.writeInt(this.phone);
+        dest.writeString(this.phone);
         dest.writeString(this.address);
         dest.writeString(this.gender);
     }
@@ -117,7 +125,7 @@ public class User implements Parcelable {
         this.name = in.readString();
         this.password = in.readString();
         this.avatar = in.readString();
-        this.phone = in.readInt();
+        this.phone = in.readString();
         this.address = in.readString();
         this.gender = in.readString();
     }
