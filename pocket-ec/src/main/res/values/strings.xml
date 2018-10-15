@@ -81,6 +81,7 @@
     <string name="faw_shoe_prints">{faw-shoe-prints}</string>
     <string name="foot">足迹</string>
     <string name="faw_shopping_basket">{faw-shopping-basket}</string>
+    <string name="faw_trash">{faw-trash}</string>
     <string-array name="spinner_goods_sort">
         <item>综合排序</item>
         <item>好评优先</item>

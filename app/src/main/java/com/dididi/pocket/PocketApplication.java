@@ -2,6 +2,7 @@ package com.dididi.pocket;
 
 import android.app.Application;
 
+import com.dididi.pocket.core.fakedata.FakeUser;
 import com.dididi.pocket.ec.icon.FontEcModule;
 import com.dididi.pocket.core.app.Pocket;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
@@ -27,7 +28,7 @@ public class PocketApplication extends Application {
                 .withIcon(new FontEcModule())
                 //.withApiHost("http://192.168.1.105:3000/")
                 .configure();
-        //初始化litePal数据库
-        LitePal.initialize(this);
+        //假用户数据初始化
+        FakeUser.init();
     }
 }

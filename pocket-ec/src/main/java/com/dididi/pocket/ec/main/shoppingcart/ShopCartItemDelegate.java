@@ -9,11 +9,16 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.dididi.pocket.core.app.Pocket;
 import com.dididi.pocket.core.delegates.bottom.BottomItemDelegate;
 import com.dididi.pocket.core.entity.Goods;
+import com.dididi.pocket.core.entity.Message;
 import com.dididi.pocket.core.entity.Shop;
+import com.dididi.pocket.core.fakedata.FakeUser;
+import com.dididi.pocket.core.ui.dialog.PocketDialog;
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
+import com.dididi.pocket.ec.main.message.chat.ChatDelegate;
 import com.dididi.pocket.ec.main.shoppingcart.adapter.ShopCartAdapter;
 import com.mikepenz.iconics.view.IconicsTextView;
 
@@ -45,6 +50,24 @@ public class ShopCartItemDelegate extends BottomItemDelegate
     private ShopCartAdapter mAdapter = null;
     private double mTotalPrice = 0;
     private boolean isAllSelected = false;
+
+    @OnClick(R2.id.delegate_shoppingCart_shopcart_all_delete)
+    public void onDelete() {
+        PocketDialog dialog = PocketDialog.getInstance(getContext());
+        dialog.setTitle("清空购物车")
+                .setContent("确认清空购物车吗")
+                .isCancelableOnTouchOutside(true)
+                .setCancelClickListener(v -> dialog.dismiss())
+                .setConfirmClickListener(v -> {
+                    shopList.clear();
+                    mAdapter.notifyDataSetChanged();
+                    isAllSelected = false;
+                    notifyAllSelectChanged();
+                    notifyPriceChanged();
+                    dialog.dismiss();
+                })
+                .show();
+    }
 
     /**
      * 底部全选按钮点击事件
@@ -102,17 +125,16 @@ public class ShopCartItemDelegate extends BottomItemDelegate
             shop.setShopSelected(!shop.isShopSelected());
             selectShop(position);
             adapter.notifyDataSetChanged();
-            if (isAllSelected){
+            if (isAllSelected) {
                 isAllSelected = false;
                 notifyAllSelectChanged();
             }
             notifyPriceChanged();
         } else if (id == R.id.item_shopcart_shop_chat) {
             //点击选择发起店主聊天
-            content = new StringBuilder();
-            content.append("你向")
-                    .append(shop.getUserName())
-                    .append("发起了聊天");
+            Message message = new Message(null, Message.TYPE_SENT, FakeUser.getUser("1"),
+                    FakeUser.getUser(String.valueOf(shop.getUserId())), "15/10/2018");
+            getParentDelegate().getSupportDelegate().start(ChatDelegate.getStartChat(message));
         } else if (id == R.id.item_shopcart_shop_name) {
             //点击店铺名字
             content = new StringBuilder();
@@ -123,7 +145,8 @@ public class ShopCartItemDelegate extends BottomItemDelegate
             //点击选择商品
             shop.t.setGoodsSelected(!shop.t.isGoodsSelected());
             adapter.notifyDataSetChanged();
-            if (isAllSelected){
+            if (isAllSelected) {
+                //如果全选按钮选中，则更改其为否
                 isAllSelected = false;
                 notifyAllSelectChanged();
             }
@@ -145,21 +168,18 @@ public class ShopCartItemDelegate extends BottomItemDelegate
             //点击减少商品
             int count = shop.t.getGoodsCount();
             if (count == 1) {
-                content = new StringBuilder();
-                content.append(shop.t.getGoodsName())
-                        .append("数量减少为0 已移除商品");
-                removeGoods(position);
+                removeGoods(position, "商品数量为1，继续减少将会删除商品");
             }
-            shop.t.setGoodsCount(--count);
-            adapter.notifyDataSetChanged();
-            notifyPriceChanged();
+            //防止出现count为0的情况
+            if (count != 1) {
+                shop.t.setGoodsCount(--count);
+                adapter.notifyDataSetChanged();
+            }
         } else if (id == R.id.item_shopcart_goods_delete) {
             //点击删除商品
             if (position >= 0 && position < shopList.size()) {
-                removeGoods(position);
-                adapter.notifyDataSetChanged();
+                removeGoods(position, "确认删除商品吗？");
             }
-            notifyPriceChanged();
         } else if (id == R.id.item_shopcart_goods_collect) {
             //点击收藏商品
             content = new StringBuilder();
@@ -175,20 +195,34 @@ public class ShopCartItemDelegate extends BottomItemDelegate
      * 移除商品
      *
      * @param position 该商品对应的位置
+     * @param content  dialog消息内容
      */
-    private void removeGoods(int position) {
-        shopList.remove(position);
-        //判断是否要移除店铺item
-        if (shopList.get(position - 1).isHeader) {
-            //如果前一项是店铺item
-            if (position == shopList.size()) {
-                //并且当前是最后一项 删除店铺item
-                shopList.remove(position - 1);
-            } else if (shopList.get(position).isHeader) {
-                //或者后一项是店铺item 删除店铺item
-                shopList.remove(position - 1);
-            }
-        }
+    private void removeGoods(int position, String content) {
+        PocketDialog dialog = PocketDialog.getInstance(getContext());
+        dialog.setTitle("删除商品")
+                .setContent(content)
+                .isCancelableOnTouchOutside(true)
+                .setConfirmClickListener(v -> {
+                    shopList.remove(position);
+                    //判断是否要移除店铺item
+                    if (shopList.get(position - 1).isHeader) {
+                        //如果前一项是店铺item
+                        if (position == shopList.size()) {
+                            //并且当前是最后一项 删除店铺item
+                            shopList.remove(position - 1);
+                        } else if (shopList.get(position).isHeader) {
+                            //或者后一项是店铺item 删除店铺item
+                            shopList.remove(position - 1);
+                        }
+                    }
+                    //刷新数据
+                    mAdapter.notifyDataSetChanged();
+                    //刷新价格
+                    notifyPriceChanged();
+                    dialog.dismiss();
+                })
+                .setCancelClickListener(v -> dialog.dismiss())
+                .show();
     }
 
     /**
@@ -237,7 +271,10 @@ public class ShopCartItemDelegate extends BottomItemDelegate
         }
     }
 
-    private void notifyAllSelectChanged(){
+    /**
+     * 底部结算栏全选按钮改变
+     */
+    private void notifyAllSelectChanged() {
         if (isAllSelected) {
             mAllSelect.setText(R.string.faw_check_circle);
         } else {
@@ -245,6 +282,9 @@ public class ShopCartItemDelegate extends BottomItemDelegate
         }
     }
 
+    /**
+     * 假数据初始化 不用管他什么意思
+     */
     private void initData() {
         Goods cat = new Goods()
                 .setShopId(1)
@@ -295,13 +335,13 @@ public class ShopCartItemDelegate extends BottomItemDelegate
                 .setGoodsPrice(524)
                 .setGoodsCount(1);
         shopList.add(new Shop(true, "我的店铺名很长价格很贵啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊")
-                .setUserName("dididi").setShopId(1));
+                .setUserId(1).setShopId(1));
         shopList.add(new Shop(cat));
         shopList.add(new Shop(cat2));
-        shopList.add(new Shop(true, "我也是一家店铺").setUserName("lalala").setShopId(2));
+        shopList.add(new Shop(true, "我也是一家店铺").setUserId(2).setShopId(2));
         shopList.add(new Shop(guitar));
         shopList.add(new Shop(guitar2));
-        shopList.add(new Shop(true, "我还是一家店铺").setUserName("hahaha").setShopId(3));
+        shopList.add(new Shop(true, "我还是一家店铺").setUserId(3).setShopId(3));
         shopList.add(new Shop(flower));
         shopList.add(new Shop(flower2));
     }

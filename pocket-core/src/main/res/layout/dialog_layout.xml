@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_layout_main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/screenLRGap"
+    android:paddingRight="@dimen/screenLRGap">
+
+    <LinearLayout
+        android:id="@+id/dialog_layout_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/dialog_background"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+
+        <RelativeLayout
+            android:id="@+id/dialog_layout_top_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottomBarSize"
+            android:background="@drawable/dialog_top_background">
+
+            <com.mikepenz.iconics.view.IconicsTextView
+                android:id="@+id/dialog_layout_title_icon"
+                android:layout_width="@dimen/normalIconSize"
+                android:layout_height="@dimen/normalIconSize"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dividerGap"
+                android:layout_marginRight="@dimen/dividerGap"
+                android:layout_toStartOf="@id/dialog_layout_title"
+                android:layout_toLeftOf="@id/dialog_layout_title"
+                android:textColor="@color/textColorLight"
+                android:visibility="gone" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/dialog_layout_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginEnd="@dimen/dividerGap"
+                android:layout_marginRight="@dimen/dividerGap"
+                android:textColor="@color/textColorLight"
+                android:textSize="@dimen/normalTitleSize" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/dialog_layout_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/screenLRGap"
+                android:layout_marginTop="@dimen/screenLRGap"
+                android:layout_marginRight="@dimen/screenLRGap"
+                android:layout_marginBottom="@dimen/screenLRGap"
+                android:textColor="@color/textColorDark"
+                android:textSize="@dimen/textNormalSize" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/dividerGap"
+            android:layout_marginRight="@dimen/dividerGap"
+            android:background="@color/dividerColor" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/screenLRGap"
+            android:layout_marginTop="@dimen/dividerGap"
+            android:layout_marginRight="@dimen/screenLRGap"
+            android:layout_marginBottom="@dimen/dividerGap">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/dialog_layout_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/screenLRGap"
+                android:layout_marginRight="@dimen/screenLRGap"
+                android:layout_toStartOf="@id/dialog_layout_confirm"
+                android:layout_toLeftOf="@id/dialog_layout_confirm"
+                android:text="@string/cancel"
+                android:textSize="@dimen/textNormalSize"
+                android:visibility="gone" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/dialog_layout_confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/screenLRGap"
+                android:layout_marginLeft="@dimen/screenLRGap"
+                android:text="@string/confirm"
+                android:textColor="@color/textColorDark"
+                android:textSize="@dimen/normalTitleSize"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</RelativeLayout>

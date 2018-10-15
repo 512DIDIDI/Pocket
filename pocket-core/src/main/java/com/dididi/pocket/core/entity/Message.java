@@ -18,9 +18,9 @@ public class Message implements Parcelable {
     /** 消息类型 */
     private int type;
     /** 发送此消息的用户id(即本用户) */
-    private int sendUserId;
+    private User sendUser;
     /** 接收此消息的用户id(即对方用户) */
-    private int receivedUserId;
+    private User receivedUser;
     /** 发送此消息的用户名(即本用户) */
     private String sendUserName;
     /** 接受此消息的用户名(即对方用户) */
@@ -32,19 +32,11 @@ public class Message implements Parcelable {
     /** 消息日期 */
     private String date;
 
-    public Message(String content, int type,
-                   int sendUserId, int receivedUserId,
-                   String sendUserName, String receivedUserName,
-                   String sendUserAvatar, String receivedUserAvatar,
-                   String date) {
+    public Message(String content, int type, User sendUser, User receivedUser, String date) {
         this.content = content;
         this.type = type;
-        this.sendUserId = sendUserId;
-        this.receivedUserId = receivedUserId;
-        this.sendUserName = sendUserName;
-        this.receivedUserName = receivedUserName;
-        this.sendUserAvatar = sendUserAvatar;
-        this.receivedUserAvatar = receivedUserAvatar;
+        this.sendUser = sendUser;
+        this.receivedUser = receivedUser;
         this.date = date;
     }
 
@@ -56,34 +48,33 @@ public class Message implements Parcelable {
         return type;
     }
 
-    public int getSendUserId() {
-        return sendUserId;
+    public User getSendUser() {
+        return sendUser;
     }
 
-    public int getReceivedUserId() {
-        return receivedUserId;
+    public User getReceivedUser() {
+        return receivedUser;
+    }
+
+    public String getSendUserName() {
+        return sendUser.getName();
+    }
+
+    public String getReceivedUserName() {
+        return receivedUser.getName();
     }
 
     public String getSendUserAvatar() {
-        return sendUserAvatar;
+        return sendUser.getAvatar();
+    }
+
+    public String getReceivedUserAvatar() {
+        return receivedUser.getAvatar();
     }
 
     public String getDate() {
         return date;
     }
-
-    public String getSendUserName() {
-        return sendUserName;
-    }
-
-    public String getReceivedUserName() {
-        return receivedUserName;
-    }
-
-    public String getReceivedUserAvatar() {
-        return receivedUserAvatar;
-    }
-
 
     @Override
     public int describeContents() {
@@ -94,8 +85,8 @@ public class Message implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.content);
         dest.writeInt(this.type);
-        dest.writeInt(this.sendUserId);
-        dest.writeInt(this.receivedUserId);
+        dest.writeParcelable(this.sendUser, flags);
+        dest.writeParcelable(this.receivedUser, flags);
         dest.writeString(this.sendUserName);
         dest.writeString(this.receivedUserName);
         dest.writeString(this.sendUserAvatar);
@@ -103,11 +94,14 @@ public class Message implements Parcelable {
         dest.writeString(this.date);
     }
 
+    public Message() {
+    }
+
     protected Message(Parcel in) {
         this.content = in.readString();
         this.type = in.readInt();
-        this.sendUserId = in.readInt();
-        this.receivedUserId = in.readInt();
+        this.sendUser = in.readParcelable(User.class.getClassLoader());
+        this.receivedUser = in.readParcelable(User.class.getClassLoader());
         this.sendUserName = in.readString();
         this.receivedUserName = in.readString();
         this.sendUserAvatar = in.readString();
@@ -115,7 +109,7 @@ public class Message implements Parcelable {
         this.date = in.readString();
     }
 
-    public static final Parcelable.Creator<Message> CREATOR = new Parcelable.Creator<Message>() {
+    public static final Creator<Message> CREATOR = new Creator<Message>() {
         @Override
         public Message createFromParcel(Parcel source) {
             return new Message(source);

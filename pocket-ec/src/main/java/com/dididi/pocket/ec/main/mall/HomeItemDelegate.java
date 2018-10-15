@@ -15,6 +15,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.dididi.pocket.core.entity.User;
+import com.dididi.pocket.core.fakedata.FakeUser;
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
 import com.dididi.pocket.ec.item.CircleIconItem;
@@ -212,14 +214,20 @@ public class HomeItemDelegate extends BottomItemDelegate
     private void initFakeNews() {
         mNews.clear();
         News[] news = {
-                new News(String.valueOf(R.mipmap.avatarman02),
-                        "大野猫", "我是一只大大大大野猫", "27/7/2018"),
-                new News(String.valueOf(R.mipmap.avatarwoman01),
-                        "大菊花", "我是一朵大菊花", "28/7/2018"),
-                new News(String.valueOf(R.mipmap.avatarwoman03), "大吉它",
-                        "我是一把小吉他小呀小呀小呀小呀小呀小呀小呀小呀小吉他", "26/7/2018"),
+                new News(FakeUser.getUser("2"), "真的累死了", "27/7/2018"),
+                new News(FakeUser.getUser("3"),
+                        "终于快打完了终于快打完了终于快打完了终于快打完了完了", "28/7/2018"),
+                new News(FakeUser.getUser("4"), "细节需要优化一下", "26/7/2018"),
+                new News(FakeUser.getUser("5"), "今天测试一下这个", "27/7/2018"),
+                new News(FakeUser.getUser("6"), "明天测试一下那个", "28/7/2018"),
+                new News(FakeUser.getUser("8"), "这其实是朋友圈", "26/7/2018"),
+                new News(FakeUser.getUser("9"), "这里应该做成下拉刷新", "27/7/2018"),
+                new News(FakeUser.getUser("10"), "以后再改吧 现在懒得写了", "28/7/2018"),
+                new News(FakeUser.getUser("11"), "这其实不是很正常", "26/7/2018"),
+                new News(FakeUser.getUser("12"), "这些全都是假象", "27/7/2018"),
+
         };
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 11; i++) {
             Random random = new Random();
             int index = random.nextInt(news.length);
             mNews.add(news[index]);
@@ -268,11 +276,12 @@ public class HomeItemDelegate extends BottomItemDelegate
 
             @Override
             public void onNotSignIn() {
+                User me = FakeUser.getUser("1");
                 GlideApp.with(HomeItemDelegate.this)
-                        .load(R.mipmap.avatarman01)
+                        .load(Integer.parseInt(me.getAvatar()))
                         .into(mAvatar);
-                mName.setText("尚未登录");
-                mEmail.setText("点击登录账号");
+                mName.setText(me.getName());
+                mEmail.setText(me.getEmail());
                 mName.setOnClickListener(view ->
                         getParentDelegate().getSupportDelegate().startWithPop(new SignInDelegate()));
                 mEmail.setOnClickListener(view ->

@@ -10,6 +10,7 @@ import android.os.Parcelable;
 
 public class News implements Parcelable {
 
+    private User user;
     private String avatar;
     private String userName;
     private String content;
@@ -30,22 +31,11 @@ public class News implements Parcelable {
     private int comment;
 
     /** 构造函数必须传入这些值 */
-    public News(String avatar, String userName,
+    public News(User user,
                 String content, String date) {
-        this.avatar = avatar;
-        this.userName = userName;
+        this.user = user;
         this.content = content;
         this.date = date;
-    }
-
-    public News setAvatar(String avatar) {
-        this.avatar = avatar;
-        return this;
-    }
-
-    public News setUserName(String userName) {
-        this.userName = userName;
-        return this;
     }
 
     public News setContent(String content) {
@@ -129,11 +119,11 @@ public class News implements Parcelable {
     }
 
     public String getAvatar() {
-        return avatar;
+        return user.getAvatar();
     }
 
     public String getUserName() {
-        return userName;
+        return user.getName();
     }
 
     public String getContent() {
@@ -208,6 +198,7 @@ public class News implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(this.user, flags);
         dest.writeString(this.avatar);
         dest.writeString(this.userName);
         dest.writeString(this.content);
@@ -229,6 +220,7 @@ public class News implements Parcelable {
     }
 
     protected News(Parcel in) {
+        this.user = in.readParcelable(User.class.getClassLoader());
         this.avatar = in.readString();
         this.userName = in.readString();
         this.content = in.readString();
@@ -249,7 +241,7 @@ public class News implements Parcelable {
         this.comment = in.readInt();
     }
 
-    public static final Parcelable.Creator<News> CREATOR = new Parcelable.Creator<News>() {
+    public static final Creator<News> CREATOR = new Creator<News>() {
         @Override
         public News createFromParcel(Parcel source) {
             return new News(source);
