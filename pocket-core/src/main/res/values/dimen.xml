@@ -9,6 +9,10 @@
     <!--普通按钮文字大小-->
     <dimen name="textNormalSize">14sp</dimen>
     <dimen name="buttonTextSize">14sp</dimen>
+    <!--快速入口图标大小-->
+    <dimen name="entryIconSize">40dp</dimen>
+    <!--搜索框高度-->
+    <dimen name="searchBarSize">40dp</dimen>
     <!--普通标题文字大小-->
     <dimen name="normalTitleSize">16sp</dimen>
     <!--toolbar文字大小-->

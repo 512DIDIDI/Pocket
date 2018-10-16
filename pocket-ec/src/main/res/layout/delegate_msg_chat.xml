@@ -23,8 +23,8 @@
                     android:layout_width="@dimen/normalIconSize"
                     android:layout_height="@dimen/normalIconSize"
                     android:layout_gravity="start|center_vertical"
-                    android:layout_marginLeft="@dimen/screenLRGap"
                     android:layout_marginStart="@dimen/screenLRGap"
+                    android:layout_marginLeft="@dimen/screenLRGap"
                     android:gravity="center"
                     android:text="@string/faw_chevron_left"
                     android:textColor="@color/textColorLight" />
@@ -63,50 +63,67 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/bottomBarSize"
-        android:layout_alignParentBottom="true"
-        android:background="@color/backgroundColorWhite"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
 
-        <com.mikepenz.iconics.view.IconicsTextView
-            android:id="@+id/delegate_msg_chat_voice"
-            android:layout_width="@dimen/normalIconSize"
-            android:layout_height="@dimen/normalIconSize"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/screenLRGap"
-            android:layout_marginRight="@dimen/screenLRGap"
-            android:gravity="center"
-            android:text="@string/faw_microphone"
-            android:textColor="@color/textColorDark" />
+        <RelativeLayout
+            android:id="@+id/delegate_msg_chat_edit_page"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottomBarSize"
+            android:background="@color/backgroundColorWhite">
 
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/delegate_msg_chat_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="@dimen/dividerGap"
-            android:layout_toEndOf="@id/delegate_msg_chat_voice"
-            android:layout_toLeftOf="@id/delegate_msg_chat_more"
-            android:layout_toRightOf="@id/delegate_msg_chat_voice"
-            android:layout_toStartOf="@id/delegate_msg_chat_more"
-            android:imeOptions="actionSend"
-            android:inputType="text"
-            android:textColor="@color/textColorBlack"
-            android:textSize="@dimen/textNormalSize" />
+            <com.mikepenz.iconics.view.IconicsTextView
+                android:id="@+id/delegate_msg_chat_voice"
+                android:layout_width="@dimen/normalIconSize"
+                android:layout_height="@dimen/normalIconSize"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/screenLRGap"
+                android:layout_marginRight="@dimen/screenLRGap"
+                android:gravity="center"
+                android:text="@string/faw_microphone"
+                android:textColor="@color/textColorDark" />
 
-        <com.mikepenz.iconics.view.IconicsTextView
-            android:id="@+id/delegate_msg_chat_more"
-            android:layout_width="@dimen/normalIconSize"
-            android:layout_height="@dimen/normalIconSize"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/screenLRGap"
-            android:layout_marginRight="@dimen/screenLRGap"
-            android:gravity="center"
-            android:text="@string/faw_chevron_circle_down"
-            android:textColor="@color/textColorDark" />
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/delegate_msg_chat_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="@dimen/dividerGap"
+                android:layout_toStartOf="@id/delegate_msg_chat_more"
+                android:layout_toLeftOf="@id/delegate_msg_chat_more"
+                android:layout_toEndOf="@id/delegate_msg_chat_voice"
+                android:layout_toRightOf="@id/delegate_msg_chat_voice"
+                android:imeOptions="actionSend"
+                android:inputType="text"
+                android:textColor="@color/textColorBlack"
+                android:textSize="@dimen/textNormalSize" />
+
+            <com.mikepenz.iconics.view.IconicsTextView
+                android:id="@+id/delegate_msg_chat_more"
+                android:layout_width="@dimen/normalIconSize"
+                android:layout_height="@dimen/normalIconSize"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/screenLRGap"
+                android:layout_marginRight="@dimen/screenLRGap"
+                android:gravity="center"
+                android:text="@string/faw_chevron_circle_down"
+                android:textColor="@color/textColorDark" />
+        </RelativeLayout>
+
+        <com.dididi.pocket.core.ui.horizontalrecyclerview.GridRecyclerView
+            android:id="@+id/delegate_msg_chat_more_page"
+            android:layout_width="match_parent"
+            android:layout_height="144dp"
+            android:layout_below="@id/delegate_msg_chat_edit_page" />
+
+        <com.dididi.pocket.core.ui.pageindicator.DotPageIndicator
+            android:id="@+id/delegate_msg_chat_more_page_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/delegate_msg_chat_more_page" />
     </RelativeLayout>
 </RelativeLayout>

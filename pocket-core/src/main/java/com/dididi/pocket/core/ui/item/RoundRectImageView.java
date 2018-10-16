@@ -1,4 +1,4 @@
-package com.dididi.pocket.ec.item;
+package com.dididi.pocket.core.ui.item;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -15,7 +15,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 
-import com.dididi.pocket.ec.R;
+import com.dididi.pocket.core.R;
 
 
 /**

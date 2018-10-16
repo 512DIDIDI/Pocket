@@ -22,7 +22,7 @@
                 android:background="@color/toolbarColor"
                 app:layout_scrollFlags="scroll|enterAlways|snap">
 
-                <com.dididi.pocket.ec.item.SearchBarItem
+                <com.dididi.pocket.core.ui.item.SearchBarItem
                     android:id="@+id/delegate_mall_goods_searchBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

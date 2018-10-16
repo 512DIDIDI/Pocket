@@ -83,7 +83,7 @@
             android:background="@color/backgroundColorWhite"
             android:orientation="vertical">
             <!--钱包-->
-            <com.dididi.pocket.ec.item.ListButtonItem
+            <com.dididi.pocket.core.ui.item.ListButtonItem
                 android:id="@+id/delegate_personal_personal_wallet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -91,14 +91,14 @@
                 app:list_button_content="@string/wallet"
                 app:list_button_icon="@string/faw_wallet" />
             <!--订单-->
-            <com.dididi.pocket.ec.item.ListButtonItem
+            <com.dididi.pocket.core.ui.item.ListButtonItem
                 android:id="@+id/delegate_personal_personal_order"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:list_button_content="@string/order"
                 app:list_button_icon="@string/faw_shopping_basket" />
             <!--评论-->
-            <com.dididi.pocket.ec.item.ListButtonItem
+            <com.dididi.pocket.core.ui.item.ListButtonItem
                 android:id="@+id/delegate_personal_personal_comment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -106,14 +106,14 @@
                 app:list_button_content="@string/comment"
                 app:list_button_icon="{faw-hashtag}" />
             <!--收藏-->
-            <com.dididi.pocket.ec.item.ListButtonItem
+            <com.dididi.pocket.core.ui.item.ListButtonItem
                 android:id="@+id/delegate_personal_personal_collect"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:list_button_content="@string/collect"
                 app:list_button_icon="@string/faw_collect" />
             <!--关注-->
-            <com.dididi.pocket.ec.item.ListButtonItem
+            <com.dididi.pocket.core.ui.item.ListButtonItem
                 android:id="@+id/delegate_personal_personal_attention"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
                 app:list_button_content="@string/attention"
                 app:list_button_icon="@string/faw_attention" />
             <!--足迹-->
-            <com.dididi.pocket.ec.item.ListButtonItem
+            <com.dididi.pocket.core.ui.item.ListButtonItem
                 android:id="@+id/delegate_personal_personal_history"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
