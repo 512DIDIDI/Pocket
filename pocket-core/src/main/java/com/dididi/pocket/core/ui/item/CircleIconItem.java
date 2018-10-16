@@ -1,4 +1,4 @@
-package com.dididi.pocket.ec.item;
+package com.dididi.pocket.core.ui.item;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -7,7 +7,8 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.RelativeLayout;
 
-import com.dididi.pocket.ec.R;
+
+import com.dididi.pocket.core.R;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 

@@ -26,7 +26,7 @@
             android:text="@string/faw_circle"
             android:textColor="@color/textColorGray" />
         <!--商品图片-->
-        <com.dididi.pocket.ec.item.RoundRectImageView
+        <com.dididi.pocket.core.ui.item.RoundRectImageView
             android:id="@+id/item_shopcart_goods_img"
             android:layout_width="@dimen/bigAvatarSize"
             android:layout_height="@dimen/bigAvatarSize"

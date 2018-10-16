@@ -24,8 +24,6 @@ import java.util.LinkedHashMap;
 public class PocketBottomDelegate extends BaseBottomDelegate {
     //底部导航栏
 
-
-
     @Override
     public LinkedHashMap<BottomTabBean, BottomItemDelegate> setItems(ItemFactory factory) {
         final LinkedHashMap<BottomTabBean, BottomItemDelegate> items = new LinkedHashMap<>();

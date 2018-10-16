@@ -2,7 +2,6 @@ package com.dididi.pocket.ec.main.mall.goods;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -11,7 +10,7 @@ import android.widget.Toast;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
-import com.dididi.pocket.ec.item.SearchBarItem;
+import com.dididi.pocket.core.ui.item.SearchBarItem;
 import com.dididi.pocket.ec.main.mall.goods.adapter.GoodsAdapter;
 import com.dididi.pocket.core.entity.Goods;
 import com.dididi.pocket.core.delegates.PocketDelegate;
@@ -20,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 
 /**

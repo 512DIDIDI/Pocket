@@ -75,4 +75,6 @@ dependencies {
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.42'
     //侧滑菜单依赖
     api 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.2.1'
+    //android工具
+    api 'com.blankj:utilcode:1.21.0'
 }

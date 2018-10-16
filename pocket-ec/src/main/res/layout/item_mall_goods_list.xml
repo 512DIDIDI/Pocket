@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/screenLRGap">
     <!--TODO:有一点细节尚未做好 item大小需要固定-->
     <!--商品图片-->
-    <com.dididi.pocket.ec.item.RoundRectImageView
+    <com.dididi.pocket.core.ui.item.RoundRectImageView
         android:id="@+id/item_mall_goods_list_img"
         android:layout_width="80dp"
         android:layout_height="80dp"
