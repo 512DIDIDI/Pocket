@@ -206,7 +206,7 @@ public class HomeItemDelegate extends BottomItemDelegate
             });
         } else if (view.getId() == mSearchBarItem.getSearchIconId()) {
             mSearchBarItem.setSearchIconListener(view12 ->
-                    Toast.makeText(getContext(), "click search", Toast.LENGTH_SHORT).show());
+                    Toast.makeText(getContext(), "点击搜索", Toast.LENGTH_SHORT).show());
         }
     }
 
