@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.dididi.pocket.core.app.Pocket;
 import com.dididi.pocket.core.delegates.bottom.BottomItemDelegate;
 import com.dididi.pocket.core.entity.Goods;
 import com.dididi.pocket.core.entity.Message;
@@ -18,6 +17,7 @@ import com.dididi.pocket.core.fakedata.FakeUser;
 import com.dididi.pocket.core.ui.dialog.PocketDialog;
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
+import com.dididi.pocket.ec.main.mall.goods.details.MerchantPageDelegate;
 import com.dididi.pocket.ec.main.message.chat.ChatDelegate;
 import com.dididi.pocket.ec.main.shoppingcart.adapter.ShopCartAdapter;
 import com.mikepenz.iconics.view.IconicsTextView;
@@ -136,11 +136,9 @@ public class ShopCartItemDelegate extends BottomItemDelegate
                     FakeUser.getUser(String.valueOf(shop.getUserId())), "15/10/2018");
             getParentDelegate().getSupportDelegate().start(ChatDelegate.getStartChat(message));
         } else if (id == R.id.item_shopcart_shop_name) {
-            //点击店铺名字
             content = new StringBuilder();
-            content.append("你点击了")
-                    .append(shop.header)
-                    .append("店铺");
+            content.append("功能尚未开发完毕，请侧滑返回");
+            getParentDelegate().getSupportDelegate().start(MerchantPageDelegate.getStartShop(shop.getShopId()));
         } else if (id == R.id.item_shopcart_goods_select) {
             //点击选择商品
             shop.t.setGoodsSelected(!shop.t.isGoodsSelected());
@@ -288,60 +286,53 @@ public class ShopCartItemDelegate extends BottomItemDelegate
     private void initData() {
         Goods cat = new Goods()
                 .setShopId(1)
-                .setShopName("我的店铺名很长价格很贵")
-                .setGoodsImg(String.valueOf(R.drawable.cat))
-                .setGoodsName("我是一只大猫啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊")
-                .setGoodsStyle("橘喵")
+                .setGoodsImg(String.valueOf(R.mipmap.banner_04))
+                .setGoodsName("试试点击全选按钮")
+                .setGoodsStyle("这是商品样式")
                 .setGoodsPrice(23333333)
                 .setGoodsCount(1);
         Goods cat2 = new Goods()
                 .setShopId(1)
-                .setShopName("我的店铺名很长价格很贵")
-                .setGoodsImg(String.valueOf(R.drawable.cat))
-                .setGoodsName("我是一只假黑猫")
-                .setGoodsStyle("黑猫")
+                .setGoodsImg(String.valueOf(R.mipmap.banner_02))
+                .setGoodsName("试试向左滑动")
+                .setGoodsStyle("style")
                 .setGoodsPrice(100)
                 .setGoodsCount(1);
         Goods guitar = new Goods()
                 .setShopId(2)
-                .setShopName("我也是一家店铺")
-                .setGoodsImg(String.valueOf(R.drawable.guitar))
-                .setGoodsName("我是一把小吉他")
-                .setGoodsStyle("大吉它")
+                .setGoodsImg(String.valueOf(R.mipmap.banner_01))
+                .setGoodsName("试试点击删除商品")
+                .setGoodsStyle("小喵")
                 .setGoodsPrice(666)
                 .setGoodsCount(2);
         Goods guitar2 = new Goods()
                 .setShopId(2)
-                .setShopName("我也是一家店铺")
-                .setGoodsImg(String.valueOf(R.drawable.guitar))
-                .setGoodsName("我是一把大吉他")
-                .setGoodsStyle("真的大吉它")
+                .setGoodsImg(String.valueOf(R.mipmap.banner_02))
+                .setGoodsName("试试减少增加商品")
+                .setGoodsStyle("大喵")
                 .setGoodsPrice(555)
                 .setGoodsCount(2);
         Goods flower = new Goods()
                 .setShopId(3)
-                .setShopName("我还是一家店铺")
-                .setGoodsImg(String.valueOf(R.drawable.flower))
-                .setGoodsName("菊花")
-                .setGoodsStyle("小菊花")
+                .setGoodsImg(String.valueOf(R.mipmap.banner_05))
+                .setGoodsName("试试点击与店主聊天icon")
+                .setGoodsStyle("little puppy")
                 .setGoodsPrice(524)
                 .setGoodsCount(1);
         Goods flower2 = new Goods()
                 .setShopId(3)
-                .setShopName("我还是一家店铺")
-                .setGoodsImg(String.valueOf(R.drawable.flower))
-                .setGoodsName("菊花")
-                .setGoodsStyle("大菊花")
+                .setGoodsImg(String.valueOf(R.mipmap.banner_03))
+                .setGoodsName("试试点击toolbar清空购物车")
+                .setGoodsStyle("big puppy")
                 .setGoodsPrice(524)
                 .setGoodsCount(1);
-        shopList.add(new Shop(true, "我的店铺名很长价格很贵啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊")
-                .setUserId(1).setShopId(1));
+        shopList.add(new Shop(true, "老王的店").setUserId(5).setShopId(1));
         shopList.add(new Shop(cat));
         shopList.add(new Shop(cat2));
-        shopList.add(new Shop(true, "我也是一家店铺").setUserId(2).setShopId(2));
+        shopList.add(new Shop(true, "张三的店").setUserId(2).setShopId(2));
         shopList.add(new Shop(guitar));
         shopList.add(new Shop(guitar2));
-        shopList.add(new Shop(true, "我还是一家店铺").setUserId(3).setShopId(3));
+        shopList.add(new Shop(true, "李四的店").setUserId(3).setShopId(3));
         shopList.add(new Shop(flower));
         shopList.add(new Shop(flower2));
     }

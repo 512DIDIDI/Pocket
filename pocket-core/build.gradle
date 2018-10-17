@@ -77,4 +77,7 @@ dependencies {
     api 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.2.1'
     //android工具
     api 'com.blankj:utilcode:1.21.0'
+    //tabLayout依赖
+    api 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
+    api 'com.ogaclejapan.smarttablayout:utils-v4:1.6.1@aar'
 }

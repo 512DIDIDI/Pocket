@@ -87,8 +87,7 @@ public class ChatDelegate extends PocketDelegate {
      * 只能通过ChatDelegate的getStartChat()方法获取ChatDelegate
      */
     @SuppressLint("ValidFragment")
-    private ChatDelegate() {
-    }
+    private ChatDelegate() { }
 
     @Override
     public Object setLayout() {

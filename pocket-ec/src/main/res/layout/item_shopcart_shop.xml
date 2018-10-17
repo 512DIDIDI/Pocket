@@ -29,8 +29,8 @@
         android:layout_width="@dimen/normalIconSize"
         android:layout_height="@dimen/normalIconSize"
         android:layout_centerVertical="true"
-        android:layout_marginStart="@dimen/dividerGap"
         android:layout_marginLeft="@dimen/dividerGap"
+        android:layout_marginRight="@dimen/dividerGap"
         android:layout_toEndOf="@id/item_shopcart_shop_select"
         android:layout_toRightOf="@id/item_shopcart_shop_select"
         android:gravity="center"
@@ -42,15 +42,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginEnd="@dimen/dividerGap"
-        android:layout_marginRight="@dimen/dividerGap"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
         android:layout_toEndOf="@id/item_shopcart_shop_chat"
         android:layout_toRightOf="@id/item_shopcart_shop_chat"
         android:ellipsize="end"
         android:gravity="center"
-        android:maxLines="1"
+        android:maxEms="15"
         android:textAlignment="center"
         android:textColor="@color/textColorIcon"
         android:textSize="@dimen/textSmallSize" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/dividerGap"
+        android:layout_marginRight="@dimen/dividerGap"
+        android:layout_toEndOf="@id/item_shopcart_shop_name"
+        android:layout_toRightOf="@id/item_shopcart_shop_name"
+        android:text="@string/go"
+        android:textAlignment="center"
+        android:textColor="@color/textColorIcon"
+        android:textSize="@dimen/textNormalSize" />
 
 </RelativeLayout>

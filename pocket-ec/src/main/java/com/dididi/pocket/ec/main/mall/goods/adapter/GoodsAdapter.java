@@ -5,6 +5,7 @@ import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.dididi.pocket.core.ui.item.RoundRectImageView;
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.core.entity.Goods;
 import com.dididi.pocket.core.ui.GlideApp;

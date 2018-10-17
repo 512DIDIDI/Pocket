@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item_mall_shop_list_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/screenLRGap"
+    android:paddingRight="@dimen/screenLRGap">
+    <!--TODO:有一点细节尚未做好 item大小需要固定-->
+    <!--店铺图片-->
+    <com.dididi.pocket.core.ui.item.RoundRectImageView
+        android:id="@+id/item_mall_shop_list_img"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/dividerGap"
+        android:layout_marginBottom="@dimen/dividerGap"
+        app:roundRect_corner="@dimen/dividerGap" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/item_mall_shop_list_img"
+        android:layout_toRightOf="@id/item_mall_shop_list_img"
+        android:gravity="center"
+        android:paddingStart="@dimen/dividerGap"
+        android:paddingLeft="@dimen/dividerGap"
+        android:paddingTop="@dimen/dividerGap"
+        android:paddingEnd="0dp"
+        android:paddingRight="0dp"
+        android:paddingBottom="@dimen/dividerGap">
+        <!--店铺名-->
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/item_mall_shop_list_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dividerGap"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAllCaps="false"
+            android:textColor="@color/textColorDark"
+            android:textSize="@dimen/textNormalSize" />
+        <!--店铺价格区间-->
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/item_mall_shop_list_price_range"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_mall_shop_list_name"
+            android:layout_marginEnd="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginBottom="@dimen/dividerGap"
+            android:text="@string/price_range"
+            android:textColor="@color/textColorTight"
+            android:textSize="@dimen/textNormalSize" />
+        <!--最低价格-->
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/item_mall_shop_list_price_min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_mall_shop_list_name"
+            android:layout_toEndOf="@id/item_mall_shop_list_price_range"
+            android:layout_toRightOf="@id/item_mall_shop_list_price_range"
+            android:textAllCaps="false"
+            android:textColor="@color/textColorRed"
+            android:textSize="@dimen/textNormalSize" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/item_mall_shop_list_price_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_mall_shop_list_name"
+            android:layout_toEndOf="@id/item_mall_shop_list_price_min"
+            android:layout_toRightOf="@id/item_mall_shop_list_price_min"
+            android:text="@string/range_to"
+            android:textColor="@color/textColorDark"
+            android:textSize="@dimen/textNormalSize" />
+        <!--最高价格-->
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/item_mall_shop_list_price_max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_mall_shop_list_name"
+            android:layout_toEndOf="@id/item_mall_shop_list_price_to"
+            android:layout_toRightOf="@id/item_mall_shop_list_price_to"
+            android:textAllCaps="false"
+            android:textColor="@color/textColorRed"
+            android:textSize="@dimen/textNormalSize" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/item_mall_shop_list_price_yuan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_mall_shop_list_name"
+            android:layout_marginEnd="@dimen/dividerGap"
+            android:layout_marginRight="@dimen/dividerGap"
+            android:layout_toEndOf="@id/item_mall_shop_list_price_max"
+            android:layout_toRightOf="@id/item_mall_shop_list_price_max"
+            android:text="@string/yuan"
+            android:textAllCaps="false"
+            android:textColor="@color/textColorRed"
+            android:textSize="@dimen/textNormalSize" />
+        <!--店铺总销量-->
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/item_mall_shop_list_sales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_mall_shop_list_price_range"
+            android:layout_toStartOf="@id/item_mall_shop_list_sales_buy"
+            android:layout_toLeftOf="@id/item_mall_shop_list_sales_buy"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/textColorHint"
+            android:textSize="@dimen/textSmallSize" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/item_mall_shop_list_sales_buy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_mall_shop_list_price_range"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/alreadybuy"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/textColorHint"
+            android:textSize="@dimen/textSmallSize" />
+        <!--店铺评价-->
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/item_mall_shop_list_evaluate_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_mall_shop_list_price_range"
+            android:layout_marginEnd="3dp"
+            android:layout_marginRight="3dp"
+            android:text="@string/evaluation"
+            android:textColor="@color/textColorHint"
+            android:textSize="@dimen/textSmallSize" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/item_mall_shop_list_evaluate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_mall_shop_list_price_range"
+            android:layout_toEndOf="@id/item_mall_shop_list_evaluate_name"
+            android:layout_toRightOf="@id/item_mall_shop_list_evaluate_name"
+            android:textColor="@color/textColorHint"
+            android:textSize="@dimen/textSmallSize" />
+    </RelativeLayout>
+    <!--分割线-->
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/dividerGap"
+        android:layout_marginLeft="@dimen/dividerGap"
+        android:layout_toEndOf="@id/item_mall_shop_list_img"
+        android:layout_toRightOf="@id/item_mall_shop_list_img"
+        android:background="@color/dividerColor" />
+</RelativeLayout>
