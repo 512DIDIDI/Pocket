@@ -219,11 +219,11 @@ public class HomeItemDelegate extends BottomItemDelegate
                 new News(FakeUser.getUser("4"), "试试点击摄影入口", "26/7/2018"),
                 new News(FakeUser.getUser("5"), "试试下拉刷新", "27/7/2018"),
                 new News(FakeUser.getUser("6"), "试试点击摄影入口", "28/7/2018"),
-                new News(FakeUser.getUser("8"), "试试向右滑动", "26/7/2018"),
+                new News(FakeUser.getUser("8"), "试试左边缘滑动", "26/7/2018"),
                 new News(FakeUser.getUser("9"), "试试下拉刷新", "27/7/2018"),
-                new News(FakeUser.getUser("10"), "试试向右滑动", "28/7/2018"),
+                new News(FakeUser.getUser("10"), "试试左边缘滑动", "28/7/2018"),
                 new News(FakeUser.getUser("11"), "试试点击摄影入口", "26/7/2018"),
-                new News(FakeUser.getUser("12"), "试试向右滑动", "27/7/2018"),
+                new News(FakeUser.getUser("12"), "试试左边缘滑动", "27/7/2018"),
 
         };
         for (int i = 0; i < 11; i++) {
