@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--文字颜色要用android:color-->
+    <item android:state_selected="true" android:color="@color/textColorDark"/>
+    <item android:state_pressed="true" android:color="@color/textColorDark"/>
+    <!--默认状态放置在最后，从上而下-->
+    <item android:color="@color/textColorLight"/>
+
+</selector>

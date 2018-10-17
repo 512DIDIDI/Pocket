@@ -45,17 +45,19 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <!--商品选择入口-->
-            <android.support.v7.widget.LinearLayoutCompat
+            <com.ogaclejapan.smarttablayout.SmartTabLayout
                 android:id="@+id/delegate_mall_goods_chooseBar"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/searchBarSize"
                 android:layout_alignParentTop="true"
-                android:background="@color/toolbarColor"
-                android:orientation="horizontal"
                 android:paddingLeft="@dimen/screenLRGap"
-                android:paddingRight="@dimen/screenLRGap">
-
-            </android.support.v7.widget.LinearLayoutCompat>
+                android:paddingRight="@dimen/screenLRGap"
+                android:background="@color/toolbarColor"
+                app:stl_clickable="true"
+                app:stl_defaultTabBackground="@drawable/selector_mall_top_bar"
+                app:stl_defaultTabTextColor="@drawable/selector_mall_top_bar_text"
+                app:stl_defaultTabTextSize="@dimen/textNormalSize"
+                app:stl_distributeEvenly="true" />
 
             <!--商品排序-->
             <android.support.v7.widget.LinearLayoutCompat
@@ -104,14 +106,12 @@
                     android:text="@string/faw_th_list"
                     android:textColor="@color/textColorDark" />
             </android.support.v7.widget.LinearLayoutCompat>
-            <!--商品list-->
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/delegate_mall_goods_goodsList"
+            <!--展示商品的fragment-->
+            <android.support.v4.view.ViewPager
+                android:id="@+id/delegate_mall_goods_viewpager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/delegate_mall_goods_sortBar"
-                android:background="@color/backgroundColorWhite"
-                tools:ignore="PrivateResource" />
+                android:layout_below="@id/delegate_mall_goods_sortBar" />
         </RelativeLayout>
     </android.support.design.widget.CoordinatorLayout>
 

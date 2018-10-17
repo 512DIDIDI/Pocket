@@ -2,44 +2,38 @@ package com.dididi.pocket.ec.main.mall.goods;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.Toast;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
 import com.dididi.pocket.core.ui.item.SearchBarItem;
-import com.dididi.pocket.ec.main.mall.goods.adapter.GoodsAdapter;
-import com.dididi.pocket.core.entity.Goods;
 import com.dididi.pocket.core.delegates.PocketDelegate;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.dididi.pocket.ec.main.mall.goods.fragment.AllGoodsList;
+import com.dididi.pocket.ec.main.mall.goods.fragment.BestGoodsList;
+import com.dididi.pocket.ec.main.mall.goods.fragment.MerchantGoodsList;
+import com.ogaclejapan.smarttablayout.SmartTabLayout;
+import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
+import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 
 import butterknife.BindView;
 
 
 /**
- * Created by dididi
- * on 05/08/2018 .
+ * @describe 商品页面
+ * @author dididi
+ * @since 05/08/2018 .
  */
 
 public class GoodsListDelegate extends PocketDelegate
-        implements View.OnClickListener, BaseQuickAdapter.OnItemChildClickListener,
-        BaseQuickAdapter.OnItemClickListener {
+        implements View.OnClickListener {
 
-    @BindView(R2.id.delegate_mall_goods_goodsList)
-    RecyclerView mRecyclerView = null;
+    @BindView(R2.id.delegate_mall_goods_viewpager)
+    ViewPager mViewPager = null;
     @BindView(R2.id.delegate_mall_goods_searchBar)
     SearchBarItem mSearchBar = null;
-
-
-    private List<Goods> mGoodsList = new ArrayList<>();
-    @SuppressWarnings("FieldCanBeLocal")
-    private GoodsAdapter mAdapter = null;
-
+    @BindView(R2.id.delegate_mall_goods_chooseBar)
+    SmartTabLayout mChooseBar = null;
 
     @Override
     public Object setLayout() {
@@ -48,13 +42,14 @@ public class GoodsListDelegate extends PocketDelegate
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-        initGoods();
-        LinearLayoutManager manager = new LinearLayoutManager(this.getContext());
-        mRecyclerView.setLayoutManager(manager);
-        mAdapter = new GoodsAdapter(R.layout.item_mall_goods_list, mGoodsList);
-        mAdapter.setOnItemChildClickListener(this);
-        mAdapter.setOnItemClickListener(this);
-        mRecyclerView.setAdapter(mAdapter);
+        FragmentPagerItemAdapter adapter =
+                new FragmentPagerItemAdapter(getChildFragmentManager(),FragmentPagerItems.with(getContext())
+                        .add(R.string.all,AllGoodsList.class)
+                        .add(R.string.best,BestGoodsList.class)
+                        .add(R.string.store,MerchantGoodsList.class)
+                        .create());
+        mViewPager.setAdapter(adapter);
+        mChooseBar.setViewPager(mViewPager);
         mSearchBar.setLeftIcon("{faw-chevron-left}");
         mSearchBar.setLeftIconListener(this);
     }
@@ -76,57 +71,4 @@ public class GoodsListDelegate extends PocketDelegate
         }
     }
 
-    @Override
-    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-        StringBuilder content = new StringBuilder();
-        Goods goods = (Goods) adapter.getItem(position);
-        if (goods == null) {
-            throw new RuntimeException("goods can not be null!");
-        }
-        if (view.getId() == R.id.item_mall_goods_list_enter) {
-            content.append("点击进入")
-                    .append(goods.getShopName())
-                    .append("商铺");
-        }
-        Toast.makeText(getContext(), content.toString(), Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        Goods goods = (Goods) adapter.getItem(position);
-        if (goods == null) {
-            throw new RuntimeException("goods can not be null");
-        }
-        Toast.makeText(getContext(), "点击进入" + goods.getGoodsName() + "商品页面",
-                Toast.LENGTH_SHORT).show();
-    }
-
-    private void initGoods() {
-        for (int i = 0; i < 5; i++) {
-            Goods cat = new Goods()
-                    .setShopId(1)
-                    .setShopName("我是一家店铺")
-                    .setGoodsImg(String.valueOf(R.drawable.cat))
-                    .setGoodsName("我的名字很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长")
-                    .setSales(20)
-                    .setGoodsStyle("橘喵")
-                    .setGoodsPrice(233)
-                    .setGoodsCount(1);
-            Goods guitar = new Goods()
-                    .setShopId(2)
-                    .setShopName("我也是一家店铺也是一家店铺也是一家店铺也是一家店铺")
-                    .setGoodsImg(String.valueOf(R.drawable.guitar))
-                    .setGoodsName("我的销量很高价格很贵店铺名很长")
-                    .setGoodsStyle("大吉它")
-                    .setSales(1111111111)
-                    .setGoodsPrice(564564)
-                    .setGoodsCount(2);
-            if (i != 0) {
-                cat.setFirst(false);
-                guitar.setFirst(false);
-            }
-            mGoodsList.add(cat);
-            mGoodsList.add(guitar);
-        }
-    }
 }

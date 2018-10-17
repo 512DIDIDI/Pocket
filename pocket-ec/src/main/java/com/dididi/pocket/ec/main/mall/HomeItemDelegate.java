@@ -214,17 +214,16 @@ public class HomeItemDelegate extends BottomItemDelegate
     private void initFakeNews() {
         mNews.clear();
         News[] news = {
-                new News(FakeUser.getUser("2"), "真的累死了", "27/7/2018"),
-                new News(FakeUser.getUser("3"),
-                        "终于快打完了终于快打完了终于快打完了终于快打完了完了", "28/7/2018"),
-                new News(FakeUser.getUser("4"), "细节需要优化一下", "26/7/2018"),
-                new News(FakeUser.getUser("5"), "今天测试一下这个", "27/7/2018"),
-                new News(FakeUser.getUser("6"), "明天测试一下那个", "28/7/2018"),
-                new News(FakeUser.getUser("8"), "这其实是朋友圈", "26/7/2018"),
-                new News(FakeUser.getUser("9"), "这里应该做成下拉刷新", "27/7/2018"),
-                new News(FakeUser.getUser("10"), "以后再改吧 现在懒得写了", "28/7/2018"),
-                new News(FakeUser.getUser("11"), "这其实不是很正常", "26/7/2018"),
-                new News(FakeUser.getUser("12"), "这些全都是假象", "27/7/2018"),
+                new News(FakeUser.getUser("2"), "试试下拉刷新", "27/7/2018"),
+                new News(FakeUser.getUser("3"), "试试左边缘滑动", "28/7/2018"),
+                new News(FakeUser.getUser("4"), "试试点击摄影入口", "26/7/2018"),
+                new News(FakeUser.getUser("5"), "试试下拉刷新", "27/7/2018"),
+                new News(FakeUser.getUser("6"), "试试点击摄影入口", "28/7/2018"),
+                new News(FakeUser.getUser("8"), "试试向右滑动", "26/7/2018"),
+                new News(FakeUser.getUser("9"), "试试下拉刷新", "27/7/2018"),
+                new News(FakeUser.getUser("10"), "试试向右滑动", "28/7/2018"),
+                new News(FakeUser.getUser("11"), "试试点击摄影入口", "26/7/2018"),
+                new News(FakeUser.getUser("12"), "试试向右滑动", "27/7/2018"),
 
         };
         for (int i = 0; i < 11; i++) {

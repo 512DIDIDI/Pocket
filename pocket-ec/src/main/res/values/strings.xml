@@ -82,6 +82,9 @@
     <string name="foot">足迹</string>
     <string name="faw_shopping_basket">{faw-shopping-basket}</string>
     <string name="faw_trash">{faw-trash}</string>
+    <string name="price_range">价格区间:</string>
+    <string name="range_to">~</string>
+    <string name="go"><![CDATA[>]]></string>
     <string-array name="spinner_goods_sort">
         <item>综合排序</item>
         <item>好评优先</item>

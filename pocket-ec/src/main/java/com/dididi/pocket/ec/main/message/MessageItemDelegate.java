@@ -108,23 +108,23 @@ public class MessageItemDelegate extends BottomItemDelegate
     private void initFakeMessage() {
         User sendUser = FakeUser.getUser("1");
         Message msg1 =
-                new Message(sendUser.getName() + " 祝您长命百岁",
+                new Message(sendUser.getName() + " 试试上下滑动",
                         Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("2"),
                         "27/7/2018");
-        Message msg2 = new Message(sendUser.getName() + " 祝您万事如意",
+        Message msg2 = new Message(sendUser.getName() + " 试试向左滑动",
                 Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("3"),
                 "27/7/2018");
-        Message msg3 = new Message(sendUser.getName() + " 祝您心想事成",
+        Message msg3 = new Message(sendUser.getName() + " 试试消息置顶",
                 Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("4"),
                 "27/7/2018");
-        Message msg4 = new Message(sendUser.getName() + " 祝您吉祥如意",
+        Message msg4 = new Message(sendUser.getName() + " 试试删除消息",
                 Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("5"),
                 "27/7/2018");
-        Message msg5 = new Message(sendUser.getName() + " 祝您事事顺心",
+        Message msg5 = new Message(sendUser.getName() + "试试发送一条消息",
                 Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("6"),
                 "27/7/2018");
         Message msg6 =
-                new Message(sendUser.getName() + " 祝您财源滚滚",
+                new Message(sendUser.getName() + " 试试侧滑返回",
                         Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("7"),
                         "27/7/2018");
         Message msg7 = new Message(sendUser.getName() + " 祝您阖家欢乐",
