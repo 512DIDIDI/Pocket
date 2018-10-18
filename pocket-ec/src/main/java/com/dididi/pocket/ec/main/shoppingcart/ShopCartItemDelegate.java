@@ -136,8 +136,6 @@ public class ShopCartItemDelegate extends BottomItemDelegate
                     FakeUser.getUser(String.valueOf(shop.getUserId())), "15/10/2018");
             getParentDelegate().getSupportDelegate().start(ChatDelegate.getStartChat(message));
         } else if (id == R.id.item_shopcart_shop_name) {
-            content = new StringBuilder();
-            content.append("功能尚未开发完毕，请侧滑返回");
             getParentDelegate().getSupportDelegate().start(MerchantPageDelegate.getStartShop(shop.getShopId()));
         } else if (id == R.id.item_shopcart_goods_select) {
             //点击选择商品

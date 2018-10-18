@@ -47,6 +47,7 @@ public class MerchantGoodsList extends PocketDelegate
         LinearLayoutManager manager = new LinearLayoutManager(this.getContext());
         mRecyclerView.setLayoutManager(manager);
         mAdapter = new MerchantAdapter(R.layout.item_mall_shop_list, mShopList);
+        mAdapter.setOnItemClickListener(this);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -57,7 +58,6 @@ public class MerchantGoodsList extends PocketDelegate
             throw new RuntimeException("shop can not be null");
         }
         getParentDelegate().getSupportDelegate().start(MerchantPageDelegate.getStartShop(shop.getShopId()));
-        Toast.makeText(getContext(), "功能尚未开发完成，请侧滑返回", Toast.LENGTH_SHORT).show();
     }
 
     private void initShop() {

@@ -56,16 +56,13 @@ public class AllGoodsList extends PocketDelegate
 
     @Override
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-        StringBuilder content = new StringBuilder();
         Goods goods = (Goods) adapter.getItem(position);
         if (goods == null) {
             throw new RuntimeException("goods can not be null!");
         }
         if (view.getId() == R.id.item_mall_goods_list_enter) {
-            content.append("功能尚未开发完成，请侧滑返回");
             getParentDelegate().getSupportDelegate().start(MerchantPageDelegate.getStartShop(goods.getShopId()));
         }
-        Toast.makeText(getContext(), content.toString(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

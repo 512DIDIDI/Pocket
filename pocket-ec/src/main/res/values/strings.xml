@@ -85,6 +85,8 @@
     <string name="price_range">价格区间:</string>
     <string name="range_to">~</string>
     <string name="go"><![CDATA[>]]></string>
+    <string name="faw_cookie_bite">{faw-cookie-bite}</string>
+    <string name="faw_award">{faw-award}</string>
     <string-array name="spinner_goods_sort">
         <item>综合排序</item>
         <item>好评优先</item>

@@ -1,6 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:background="@color/toolbarColor"
+                app:layout_scrollFlags="scroll|enterAlways|snap">
+
+                <com.dididi.pocket.core.ui.item.SearchBarItem
+                    android:id="@+id/delegate_mall_goods_details_merchant_searchbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/screenLRGap"
+                    android:layout_marginLeft="@dimen/screenLRGap"
+                    android:layout_marginEnd="@dimen/screenLRGap"
+                    android:layout_marginRight="@dimen/screenLRGap"
+                    android:background="@drawable/search_bar_corner"
+                    android:gravity="center" />
+
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/backgroundColorWhite"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/screenLRGap"
+                android:paddingTop="@dimen/dividerGap"
+                android:paddingRight="@dimen/screenLRGap"
+                android:paddingBottom="@dimen/dividerGap">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/delegate_mall_goods_details_merchant_avatar"
+                    android:layout_width="@dimen/bigAvatarSize"
+                    android:layout_height="@dimen/bigAvatarSize"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/screenLRGap"
+                    android:layout_marginRight="@dimen/screenLRGap" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/delegate_mall_goods_details_merchant_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@id/delegate_mall_goods_details_merchant_avatar"
+                    android:layout_toRightOf="@id/delegate_mall_goods_details_merchant_avatar"
+                    android:textColor="@color/textColorDark"
+                    android:textSize="@dimen/normalTitleSize" />
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/delegate_mall_goods_details_merchant_product_icon"
+                    android:layout_width="@dimen/normalIconSize"
+                    android:layout_height="@dimen/normalIconSize"
+                    android:layout_alignBottom="@id/delegate_mall_goods_details_merchant_avatar"
+                    android:layout_marginEnd="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_toEndOf="@id/delegate_mall_goods_details_merchant_avatar"
+                    android:layout_toRightOf="@id/delegate_mall_goods_details_merchant_avatar"
+                    android:gravity="center"
+                    android:src="@drawable/product" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/delegate_mall_goods_details_merchant_product_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/delegate_mall_goods_details_merchant_avatar"
+                    android:layout_marginEnd="@dimen/elementGap"
+                    android:layout_marginRight="@dimen/elementGap"
+                    android:layout_toEndOf="@id/delegate_mall_goods_details_merchant_product_icon"
+                    android:layout_toRightOf="@id/delegate_mall_goods_details_merchant_product_icon"
+                    android:gravity="center"
+                    android:textColor="@color/textColorDark"
+                    android:textSize="@dimen/textSmallSize" />
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/delegate_mall_goods_details_merchant_fans_icon"
+                    android:layout_width="@dimen/normalIconSize"
+                    android:layout_height="@dimen/normalIconSize"
+                    android:layout_alignBottom="@id/delegate_mall_goods_details_merchant_avatar"
+                    android:layout_marginStart="@dimen/elementGap"
+                    android:layout_marginLeft="@dimen/elementGap"
+                    android:layout_marginEnd="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_toEndOf="@id/delegate_mall_goods_details_merchant_product_num"
+                    android:layout_toRightOf="@id/delegate_mall_goods_details_merchant_product_num"
+                    android:gravity="center"
+                    android:src="@drawable/fans" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/delegate_mall_goods_details_merchant_fans_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/delegate_mall_goods_details_merchant_avatar"
+                    android:layout_marginEnd="@dimen/elementGap"
+                    android:layout_marginRight="@dimen/elementGap"
+                    android:layout_toEndOf="@id/delegate_mall_goods_details_merchant_fans_icon"
+                    android:layout_toRightOf="@id/delegate_mall_goods_details_merchant_fans_icon"
+                    android:gravity="center"
+                    android:textColor="@color/textColorDark"
+                    android:textSize="@dimen/textSmallSize" />
+
+                <com.mikepenz.iconics.view.IconicsTextView
+                    android:id="@+id/delegate_mall_goods_details_merchant_attention_icon"
+                    android:layout_width="@dimen/normalIconSize"
+                    android:layout_height="@dimen/normalIconSize"
+                    android:layout_alignBottom="@id/delegate_mall_goods_details_merchant_avatar"
+                    android:layout_marginStart="@dimen/elementGap"
+                    android:layout_marginLeft="@dimen/elementGap"
+                    android:layout_marginEnd="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_toEndOf="@id/delegate_mall_goods_details_merchant_fans_num"
+                    android:layout_toRightOf="@id/delegate_mall_goods_details_merchant_fans_num"
+                    android:gravity="center"
+                    android:text="@string/faw_attention"
+                    android:textColor="@color/textColorDark" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/delegate_mall_goods_details_merchant_attention_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/delegate_mall_goods_details_merchant_avatar"
+                    android:layout_marginEnd="@dimen/elementGap"
+                    android:layout_marginRight="@dimen/elementGap"
+                    android:layout_toEndOf="@id/delegate_mall_goods_details_merchant_attention_icon"
+                    android:layout_toRightOf="@id/delegate_mall_goods_details_merchant_attention_icon"
+                    android:gravity="center"
+                    android:textColor="@color/textColorDark"
+                    android:textSize="@dimen/textSmallSize" />
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/delegate_mall_goods_details_merchant_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</LinearLayout>
