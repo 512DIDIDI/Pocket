@@ -124,7 +124,7 @@ public class SignInDelegate extends PocketDelegate {
     /** 点击qq登录图标 */
     @OnClick(R2.id.delegate_sign_in_qq)
     void onClickQQ() {
-        getSupportDelegate().startWithPop(new TestDelegate());
+        start(new TestDelegate());
     }
 
     /** 点击微博登录图标 */

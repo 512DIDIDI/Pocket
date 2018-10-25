@@ -114,18 +114,5 @@
                 android:textColor="@color/textColorDark" />
         </RelativeLayout>
 
-        <com.dididi.pocket.core.ui.horizontalrecyclerview.GridRecyclerView
-            android:id="@+id/delegate_msg_chat_more_page"
-            android:layout_width="match_parent"
-            android:layout_height="144dp"
-            android:visibility="gone"
-            android:layout_below="@id/delegate_msg_chat_edit_page" />
-
-        <com.dididi.pocket.core.ui.pageindicator.DotPageIndicator
-            android:id="@+id/delegate_msg_chat_more_page_indicator"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:layout_below="@id/delegate_msg_chat_more_page" />
     </RelativeLayout>
 </RelativeLayout>

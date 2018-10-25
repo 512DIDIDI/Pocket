@@ -1,48 +1,363 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
-    android:orientation="vertical">
-    <!--CoordinatorLayout ->AppBarLayout-> Toolbar实现上滑隐藏toolbar-->
-    <android.support.design.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="?android:attr/actionBarSize">
-        <!--toolbar-->
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/delegate_test_appbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    android:background="@color/backgroundColorGray">
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/delegate_test_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?android:attr/actionBarSize"
-                android:background="@color/toolbarColor"
-                app:layout_scrollFlags="scroll|enterAlways|snap">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/screenLRGap">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/delegate_test_background_layout_logo"
+            android:layout_width="@dimen/bigAvatarSize"
+            android:layout_height="@dimen/bigAvatarSize"
+            android:layout_above="@id/delegate_test_background_layout_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/dividerGap"
+            android:background="@mipmap/logo" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/delegate_test_background_layout_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/delegate_test_background_layout_enter_sign"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/elementGap"
+            android:text="@string/pocket"
+            android:textColor="@color/textColorBlack"
+            android:textSize="@dimen/bigTitleSize" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/delegate_test_background_layout_enter_sign"
+            android:layout_width="@dimen/bigAvatarSize"
+            android:layout_height="@dimen/bigAvatarSize"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/elementGap"
+            android:src="@mipmap/def_down" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/delegate_test_logo"
+            android:layout_width="@dimen/bigAvatarSize"
+            android:layout_height="@dimen/bigAvatarSize"
+            android:layout_above="@id/delegate_test_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/dividerGap"
+            android:alpha="0"
+            android:background="@mipmap/logo" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/delegate_test_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/delegate_test_sign_layout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/dividerGap"
+            android:alpha="0"
+            android:text="@string/pocket"
+            android:textColor="@color/textColorBlack"
+            android:textSize="@dimen/bigTitleSize" />
+
+        <FrameLayout
+            android:id="@+id/delegate_test_sign_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:alpha="0"
+            android:background="@drawable/test_background_shadow"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:visibility="invisible">
+
+            <RelativeLayout
+                android:id="@+id/delegate_test_sign_in_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="visible">
 
                 <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/delegate_test_sign_in_layout_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:foregroundGravity="center"
-                    android:text="@string/shopping_cart"
-                    android:textColor="@color/textColorLight"
-                    android:textSize="@dimen/toolBarTextSize" />
-            </android.support.v7.widget.Toolbar>
-        </android.support.design.widget.AppBarLayout>
-        <!--购物车页面-->
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/delegate_test_recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/bottomBarSize"
-            android:background="@color/dividerColor"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:ignore="PrivateResource" />
-    </android.support.design.widget.CoordinatorLayout>
-</RelativeLayout>
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="@dimen/screenLRGap"
+                    android:alpha="0"
+                    android:text="@string/user_sign_in"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/normalTitleSize" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/delegate_test_sign_in_layout_account"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/delegate_test_sign_in_layout_login"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="@dimen/screenLRGap"
+                    android:layout_marginRight="@dimen/screenLRGap"
+                    android:layout_marginBottom="@dimen/dividerGap"
+                    android:alpha="0"
+                    android:gravity="center"
+                    android:hint="@string/hint_email"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/textSmallSize" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/delegate_test_sign_in_layout_password"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/delegate_test_sign_in_layout_account"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="@dimen/screenLRGap"
+                    android:layout_marginRight="@dimen/screenLRGap"
+                    android:layout_marginBottom="@dimen/elementGap"
+                    android:alpha="0"
+                    android:gravity="center"
+                    android:hint="@string/hint_password"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/textSmallSize" />
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/delegate_test_sign_in_layout_sign_in"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_below="@id/delegate_test_sign_in_layout_password"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/elementGap"
+                    android:alpha="0"
+                    android:background="@drawable/sign_button_corner"
+                    android:gravity="center"
+                    android:text="@string/sign_in"
+                    android:textColor="@color/textColorWhite"
+                    android:textSize="@dimen/buttonTextSize" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/delegate_test_sign_in_layout_sign_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/delegate_test_sign_in_layout_sign_in"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/elementGap"
+                    android:alpha="0"
+                    android:text="@string/sign_up"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/buttonTextSize" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/delegate_test_sign_in_layout_forget_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/delegate_test_sign_in_layout_sign_up"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/elementGap"
+                    android:alpha="0"
+                    android:text="@string/forget_password"
+                    android:textColor="@color/textColorHint"
+                    android:textSize="@dimen/textSmallSize" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/delegate_test_sign_up_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="invisible">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/delegate_test_sign_up_layout_signUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="@dimen/screenLRGap"
+                    android:text="@string/user_sign_up"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/normalTitleSize" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/delegate_test_sign_up_layout_account"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/delegate_test_sign_up_layout_signUp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="@dimen/screenLRGap"
+                    android:layout_marginRight="@dimen/screenLRGap"
+                    android:layout_marginBottom="@dimen/dividerGap"
+                    android:gravity="center"
+                    android:hint="@string/hint_email"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/textSmallSize" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/delegate_test_sign_up_layout_password"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/delegate_test_sign_up_layout_account"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="@dimen/screenLRGap"
+                    android:layout_marginRight="@dimen/screenLRGap"
+                    android:layout_marginBottom="@dimen/dividerGap"
+                    android:gravity="center"
+                    android:hint="@string/hint_password"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/textSmallSize" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/delegate_test_sign_up_layout_reenter_password"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/delegate_test_sign_up_layout_password"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="@dimen/screenLRGap"
+                    android:layout_marginRight="@dimen/screenLRGap"
+                    android:layout_marginBottom="@dimen/elementGap"
+                    android:gravity="center"
+                    android:hint="@string/hint_rePassword"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/textSmallSize" />
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/delegate_test_sign_up_layout_sign_up"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_below="@id/delegate_test_sign_up_layout_reenter_password"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/elementGap"
+                    android:background="@drawable/sign_button_corner"
+                    android:gravity="center"
+                    android:text="@string/sign_up"
+                    android:textColor="@color/textColorWhite"
+                    android:textSize="@dimen/buttonTextSize" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/delegate_test_forget_password_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="invisible">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/delegate_test_forget_password_layout_forget_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="@dimen/screenLRGap"
+                    android:text="@string/find_password"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/normalTitleSize" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/delegate_test_forget_password_layout_account"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/delegate_test_forget_password_layout_forget_password"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="@dimen/screenLRGap"
+                    android:layout_marginRight="@dimen/screenLRGap"
+                    android:layout_marginBottom="@dimen/dividerGap"
+                    android:gravity="center"
+                    android:hint="@string/hint_email"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/textSmallSize" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/delegate_test_forget_password_layout_password"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/delegate_test_forget_password_layout_forget_password"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="@dimen/screenLRGap"
+                    android:layout_marginRight="@dimen/screenLRGap"
+                    android:layout_marginBottom="@dimen/dividerGap"
+                    android:gravity="center"
+                    android:hint="@string/hint_password"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/textSmallSize" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/delegate_test_forget_password_layout_reenter_password"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/delegate_test_forget_password_layout_password"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="@dimen/screenLRGap"
+                    android:layout_marginRight="@dimen/screenLRGap"
+                    android:layout_marginBottom="@dimen/dividerGap"
+                    android:gravity="center"
+                    android:hint="@string/hint_rePassword"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/textSmallSize" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/delegate_test_forget_password_layout_verify"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/delegate_test_forget_password_layout_account"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginStart="@dimen/screenLRGap"
+                    android:layout_marginLeft="@dimen/screenLRGap"
+                    android:layout_marginBottom="@dimen/elementGap"
+                    android:gravity="center"
+                    android:hint="@string/hint_verify"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/textSmallSize" />
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/delegate_test_forget_password_layout_send_verify"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/delegate_test_forget_password_layout_account"
+                    android:layout_alignBottom="@id/delegate_test_forget_password_layout_verify"
+                    android:layout_marginEnd="@dimen/screenLRGap"
+                    android:layout_marginRight="@dimen/screenLRGap"
+                    android:layout_toEndOf="@id/delegate_test_forget_password_layout_verify"
+                    android:layout_toRightOf="@id/delegate_test_forget_password_layout_verify"
+                    android:gravity="center"
+                    android:text="@string/send_verify"
+                    android:textSize="@dimen/textNormalSize" />
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/delegate_test_forget_password_layout_next"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_below="@id/delegate_test_forget_password_layout_verify"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/elementGap"
+                    android:background="@drawable/sign_button_corner"
+                    android:gravity="center"
+                    android:text="@string/next_step"
+                    android:textColor="@color/textColorWhite"
+                    android:textSize="@dimen/buttonTextSize" />
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/delegate_test_forget_password_layout_login"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_below="@id/delegate_test_forget_password_layout_verify"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/elementGap"
+                    android:alpha="0"
+                    android:background="@drawable/sign_button_corner"
+                    android:gravity="center"
+                    android:text="@string/sign_in"
+                    android:textColor="@color/textColorWhite"
+                    android:textSize="@dimen/buttonTextSize" />
+
+            </RelativeLayout>
+        </FrameLayout>
+    </RelativeLayout>
+
+</FrameLayout>

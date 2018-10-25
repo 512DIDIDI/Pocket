@@ -14,12 +14,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
- * Created by dididi
- * on 28/07/2018 .
+ * @author dididi
+ * @since 28/07/2018 .
+ * @describe 快速入口组合控件
  */
 
 public class CircleIconItem extends RelativeLayout {
-//  首页快速入口组合控件
 
     private CircleImageView mIcon;
     private AppCompatTextView mText;
@@ -62,9 +62,9 @@ public class CircleIconItem extends RelativeLayout {
     private void initView(Context context) {
         //获取控件实例
         LayoutInflater.from(context)
-                .inflate(R.layout.item_home_entry_icon_text, this, true);
-        mIcon = findViewById(R.id.item_home_entry_icon);
-        mText = findViewById(R.id.item_home_entry_text);
+                .inflate(R.layout.item_entry, this, true);
+        mIcon = findViewById(R.id.item_entry_icon);
+        mText = findViewById(R.id.item_entry_text);
         //控件实例赋值自定义属性
         mIcon.setImageResource(mIconDrawable);
         mText.setText(mTextTitle);

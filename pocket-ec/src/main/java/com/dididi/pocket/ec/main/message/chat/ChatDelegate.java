@@ -7,17 +7,14 @@ import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.view.inputmethod.EditorInfo;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.chad.library.adapter.base.util.TouchEventUtil;
 import com.dididi.pocket.core.delegates.PocketDelegate;
 import com.dididi.pocket.core.entity.Message;
-import com.dididi.pocket.core.fakedata.FakeUser;
-import com.dididi.pocket.core.ui.animation.PocketAnimation;
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
 import com.dididi.pocket.ec.main.message.chat.adapter.ChatAdapter;
@@ -29,7 +26,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import me.yokeyword.fragmentation.SwipeBackLayout;
 
 
 /**
@@ -38,11 +34,13 @@ import me.yokeyword.fragmentation.SwipeBackLayout;
  * @since 07/09/2018
  */
 
-public class ChatDelegate extends PocketDelegate {
+public class ChatDelegate extends PocketDelegate
+        implements TextView.OnEditorActionListener {
 
     private List<Message> mMessageList = new ArrayList<>();
     private ChatAdapter mAdapter = null;
     private Message mMessage = null;
+    private Message getMessage = null;
 
     @BindView(R2.id.delegate_msg_chat_recyclerView)
     RecyclerView mRecyclerView = null;
@@ -101,39 +99,22 @@ public class ChatDelegate extends PocketDelegate {
         if (null == bundle) {
             throw new RuntimeException("获取消息失败 bundle为空");
         }
-        Message message = (Message) bundle.get("message");
-        if (message == null) {
+        getMessage = (Message) bundle.get("message");
+        if (getMessage == null) {
             throw new RuntimeException("message为空 获取失败");
         }
-        if (message.getContent() != null) {
+        if (getMessage.getContent() != null) {
             //如果传入的消息带有消息内容，则添加到头部list中
-            mMessageList.add(0, message);
+            mMessageList.add(0, getMessage);
         }
         //设置chat页面标题
-        mName.setText(message.getReceivedUserName());
+        mName.setText(getMessage.getReceivedUserName());
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mAdapter = new ChatAdapter(R.layout.item_message_chat, mMessageList);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(mAdapter);
         //输入框发送消息
-        mEdit.setOnEditorActionListener((textView, i, keyEvent) -> {
-            //点击发送按钮
-            if (i == EditorInfo.IME_ACTION_SEND) {
-                if (mEdit.getText() == null) {
-                    Toast.makeText(getContext(), "发送消息不能为空", Toast.LENGTH_SHORT).show();
-                } else {
-                    mMessage = new Message(mEdit.getText().toString(), Message.TYPE_SENT,
-                            message.getSendUser(), message.getReceivedUser(), "21/9/2018");
-                    mMessageList.add(mMessage);
-                    //插入数据源
-                    mAdapter.notifyItemInserted(mMessageList.size());
-                    mRecyclerView.scrollToPosition(mMessageList.size() - 1);
-                }
-                //发送完成清空输入框
-                mEdit.setText("");
-            }
-            return false;
-        });
+        mEdit.setOnEditorActionListener(this);
     }
 
     @Override
@@ -155,4 +136,24 @@ public class ChatDelegate extends PocketDelegate {
         chatDelegate.setArguments(bundle);
         return chatDelegate;
     }
+
+    @Override
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        if (actionId == EditorInfo.IME_ACTION_SEND) {
+            if (mEdit.getText() == null) {
+                Toast.makeText(getContext(), "发送消息不能为空", Toast.LENGTH_SHORT).show();
+            } else {
+                mMessage = new Message(mEdit.getText().toString(), Message.TYPE_SENT,
+                        getMessage.getSendUser(), getMessage.getReceivedUser(), "21/9/2018");
+                mMessageList.add(mMessage);
+                //插入数据源
+                mAdapter.notifyItemInserted(mMessageList.size());
+                mRecyclerView.scrollToPosition(mMessageList.size() - 1);
+            }
+            //发送完成清空输入框
+            mEdit.setText("");
+        }
+        return false;
+    }
+
 }

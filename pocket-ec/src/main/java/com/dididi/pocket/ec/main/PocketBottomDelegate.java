@@ -1,7 +1,9 @@
 package com.dididi.pocket.ec.main;
 
+import android.animation.ObjectAnimator;
 import android.view.View;
 
+import com.blankj.utilcode.util.SizeUtils;
 import com.dididi.pocket.core.ui.animation.PocketAnimation;
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.main.mall.HomeItemDelegate;
@@ -50,9 +52,10 @@ public class PocketBottomDelegate extends BaseBottomDelegate {
 
     public void setBottomBarVisible(int visible){
         //解决跳到首页时 drawerLayout开启情况下 动画的重复播放
-        if (visible == View.VISIBLE && mBottomBar.getVisibility() == View.GONE){
+
+        if (visible == View.GONE && mBottomBar.getVisibility() == View.VISIBLE){
             mBottomBar.startAnimation(PocketAnimation.fadeIn(getContext()));
-        }else if (visible == View.GONE && mBottomBar.getVisibility() == View.VISIBLE){
+        }else if (visible == View.VISIBLE && mBottomBar.getVisibility() == View.GONE){
             mBottomBar.startAnimation(PocketAnimation.fadeOut(getContext()));
         }
         mBottomBar.setVisibility(visible);
