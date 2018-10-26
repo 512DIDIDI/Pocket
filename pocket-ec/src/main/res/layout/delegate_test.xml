@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColorGray">
@@ -337,13 +338,15 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/delegate_test_forget_password_layout_account"
+                    android:layout_alignTop="@id/delegate_test_forget_password_layout_verify"
                     android:layout_alignBottom="@id/delegate_test_forget_password_layout_verify"
                     android:layout_marginEnd="@dimen/screenLRGap"
                     android:layout_marginRight="@dimen/screenLRGap"
                     android:layout_toEndOf="@id/delegate_test_forget_password_layout_verify"
                     android:layout_toRightOf="@id/delegate_test_forget_password_layout_verify"
+                    android:background="@color/backgroundColorGray"
                     android:gravity="center"
-                    android:text="@string/send_verify"
+                    android:text="@string/send"
                     android:textSize="@dimen/textNormalSize" />
 
                 <android.support.v7.widget.AppCompatButton
@@ -387,6 +390,18 @@
 
             </RelativeLayout>
         </FrameLayout>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/delegate_test_dididi_studio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/delegate_test_sign_layout"
+            android:layout_centerHorizontal="true"
+            android:alpha="0"
+            android:layout_marginTop="@dimen/elementGap"
+            android:textSize="@dimen/textSmallSize"
+            android:textColor="@color/textColorTight"
+            android:text="@string/made_by_dididi_studio" />
     </RelativeLayout>
 
 </FrameLayout>

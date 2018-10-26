@@ -91,6 +91,8 @@ public class TestDelegate extends PocketDelegate implements View.OnClickListener
     AppCompatTextView mSignUpLayoutBack;
     @BindView(R2.id.delegate_test_forget_password_layout_back)
     AppCompatTextView mForgetPasswordLayoutBack;
+    @BindView(R2.id.delegate_test_dididi_studio)
+    AppCompatTextView mDididiStudio;
 
     /**
      * 动画关键字
@@ -112,6 +114,8 @@ public class TestDelegate extends PocketDelegate implements View.OnClickListener
         mSignInLayoutForgetPassword.setOnClickListener(this);
         mForgetPasswordLayoutBack.setOnClickListener(this);
         mSignUpLayoutBack.setOnClickListener(this);
+        mForgetPasswordLayoutNext.setOnClickListener(this);
+        mSignInLayoutSignIn.setOnClickListener(this);
     }
 
     @Override
@@ -134,9 +138,14 @@ public class TestDelegate extends PocketDelegate implements View.OnClickListener
             getForgetPasswordBackAnimation();
         } else if (v.getId() == R.id.delegate_sign_find_password_next){
             getForgetPasswordNextAnimation();
+        }else if (v.getId() == R.id.delegate_test_sign_in_layout_sign_in){
+            pop();
         }
     }
 
+    /**
+     * SignLayout动画封装
+     */
     private void getSignAnimation() {
         mSignLayout.setVisibility(View.VISIBLE);
         mBackgroundLayoutEnterSign.setVisibility(View.INVISIBLE);
@@ -145,24 +154,46 @@ public class TestDelegate extends PocketDelegate implements View.OnClickListener
         getEnterSignAnimation();
     }
 
+    /**
+     * 注册页面动画切换
+     */
     private void getSignUpAnimation() {
         setFlipAnimation(mSignInLayout, mSignUpLayout);
     }
 
+    /**
+     * 注册页面返回按钮动画切换
+     */
     private void getSignUpBackAnimation() {
         setFlipAnimation(mSignUpLayout, mSignInLayout);
     }
 
+    /**
+     * 找回密码页面动画切换
+     */
     private void getForgetPasswordAnimation() {
         setFlipAnimation(mSignInLayout, mForgetPasswordLayout);
     }
 
+    /**
+     * 找回页面返回按钮动画切换
+     */
     private void getForgetPasswordBackAnimation() {
         setFlipAnimation(mForgetPasswordLayout, mSignInLayout);
     }
 
+    /**
+     * 找回密码下一步动画切换
+     */
     private void getForgetPasswordNextAnimation(){
-        //todo:这里还没做好
+        //todo:不知道为啥 点击没有效果 回去再看一下
+        setAlphaAnimation(mForgetPasswordLayoutAccount,1,0,0,500,false);
+        setAlphaAnimation(mForgetPasswordLayoutVerify,1,0,0,500,false);
+        setAlphaAnimation(mForgetPasswordLayoutSendVerify,1,0,0,500,false);
+        setAlphaAnimation(mForgetPasswordLayoutNext,1,0,0,500,false);
+        setAlphaAnimation(mForgetPasswordLayoutPassword,0,1,500,500,true);
+        setAlphaAnimation(mForgetPasswordLayoutReenterPassword,0,1,500,500,true);
+        setAlphaAnimation(mForgetPasswordLayoutLogin,0,1,500,500,true);
     }
 
     /**
@@ -195,6 +226,7 @@ public class TestDelegate extends PocketDelegate implements View.OnClickListener
         animator = ObjectAnimator.ofFloat(view, "alpha", startAlpha, endAlpha);
         animator.setDuration(duration).setStartDelay(delayMills);
         animator.start();
+        //透明度动画伴随着页面是否可见，否则前一个页面仍然有点击事件，如果为true，即后一个页面，如果为false，即前一个页面
         if (isVisible) {
             animator.addListener(new Animator.AnimatorListener() {
                 @Override
@@ -242,6 +274,9 @@ public class TestDelegate extends PocketDelegate implements View.OnClickListener
         }
     }
 
+    /**
+     * 旋转动画，其中isOvershoot代表是否有回弹
+     */
     private void setRotateAnimation(View view, String rotate, float startAngle,
                                     float endAngle, long delayMills, long duration, boolean isOvershoot) {
         ObjectAnimator animator;
@@ -266,8 +301,10 @@ public class TestDelegate extends PocketDelegate implements View.OnClickListener
         setCameraDistance(mSignLayout, mSignLayout);
         setCameraDistance(frontView, behindView);
         setAlphaAnimation(frontView, 1, 0, 0, 500, false);
-        setRotateAnimation(mSignLayout, ROTATION_Y, 0, 180, 0, 1000, true);
-        setRotateAnimation(behindView, ROTATION_Y, 0, 180, 0, 1000, true);
+        //必须让SignLayout和frontView同时翻转 否则会出现异常
+        setRotateAnimation(mSignLayout, ROTATION_Y, 0, 180, 0, 1000, false);
+        setRotateAnimation(frontView,ROTATION_Y,0,180,0,1000,false);
+        setRotateAnimation(behindView, ROTATION_Y, 0, -180, 0, 1000, false);
         setAlphaAnimation(behindView, 0, 1, 500, 500, true);
     }
 
@@ -275,15 +312,22 @@ public class TestDelegate extends PocketDelegate implements View.OnClickListener
      * todo:这里的动画逻辑应该并不是最优解
      */
     private void getEnterSignAnimation() {
+        //logo出现
         setTranslationAnimation(mLogo, TRANSLATION_Y, mBackgroundLayoutLogo.getY(),
                 mLogo.getTranslationY(), 0, 800);
         setTranslationAnimation(mName, TRANSLATION_Y, mBackgroundLayoutName.getY(),
                 mName.getTranslationY(), 0, 800);
         setAlphaAnimation(mLogo, 1, 1, 0, 500, true);
         setAlphaAnimation(mName, 1, 1, 0, 500, true);
+        //Sign页面出现
         setTranslationAnimation(mSignLayout, TRANSLATION_Y, SizeUtils.dp2px(200),
                 mSignLayout.getTranslationY(), 500, 500);
         setAlphaAnimation(mSignLayout, 0, 1, 500, 500, true);
+        //个人标识出现
+        setTranslationAnimation(mDididiStudio, TRANSLATION_Y, SizeUtils.dp2px(200),
+                mDididiStudio.getTranslationY(), 600, 500);
+        setAlphaAnimation(mDididiStudio, 0, 1, 600, 500, true);
+        //登录信息页面依次从右往左出现
         setTranslationAnimation(mSignInLayoutLoginText, TRANSLATION_X, SizeUtils.dp2px(100),
                 mSignLayout.getTranslationX(), 1000, 500);
         setAlphaAnimation(mSignInLayoutLoginText, 0, 1, 1000, 500, true);
