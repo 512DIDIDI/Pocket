@@ -172,6 +172,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:alpha="0"
                 android:visibility="invisible">
 
                 <android.support.v7.widget.AppCompatTextView
@@ -239,6 +240,17 @@
                     android:textColor="@color/textColorWhite"
                     android:textSize="@dimen/buttonTextSize" />
 
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/delegate_test_sign_up_layout_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/delegate_test_sign_up_layout_sign_up"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/elementGap"
+                    android:text="@string/back"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/textSmallSize" />
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -246,6 +258,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:alpha="0"
                 android:visibility="invisible">
 
                 <android.support.v7.widget.AppCompatTextView
@@ -281,10 +294,12 @@
                     android:layout_marginLeft="@dimen/screenLRGap"
                     android:layout_marginRight="@dimen/screenLRGap"
                     android:layout_marginBottom="@dimen/dividerGap"
+                    android:alpha="0"
                     android:gravity="center"
                     android:hint="@string/hint_password"
                     android:textAlignment="center"
-                    android:textSize="@dimen/textSmallSize" />
+                    android:textSize="@dimen/textSmallSize"
+                    android:visibility="invisible" />
 
                 <com.rengwuxian.materialedittext.MaterialEditText
                     android:id="@+id/delegate_test_forget_password_layout_reenter_password"
@@ -295,10 +310,12 @@
                     android:layout_marginLeft="@dimen/screenLRGap"
                     android:layout_marginRight="@dimen/screenLRGap"
                     android:layout_marginBottom="@dimen/dividerGap"
+                    android:alpha="0"
                     android:gravity="center"
                     android:hint="@string/hint_rePassword"
                     android:textAlignment="center"
-                    android:textSize="@dimen/textSmallSize" />
+                    android:textSize="@dimen/textSmallSize"
+                    android:visibility="invisible" />
 
                 <com.rengwuxian.materialedittext.MaterialEditText
                     android:id="@+id/delegate_test_forget_password_layout_verify"
@@ -354,7 +371,19 @@
                     android:gravity="center"
                     android:text="@string/sign_in"
                     android:textColor="@color/textColorWhite"
-                    android:textSize="@dimen/buttonTextSize" />
+                    android:textSize="@dimen/buttonTextSize"
+                    android:visibility="invisible" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/delegate_test_forget_password_layout_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/delegate_test_forget_password_layout_next"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/elementGap"
+                    android:text="@string/back"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/textSmallSize" />
 
             </RelativeLayout>
         </FrameLayout>

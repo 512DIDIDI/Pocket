@@ -90,6 +90,7 @@
     <string name="edit_password">请输入你的密码</string>
     <string name="user_sign_up">用户注册</string>
     <string name="pocket">POCKET</string>
+    <string name="back">返回</string>
     <string-array name="spinner_goods_sort">
         <item>综合排序</item>
         <item>好评优先</item>
