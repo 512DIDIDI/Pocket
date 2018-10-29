@@ -11,12 +11,15 @@ import org.litepal.LitePal;
 
 
 /**
- * Created by dididi
- * on 17/07/2018 .
+ * @author dididi
+ * @since 17/07/2018 .
  */
 
 public class PocketApplication extends Application {
-    //自定义application
+
+    /**
+     * 自定义application
+     */
     @Override
     public void onCreate() {
         super.onCreate();

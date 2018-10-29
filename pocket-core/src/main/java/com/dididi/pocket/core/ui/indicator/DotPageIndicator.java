@@ -1,4 +1,4 @@
-package com.dididi.pocket.core.ui.pageindicator;
+package com.dididi.pocket.core.ui.indicator;
 
 import android.content.Context;
 import android.support.annotation.Nullable;

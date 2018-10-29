@@ -2,18 +2,10 @@ package com.dididi.pocket.ec.test;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.dididi.pocket.core.delegates.PocketDelegate;
 import com.dididi.pocket.ec.R;
-import com.dididi.pocket.ec.R2;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import butterknife.BindView;
 
 /**
  * @author dididi
@@ -22,6 +14,7 @@ import butterknife.BindView;
  */
 
 public class TestDelegate extends PocketDelegate {
+
 
     @Override
     public Object setLayout() {
@@ -32,4 +25,10 @@ public class TestDelegate extends PocketDelegate {
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
 
     }
+
+    @Override
+    public void setSwipeBackEnable(boolean enable) {
+        super.setSwipeBackEnable(true);
+    }
+
 }

@@ -7,7 +7,7 @@ import android.widget.Toast;
 
 import com.dididi.pocket.ec.main.PocketBottomDelegate;
 import com.dididi.pocket.ec.sign.ISignListener;
-import com.dididi.pocket.ec.sign.SignInDelegate;
+import com.dididi.pocket.ec.sign.SignDelegate;
 import com.dididi.pocket.core.activities.ProxyActivity;
 import com.dididi.pocket.core.app.AccountManager;
 import com.dididi.pocket.core.app.IUserChecker;
@@ -17,8 +17,11 @@ import com.dididi.pocket.core.delegates.PocketDelegate;
 
 public class PocketActivity extends ProxyActivity implements ISignListener {
     //此时PocketActivity只是作为PocketDelegate的容器，实际加载的是PocketDelegate的布局
+
+    /**
+     * 设置根布局
+     */
     @Override
-    //设置根布局
     public PocketDelegate setRootDelegate() {
         final PocketDelegate[] root = new PocketDelegate[1];
         AccountManager.checkAccount(new IUserChecker() {
@@ -29,7 +32,7 @@ public class PocketActivity extends ProxyActivity implements ISignListener {
 
             @Override
             public void onNotSignIn() {
-                root[0] = new SignInDelegate();
+                root[0] = new SignDelegate();
             }
         });
         return root[0];
