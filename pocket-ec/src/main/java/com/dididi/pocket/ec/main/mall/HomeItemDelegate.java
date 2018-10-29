@@ -26,7 +26,7 @@ import com.dididi.pocket.ec.main.mall.adapter.NewsAdapter;
 import com.dididi.pocket.core.entity.News;
 import com.dididi.pocket.ec.main.mall.goods.GoodsListDelegate;
 import com.dididi.pocket.ec.main.mall.list.FakeImageList;
-import com.dididi.pocket.ec.sign.SignInDelegate;
+import com.dididi.pocket.ec.sign.SignDelegate;
 import com.dididi.pocket.core.util.PocketPreferences;
 import com.dididi.pocket.core.app.AccountManager;
 import com.dididi.pocket.core.app.IUserChecker;
@@ -177,7 +177,7 @@ public class HomeItemDelegate extends BottomItemDelegate
         } else if (itemId == R.id.menu_home_item_nav_exit) {
             //清除sp中的内容以达到退出效果
             PocketPreferences.clearPocketProfile();
-            getParentDelegate().getSupportDelegate().startWithPop(new SignInDelegate());
+            getParentDelegate().getSupportDelegate().startWithPop(new SignDelegate());
         } else if (itemId == R.id.menu_home_item_nav_setting) {
             Toast.makeText(getContext(), "点击跳转设置界面", Toast.LENGTH_SHORT).show();
         } else if (itemId == R.id.menu_home_item_nav_help) {
@@ -282,9 +282,9 @@ public class HomeItemDelegate extends BottomItemDelegate
                 mName.setText(me.getName());
                 mEmail.setText(me.getEmail());
                 mName.setOnClickListener(view ->
-                        getParentDelegate().getSupportDelegate().startWithPop(new SignInDelegate()));
+                        getParentDelegate().getSupportDelegate().startWithPop(new SignDelegate()));
                 mEmail.setOnClickListener(view ->
-                        getParentDelegate().getSupportDelegate().startWithPop(new SignInDelegate()));
+                        getParentDelegate().getSupportDelegate().startWithPop(new SignDelegate()));
             }
         });
     }
