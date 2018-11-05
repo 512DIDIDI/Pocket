@@ -9,9 +9,11 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.dididi.pocket.core.R;
 import com.dididi.pocket.core.R2;
 import com.dididi.pocket.core.delegates.PocketDelegate;
+import com.dididi.pocket.core.util.LogUtil;
 import com.mikepenz.iconics.view.IconicsTextView;
 
 import java.util.ArrayList;
@@ -23,7 +25,7 @@ import me.yokeyword.fragmentation.ISupportFragment;
 
 
 /**
- * Created by dididi
+ * @author dididi
  * on 24/07/2018 .
  */
 
@@ -43,17 +45,26 @@ public abstract class BaseBottomDelegate extends PocketDelegate
     private final ArrayList<BottomItemDelegate> ITEM_DELEGATE = new ArrayList<>();
 
     private final LinkedHashMap<BottomTabBean, BottomItemDelegate> ITEMS = new LinkedHashMap<>();
-    /** 当前fragment页面 */
+    /**
+     * 当前fragment页面
+     */
     private int mCurrentDelegate = 0;
-    /** 默认打开fragment页面 */
+    /**
+     * 默认打开fragment页面
+     */
     private int mIndexDelegate = 0;
-    /** 设置点击后tab的颜色 */
+    /**
+     * 设置点击后tab的颜色
+     */
     private int mPressColor = R.color.tabPressColor;
-    /** 设置默认tab颜色 */
+    /**
+     * 设置默认tab颜色
+     */
     private int mNormalColor = R.color.tabNormalColor;
 
     /**
      * 设置底部导航tab与item的关联
+     *
      * @param factory 生成linkedHashMap
      * @return 返回关联好的linkedHashMap
      */
@@ -61,17 +72,21 @@ public abstract class BaseBottomDelegate extends PocketDelegate
 
     /**
      * 设置tab按下颜色
+     *
      * @return 返回color
      */
     public abstract int setPressColor();
 
     /**
      * 设置默认打开item
+     *
      * @return 返回数组下标
      */
     public abstract int setIndexDelegate();
 
-    /** 初始化delegate */
+    /**
+     * 初始化delegate
+     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,7 +143,9 @@ public abstract class BaseBottomDelegate extends PocketDelegate
                 .loadMultipleRootFragment(R.id.base_delegate_container, mIndexDelegate, delegateArray);
     }
 
-    /** 重置bar颜色 */
+    /**
+     * 重置bar颜色
+     */
     private void resetColor() {
         final int count = mBottomBar.getChildCount();
         for (int i = 0; i < count; i++) {
@@ -167,8 +184,23 @@ public abstract class BaseBottomDelegate extends PocketDelegate
 
     @Override
     public void onClick(View view) {
-        resetColor();
+        //避免在drawerLayout滑出的时候快速点击bottomBar导致bottomBar消失
+        if (mBottomBar.getVisibility() == View.GONE) {
+            mBottomBar.setVisibility(View.VISIBLE);
+        }
         final int tag = (int) view.getTag();
+        BottomItemDelegate currentDelegate = ITEM_DELEGATE.get(mCurrentDelegate);
+        //如果已经选中当前页面，则再次点击滚动到顶部。
+        if (tag == mCurrentDelegate) {
+            //如果已经位于顶部，则刷新页面
+            if (currentDelegate.isTop()){
+                currentDelegate.onRefresh();
+                return;
+            }
+            currentDelegate.onScrollToTop();
+            return;
+        }
+        resetColor();
         //更改颜色
         final RelativeLayout item = (RelativeLayout) view;
         final IconicsTextView icon = (IconicsTextView) item.getChildAt(0);
@@ -177,13 +209,9 @@ public abstract class BaseBottomDelegate extends PocketDelegate
         icon.setTextColor(getResources().getColor(R.color.textColorDark));
         title.setTextColor(getResources().getColor(R.color.textColorDark));
         //隐藏当前fragment显示点击的fragment
-        getSupportDelegate().showHideFragment(ITEM_DELEGATE.get(tag), ITEM_DELEGATE.get(mCurrentDelegate));
+        getSupportDelegate().showHideFragment(ITEM_DELEGATE.get(tag), currentDelegate);
         //重置tag为当前所选中的fragment
         mCurrentDelegate = tag;
-        //避免在drawerLayout滑出的时候快速点击bottomBar导致bottomBar消失
-        if (mBottomBar.getVisibility() == View.GONE){
-            mBottomBar.setVisibility(View.VISIBLE);
-        }
     }
 
 }

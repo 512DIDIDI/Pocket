@@ -23,4 +23,19 @@ public class PersonalItemDelegate extends BottomItemDelegate {
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
 
     }
+
+    @Override
+    public void onScrollToTop() {
+
+    }
+
+    @Override
+    public void onRefresh() {
+
+    }
+
+    @Override
+    public boolean isTop() {
+        return false;
+    }
 }

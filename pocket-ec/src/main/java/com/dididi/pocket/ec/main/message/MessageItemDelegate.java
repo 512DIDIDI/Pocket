@@ -2,6 +2,7 @@ package com.dididi.pocket.ec.main.message;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.dididi.pocket.core.entity.User;
 import com.dididi.pocket.core.fakedata.FakeUser;
+import com.dididi.pocket.core.ui.PocketSwipeRefreshLayout;
 import com.dididi.pocket.core.ui.dialog.PocketDialog;
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
@@ -37,6 +39,10 @@ public class MessageItemDelegate extends BottomItemDelegate
     SearchBarItem mSearchBar = null;
     @BindView(R2.id.delegate_msg_message_list_view)
     RecyclerView mMsgRecyclerView = null;
+    @BindView(R2.id.delegate_msg_message_appbar)
+    AppBarLayout mAppbar = null;
+    @BindView(R2.id.delegate_msg_message_refresh)
+    PocketSwipeRefreshLayout mRefresh = null;
 
     private List<Message> mMsgList = new ArrayList<>();
     private LinearLayoutManager layoutManager = null;
@@ -103,6 +109,32 @@ public class MessageItemDelegate extends BottomItemDelegate
     }
 
     /**
+     * 重写父类的onScrollToTop()方法，RecyclerView返回顶部
+     */
+    @Override
+    public void onScrollToTop() {
+        //设置toolbar的内容自动滑出来
+        mAppbar.setExpanded(true);
+        mMsgRecyclerView.smoothScrollToPosition(0);
+    }
+
+    /**
+     * 重写父类的onRefresh()方法，刷新页面
+     */
+    @Override
+    public void onRefresh() {
+
+    }
+
+    /**
+     * @return 是否位于顶部
+     */
+    @Override
+    public boolean isTop() {
+        return false;
+    }
+
+    /**
      * 初始化消息列表 不用管它什么意思
      */
     private void initFakeMessage() {
@@ -154,4 +186,5 @@ public class MessageItemDelegate extends BottomItemDelegate
         mMsgList.add(msg10);
         mMsgList.add(msg11);
     }
+
 }

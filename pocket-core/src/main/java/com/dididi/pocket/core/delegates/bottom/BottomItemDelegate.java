@@ -7,11 +7,12 @@ import com.dididi.pocket.core.app.Pocket;
 import com.dididi.pocket.core.delegates.PocketDelegate;
 
 /**
- * Created by dididi
- * on 24/07/2018 .
+ * @author dididi
+ * @describe 实现IClickTabListener,监听初始页面的四个tab按钮点击事件
+ * @since 24/07/2018 .
  */
 
-public abstract class BottomItemDelegate extends PocketDelegate {
+public abstract class BottomItemDelegate extends PocketDelegate implements IClickTabListener{
     //页面容器
 
     private long mExitTime = 0;

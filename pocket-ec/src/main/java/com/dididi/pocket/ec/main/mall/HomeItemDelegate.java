@@ -3,6 +3,8 @@ package com.dididi.pocket.ec.main.mall;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -10,10 +12,13 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.dididi.pocket.core.entity.User;
 import com.dididi.pocket.core.fakedata.FakeUser;
@@ -49,16 +54,20 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * @author dididi
- * @since 24/07/2018
  * @describe 首页fragment
+ * @since 24/07/2018
  */
 
 public class HomeItemDelegate extends BottomItemDelegate
         implements NavigationView.OnNavigationItemSelectedListener,
-        View.OnClickListener,BaseQuickAdapter.OnItemChildClickListener,DrawerLayout.DrawerListener{
+        View.OnClickListener, BaseQuickAdapter.OnItemChildClickListener, DrawerLayout.DrawerListener {
 
-    private static final String TAG = "HomeItemDelegate";
-
+    @BindView(R2.id.delegate_mall_home_appbar)
+    AppBarLayout mAppbar = null;
+    @BindView(R2.id.delegate_mall_home_coordinator)
+    CoordinatorLayout mCoordinatorLayout = null;
+    @BindView(R2.id.delegate_mall_home_toolbar)
+    Toolbar mToolbar = null;
     @BindView(R2.id.delegate_mall_home_searchBar)
     SearchBarItem mSearchBarItem = null;
     @BindView(R2.id.delegate_mall_home_nav)
@@ -135,7 +144,7 @@ public class HomeItemDelegate extends BottomItemDelegate
         LinearLayoutManager layoutManager =
                 new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         mDiscover.setLayoutManager(layoutManager);
-        mAdapter = new NewsAdapter(R.layout.item_home_news,mNews);
+        mAdapter = new NewsAdapter(R.layout.item_home_news, mNews);
         mAdapter.setOnItemChildClickListener(this);
         mDiscover.setAdapter(mAdapter);
         //初始化用户信息
@@ -251,7 +260,9 @@ public class HomeItemDelegate extends BottomItemDelegate
         }).start();
     }
 
-    /** 初始化抽屉布局用户信息 */
+    /**
+     * 初始化抽屉布局用户信息
+     */
     private void initUserIfo() {
         AccountManager.checkAccount(new IUserChecker() {
             @Override
@@ -291,36 +302,37 @@ public class HomeItemDelegate extends BottomItemDelegate
 
     /**
      * newsAdapter的子控件点击事件
-     * @param adapter newsAdapter
-     * @param view 子控件
+     *
+     * @param adapter  newsAdapter
+     * @param view     子控件
      * @param position item位置
      */
     @Override
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
         StringBuilder content = null;
         News news = (News) adapter.getItem(position);
-        if (null == news){
+        if (null == news) {
             throw new RuntimeException("news can not be null");
         }
         int id = view.getId();
-        if (id == R.id.item_home_news_head){
+        if (id == R.id.item_home_news_head) {
             content = new StringBuilder();
             content.append("你点击了")
                     .append(news.getUserName())
                     .append("头像");
-        }else if (id == R.id.item_home_news_name){
+        } else if (id == R.id.item_home_news_name) {
             content = new StringBuilder();
             content.append("你点击了")
                     .append(news.getUserName())
                     .append("名字");
-        }else if (id == R.id.item_home_news_comment){
+        } else if (id == R.id.item_home_news_comment) {
             content = new StringBuilder();
             content.append("你点击了")
                     .append(news.getUserName())
                     .append("评论");
         }
-        if (content != null){
-            Toast.makeText(getContext(),content.toString(),Toast.LENGTH_SHORT).show();
+        if (content != null) {
+            Toast.makeText(getContext(), content.toString(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -348,5 +360,30 @@ public class HomeItemDelegate extends BottomItemDelegate
     @Override
     public void onDrawerStateChanged(int i) {
 
+    }
+
+    /**
+     * 重写父类的onScrollToTop()，使scrollView滚动到顶部
+     */
+    @Override
+    public void onScrollToTop() {
+        //设置toolbar的内容自动滑出来
+        mAppbar.setExpanded(true);
+        //ScrollView滚动到顶部
+        mScrollView.smoothScrollTo(0,0);
+    }
+
+    /**
+     * 重写父类的onRefresh()，刷新当前页面
+     */
+    @Override
+    public void onRefresh() {
+        mRefresh.setRefreshing(true);
+        refreshNews();
+    }
+
+    @Override
+    public boolean isTop() {
+        return mScrollView.getScrollY() == 0;
     }
 }

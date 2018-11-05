@@ -8,10 +8,12 @@
     <!--主屏幕内容-->
     <!--CoordinatorLayout可以算是加强版的FrameLayout,他可以监听所有子控件的事件，自动做出合理响应-->
     <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/delegate_mall_home_coordinator"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <!--AppBarLayout解决RecyclerView遮挡ToolBar-->
         <android.support.design.widget.AppBarLayout
+            android:id="@+id/delegate_mall_home_appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <!--toolbar-->

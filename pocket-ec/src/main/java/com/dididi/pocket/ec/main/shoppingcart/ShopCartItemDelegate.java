@@ -2,6 +2,7 @@ package com.dididi.pocket.ec.main.shoppingcart;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -45,6 +46,8 @@ public class ShopCartItemDelegate extends BottomItemDelegate
     AppCompatTextView mPrice = null;
     @BindView(R2.id.delegate_shoppingCart_shopcart_all_selected)
     IconicsTextView mAllSelect = null;
+    @BindView(R2.id.delegate_shoppingCart_shopcart_appbar)
+    AppBarLayout mAppbar = null;
 
     private List<Shop> shopList = new ArrayList<>();
     private ShopCartAdapter mAdapter = null;
@@ -276,6 +279,30 @@ public class ShopCartItemDelegate extends BottomItemDelegate
         } else {
             mAllSelect.setText(R.string.faw_circle);
         }
+    }
+
+    @Override
+    public void onScrollToTop() {
+        //设置toolbar的内容自动滑出来
+        mAppbar.setExpanded(true);
+        mRecyclerView.smoothScrollToPosition(0);
+    }
+
+    @Override
+    public void onRefresh() {
+
+    }
+
+    @Override
+    public boolean isTop() {
+        return false;
+    }
+
+    /**
+     * 添加商品到购物车中，当然，实际操作中应该是加到服务器数据库中，从服务器读取购物车数据
+     */
+    public static void addGoodsToShopCart(Goods goods){
+
     }
 
     /**
