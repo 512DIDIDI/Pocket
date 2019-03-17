@@ -1,5 +1,6 @@
 package com.dididi.pocket.ec.main.mall;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,34 +16,32 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.dididi.pocket.core.app.AccountManager;
+import com.dididi.pocket.core.app.IUserChecker;
+import com.dididi.pocket.core.delegates.bottom.BottomItemDelegate;
+import com.dididi.pocket.core.entity.News;
 import com.dididi.pocket.core.entity.User;
 import com.dididi.pocket.core.fakedata.FakeUser;
+import com.dididi.pocket.core.ui.GlideApp;
+import com.dididi.pocket.core.ui.PocketSwipeRefreshLayout;
+import com.dididi.pocket.core.ui.banner.GlideImageLoader;
 import com.dididi.pocket.core.ui.item.CircleIconItem;
 import com.dididi.pocket.core.ui.item.SearchBarItem;
+import com.dididi.pocket.core.util.AutoBarUtil;
+import com.dididi.pocket.core.util.PocketPreferences;
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
 import com.dididi.pocket.ec.main.PocketBottomDelegate;
 import com.dididi.pocket.ec.main.mall.adapter.NewsAdapter;
-import com.dididi.pocket.core.entity.News;
 import com.dididi.pocket.ec.main.mall.goods.GoodsListDelegate;
 import com.dididi.pocket.ec.main.mall.list.FakeImageList;
 import com.dididi.pocket.ec.sign.SignDelegate;
-import com.dididi.pocket.core.util.PocketPreferences;
-import com.dididi.pocket.core.app.AccountManager;
-import com.dididi.pocket.core.app.IUserChecker;
-import com.dididi.pocket.core.delegates.bottom.BottomItemDelegate;
-import com.dididi.pocket.core.ui.GlideApp;
-import com.dididi.pocket.core.ui.PocketSwipeRefreshLayout;
-import com.dididi.pocket.core.ui.banner.GlideImageLoader;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -149,6 +148,10 @@ public class HomeItemDelegate extends BottomItemDelegate
         mDiscover.setAdapter(mAdapter);
         //初始化用户信息
         initUserIfo();
+        if (getActivity()!=null){
+            AutoBarUtil.Companion.changeBarColor(getActivity(), (int) AutoBarUtil.COLOR_TOOLBAR);
+            AutoBarUtil.Companion.changeNavigationColor(getActivity(), (int) AutoBarUtil.COLOR_TOOLBAR);
+        }
     }
 
     @Override

@@ -17,6 +17,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:allowBackup">
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.4"/>
         <activity android:name=".PocketActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,23 +1,28 @@
 package com.dididi.pocket.ec.sign;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.SizeUtils;
 import com.dididi.pocket.core.app.Pocket;
 import com.dididi.pocket.core.delegates.PocketDelegate;
 import com.dididi.pocket.core.net.RestClient;
 import com.dididi.pocket.core.ui.animation.PocketAnimation;
+import com.dididi.pocket.core.util.AutoBarUtil;
 import com.dididi.pocket.core.util.LogUtil;
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
@@ -132,6 +137,10 @@ public class SignDelegate extends PocketDelegate implements View.OnClickListener
         mForgetPasswordLayoutSendVerify.setOnClickListener(this);
         mResetPasswordLayoutLogin.setOnClickListener(this);
         mResetPasswordLayoutBack.setOnClickListener(this);
+        if (getActivity() != null){
+            AutoBarUtil.Companion.changeBarColor(getActivity(), (int) AutoBarUtil.COLOR_GRAY);
+            AutoBarUtil.Companion.changeNavigationColor(getActivity(), (int) AutoBarUtil.COLOR_GRAY);
+        }
     }
 
     @Override
@@ -282,11 +291,11 @@ public class SignDelegate extends PocketDelegate implements View.OnClickListener
         //故位移距离计算公式 =（隐藏的logo位置-backgroundLogo位置）
         PocketAnimation.setTranslationAnimation(mBackgroundLayoutLogo,
                 PocketAnimation.TRANSLATION_Y, mBackgroundLayoutLogo.getTranslationY(),
-                mLogo.getY()-mBackgroundLayoutLogo.getY(),
+                mLogo.getY() - mBackgroundLayoutLogo.getY(),
                 0, 500, false);
         PocketAnimation.setTranslationAnimation(mBackgroundLayoutName,
                 PocketAnimation.TRANSLATION_Y, mBackgroundLayoutName.getTranslationY(),
-                mName.getY()-mBackgroundLayoutName.getY(),
+                mName.getY() - mBackgroundLayoutName.getY(),
                 0, 500, false);
         //Sign页面及个人标识出现
         PocketAnimation.setMoveDelayAnimation(PocketAnimation.TRANSLATION_Y,
