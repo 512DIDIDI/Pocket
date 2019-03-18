@@ -93,6 +93,11 @@
     <string name="back">返回</string>
     <string name="made_by_dididi_studio">MADE BY DIDIDI STUDIO</string>
     <string name="reset_password">重设密码</string>
+    <string name="camera">camera</string>
+    <string name="album">album</string>
+    <string name="video_chat">chat</string>
+    <string name="transfer">transfer</string>
+    <string name="favorite">favorite</string>
     <string-array name="spinner_goods_sort">
         <item>综合排序</item>
         <item>好评优先</item>

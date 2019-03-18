@@ -139,7 +139,6 @@ public class SignDelegate extends PocketDelegate implements View.OnClickListener
         mResetPasswordLayoutBack.setOnClickListener(this);
         if (getActivity() != null){
             AutoBarUtil.Companion.changeBarColor(getActivity(), (int) AutoBarUtil.COLOR_GRAY);
-            AutoBarUtil.Companion.changeNavigationColor(getActivity(), (int) AutoBarUtil.COLOR_GRAY);
         }
     }
 

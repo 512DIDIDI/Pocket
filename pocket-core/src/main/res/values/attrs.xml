@@ -14,4 +14,9 @@
         <attr name="list_button_content" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="MoreButtonItem">
+        <attr name="more_button_icon" format="reference"/>
+        <attr name="more_button_text" format="string"/>
+    </declare-styleable>
+
 </resources>

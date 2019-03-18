@@ -114,5 +114,12 @@
                 android:textColor="@color/textColorDark" />
         </RelativeLayout>
 
+        <android.support.v4.view.ViewPager
+            android:id="@+id/delegate_msg_chat_more_page"
+            android:layout_width="match_parent"
+            android:layout_height="144dp"
+            android:layout_below="@id/delegate_msg_chat_edit_page"
+            android:visibility="gone" />
+
     </RelativeLayout>
 </RelativeLayout>

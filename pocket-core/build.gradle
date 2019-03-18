@@ -82,7 +82,7 @@ dependencies {
     //tabLayout依赖
     api 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
     api 'com.ogaclejapan.smarttablayout:utils-v4:1.6.1@aar'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {
     mavenCentral()

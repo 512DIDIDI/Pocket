@@ -3,12 +3,15 @@ package com.dididi.pocket.ec.main.message.chat;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +21,7 @@ import com.dididi.pocket.core.entity.Message;
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
 import com.dididi.pocket.ec.main.message.chat.adapter.ChatAdapter;
+import com.dididi.pocket.ec.main.message.chat.adapter.MorePagerAdapter;
 import com.mikepenz.iconics.view.IconicsTextView;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
@@ -41,6 +45,8 @@ public class ChatDelegate extends PocketDelegate
     private ChatAdapter mAdapter = null;
     private Message mMessage = null;
     private Message getMessage = null;
+    private List<View> mViewList = new ArrayList<>();
+    private MorePagerAdapter mMoreAdapter = null;
 
     @BindView(R2.id.delegate_msg_chat_recyclerView)
     RecyclerView mRecyclerView = null;
@@ -58,6 +64,8 @@ public class ChatDelegate extends PocketDelegate
     MaterialEditText mEdit = null;
     @BindView(R2.id.delegate_msg_chat_name)
     AppCompatTextView mName = null;
+    @BindView(R2.id.delegate_msg_chat_more_page)
+    ViewPager mMorePager = null;
 
     @OnClick(R2.id.delegate_msg_chat_back_btn)
     public void onBack() {
@@ -77,6 +85,7 @@ public class ChatDelegate extends PocketDelegate
     @OnClick(R2.id.delegate_msg_chat_more)
     public void onMore() {
         Toast.makeText(getContext(), "点击更多", Toast.LENGTH_SHORT).show();
+        mMorePager.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -115,6 +124,10 @@ public class ChatDelegate extends PocketDelegate
         mRecyclerView.setAdapter(mAdapter);
         //输入框发送消息
         mEdit.setOnEditorActionListener(this);
+        ViewGroup viewGroup = null;
+        mViewList.add(getLayoutInflater().inflate(R.layout.item_msg_chat_more,viewGroup,false));
+        mMoreAdapter = new MorePagerAdapter(getContext(),mViewList);
+        mMorePager.setAdapter(mMoreAdapter);
     }
 
     @Override

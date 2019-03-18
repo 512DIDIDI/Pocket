@@ -150,7 +150,6 @@ public class HomeItemDelegate extends BottomItemDelegate
         initUserIfo();
         if (getActivity()!=null){
             AutoBarUtil.Companion.changeBarColor(getActivity(), (int) AutoBarUtil.COLOR_TOOLBAR);
-            AutoBarUtil.Companion.changeNavigationColor(getActivity(), (int) AutoBarUtil.COLOR_TOOLBAR);
         }
     }
 

@@ -9,15 +9,15 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.dididi.pocket.core.delegates.bottom.BottomItemDelegate;
+import com.dididi.pocket.core.entity.Message;
 import com.dididi.pocket.core.entity.User;
 import com.dididi.pocket.core.fakedata.FakeUser;
 import com.dididi.pocket.core.ui.PocketSwipeRefreshLayout;
 import com.dididi.pocket.core.ui.dialog.PocketDialog;
+import com.dididi.pocket.core.ui.item.SearchBarItem;
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.R2;
-import com.dididi.pocket.core.ui.item.SearchBarItem;
-import com.dididi.pocket.core.entity.Message;
-import com.dididi.pocket.core.delegates.bottom.BottomItemDelegate;
 import com.dididi.pocket.ec.main.message.adapter.MessageAdapter;
 import com.dididi.pocket.ec.main.message.chat.ChatDelegate;
 

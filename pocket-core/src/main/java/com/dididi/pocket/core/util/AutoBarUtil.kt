@@ -27,6 +27,35 @@ class AutoBarUtil {
         fun changeBarColor(activity: Activity,@ColorInt color: Int) {
             val window = activity.window
             when {
+                //适配android6.0以上设备
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.M -> {
+                    //取消设置透明状态栏，使ContentView内容不再覆盖状态栏。
+                    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+                    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
+                    //必须设置此flag才能改变 statusBarColor
+                    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+                    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+                    window.statusBarColor = color
+                    window.navigationBarColor = color
+                    val decor = window.decorView
+                    var ui = decor.systemUiVisibility
+                    ui = if (color == COLOR_GRAY.toInt()){
+                        ui or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                    }else{
+                        ui and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
+                    }
+                    decor.systemUiVisibility = ui
+                }
+                //适配android5.0以上设备
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP -> {
+                    //取消设置透明状态栏，使ContentView内容不再覆盖状态栏。
+                    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+                    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
+                    //必须设置此flag才能改变 statusBarColor
+                    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+                    window.statusBarColor = color
+                    window.navigationBarColor = color
+                }
                 //适配android4.4以上设备
                 Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT -> {
                     //设置状态栏为半透明，
@@ -48,41 +77,6 @@ class AutoBarUtil {
                     if (childView != null) {
                         childView.fitsSystemWindows = true
                     }
-                }
-                //适配android5.0以上设备
-                Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP -> {
-                    //取消设置透明状态栏，使ContentView内容不再覆盖状态栏。
-                    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-                    //必须设置此flag才能改变 statusBarColor
-                    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-                    window.statusBarColor = color
-                }
-                //适配android6.0以上设备
-                Build.VERSION.SDK_INT >= Build.VERSION_CODES.M -> {
-                    //取消设置透明状态栏，使ContentView内容不再覆盖状态栏。
-                    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-                    //必须设置此flag才能改变 statusBarColor
-                    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-                    window.statusBarColor = color
-//                    val decor = window.decorView
-//                    var ui = decor.systemUiVisibility
-//                    ui = if (color == COLOR_GRAY.toInt()){
-//                        ui or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-//                    }else{
-//                        ui and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
-//                    }
-//                    decor.systemUiVisibility = ui
-                }
-            }
-        }
-
-        fun changeNavigationColor(activity: Activity,@ColorInt color: Int){
-            when{
-                Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ->{
-                    val window = activity.window
-                    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
-                    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-                    activity.window.navigationBarColor = color
                 }
             }
         }
