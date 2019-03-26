@@ -14,6 +14,7 @@ import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -148,10 +149,11 @@ public class HomeItemDelegate extends BottomItemDelegate
         mDiscover.setAdapter(mAdapter);
         //初始化用户信息
         initUserIfo();
-        if (getActivity()!=null){
+        if (getActivity()!= null){
             AutoBarUtil.Companion.changeBarColor(getActivity(), (int) AutoBarUtil.COLOR_TOOLBAR);
         }
     }
+
 
     @Override
     public void onStart() {

@@ -138,6 +138,7 @@ public class SignDelegate extends PocketDelegate implements View.OnClickListener
         mResetPasswordLayoutLogin.setOnClickListener(this);
         mResetPasswordLayoutBack.setOnClickListener(this);
         if (getActivity() != null){
+            Log.d("changeColor", "onBindView: ");
             AutoBarUtil.Companion.changeBarColor(getActivity(), (int) AutoBarUtil.COLOR_GRAY);
         }
     }
@@ -193,6 +194,7 @@ public class SignDelegate extends PocketDelegate implements View.OnClickListener
                         .get();
             } else {
                 getSupportDelegate().startWithPop(new PocketBottomDelegate());
+                Log.d("test", "onClick: ");
             }
         } else if (v.getId() == R.id.delegate_sign_reset_password_layout_login) {
             //重设密码事件

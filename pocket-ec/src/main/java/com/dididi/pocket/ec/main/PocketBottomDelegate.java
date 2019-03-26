@@ -1,7 +1,10 @@
 package com.dididi.pocket.ec.main;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.dididi.pocket.core.util.AutoBarUtil;
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.main.mall.HomeItemDelegate;
 import com.dididi.pocket.ec.main.message.MessageItemDelegate;

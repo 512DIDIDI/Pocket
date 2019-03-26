@@ -68,7 +68,7 @@
     <string name="send">发送</string>
     <string name="faw_user">{faw-user}</string>
     <string name="faw_microphone">{faw-microphone}</string>
-    <string name="faw_chevron_circle_down">{faw-chevron-circle-down}</string>
+    <string name="faw_chevron_circle_up">{faw-chevron-circle-up}</string>
     <string name="test">test</string>
     <string name="faw_wallet">{faw-wallet}</string>
     <string name="wallet">钱包</string>

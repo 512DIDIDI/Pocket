@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="144dp"
+    android:padding="@dimen/screenLRGap">
+
+    <com.dididi.pocket.core.ui.item.MoreButtonItem
+        android:id="@+id/item_msg_chat_more_camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        app:more_button_icon="@mipmap/xiangji"
+        app:more_button_text="@string/camera" />
+
+    <com.dididi.pocket.core.ui.item.MoreButtonItem
+        android:id="@+id/item_msg_chat_more_album"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@id/item_msg_chat_more_chat"
+        android:layout_toLeftOf="@id/item_msg_chat_more_chat"
+        android:layout_toEndOf="@id/item_msg_chat_more_camera"
+        android:layout_toRightOf="@id/item_msg_chat_more_camera"
+        android:gravity="center"
+        app:more_button_icon="@mipmap/xiangce"
+        app:more_button_text="@string/album" />
+
+    <com.dididi.pocket.core.ui.item.MoreButtonItem
+        android:id="@+id/item_msg_chat_more_chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        app:more_button_icon="@mipmap/shipin"
+        app:more_button_text="@string/video_chat" />
+
+    <com.dididi.pocket.core.ui.item.MoreButtonItem
+        android:id="@+id/item_msg_chat_more_transfer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@id/item_msg_chat_more_favorite"
+        android:layout_toLeftOf="@id/item_msg_chat_more_favorite"
+        android:layout_toEndOf="@id/item_msg_chat_more_chat"
+        android:layout_toRightOf="@id/item_msg_chat_more_chat"
+        android:gravity="center"
+        app:more_button_icon="@mipmap/zhuanzhang"
+        app:more_button_text="@string/transfer" />
+
+    <com.dididi.pocket.core.ui.item.MoreButtonItem
+        android:id="@+id/item_msg_chat_more_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        app:more_button_icon="@mipmap/shoucang"
+        app:more_button_text="@string/favorite" />
+
+</RelativeLayout>

@@ -110,7 +110,7 @@
                 android:layout_marginLeft="@dimen/screenLRGap"
                 android:layout_marginRight="@dimen/screenLRGap"
                 android:gravity="center"
-                android:text="@string/faw_chevron_circle_down"
+                android:text="@string/faw_chevron_circle_up"
                 android:textColor="@color/textColorDark" />
         </RelativeLayout>
 

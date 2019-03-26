@@ -137,7 +137,7 @@ public class ShopCartItemDelegate extends BottomItemDelegate
             //点击选择发起店主聊天
             Message message = new Message(null, Message.TYPE_SENT, FakeUser.getUser("1"),
                     FakeUser.getUser(String.valueOf(shop.getUserId())), "15/10/2018");
-            getParentDelegate().getSupportDelegate().start(ChatDelegate.getStartChat(message));
+            getParentDelegate().getSupportDelegate().start(ChatDelegate.Companion.getStartChat(message));
         } else if (id == R.id.item_shopcart_shop_name) {
             getParentDelegate().getSupportDelegate().start(MerchantPageDelegate.getStartShop(shop.getShopId()));
         } else if (id == R.id.item_shopcart_goods_select) {

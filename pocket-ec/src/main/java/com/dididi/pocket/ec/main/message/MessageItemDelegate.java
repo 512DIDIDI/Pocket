@@ -104,7 +104,7 @@ public class MessageItemDelegate extends BottomItemDelegate
         }
         if (view.getId() == R.id.item_message_main_layout) {
             //点击跳转Chat页面
-            getParentDelegate().getSupportDelegate().start(ChatDelegate.getStartChat(message));
+            getParentDelegate().getSupportDelegate().start(ChatDelegate.Companion.getStartChat(message));
         }
     }
 

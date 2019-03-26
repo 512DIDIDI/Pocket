@@ -8,6 +8,7 @@ import android.support.annotation.ColorInt
 import android.support.annotation.ColorRes
 import android.view.*
 import android.widget.FrameLayout
+import com.dididi.pocket.core.R
 
 
 /**
@@ -33,7 +34,6 @@ class AutoBarUtil {
                     window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
                     window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
                     //必须设置此flag才能改变 statusBarColor
-                    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
                     window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
                     window.statusBarColor = color
                     window.navigationBarColor = color
