@@ -1,5 +1,6 @@
 package com.dididi.pocket.core.entity;
 
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -15,6 +16,8 @@ public class Message implements Parcelable {
     public static final int TYPE_SENT = 1;
     /** 消息内容 */
     private String content;
+    /** 图片 */
+    private Bitmap picture;
     /** 消息类型 */
     private int type;
     /** 发送此消息的用户id(即本用户) */
@@ -34,6 +37,14 @@ public class Message implements Parcelable {
 
     public Message(String content, int type, User sendUser, User receivedUser, String date) {
         this.content = content;
+        this.type = type;
+        this.sendUser = sendUser;
+        this.receivedUser = receivedUser;
+        this.date = date;
+    }
+
+    public Message(Bitmap picture, int type, User sendUser, User receivedUser, String date) {
+        this.picture = picture;
         this.type = type;
         this.sendUser = sendUser;
         this.receivedUser = receivedUser;
@@ -76,6 +87,11 @@ public class Message implements Parcelable {
         return date;
     }
 
+    public Bitmap getPicture() {
+        return picture;
+    }
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -84,6 +100,7 @@ public class Message implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.content);
+        dest.writeParcelable(this.picture, flags);
         dest.writeInt(this.type);
         dest.writeParcelable(this.sendUser, flags);
         dest.writeParcelable(this.receivedUser, flags);
@@ -94,11 +111,9 @@ public class Message implements Parcelable {
         dest.writeString(this.date);
     }
 
-    public Message() {
-    }
-
     protected Message(Parcel in) {
         this.content = in.readString();
+        this.picture = in.readParcelable(Bitmap.class.getClassLoader());
         this.type = in.readInt();
         this.sendUser = in.readParcelable(User.class.getClassLoader());
         this.receivedUser = in.readParcelable(User.class.getClassLoader());

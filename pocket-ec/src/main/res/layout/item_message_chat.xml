@@ -18,12 +18,12 @@
             android:id="@+id/item_message_chat_received_avatar"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/dividerGap"
             android:layout_marginEnd="3dp"
             android:layout_marginRight="3dp"
-            android:layout_marginTop="@dimen/dividerGap"
             tools:ignore="ContentDescription" />
 
         <android.support.v7.widget.LinearLayoutCompat
@@ -41,6 +41,15 @@
                 android:layout_gravity="center"
                 android:maxWidth="200dp"
                 android:textColor="@color/textColorBlack" />
+
+            <ImageView
+                android:id="@+id/item_message_chat_received_picture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:maxWidth="200dp"
+                android:src="@drawable/cat"
+                android:visibility="gone" />
         </android.support.v7.widget.LinearLayoutCompat>
     </RelativeLayout>
     <!--发出的消息布局-->
@@ -54,8 +63,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@id/item_message_chat_send_avatar"
             android:layout_toStartOf="@id/item_message_chat_send_avatar"
+            android:layout_toLeftOf="@id/item_message_chat_send_avatar"
             android:background="@drawable/chat_right">
 
             <android.support.v7.widget.AppCompatTextView
@@ -65,17 +74,26 @@
                 android:layout_gravity="center"
                 android:maxWidth="200dp"
                 android:textColor="@color/textColorBlack" />
+
+            <ImageView
+                android:id="@+id/item_message_chat_send_picture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:maxWidth="200dp"
+                android:src="@drawable/cat"
+                android:visibility="gone" />
         </android.support.v7.widget.LinearLayoutCompat>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/item_message_chat_send_avatar"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="3dp"
             android:layout_marginStart="3dp"
+            android:layout_marginLeft="3dp"
             android:layout_marginTop="@dimen/dividerGap"
             tools:ignore="ContentDescription" />
     </RelativeLayout>

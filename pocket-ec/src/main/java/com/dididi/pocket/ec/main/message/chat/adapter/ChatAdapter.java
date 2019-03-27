@@ -32,23 +32,40 @@ public class ChatAdapter extends BaseQuickAdapter<Message, BaseViewHolder> {
                     .setVisibility(View.VISIBLE);
             helper.getView(R.id.item_message_chat_send_layout)
                     .setVisibility(View.GONE);
-            helper.setText(R.id.item_message_chat_received_msg, item.getContent())
-                    .addOnClickListener(R.id.item_message_chat_received_avatar)
-                    .addOnLongClickListener(R.id.item_message_chat_received_layout);
             GlideApp.with(mContext)
                     .load(Integer.parseInt(item.getReceivedUserAvatar()))
                     .into((ImageView) helper.getView(R.id.item_message_chat_received_avatar));
+            if (item.getPicture() != null) {
+                helper.getView(R.id.item_message_chat_received_msg).setVisibility(View.GONE);
+                helper.getView(R.id.item_message_chat_received_picture).setVisibility(View.VISIBLE);
+                GlideApp.with(mContext)
+                        .load(item.getPicture())
+                        .into((ImageView) helper.getView(R.id.item_message_chat_received_picture));
+            }else{
+                helper.setText(R.id.item_message_chat_received_msg, item.getContent())
+                        .addOnClickListener(R.id.item_message_chat_received_avatar)
+                        .addOnLongClickListener(R.id.item_message_chat_received_layout);
+            }
         } else if (item.getType() == Message.TYPE_SENT) {
             helper.getView(R.id.item_message_chat_send_layout)
                     .setVisibility(View.VISIBLE);
             helper.getView(R.id.item_message_chat_received_layout)
                     .setVisibility(View.GONE);
-            helper.setText(R.id.item_message_chat_send_msg, item.getContent())
-                    .addOnClickListener(R.id.item_message_chat_send_avatar)
-                    .addOnLongClickListener(R.id.item_message_chat_send_layout);
             GlideApp.with(mContext)
                     .load(Integer.parseInt(item.getSendUserAvatar()))
                     .into((ImageView) helper.getView(R.id.item_message_chat_send_avatar));
+            //如果有发送图片，则显示imageView隐藏TextView
+            if (item.getPicture() != null) {
+                helper.getView(R.id.item_message_chat_send_msg).setVisibility(View.GONE);
+                helper.getView(R.id.item_message_chat_send_picture).setVisibility(View.VISIBLE);
+                GlideApp.with(mContext)
+                        .load(item.getPicture())
+                        .into((ImageView) helper.getView(R.id.item_message_chat_send_picture));
+            }else{
+                helper.setText(R.id.item_message_chat_send_msg, item.getContent())
+                        .addOnClickListener(R.id.item_message_chat_send_avatar)
+                        .addOnLongClickListener(R.id.item_message_chat_send_layout);
+            }
         }
     }
 }

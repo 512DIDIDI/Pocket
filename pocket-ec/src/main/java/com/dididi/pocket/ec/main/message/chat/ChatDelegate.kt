@@ -1,7 +1,6 @@
 package com.dididi.pocket.ec.main.message.chat
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
@@ -21,7 +20,7 @@ import com.dididi.pocket.ec.R
 import com.dididi.pocket.ec.main.message.chat.adapter.ChatAdapter
 import com.dididi.pocket.ec.main.message.chat.adapter.MorePagerAdapter
 import kotlinx.android.synthetic.main.delegate_msg_chat.*
-import kotlinx.android.synthetic.main.item_msg_chat_more.*
+import java.io.FileNotFoundException
 import java.util.*
 
 
@@ -113,9 +112,22 @@ class ChatDelegate private constructor() : PocketDelegate(), TextView.OnEditorAc
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == OPEN_CAMERA && resultCode == Activity.RESULT_OK) {
-            //val bitmap = BitmapFactory.decodeFile(photo!!.absolutePath)
-            //imageView!!.setImageBitmap(bitmap)
+        when (requestCode) {
+            OPEN_CAMERA -> {
+                try {
+                    val bitmap = BitmapFactory
+                            .decodeStream(context!!.contentResolver.openInputStream(photoUri))
+                    val message = Message(bitmap, Message.TYPE_SENT, getMessage?.sendUser,
+                            getMessage?.receivedUser, "27/3/2019")
+                    mMessageList.add(message)
+                    mAdapter?.notifyItemInserted(mMessageList.size)
+                    delegate_msg_chat_recyclerView?.scrollToPosition(mMessageList.size - 1)
+                } catch (e: FileNotFoundException) {
+                    e.printStackTrace()
+                }
+            }
+            OPEN_ALBUM -> {
+            }
         }
     }
 
@@ -152,9 +164,9 @@ class ChatDelegate private constructor() : PocketDelegate(), TextView.OnEditorAc
             if (delegate_msg_chat_edit?.text == null) {
                 Toast.makeText(context, "发送消息不能为空", Toast.LENGTH_SHORT).show()
             } else {
-                val mMessage = Message(delegate_msg_chat_edit?.text.toString(), Message.TYPE_SENT,
+                val message = Message(delegate_msg_chat_edit?.text.toString(), Message.TYPE_SENT,
                         getMessage?.sendUser, getMessage?.receivedUser, "21/9/2018")
-                mMessageList.add(mMessage)
+                mMessageList.add(message)
                 //插入数据源
                 mAdapter?.notifyItemInserted(mMessageList.size)
                 delegate_msg_chat_recyclerView?.scrollToPosition(mMessageList.size - 1)

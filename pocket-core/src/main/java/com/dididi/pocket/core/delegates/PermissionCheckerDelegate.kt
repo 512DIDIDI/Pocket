@@ -23,10 +23,12 @@ abstract class PermissionCheckerDelegate : BaseDelegate() {
 
     private var photo:File? = null
     private var imageView:ImageView? = null
+    protected lateinit var photoUri:Uri
 
     companion object {
         const val WRITE_EXTERNAL_STORAGE = 1
         const val OPEN_CAMERA = 2
+        const val OPEN_ALBUM = 3
     }
 
     /**
@@ -58,7 +60,7 @@ abstract class PermissionCheckerDelegate : BaseDelegate() {
         photo = File(Environment.getExternalStorageDirectory().absolutePath,
                 "/pocketPicture/" + System.currentTimeMillis() + ".jpg")
         photo!!.parentFile.mkdirs()
-        val photoUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        photoUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             //android7.0之后，不再允许app透露file://Uri给其他app
             //转而使用FileProvider来生成content://Uri取代file://Uri
             FileProvider

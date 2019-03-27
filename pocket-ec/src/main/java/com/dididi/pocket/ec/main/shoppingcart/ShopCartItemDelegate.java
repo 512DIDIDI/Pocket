@@ -135,7 +135,7 @@ public class ShopCartItemDelegate extends BottomItemDelegate
             notifyPriceChanged();
         } else if (id == R.id.item_shopcart_shop_chat) {
             //点击选择发起店主聊天
-            Message message = new Message(null, Message.TYPE_SENT, FakeUser.getUser("1"),
+            Message message = new Message("你好", Message.TYPE_SENT, FakeUser.getUser("1"),
                     FakeUser.getUser(String.valueOf(shop.getUserId())), "15/10/2018");
             getParentDelegate().getSupportDelegate().start(ChatDelegate.Companion.getStartChat(message));
         } else if (id == R.id.item_shopcart_shop_name) {

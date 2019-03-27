@@ -119,6 +119,7 @@
             android:layout_width="match_parent"
             android:layout_height="144dp"
             android:layout_below="@id/delegate_msg_chat_edit_page"
+            android:background="@color/backgroundColorWhite"
             android:visibility="gone" />
 
     </RelativeLayout>
