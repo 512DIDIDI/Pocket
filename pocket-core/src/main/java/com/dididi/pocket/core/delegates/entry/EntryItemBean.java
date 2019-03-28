@@ -8,30 +8,33 @@ package com.dididi.pocket.core.delegates.entry;
 
 public class EntryItemBean {
 
-    private CharSequence mIcon;
-    private CharSequence mTitle;
+    private CharSequence icon;
+    private CharSequence title;
 
-    public EntryItemBean(CharSequence mIcon, CharSequence mTitle) {
-        this.mIcon = mIcon;
-        this.mTitle = mTitle;
+    public EntryItemBean(CharSequence icon, CharSequence title) {
+        this.icon = icon;
+        this.title = title;
     }
 
-    public CharSequence getmIcon() {
-        return mIcon;
+    public CharSequence getIcon() {
+        return icon;
     }
 
-    public CharSequence getmTitle() {
-        return mTitle;
+    public CharSequence getTitle() {
+        return title;
     }
 
-    /**todo:这里bug没写好 */
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return this.icon.hashCode() + (this.title.hashCode()) * 3;
     }
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        if (obj instanceof EntryItemBean) {
+            EntryItemBean item = (EntryItemBean) obj;
+            return this.icon.equals(item.getIcon()) && this.title.equals(item.getTitle());
+        }
+        return false;
     }
 }

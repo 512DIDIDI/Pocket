@@ -21,7 +21,7 @@
         <meta-data
             android:name="android.max_aspect"
             android:value="2.4" />
-        <activity android:name=".PocketActivity">
+        <activity android:name=".PocketActivityBase">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,7 +29,7 @@
             </intent-filter>
         </activity>
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="com.dididi.pocket.provider"
             android:exported="false"
             android:grantUriPermissions="true">

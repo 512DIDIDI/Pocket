@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.CoordinatorLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.design.widget.AppBarLayout
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/AppTheme.AppBarOverlay">
 
-            <android.support.v7.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
                 android:background="@color/toolbarColor"
@@ -31,11 +31,11 @@
                     android:background="@drawable/search_bar_corner"
                     android:gravity="center" />
 
-            </android.support.v7.widget.Toolbar>
+            </androidx.appcompat.widget.Toolbar>
 
-        </android.support.design.widget.AppBarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/backgroundColorWhite"
@@ -60,7 +60,7 @@
                     android:layout_marginEnd="@dimen/screenLRGap"
                     android:layout_marginRight="@dimen/screenLRGap" />
 
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/delegate_mall_goods_details_merchant_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
                     android:textColor="@color/textColorDark"
                     android:textSize="@dimen/normalTitleSize" />
 
-                <android.support.v7.widget.AppCompatImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/delegate_mall_goods_details_merchant_product_icon"
                     android:layout_width="@dimen/normalIconSize"
                     android:layout_height="@dimen/normalIconSize"
@@ -82,7 +82,7 @@
                     android:gravity="center"
                     android:src="@drawable/product" />
 
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/delegate_mall_goods_details_merchant_product_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -95,7 +95,7 @@
                     android:textColor="@color/textColorDark"
                     android:textSize="@dimen/textSmallSize" />
 
-                <android.support.v7.widget.AppCompatImageView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/delegate_mall_goods_details_merchant_fans_icon"
                     android:layout_width="@dimen/normalIconSize"
                     android:layout_height="@dimen/normalIconSize"
@@ -109,7 +109,7 @@
                     android:gravity="center"
                     android:src="@drawable/fans" />
 
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/delegate_mall_goods_details_merchant_fans_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -137,7 +137,7 @@
                     android:text="@string/faw_attention"
                     android:textColor="@color/textColorDark" />
 
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/delegate_mall_goods_details_merchant_attention_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -152,12 +152,12 @@
 
             </RelativeLayout>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/delegate_mall_goods_details_merchant_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-    </android.support.design.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-</LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

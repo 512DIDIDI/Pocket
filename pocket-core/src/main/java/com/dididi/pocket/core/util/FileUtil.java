@@ -133,7 +133,8 @@ public final class FileUtil {
         try {
             fos = new FileOutputStream(fileName);
             bos = new BufferedOutputStream(fos);
-            mBitmap.compress(Bitmap.CompressFormat.JPEG, compress, bos);// 把数据写入文件
+            // 把数据写入文件
+            mBitmap.compress(Bitmap.CompressFormat.JPEG, compress, bos);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } finally {

@@ -31,7 +31,7 @@
         android:paddingRight="0dp"
         android:paddingBottom="@dimen/dividerGap">
         <!--店铺名-->
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_mall_shop_list_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
             android:textColor="@color/textColorDark"
             android:textSize="@dimen/textNormalSize" />
         <!--店铺价格区间-->
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_mall_shop_list_price_range"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
             android:textColor="@color/textColorTight"
             android:textSize="@dimen/textNormalSize" />
         <!--最低价格-->
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_mall_shop_list_price_min"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
             android:textColor="@color/textColorRed"
             android:textSize="@dimen/textNormalSize" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_mall_shop_list_price_to"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
             android:textColor="@color/textColorDark"
             android:textSize="@dimen/textNormalSize" />
         <!--最高价格-->
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_mall_shop_list_price_max"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
             android:textColor="@color/textColorRed"
             android:textSize="@dimen/textNormalSize" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_mall_shop_list_price_yuan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
             android:textColor="@color/textColorRed"
             android:textSize="@dimen/textNormalSize" />
         <!--店铺总销量-->
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_mall_shop_list_sales"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -113,7 +113,7 @@
             android:textColor="@color/textColorHint"
             android:textSize="@dimen/textSmallSize" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_mall_shop_list_sales_buy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -126,7 +126,7 @@
             android:textColor="@color/textColorHint"
             android:textSize="@dimen/textSmallSize" />
         <!--店铺评价-->
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_mall_shop_list_evaluate_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -137,7 +137,7 @@
             android:textColor="@color/textColorHint"
             android:textSize="@dimen/textSmallSize" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_mall_shop_list_evaluate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

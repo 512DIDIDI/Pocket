@@ -9,7 +9,7 @@
         android:layout_height="@dimen/entryIconSize"
         android:layout_centerHorizontal="true"/>
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/item_entry_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

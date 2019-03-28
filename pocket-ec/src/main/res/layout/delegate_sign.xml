@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/delegate_sign_background_layout_logo"
             android:layout_width="@dimen/bigAvatarSize"
             android:layout_height="@dimen/bigAvatarSize"
@@ -17,7 +17,7 @@
             android:layout_marginBottom="@dimen/dividerGap"
             android:background="@mipmap/logo" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/delegate_sign_background_layout_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
         android:layout_gravity="center"
         android:gravity="center">
         <!--Sign状态时的logo 隐藏 主要用来定位位移后的logo位置-->
-        <android.support.v7.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/delegate_sign_logo"
             android:layout_width="@dimen/bigAvatarSize"
             android:layout_height="@dimen/bigAvatarSize"
@@ -55,7 +55,7 @@
             android:alpha="0"
             android:visibility="invisible"/>
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/delegate_sign_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
                 android:layout_gravity="center"
                 android:visibility="visible">
                 <!--用户登录文字-->
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/delegate_sign_sign_in_layout_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -127,7 +127,7 @@
                     android:textAlignment="center"
                     android:textSize="@dimen/textSmallSize" />
                 <!--登录按钮-->
-                <android.support.v7.widget.AppCompatButton
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/delegate_sign_sign_in_layout_sign_in"
                     android:layout_width="80dp"
                     android:layout_height="40dp"
@@ -141,7 +141,7 @@
                     android:textColor="@color/textColorWhite"
                     android:textSize="@dimen/buttonTextSize" />
                 <!--注册按钮-->
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/delegate_sign_sign_in_layout_sign_up"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -153,7 +153,7 @@
                     android:textColor="@color/textColorBlack"
                     android:textSize="@dimen/buttonTextSize" />
                 <!--忘记密码按钮-->
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/delegate_sign_sign_in_layout_forget_password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -175,7 +175,7 @@
                 android:alpha="0"
                 android:visibility="invisible">
                 <!--用户注册文字-->
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/delegate_sign_sign_up_layout_register"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -229,7 +229,7 @@
                     android:textAlignment="center"
                     android:textSize="@dimen/textSmallSize" />
                 <!--注册按钮-->
-                <android.support.v7.widget.AppCompatButton
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/delegate_sign_sign_up_layout_sign_up"
                     android:layout_width="80dp"
                     android:layout_height="40dp"
@@ -242,7 +242,7 @@
                     android:textColor="@color/textColorWhite"
                     android:textSize="@dimen/buttonTextSize" />
                 <!--返回登录页面-->
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/delegate_sign_sign_up_layout_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -263,7 +263,7 @@
                 android:alpha="0"
                 android:visibility="invisible">
                 <!--找回密码文字-->
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/delegate_sign_forget_password_layout_forget_password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -302,7 +302,7 @@
                     android:textAlignment="center"
                     android:textSize="@dimen/textSmallSize" />
                 <!--发送验证码按钮-->
-                <android.support.v7.widget.AppCompatButton
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/delegate_sign_forget_password_layout_send_verify"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
@@ -318,7 +318,7 @@
                     android:text="@string/send"
                     android:textSize="@dimen/textNormalSize" />
                 <!--下一步按钮-->
-                <android.support.v7.widget.AppCompatButton
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/delegate_sign_forget_password_layout_next"
                     android:layout_width="80dp"
                     android:layout_height="40dp"
@@ -331,7 +331,7 @@
                     android:textColor="@color/textColorWhite"
                     android:textSize="@dimen/buttonTextSize"/>
                 <!--返回登录按钮-->
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/delegate_sign_forget_password_layout_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -352,7 +352,7 @@
                 android:alpha="0"
                 android:visibility="invisible">
                 <!--重设密码文字-->
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/delegate_sign_reset_password_layout_forget_password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -392,7 +392,7 @@
                     android:textAlignment="center"
                     android:textSize="@dimen/textSmallSize" />
                 <!--登录按钮-->
-                <android.support.v7.widget.AppCompatButton
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/delegate_sign_reset_password_layout_login"
                     android:layout_width="80dp"
                     android:layout_height="40dp"
@@ -405,7 +405,7 @@
                     android:textColor="@color/textColorWhite"
                     android:textSize="@dimen/buttonTextSize" />
                 <!--返回找回密码页面-->
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/delegate_sign_reset_password_layout_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -419,7 +419,7 @@
             </RelativeLayout>
         </FrameLayout>
         <!--个人logo-->
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/delegate_sign_dididi_studio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.design.widget.CoordinatorLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.design.widget.AppBarLayout
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/AppTheme.AppBarOverlay">
 
-            <android.support.v7.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/delegate_mall_goods_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
@@ -33,10 +32,10 @@
                     android:layout_marginRight="@dimen/screenLRGap"
                     android:background="@drawable/search_bar_corner"
                     android:gravity="center" />
-            </android.support.v7.widget.Toolbar>
+            </androidx.appcompat.widget.Toolbar>
             <!--TODO:这里有点细节需要优化,scroll的应该是chooseBar而toolbar不能动-->
 
-        </android.support.design.widget.AppBarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -60,7 +59,7 @@
                 app:stl_distributeEvenly="true" />
 
             <!--商品排序-->
-            <android.support.v7.widget.LinearLayoutCompat
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/delegate_mall_goods_sortBar"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/searchBarSize"
@@ -70,7 +69,7 @@
                 android:paddingLeft="@dimen/screenLRGap"
                 android:paddingRight="@dimen/screenLRGap">
                 <!--排序方式-->
-                <android.support.v7.widget.AppCompatSpinner
+                <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/delegate_mall_goods_sortBar_sort"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -82,7 +81,7 @@
                     android:textColor="@color/textColorDark"
                     android:textSize="@dimen/textNormalSize" />
                 <!--销量排序-->
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/delegate_mall_goods_sortBar_sales"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -105,14 +104,14 @@
                     android:gravity="center"
                     android:text="@string/faw_th_list"
                     android:textColor="@color/textColorDark" />
-            </android.support.v7.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
             <!--展示商品的fragment-->
-            <android.support.v4.view.ViewPager
+            <androidx.viewpager.widget.ViewPager
                 android:id="@+id/delegate_mall_goods_viewpager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/delegate_mall_goods_sortBar" />
         </RelativeLayout>
-    </android.support.design.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-</android.support.v7.widget.LinearLayoutCompat>
+</androidx.appcompat.widget.LinearLayoutCompat>

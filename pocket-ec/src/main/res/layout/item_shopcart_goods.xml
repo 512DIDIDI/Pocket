@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.mcxtzhang.swipemenulib.SwipeMenuLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/dividerGap"
@@ -46,7 +45,7 @@
             android:layout_toEndOf="@id/item_shopcart_goods_img"
             android:layout_toRightOf="@id/item_shopcart_goods_img">
             <!--商品名字-->
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/item_shopcart_goods_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -58,7 +57,7 @@
                 android:textColor="@color/textColorDark"
                 android:textSize="@dimen/textSmallSize" />
             <!--商品样式-->
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/item_shopcart_goods_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -71,7 +70,7 @@
                 android:textColor="@color/textColorLight"
                 android:textSize="@dimen/tinyTextSize" />
             <!--商品价格-->
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/item_shopcart_goods_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -85,7 +84,7 @@
                 android:textColor="@color/textColorRed"
                 android:textSize="@dimen/textSmallSize" />
 
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/item_shopcart_goods_style"
@@ -106,7 +105,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true">
                 <!--减少商品数量-->
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/item_shopcart_goods_decrease"
                     android:layout_width="@dimen/normalIconSize"
                     android:layout_height="@dimen/normalIconSize"
@@ -115,7 +114,7 @@
                     android:textColor="@color/textColorDark"
                     android:textSize="@dimen/textNormalSize" />
                 <!--商品数量-->
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/item_shopcart_goods_number"
                     android:layout_width="@dimen/normalIconSize"
                     android:layout_height="@dimen/normalIconSize"
@@ -126,7 +125,7 @@
                     android:text="@string/_1"
                     android:textSize="@dimen/textNormalSize" />
                 <!--增加商品数量-->
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/item_shopcart_goods_increase"
                     android:layout_width="@dimen/normalIconSize"
                     android:layout_height="@dimen/normalIconSize"
@@ -139,7 +138,7 @@
         </RelativeLayout>
     </RelativeLayout>
     <!--加入收藏按钮-->
-    <android.support.v7.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/item_shopcart_goods_collect"
         android:layout_width="60dp"
         android:layout_height="match_parent"
@@ -148,7 +147,7 @@
         android:textColor="@color/textColorLight"
         android:textSize="@dimen/textNormalSize" />
     <!--删除按钮-->
-    <android.support.v7.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/item_shopcart_goods_delete"
         android:layout_width="60dp"
         android:layout_height="match_parent"

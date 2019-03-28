@@ -1,1 +1,1 @@
-include ':app', ':pocket-core', ':pocket-ec'
+include ':app', ':pocket-core', ':pocket-ec', ':fragmentation-core-androidx', ':fragmentation-swipeback-androidx', ':fragmentation-with-androidx'

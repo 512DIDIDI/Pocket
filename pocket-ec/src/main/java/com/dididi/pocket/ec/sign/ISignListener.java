@@ -1,7 +1,7 @@
 package com.dididi.pocket.ec.sign;
 
 /**
- * Created by dididi
+ * @author dididi
  * on 30/08/2018 .
  */
 

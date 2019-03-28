@@ -6,8 +6,6 @@ import android.content.Context;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 
-import com.blankj.utilcode.util.SizeUtils;
-
 import io.reactivex.annotations.NonNull;
 
 /**
@@ -16,6 +14,7 @@ import io.reactivex.annotations.NonNull;
  * @since 25/09/2018
  */
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public final class PocketAnimation {
 
     /**

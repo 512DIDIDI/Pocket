@@ -6,7 +6,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * Created by dididi
+ * @author dididi
  * on 30/08/2018 .
  */
 

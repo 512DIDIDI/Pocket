@@ -3,18 +3,16 @@ package com.dididi.pocket.core.delegates;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 
-import com.dididi.pocket.core.activities.ProxyActivity;
+import com.dididi.pocket.core.activities.BaseProxyActivity;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
 import me.yokeyword.fragmentation.ExtraTransaction;
 import me.yokeyword.fragmentation.ISupportFragment;
 import me.yokeyword.fragmentation.SupportFragmentDelegate;
@@ -22,21 +20,27 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
 import me.yokeyword.fragmentation_swipeback.SwipeBackFragment;
 
 /**
- * Created by dididi
+ * @author dididi
  * on 18/07/2018 .
  */
 
+@SuppressWarnings("ALL")
 public abstract class BaseDelegate extends SwipeBackFragment implements ISupportFragment {
     //fragment基础类
 
     private final SupportFragmentDelegate DELEGATE = new SupportFragmentDelegate(this);
 
-    private Unbinder mUnbinder = null;
-
-    /** 抽象方法获取子类布局(可能传入view也可能是id，所以采用Object) */
+    /**
+     * 子类布局
+     * @return 抽象方法获取子类布局(可能传入view也可能是id，所以采用Object)
+     */
     public abstract Object setLayout();
 
-    /** 抽象方法绑定控件 */
+    /**
+     * 控件绑定
+     * @param savedInstanceState 状态
+     * @param rootView 根布局
+     */
     public abstract void onBindView(@Nullable Bundle savedInstanceState,
                                     View rootView);
 
@@ -58,14 +62,13 @@ public abstract class BaseDelegate extends SwipeBackFragment implements ISupport
             throw new RuntimeException("请检查setLayout()是否为null");
         }
         //绑定视图
-        mUnbinder = ButterKnife.bind(this, rootView);
         onBindView(savedInstanceState, rootView);
         setSwipeBackEnable(false);
         return attachToSwipeBack(rootView);
     }
 
-    public final ProxyActivity getProxyActivity() {
-        return (ProxyActivity) mActivity;
+    public final BaseProxyActivity getProxyActivity() {
+        return (BaseProxyActivity) mActivity;
     }
 
     protected FragmentActivity mActivity;
@@ -132,10 +135,6 @@ public abstract class BaseDelegate extends SwipeBackFragment implements ISupport
     public void onDestroy() {
         DELEGATE.onDestroy();
         super.onDestroy();
-        //销毁活动时解绑(在fragment中需要解绑)
-        if (mUnbinder != null) {
-            mUnbinder.unbind();
-        }
     }
 
     @Override

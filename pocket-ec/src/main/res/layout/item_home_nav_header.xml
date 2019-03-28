@@ -16,7 +16,7 @@
         android:layout_marginLeft="@dimen/screenLRGap"
         android:layout_marginStart="@dimen/screenLRGap" />
     <!--名字-->
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/item_home_nav_header_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
         android:textColor="@color/textColorLight"
         android:textSize="@dimen/textSmallSize" />
     <!--邮箱-->
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/item_home_nav_header_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

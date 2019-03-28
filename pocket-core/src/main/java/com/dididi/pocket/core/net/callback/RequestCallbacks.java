@@ -1,10 +1,10 @@
 package com.dididi.pocket.core.net.callback;
 
 import android.os.Handler;
-import android.support.annotation.NonNull;
 
 import com.dididi.pocket.core.ui.loader.LoaderStyle;
 
+import androidx.annotation.NonNull;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

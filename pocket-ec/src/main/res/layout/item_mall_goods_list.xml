@@ -31,7 +31,7 @@
         android:paddingStart="@dimen/dividerGap"
         android:paddingTop="@dimen/dividerGap">
         <!--商品名-->
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_mall_goods_list_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
             android:textColor="@color/textColorDark"
             android:textSize="@dimen/textNormalSize" />
         <!--商品价格-->
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_mall_goods_list_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
             android:textColor="@color/textColorRed"
             android:textSize="@dimen/textNormalSize" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_mall_goods_list_price_yuan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
             android:textColor="@color/textColorRed"
             android:textSize="@dimen/textNormalSize" />
         <!--商品销量-->
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_mall_goods_list_sales"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
             android:textColor="@color/textColorHint"
             android:textSize="@dimen/textSmallSize" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_mall_goods_list_sales_buy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -93,7 +93,7 @@
             android:textColor="@color/textColorHint"
             android:textSize="@dimen/textSmallSize" />
         <!--商品评价-->
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_mall_goods_list_evaluate_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
             android:textColor="@color/textColorHint"
             android:textSize="@dimen/textSmallSize" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_mall_goods_list_evaluate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -114,7 +114,7 @@
             android:textColor="@color/textColorHint"
             android:textSize="@dimen/textSmallSize" />
         <!--商店名字-->
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_mall_goods_list_shop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -129,7 +129,7 @@
             android:textColor="@color/textColorIcon"
             android:textSize="@dimen/textSmallSize" />
         <!--进入商店-->
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_mall_goods_list_enter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

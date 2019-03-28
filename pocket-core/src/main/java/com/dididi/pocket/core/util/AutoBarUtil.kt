@@ -2,13 +2,10 @@ package com.dididi.pocket.core.util
 
 import android.app.Activity
 import android.content.Context
-import android.graphics.Color
 import android.os.Build
-import android.support.annotation.ColorInt
-import android.support.annotation.ColorRes
 import android.view.*
 import android.widget.FrameLayout
-import com.dididi.pocket.core.R
+import androidx.annotation.ColorInt
 
 
 /**
@@ -22,8 +19,10 @@ class AutoBarUtil {
 
     companion object {
 
-        @ColorInt const val COLOR_TOOLBAR = 0xFF454553
-        @ColorInt const val COLOR_GRAY = 0xFFE0E0E0
+        @ColorInt
+        const val COLOR_TOOLBAR = 0xFF454553
+        @ColorInt
+        const val COLOR_GRAY = 0xFFE0E0E0
 
         fun changeBarColor(activity: Activity,@ColorInt color: Int) {
             val window = activity.window

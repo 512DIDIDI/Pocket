@@ -1,12 +1,12 @@
 package com.dididi.pocket.core.net.interceptor;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.RawRes;
 
 import com.dididi.pocket.core.util.FileUtil;
 
 import java.io.IOException;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RawRes;
 import okhttp3.MediaType;
 import okhttp3.Protocol;
 import okhttp3.Response;
@@ -39,17 +39,17 @@ public class DebugInterceptor extends BaseInterceptor {
                 .build();
     }
 
-    /** @RawRes 强制只能传入id */
+    /** @param rawId 强制只能传入id */
     private Response debugResponse(Chain chain, @RawRes int rawId) {
-        final String JSON = FileUtil.getRawFile(rawId);
-        return getResponse(chain, JSON);
+        final String json = FileUtil.getRawFile(rawId);
+        return getResponse(chain, json);
     }
     /** 职责链模式(okHttp的拦截链) */
     @Override
     public Response intercept(@NonNull Chain chain) throws IOException {
-        final String URL = chain.request().url().toString();
+        final String url = chain.request().url().toString();
         //如果url包含DEBUG_URL 则返回debugResponse()处理后的结果
-        if (URL.contains(DEBUG_URL)) {
+        if (url.contains(DEBUG_URL)) {
             return debugResponse(chain, DEBUG_RAW_ID);
         }
         //否则交由下一个chain处理
