@@ -137,7 +137,7 @@ public class SignDelegate extends PocketDelegate implements View.OnClickListener
         mForgetPasswordLayoutSendVerify.setOnClickListener(this);
         mResetPasswordLayoutLogin.setOnClickListener(this);
         mResetPasswordLayoutBack.setOnClickListener(this);
-        if (getActivity() != null){
+        if (getActivity() != null) {
             Log.d("changeColor", "onBindView: ");
             AutoBarUtil.Companion.changeBarColor(getActivity(), (int) AutoBarUtil.COLOR_GRAY);
         }
@@ -161,12 +161,16 @@ public class SignDelegate extends PocketDelegate implements View.OnClickListener
             //注册事件
             if (checkRegisterInputValid()) {
                 RestClient.builder()
-                        .url("")
-                        .params("", mSignUpLayoutAccount.getText().toString())
-                        .params("", mSignUpLayoutPassword.getText().toString())
-                        .onSuccess(response -> {
-
-                        })
+                        .url("https://www.wanandroid.com/user/register")
+                        .params("username", mSignUpLayoutAccount.getText().toString())
+                        .params("password", mSignUpLayoutPassword.getText().toString())
+                        .params("repassword", mSignUpLayoutReenterPassword.getText().toString())
+                        .onSuccess(response ->
+                                Toast.makeText(getContext(), "注册成功" + response, Toast.LENGTH_SHORT).show()
+                        )
+                        .onError(((code, msg) ->
+                                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show())
+                        )
                         .build()
                         .post();
             }
@@ -174,27 +178,17 @@ public class SignDelegate extends PocketDelegate implements View.OnClickListener
             //登录事件
             if (checkLoginInputValid()) {
                 RestClient.builder()
-                        .url("")
-                        .params("", mSignInLayoutAccount.getText().toString())
-                        .params("", mSignInLayoutPassword.getText().toString())
-                        .onSuccess(response -> {
-                                    if (response.contains("\"code\":1")) {
-                                        LogUtils.d(response);
-                                        SignHandler.onSignIn(response, mSignListener);
-                                        getSupportDelegate().startWithPop(new PocketBottomDelegate());
-                                    } else {
-                                        LogUtils.d(response);
-                                        Toast.makeText(Pocket.getApplicationContext(),
-                                                "登录失败,请重新输入用户名和密码", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
+                        .url("https://www.wanandroid.com/user/login")
+                        .params("username", mSignInLayoutAccount.getText().toString())
+                        .params("password", mSignInLayoutPassword.getText().toString())
+                        .onSuccess(response -> LogUtil.d("loginResponse", response))
+                        .onError((code, msg) ->
+                                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show()
                         )
-                        .onError((code, msg) -> LogUtil.d("response:", code + msg))
                         .build()
-                        .get();
+                        .post();
             } else {
                 getSupportDelegate().startWithPop(new PocketBottomDelegate());
-                Log.d("test", "onClick: ");
             }
         } else if (v.getId() == R.id.delegate_sign_reset_password_layout_login) {
             //重设密码事件
