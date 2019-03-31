@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths>
+    <!--拍照存储路径-->
     <external-path
         name="pocket"
-        path="pocketPicture/" />
+        path="pocket/picture/" />
+    <!--访问相册路径-->
+    <external-path
+        name="external"
+        path="." />
 </paths>
+
+    <!--<external-files-path-->
+    <!--name="external_files"-->
+    <!--path="." />-->
+    <!--<cache-path-->
+    <!--name="cache"-->
+    <!--path="." />-->
+    <!--<external-cache-path-->
+    <!--name="external_cache"-->
+    <!--path="." />-->
+    <!--<files-path-->
+    <!--name="files"-->
+    <!--path="." />-->

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -27,6 +28,7 @@
             tools:ignore="ContentDescription" />
 
         <android.support.v7.widget.LinearLayoutCompat
+            android:id="@+id/item_message_chat_received_text_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -42,16 +44,24 @@
                 android:gravity="center"
                 android:maxWidth="200dp"
                 android:textColor="@color/textColorBlack" />
-
-            <ImageView
-                android:id="@+id/item_message_chat_received_picture"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:maxWidth="200dp"
-                android:src="@drawable/cat"
-                android:visibility="gone" />
         </android.support.v7.widget.LinearLayoutCompat>
+
+        <com.dididi.pocket.core.ui.item.RoundRectImageView
+            android:id="@+id/item_message_chat_received_picture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@id/item_message_chat_received_avatar"
+            android:layout_toRightOf="@id/item_message_chat_received_avatar"
+            android:maxWidth="100dp"
+            android:maxHeight="100dp"
+            android:src="@mipmap/banner_01"
+            android:visibility="gone"
+            app:roundRect_corner="8dp" />
     </RelativeLayout>
     <!--发出的消息布局-->
     <RelativeLayout
@@ -61,6 +71,7 @@
         android:layout_gravity="end">
 
         <android.support.v7.widget.LinearLayoutCompat
+            android:id="@+id/item_message_chat_send_text_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -75,16 +86,24 @@
                 android:layout_gravity="center"
                 android:maxWidth="200dp"
                 android:textColor="@color/textColorBlack" />
-
-            <ImageView
-                android:id="@+id/item_message_chat_send_picture"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:maxWidth="200dp"
-                android:src="@drawable/cat"
-                android:visibility="gone" />
         </android.support.v7.widget.LinearLayoutCompat>
+
+        <com.dididi.pocket.core.ui.item.RoundRectImageView
+            android:id="@+id/item_message_chat_send_picture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_toStartOf="@id/item_message_chat_send_avatar"
+            android:layout_toLeftOf="@id/item_message_chat_send_avatar"
+            android:maxWidth="100dp"
+            android:maxHeight="100dp"
+            android:src="@mipmap/banner_01"
+            android:visibility="gone"
+            app:roundRect_corner="8dp" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/item_message_chat_send_avatar"

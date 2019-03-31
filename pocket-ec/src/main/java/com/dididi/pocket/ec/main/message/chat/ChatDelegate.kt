@@ -2,8 +2,7 @@ package com.dididi.pocket.ec.main.message.chat
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.KeyEvent
@@ -20,6 +19,7 @@ import com.dididi.pocket.ec.R
 import com.dididi.pocket.ec.main.message.chat.adapter.ChatAdapter
 import com.dididi.pocket.ec.main.message.chat.adapter.MorePagerAdapter
 import kotlinx.android.synthetic.main.delegate_msg_chat.*
+import me.yokeyword.fragmentation.ISupportFragment
 import java.io.FileNotFoundException
 import java.util.*
 
@@ -36,8 +36,7 @@ import java.util.*
  * 防止外部实例化ChatDelegate而导致没有传入message bundle出现错误
  * 只能通过ChatDelegate的getStartChat()方法获取ChatDelegate
  */
-@SuppressLint("ValidFragment")
-class ChatDelegate private constructor() : PocketDelegate(), TextView.OnEditorActionListener {
+class ChatDelegate : PocketDelegate(), TextView.OnEditorActionListener {
 
     private val mMessageList = ArrayList<Message>()
     private var mAdapter: ChatAdapter? = null
@@ -66,7 +65,6 @@ class ChatDelegate private constructor() : PocketDelegate(), TextView.OnEditorAc
         val layoutManager = LinearLayoutManager(context)
         //初始化消息页面
         delegate_msg_chat_recyclerView?.layoutManager = layoutManager
-        delegate_msg_chat_recyclerView?.adapter = mAdapter
         //输入框发送消息
         delegate_msg_chat_edit?.setOnEditorActionListener(this)
         //更多页面viewpager 添加view到list中
@@ -75,7 +73,9 @@ class ChatDelegate private constructor() : PocketDelegate(), TextView.OnEditorAc
         mViewList.add(morePagerView!!)
         val moreAdapter = MorePagerAdapter(context!!, mViewList)
         delegate_msg_chat_more_page?.adapter = moreAdapter
+        //点击事件处理
         onClickEvent()
+        delegate_msg_chat_recyclerView?.adapter = mAdapter
     }
 
     private fun onClickEvent() {
@@ -91,43 +91,58 @@ class ChatDelegate private constructor() : PocketDelegate(), TextView.OnEditorAc
         delegate_msg_chat_voice?.setOnClickListener {
             Toast.makeText(context, "点击语音", Toast.LENGTH_SHORT).show()
         }
-        val moreCamera = morePagerView!!
-                .findViewById<MoreButtonItem>(R.id.item_msg_chat_more_camera)
-        moreCamera.setOnClickListener {
-            applyPermission(context!!)
+        mAdapter!!.setOnItemChildClickListener { adapter, view, position ->
+            when (view.id) {
+                R.id.item_message_chat_received_picture -> {
+                    Toast.makeText(context, "点击图片", Toast.LENGTH_SHORT).show()
+                }
+                R.id.item_message_chat_send_picture -> {
+                    Toast.makeText(context, "点击图片", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
-    }
+        //上拉页面的按钮
+        //打开相机
+        val moreCamera = morePagerView?.findViewById<MoreButtonItem>(R.id.item_msg_chat_more_camera)
+        moreCamera?.setOnClickListener {
+            applyCameraPermission()
+        }
+        //打开相册
+        val moreOpenAlbum = morePagerView?.findViewById<MoreButtonItem>(R.id.item_msg_chat_more_album)
+        moreOpenAlbum?.setOnClickListener {
+            applyOpenAlbumPermission()
+        }
 
-    override fun onRequestPermissionsResult(requestCode: Int,
-                                            permissions: Array<out String>,
-                                            grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == WRITE_EXTERNAL_STORAGE &&
-                grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            openCamera(context!!)
-        } else {
-            Toast.makeText(context, "没有读写权限", Toast.LENGTH_SHORT).show()
-        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             OPEN_CAMERA -> {
-                try {
-                    val bitmap = BitmapFactory
-                            .decodeStream(context!!.contentResolver.openInputStream(photoUri))
-                    val message = Message(bitmap, Message.TYPE_SENT, getMessage?.sendUser,
-                            getMessage?.receivedUser, "27/3/2019")
-                    mMessageList.add(message)
-                    mAdapter?.notifyItemInserted(mMessageList.size)
-                    delegate_msg_chat_recyclerView?.scrollToPosition(mMessageList.size - 1)
-                } catch (e: FileNotFoundException) {
-                    e.printStackTrace()
+                if (resultCode == ISupportFragment.RESULT_OK) {
+                    insertBitmapToList(getBitmapByCamera())
                 }
             }
             OPEN_ALBUM -> {
+                if (resultCode == ISupportFragment.RESULT_OK) {
+                    insertBitmapToList(getBitmapByAlbum(data!!))
+                }
             }
+        }
+    }
+
+    private fun insertBitmapToList(bitmap: Bitmap) {
+        try {
+            //加载图片到消息列表中
+            val message = Message(bitmap, Message.TYPE_SENT, getMessage?.sendUser,
+                    getMessage?.receivedUser, "27/3/2019")
+            mMessageList.add(message)
+            mAdapter?.notifyItemInserted(mMessageList.size)
+            delegate_msg_chat_recyclerView?.scrollToPosition(mMessageList.size - 1)
+            isMoreVisible = true
+            showMorePager()
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
         }
     }
 
