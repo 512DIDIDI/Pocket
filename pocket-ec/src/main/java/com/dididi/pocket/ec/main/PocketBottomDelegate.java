@@ -4,16 +4,17 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.dididi.pocket.core.util.AutoBarUtil;
+import com.dididi.pocket.core.delegates.bottom.BaseBottomDelegate;
+import com.dididi.pocket.core.delegates.bottom.BottomItemDelegate;
+import com.dididi.pocket.core.delegates.bottom.BottomTabBean;
+import com.dididi.pocket.core.delegates.bottom.ItemFactory;
 import com.dididi.pocket.ec.R;
 import com.dididi.pocket.ec.main.mall.HomeItemDelegate;
 import com.dididi.pocket.ec.main.message.MessageItemDelegate;
 import com.dididi.pocket.ec.main.personal.PersonalItemDelegate;
 import com.dididi.pocket.ec.main.shoppingcart.ShopCartItemDelegate;
-import com.dididi.pocket.core.delegates.bottom.BaseBottomDelegate;
-import com.dididi.pocket.core.delegates.bottom.BottomItemDelegate;
-import com.dididi.pocket.core.delegates.bottom.BottomTabBean;
-import com.dididi.pocket.core.delegates.bottom.ItemFactory;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.LinkedHashMap;
 
@@ -26,8 +27,9 @@ import java.util.LinkedHashMap;
 public class PocketBottomDelegate extends BaseBottomDelegate {
     //底部导航栏
 
+    @NotNull
     @Override
-    public LinkedHashMap<BottomTabBean, BottomItemDelegate> setItems(ItemFactory factory) {
+    public LinkedHashMap<BottomTabBean, BottomItemDelegate> setItems(@NotNull ItemFactory factory) {
         final LinkedHashMap<BottomTabBean, BottomItemDelegate> items = new LinkedHashMap<>();
         items.put(new BottomTabBean("{faw-home}", "主页"),
                 new HomeItemDelegate());
@@ -38,6 +40,11 @@ public class PocketBottomDelegate extends BaseBottomDelegate {
         items.put(new BottomTabBean("{faw-user}", "我的"),
                 new PersonalItemDelegate());
         return factory.addItem(items).build();
+    }
+
+    @Override
+    public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
+
     }
 
     @Override
@@ -52,10 +59,10 @@ public class PocketBottomDelegate extends BaseBottomDelegate {
 
     public void setBottomBarVisible(int visible) {
         //解决跳到首页时 drawerLayout开启情况下 动画的重复播放
-        if (visible == View.VISIBLE && mBottomBar.getVisibility() == View.GONE) {
-            mBottomBar.setVisibility(View.VISIBLE);
-        } else if (visible == View.GONE && mBottomBar.getVisibility() == View.VISIBLE) {
-            mBottomBar.setVisibility(View.GONE);
+        if (visible == View.VISIBLE && getMBottomBar().getVisibility() == View.GONE) {
+            getMBottomBar().setVisibility(View.VISIBLE);
+        } else if (visible == View.GONE && getMBottomBar().getVisibility() == View.VISIBLE) {
+            getMBottomBar().setVisibility(View.GONE);
         }
     }
 }

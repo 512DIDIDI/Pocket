@@ -13,8 +13,6 @@ import android.view.animation.Animation;
 
 import com.dididi.pocket.core.activities.ProxyActivity;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import me.yokeyword.fragmentation.ExtraTransaction;
 import me.yokeyword.fragmentation.ISupportFragment;
 import me.yokeyword.fragmentation.SupportFragmentDelegate;
@@ -31,12 +29,14 @@ public abstract class BaseDelegate extends SwipeBackFragment implements ISupport
 
     private final SupportFragmentDelegate DELEGATE = new SupportFragmentDelegate(this);
 
-    private Unbinder mUnbinder = null;
 
     /** 抽象方法获取子类布局(可能传入view也可能是id，所以采用Object) */
     public abstract Object setLayout();
 
-    /** 抽象方法绑定控件 */
+    /** 抽象方法绑定子控件 */
+    public abstract void onBindChildView(@Nullable Bundle savedInstanceState,
+                                         View rootView);
+
     public abstract void onBindView(@Nullable Bundle savedInstanceState,
                                     View rootView);
 
@@ -58,10 +58,15 @@ public abstract class BaseDelegate extends SwipeBackFragment implements ISupport
             throw new RuntimeException("请检查setLayout()是否为null");
         }
         //绑定视图
-        mUnbinder = ButterKnife.bind(this, rootView);
-        onBindView(savedInstanceState, rootView);
+        onBindChildView(savedInstanceState, rootView);
         setSwipeBackEnable(false);
         return attachToSwipeBack(rootView);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        onBindView(savedInstanceState,view);
     }
 
     public final ProxyActivity getProxyActivity() {
@@ -132,10 +137,6 @@ public abstract class BaseDelegate extends SwipeBackFragment implements ISupport
     public void onDestroy() {
         DELEGATE.onDestroy();
         super.onDestroy();
-        //销毁活动时解绑(在fragment中需要解绑)
-        if (mUnbinder != null) {
-            mUnbinder.unbind();
-        }
     }
 
     @Override

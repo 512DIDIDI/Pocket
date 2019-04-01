@@ -22,6 +22,11 @@ public class TestDelegate extends PocketDelegate {
     }
 
     @Override
+    public void onBindChildView(@Nullable Bundle savedInstanceState, View rootView) {
+
+    }
+
+    @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
 
     }

@@ -48,7 +48,7 @@ class ChatDelegate : PocketDelegate(), TextView.OnEditorActionListener {
         return R.layout.delegate_msg_chat
     }
 
-    override fun onBindView(savedInstanceState: Bundle?, rootView: View) {
+    override fun onBindChildView(savedInstanceState: Bundle?, rootView: View?) {
         //获取从bundle传入的数据
         getMessage = arguments!!.get("message") as Message
         if (getMessage!!.content != null) {
@@ -58,8 +58,7 @@ class ChatDelegate : PocketDelegate(), TextView.OnEditorActionListener {
         mAdapter = ChatAdapter(R.layout.item_message_chat, mMessageList)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onBindView(savedInstanceState: Bundle?, rootView: View?) {
         //设置chat页面标题
         delegate_msg_chat_name?.text = getMessage!!.receivedUserName
         val layoutManager = LinearLayoutManager(context)
@@ -91,7 +90,7 @@ class ChatDelegate : PocketDelegate(), TextView.OnEditorActionListener {
         delegate_msg_chat_voice?.setOnClickListener {
             Toast.makeText(context, "点击语音", Toast.LENGTH_SHORT).show()
         }
-        mAdapter!!.setOnItemChildClickListener { adapter, view, position ->
+        mAdapter!!.setOnItemChildClickListener { _, view, _ ->
             when (view.id) {
                 R.id.item_message_chat_received_picture -> {
                     Toast.makeText(context, "点击图片", Toast.LENGTH_SHORT).show()
