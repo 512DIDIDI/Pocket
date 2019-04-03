@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_gravity="bottom"
+    android:background="@color/backgroundColorWhite"
+    android:layout_height="96dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/dialog_photo_bottom_take_photo"
+        android:layout_width="match_parent"
+        android:layout_height="47.5dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="@string/take_photo"
+        android:textColor="@color/textColorBlack"
+        android:textSize="@dimen/buttonTextSize" />
+
+    <View
+        android:id="@+id/dialog_photo_bottom_divider"
+        android:layout_width="match_parent"
+        android:layout_below="@id/dialog_photo_bottom_take_photo"
+        android:background="@color/dividerColor"
+        android:layout_height="1dp"/>
+
+    <TextView
+        android:id="@+id/dialog_photo_bottom_open_album"
+        android:layout_width="match_parent"
+        android:layout_below="@id/dialog_photo_bottom_divider"
+        android:layout_height="47.5dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="@string/open_album"
+        android:textColor="@color/textColorBlack"
+        android:textSize="@dimen/buttonTextSize" />
+
+</RelativeLayout>

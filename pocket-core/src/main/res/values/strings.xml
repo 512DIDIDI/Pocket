@@ -7,4 +7,6 @@
     <string name="faw_chevron_left">{faw-chevron-left}</string>
     <string name="confirm">确认</string>
     <string name="cancel">取消</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="open_album">Open Album</string>
 </resources>

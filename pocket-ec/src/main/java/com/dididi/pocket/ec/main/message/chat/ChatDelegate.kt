@@ -1,6 +1,5 @@
 package com.dididi.pocket.ec.main.message.chat
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle

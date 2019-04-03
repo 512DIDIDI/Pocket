@@ -27,12 +27,14 @@ import java.io.File
 abstract class PermissionCheckerDelegate : BaseDelegate() {
 
     //给子类用于显示的相片地址
-    private lateinit var photoUri: Uri
-    private lateinit var imagePath: String
-    //供裁剪使用
-    private lateinit var oriUri: Uri
+    private lateinit var cameraPhotoUri: Uri
+    //相册中相片地址
+    private lateinit var albumPhotoPath: String
+    //指定裁剪的相片文件
     private val cropFile = File(Environment.getExternalStorageDirectory().absolutePath,
             "/pocket/picture/" + "crop_photo.jpg")
+    //裁剪相片的Uri
+    private val cropPhotoUri = Uri.fromFile(cropFile)
 
     companion object {
         const val WRITE_EXTERNAL_STORAGE = 1
@@ -63,23 +65,56 @@ abstract class PermissionCheckerDelegate : BaseDelegate() {
      * 获取相机拍下的uri并转为bitmap
      */
     fun getBitmapByCamera() = BitmapFactory
-            .decodeStream(context!!.contentResolver.openInputStream(photoUri))!!
+            .decodeStream(context!!.contentResolver.openInputStream(cameraPhotoUri))!!
 
     /**
      * 获取相册的图片转为bitmap
      */
-    fun getBitmapByAlbum(data: Intent): Bitmap {
+    fun getBitmapByAlbum(data: Intent) =
+            MediaStore.Images.Media.getBitmap(context!!.contentResolver, getAlbumPhotoUri(data))!!
+
+    /**
+     * 获取裁剪后的相片转为bitmap
+     */
+    fun getBitmapByCrop() =
+            MediaStore.Images.Media.getBitmap(context!!.contentResolver, cropPhotoUri)!!
+
+    /**
+     * 裁剪相片
+     * @see cropImageUri(oriUri: Uri, desUri: Uri, aspectX: Int, aspectY: Int, width: Int, height: Int)
+     */
+    fun cropPhoto(requestCode: Int, data: Intent? = null, aspectX: Int = 1, aspectY: Int = 1, width: Int, height: Int) {
+        when (requestCode) {
+            OPEN_CAMERA -> {
+                cropImageUri(cameraPhotoUri, cropPhotoUri, aspectX, aspectY, width, height)
+            }
+            OPEN_ALBUM -> {
+                cropImageUri(getAlbumPhotoUri(data!!), cropPhotoUri, aspectX, aspectY, width, height)
+            }
+            else -> {
+            }
+        }
+    }
+
+    /**
+     * 获取相册相片Uri
+     * @param data 返回的data
+     */
+    private fun getAlbumPhotoUri(data: Intent): Uri {
+        //根据版本获取相片真实路径
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             handleImageAfterKitKat(data)
         } else {
             handleImageBeforeKitKat(data)
         }
-        oriUri = Uri.parse(imagePath)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        //根据版本获取相片Uri
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             //7.0适配
-            oriUri = FileProvider.getUriForFile(context!!, "com.dididi.pocket.provider", File(imagePath))
+            FileProvider.getUriForFile(context!!,
+                    "com.dididi.pocket.provider", File(albumPhotoPath))
+        } else {
+            Uri.parse(albumPhotoPath)
         }
-        return MediaStore.Images.Media.getBitmap(context!!.contentResolver, oriUri)
     }
 
     /**
@@ -90,7 +125,7 @@ abstract class PermissionCheckerDelegate : BaseDelegate() {
         File(Environment.getExternalStorageDirectory().absolutePath,
                 "/pocket/picture/" + System.currentTimeMillis() + ".jpg").apply {
             parentFile.mkdirs()
-            photoUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            cameraPhotoUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 //android7.0之后，不再允许app透露file://Uri给其他app
                 //转而使用FileProvider来生成content://Uri取代file://Uri
                 FileProvider
@@ -102,7 +137,7 @@ abstract class PermissionCheckerDelegate : BaseDelegate() {
         }
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).apply {
             //将uri存进intent，供相机回调使用 data.getData中获取
-            putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
+            putExtra(MediaStore.EXTRA_OUTPUT, cameraPhotoUri)
             startActivityForResult(this, OPEN_CAMERA)
         }
     }
@@ -121,8 +156,12 @@ abstract class PermissionCheckerDelegate : BaseDelegate() {
      * 裁剪Uri
      * @param oriUri 原始Uri
      * @param desUri 目标Uri
+     * @param aspectX X方向上的比例
+     * @param aspectY Y方向上的比例
+     * @param width 输出图像的宽
+     * @param height 输出图像的高
      */
-    fun cropImageUri(oriUri: Uri, desUri: Uri, aspectX: Int, aspectY: Int, width: Int, height: Int) {
+    private fun cropImageUri(oriUri: Uri, desUri: Uri, aspectX: Int, aspectY: Int, width: Int, height: Int) {
         Intent("com.android.camera.action.CROP").apply {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
@@ -220,7 +259,7 @@ abstract class PermissionCheckerDelegate : BaseDelegate() {
                     "com.android.externalstorage.documents" -> {
                         val type = docId.split(":")[0]
                         if ("primary".equals(type, ignoreCase = true)) {
-                            imagePath = Environment.getExternalStorageDirectory()
+                            albumPhotoPath = Environment.getExternalStorageDirectory()
                                     .toString() + "/" + docId.split(":")[1]
                         }
                     }
@@ -236,14 +275,14 @@ abstract class PermissionCheckerDelegate : BaseDelegate() {
                         }
                         val selection = "_id=?"
                         val selectionArgs: Array<String> = arrayOf(id)
-                        imagePath = getImagePath(contentUri!!, selection, selectionArgs)!!
+                        albumPhotoPath = getImagePath(contentUri!!, selection, selectionArgs)!!
                     }
                     //downloads文件解析
                     "com.android.providers.downloads.documents" -> {
                         ContentUris.withAppendedId(
                                 Uri.parse("content://downloads/public_downloads"), docId.toLong()
                         ).apply {
-                            imagePath = getImagePath(this, null, null)!!
+                            albumPhotoPath = getImagePath(this, null, null)!!
                         }
                     }
                     else -> {
@@ -252,10 +291,10 @@ abstract class PermissionCheckerDelegate : BaseDelegate() {
             }
             "content".equals(uri?.scheme, ignoreCase = true) ->
                 //content类型数据不需要解析，直接传入生成即可
-                imagePath = getImagePath(uri!!, null, null)!!
+                albumPhotoPath = getImagePath(uri!!, null, null)!!
             "file".equals(uri?.scheme, ignoreCase = true) ->
                 //file类型的uri直接获取图片路径即可
-                imagePath = uri!!.path!!
+                albumPhotoPath = uri!!.path!!
         }
     }
 
@@ -264,7 +303,7 @@ abstract class PermissionCheckerDelegate : BaseDelegate() {
      */
     private fun handleImageBeforeKitKat(data: Intent) {
         val uri = data.data
-        imagePath = getImagePath(uri!!, null, null)!!
+        albumPhotoPath = getImagePath(uri!!, null, null)!!
     }
 
     /**

@@ -33,10 +33,13 @@ public abstract class BaseDelegate extends SwipeBackFragment implements ISupport
     /** 抽象方法获取子类布局(可能传入view也可能是id，所以采用Object) */
     public abstract Object setLayout();
 
-    /** 抽象方法绑定子控件 */
+    /** 抽象方法绑定子控件(如NavigationView当中的item控件) */
     public abstract void onBindChildView(@Nullable Bundle savedInstanceState,
                                          View rootView);
 
+    /**
+     * 绑定一般控件使用
+     */
     public abstract void onBindView(@Nullable Bundle savedInstanceState,
                                     View rootView);
 

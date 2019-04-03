@@ -21,10 +21,10 @@ public abstract class BottomItemDelegate extends PocketDelegate implements IClic
     @Override
     public boolean onBackPressedSupport() {
         if ((System.currentTimeMillis() - mExitTime) < EXIT_TIME) {
-            mActivity.finish();
+            getProxyActivity().finish();
         } else {
             mExitTime = System.currentTimeMillis();
-            Toast.makeText(mActivity,
+            Toast.makeText(getProxyActivity(),
                     "双击退出" + Pocket.getApplicationContext().getString(R.string.app_name),
                     Toast.LENGTH_SHORT).show();
         }

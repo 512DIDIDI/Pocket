@@ -27,10 +27,13 @@ import kotlinx.android.synthetic.main.delegate_sign.*
 class SignDelegate : PocketDelegate(), View.OnClickListener {
 
     private var mSignListener: ISignListener? = null
+    private val threshold = 2000L
+    private val curr = System.currentTimeMillis()
+    private var last = 0L
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        if (context is ISignListener){
+        if (context is ISignListener) {
             mSignListener = context
         }
     }
@@ -60,74 +63,70 @@ class SignDelegate : PocketDelegate(), View.OnClickListener {
         }
     }
 
+
     override fun onClick(v: View) {
-        if (v.id == R.id.delegate_sign_background_layout_enter_sign) {
-            getSignAnimation()
-        } else if (v.id == R.id.delegate_sign_sign_in_layout_sign_up) {
-            getSignUpAnimation()
-        } else if (v.id == R.id.delegate_sign_sign_in_layout_forget_password) {
-            getForgetPasswordAnimation()
-        } else if (v.id == R.id.delegate_sign_sign_up_layout_back) {
-            getSignUpBackAnimation()
-        } else if (v.id == R.id.delegate_sign_forget_password_layout_back) {
-            getForgetPasswordBackAnimation()
-        } else if (v.id == R.id.delegate_sign_forget_password_layout_next) {
-            getForgetPasswordNextAnimation()
-        } else if (v.id == R.id.delegate_sign_sign_up_layout_sign_up) {
-            //注册事件
-            if (checkRegisterInputValid()) {
-                RestClient.builder()
-                        .url("https://www.wanandroid.com/user/register")
-                        .params("username", delegate_sign_sign_up_layout_account!!.text!!.toString())
-                        .params("password", delegate_sign_sign_up_layout_password!!.text!!.toString())
-                        .params("repassword", delegate_sign_sign_up_layout_reenter_password!!.text!!.toString())
-                        .onSuccess { response -> Toast.makeText(context, "注册成功$response", Toast.LENGTH_SHORT).show() }
-                        .onError { _, msg -> Toast.makeText(context, msg, Toast.LENGTH_SHORT).show() }
-                        .build()
-                        .post()
+        when(v.id) {
+            R.id.delegate_sign_background_layout_enter_sign -> getSignAnimation()
+            R.id.delegate_sign_sign_in_layout_sign_up -> getSignUpAnimation()
+            R.id.delegate_sign_sign_in_layout_forget_password -> getForgetPasswordAnimation()
+            R.id.delegate_sign_sign_up_layout_back -> getSignUpBackAnimation()
+            R.id.delegate_sign_forget_password_layout_back -> getForgetPasswordBackAnimation()
+            R.id.delegate_sign_forget_password_layout_next -> getForgetPasswordNextAnimation()
+            R.id.delegate_sign_sign_up_layout_sign_up -> //注册事件
+                if (checkRegisterInputValid()) {
+                    RestClient.builder()
+                            .url("https://www.wanandroid.com/user/register")
+                            .params("username", delegate_sign_sign_up_layout_account!!.text!!.toString())
+                            .params("password", delegate_sign_sign_up_layout_password!!.text!!.toString())
+                            .params("repassword", delegate_sign_sign_up_layout_reenter_password!!.text!!.toString())
+                            .onSuccess { response -> Toast.makeText(context, "注册成功$response", Toast.LENGTH_SHORT).show() }
+                            .onError { _, msg -> Toast.makeText(context, msg, Toast.LENGTH_SHORT).show() }
+                            .build()
+                            .post()
+                }
+            R.id.delegate_sign_sign_in_layout_sign_in -> {
+                if (curr - last > threshold) {
+                    //登录事件
+                    if (checkLoginInputValid()) {
+                        RestClient.builder()
+                                .url("https://www.wanandroid.com/user/login")
+                                .params("username", delegate_sign_sign_in_layout_account!!.text!!.toString())
+                                .params("password", delegate_sign_sign_in_layout_password!!.text!!.toString())
+                                .onSuccess { response -> LogUtil.d("loginResponse", response) }
+                                .onError { _, msg -> Toast.makeText(context, msg, Toast.LENGTH_SHORT).show() }
+                                .build()
+                                .post()
+                    } else {
+                        supportDelegate.startWithPop(PocketBottomDelegate())
+                    }
+                    last = curr
+                }
             }
-        } else if (v.id == R.id.delegate_sign_sign_in_layout_sign_in) {
-            //登录事件
-            if (checkLoginInputValid()) {
-                RestClient.builder()
-                        .url("https://www.wanandroid.com/user/login")
-                        .params("username", delegate_sign_sign_in_layout_account!!.text!!.toString())
-                        .params("password", delegate_sign_sign_in_layout_password!!.text!!.toString())
-                        .onSuccess { response -> LogUtil.d("loginResponse", response) }
-                        .onError { _, msg -> Toast.makeText(context, msg, Toast.LENGTH_SHORT).show() }
-                        .build()
-                        .post()
-            } else {
-                supportDelegate.startWithPop(PocketBottomDelegate())
-            }
-        } else if (v.id == R.id.delegate_sign_reset_password_layout_login) {
-            //重设密码事件
-            if (checkResetPasswordInputValid()) {
-                RestClient.builder()
-                        .url("")
-                        .params("", delegate_sign_reset_password_layout_password!!.text!!.toString())
-                        .params("", delegate_sign_reset_password_layout_reenter_password!!.text!!.toString())
-                        .onSuccess { response ->
-                            if (response.contains("\"code\":1")) {
-                                LogUtils.d(response)
-                                SignHandler.onSignIn(response, mSignListener!!)
-                                supportDelegate.startWithPop(PocketBottomDelegate())
-                            } else {
-                                LogUtils.d(response)
-                                Toast.makeText(Pocket.getApplicationContext(),
-                                        "登录失败,请重新输入用户名和密码", Toast.LENGTH_SHORT).show()
+            R.id.delegate_sign_reset_password_layout_login -> //重设密码事件
+                if (checkResetPasswordInputValid()) {
+                    RestClient.builder()
+                            .url("")
+                            .params("", delegate_sign_reset_password_layout_password!!.text!!.toString())
+                            .params("", delegate_sign_reset_password_layout_reenter_password!!.text!!.toString())
+                            .onSuccess { response ->
+                                if (response.contains("\"code\":1")) {
+                                    LogUtils.d(response)
+                                    SignHandler.onSignIn(response, mSignListener!!)
+                                    supportDelegate.startWithPop(PocketBottomDelegate())
+                                } else {
+                                    LogUtils.d(response)
+                                    Toast.makeText(Pocket.getApplicationContext(),
+                                            "登录失败,请重新输入用户名和密码", Toast.LENGTH_SHORT).show()
+                                }
                             }
-                        }
-                        .onError { code, msg -> LogUtil.d("response:", code.toString() + msg) }
-                        .build()
-                        .get()
-            }
-        } else if (v.id == R.id.delegate_sign_forget_password_layout_send_verify) {
-            if (checkForgetPasswordInputValid()) {
+                            .onError { code, msg -> LogUtil.d("response:", code.toString() + msg) }
+                            .build()
+                            .get()
+                }
+            R.id.delegate_sign_forget_password_layout_send_verify -> if (checkForgetPasswordInputValid()) {
                 //todo:发送验证码事件
             }
-        } else if (v.id == R.id.delegate_sign_reset_password_layout_back) {
-            getResetPasswordBackAnimation()
+            R.id.delegate_sign_reset_password_layout_back -> getResetPasswordBackAnimation()
         }
     }
 
