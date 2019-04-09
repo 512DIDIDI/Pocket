@@ -43,9 +43,7 @@ public class PocketBottomDelegate extends BaseBottomDelegate {
     }
 
     @Override
-    public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-
-    }
+    public void onBindView(@Nullable Bundle savedInstanceState, View rootView) { }
 
     @Override
     public int setPressColor() {
@@ -59,10 +57,10 @@ public class PocketBottomDelegate extends BaseBottomDelegate {
 
     public void setBottomBarVisible(int visible) {
         //解决跳到首页时 drawerLayout开启情况下 动画的重复播放
-        if (visible == View.VISIBLE && getMBottomBar().getVisibility() == View.GONE) {
-            getMBottomBar().setVisibility(View.VISIBLE);
-        } else if (visible == View.GONE && getMBottomBar().getVisibility() == View.VISIBLE) {
-            getMBottomBar().setVisibility(View.GONE);
+        if (visible == View.VISIBLE && getBottomBar().getVisibility() == View.GONE) {
+            getBottomBar().setVisibility(View.VISIBLE);
+        } else if (visible == View.GONE && getBottomBar().getVisibility() == View.VISIBLE) {
+            getBottomBar().setVisibility(View.GONE);
         }
     }
 }

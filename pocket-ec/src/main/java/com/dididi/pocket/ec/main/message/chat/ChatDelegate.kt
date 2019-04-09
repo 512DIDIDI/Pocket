@@ -8,11 +8,13 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.dididi.pocket.core.delegates.PocketDelegate
 import com.dididi.pocket.core.entity.Message
 import com.dididi.pocket.core.ui.animation.PocketAnimation
+import com.dididi.pocket.core.ui.dialog.PhotoDialog
 import com.dididi.pocket.core.ui.item.MoreButtonItem
 import com.dididi.pocket.ec.R
 import com.dididi.pocket.ec.main.message.chat.adapter.ChatAdapter
@@ -89,13 +91,19 @@ class ChatDelegate : PocketDelegate(), TextView.OnEditorActionListener {
         delegate_msg_chat_voice?.setOnClickListener {
             Toast.makeText(context, "点击语音", Toast.LENGTH_SHORT).show()
         }
-        mAdapter!!.setOnItemChildClickListener { _, view, _ ->
+        mAdapter!!.setOnItemChildClickListener { adapter, view, position ->
             when (view.id) {
                 R.id.item_message_chat_received_picture -> {
+                    val message = adapter.getItem(position) as Message
                     Toast.makeText(context, "点击图片", Toast.LENGTH_SHORT).show()
+                    val photoDialog = PhotoDialog().create(message.picture)
+                    photoDialog.show(fragmentManager!!)
                 }
                 R.id.item_message_chat_send_picture -> {
+                    val message = adapter.getItem(position) as Message
                     Toast.makeText(context, "点击图片", Toast.LENGTH_SHORT).show()
+                    val photoDialog = PhotoDialog().create(message.picture)
+                    photoDialog.show(fragmentManager!!)
                 }
             }
         }

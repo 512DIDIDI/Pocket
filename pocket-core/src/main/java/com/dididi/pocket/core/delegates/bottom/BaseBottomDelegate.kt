@@ -23,7 +23,7 @@ import java.util.*
 abstract class BaseBottomDelegate : PocketDelegate(), View.OnClickListener {
     //抽象带bottomBar的页面
 
-    protected lateinit var mBottomBar: LinearLayoutCompat
+    protected lateinit var bottomBar: LinearLayoutCompat
 
     private val tabBeans = ArrayList<BottomTabBean>()
     private val itemDelegate = ArrayList<BottomItemDelegate>()
@@ -93,13 +93,13 @@ abstract class BaseBottomDelegate : PocketDelegate(), View.OnClickListener {
 
     override fun onBindChildView(savedInstanceState: Bundle?, rootView: View?) {
         val size = items.size
-        mBottomBar = rootView!!.findViewById(R.id.base_delegate_bar)
+        bottomBar = rootView!!.findViewById(R.id.base_delegate_bar)
         for (i in 0 until size) {
             //加载bottom_bar_layout布局并设置其父布局为mBottomBar
             LayoutInflater.from(context)
-                    .inflate(R.layout.bottom_bar_layout, mBottomBar)
+                    .inflate(R.layout.bottom_bar_layout, bottomBar)
             //获取mBottomBar的子布局(即bottom_bar_layout)
-            val item = mBottomBar.getChildAt(i) as RelativeLayout
+            val item = bottomBar.getChildAt(i) as RelativeLayout
             //设置item点击事件
             item.tag = i
             item.setOnClickListener(this)
@@ -127,9 +127,9 @@ abstract class BaseBottomDelegate : PocketDelegate(), View.OnClickListener {
      * 重置bar颜色
      */
     private fun resetColor() {
-        val count = mBottomBar.childCount
+        val count = bottomBar.childCount
         for (i in 0 until count) {
-            val item = mBottomBar.getChildAt(i) as RelativeLayout
+            val item = bottomBar.getChildAt(i) as RelativeLayout
             val icon = item.getChildAt(0) as IconicsTextView
             val title = item.getChildAt(1) as AppCompatTextView
             item.setBackgroundColor(ContextCompat.getColor(context!!, mNormalColor))
@@ -146,20 +146,20 @@ abstract class BaseBottomDelegate : PocketDelegate(), View.OnClickListener {
             if (i3 - i7 < -1) {
                 val params = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, 0)
                 params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
-                mBottomBar.layoutParams = params
+                bottomBar.layoutParams = params
             } else if (i3 - i7 > 1) {
                 val params = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
                         height)
                 params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
-                mBottomBar.layoutParams = params
+                bottomBar.layoutParams = params
             }
         }
     }
 
     override fun onClick(view: View) {
         //避免在drawerLayout滑出的时候快速点击bottomBar导致bottomBar消失
-        if (mBottomBar.visibility == View.GONE) {
-            mBottomBar.visibility = View.VISIBLE
+        if (bottomBar.visibility == View.GONE) {
+            bottomBar.visibility = View.VISIBLE
         }
         val tag = view.tag as Int
         val currentDelegate = itemDelegate[mCurrentDelegate]

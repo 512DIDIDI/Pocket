@@ -2,6 +2,7 @@ package com.dididi.pocket.core.ui.dialog
 
 import android.view.Gravity
 import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import com.dididi.pocket.core.R
 import com.dididi.pocket.core.delegates.PermissionCheckerDelegate
@@ -32,7 +33,7 @@ class PhotoBottomDialog : BaseDialog() {
 
     override fun bindView(view: View) {
         gravity = Gravity.BOTTOM
-        isCanceledOnOutside = true
+        width = ViewGroup.LayoutParams.MATCH_PARENT
         val takePhoto = view.findViewById<TextView>(R.id.dialog_photo_bottom_take_photo)
         val openAlbum = view.findViewById<TextView>(R.id.dialog_photo_bottom_open_album)
         takePhoto.setOnClickListener {

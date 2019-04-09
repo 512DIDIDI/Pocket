@@ -24,8 +24,8 @@ abstract class BaseDialog : DialogFragment() {
 
     var isCanceledOnOutside: Boolean = true
     var dimAmount: Float = 1f
-    var height: Int = -2
-    var width: Int = -1
+    var height: Int = ViewGroup.LayoutParams.WRAP_CONTENT
+    var width: Int = ViewGroup.LayoutParams.WRAP_CONTENT
     var gravity: Int = Gravity.CENTER
 
     override fun onCreate(savedInstanceState: Bundle?) {

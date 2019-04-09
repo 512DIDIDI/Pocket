@@ -30,7 +30,6 @@ private constructor() : PocketDelegate() {
     }
 
     override fun onBindView(savedInstanceState: Bundle?, rootView: View?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun setSwipeBackEnable(enable: Boolean) {
