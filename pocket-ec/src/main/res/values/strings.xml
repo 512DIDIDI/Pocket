@@ -43,6 +43,7 @@
     <string name="purchase_agency">代购</string>
     <string name="paint">手绘</string>
     <string name="comment_dots">{faw-comment-dots}</string>
+    <string name="faw_plus">{faw-plus}</string>
     <string name="top">置顶</string>
     <string name="delete">删除</string>
     <string name="faw_circle">{faw-circle}</string>

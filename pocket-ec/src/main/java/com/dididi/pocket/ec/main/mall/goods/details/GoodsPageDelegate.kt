@@ -1,12 +1,16 @@
 package com.dididi.pocket.ec.main.mall.goods.details
 
 import android.annotation.SuppressLint
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
+import android.view.Gravity
 import android.view.View
 
 import com.dididi.pocket.core.delegates.PocketDelegate
 import com.dididi.pocket.core.entity.Goods
 import com.dididi.pocket.ec.R
+import kotlinx.android.synthetic.main.delegate_mall_goods_details_goods.*
 
 /**
  * @author dididi
@@ -25,11 +29,23 @@ private constructor() : PocketDelegate() {
         return R.layout.delegate_mall_goods_details_goods
     }
 
-    override fun onBindChildView(savedInstanceState: Bundle?, rootView: View?) {
+    private lateinit var mGoods: Goods
 
+    override fun onBindChildView(savedInstanceState: Bundle?, rootView: View?) {
+        mGoods = arguments?.getParcelable("goods") as Goods
     }
 
     override fun onBindView(savedInstanceState: Bundle?, rootView: View?) {
+        delegate_mall_goods_details_goods_img
+                .setImageResource(resources.getIdentifier(mGoods.goodsImg,
+                        "mipmap", context?.packageName))
+        delegate_mall_goods_details_goods_collapsing_toolbar.title = mGoods.goodsName
+        delegate_mall_goods_details_goods_collapsing_toolbar
+                .setExpandedTitleColor(ContextCompat.getColor(context!!, R.color.textColorWhite))
+        delegate_mall_goods_details_goods_collapsing_toolbar
+                .setCollapsedTitleTextColor(ContextCompat.getColor(context!!, R.color.textColorWhite))
+        delegate_mall_goods_details_goods_collapsing_toolbar.expandedTitleGravity = Gravity.CENTER
+        delegate_mall_goods_details_goods_collapsing_toolbar.collapsedTitleGravity = Gravity.CENTER
     }
 
     override fun setSwipeBackEnable(enable: Boolean) {

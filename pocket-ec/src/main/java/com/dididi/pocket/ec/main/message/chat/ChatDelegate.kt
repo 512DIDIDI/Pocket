@@ -8,7 +8,6 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.dididi.pocket.core.delegates.PocketDelegate
@@ -94,7 +93,7 @@ class ChatDelegate : PocketDelegate(), TextView.OnEditorActionListener {
         mAdapter!!.setOnItemChildClickListener { adapter, view, position ->
             val message = adapter.getItem(position) as Message
             when (view.id) {
-                R.id.item_message_chat_received_picture,R.id.item_message_chat_send_picture -> {
+                R.id.item_message_chat_received_picture, R.id.item_message_chat_send_picture -> {
                     Toast.makeText(context, "点击图片", Toast.LENGTH_SHORT).show()
                     val photoDialog = PhotoDialog().create(message.picture)
                     photoDialog.show(fragmentManager!!)
@@ -112,7 +111,6 @@ class ChatDelegate : PocketDelegate(), TextView.OnEditorActionListener {
         moreOpenAlbum?.setOnClickListener {
             applyOpenAlbumPermission()
         }
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

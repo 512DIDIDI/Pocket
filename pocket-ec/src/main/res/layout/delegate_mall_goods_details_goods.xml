@@ -1,6 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="256dp"
+        android:fitsSystemWindows="true">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/delegate_mall_goods_details_goods_collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:contentScrim="@color/toolbarColor"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/delegate_mall_goods_details_goods_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.7" />
+
+            <android.support.v7.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                app:layout_collapseMode="pin">
+
+                <com.mikepenz.iconics.view.IconicsTextView
+                    android:id="@+id/delegate_mall_goods_details_goods_back_btn"
+                    android:layout_width="@dimen/normalIconSize"
+                    android:layout_height="@dimen/normalIconSize"
+                    android:layout_gravity="start|center_vertical"
+                    android:layout_marginStart="@dimen/screenLRGap"
+                    android:layout_marginLeft="@dimen/screenLRGap"
+                    android:gravity="center"
+                    android:text="@string/faw_chevron_left"
+                    android:textColor="@color/textColorLight" />
+
+                <com.mikepenz.iconics.view.IconicsTextView
+                    android:id="@+id/delegate_mall_goods_details_goods_details"
+                    android:layout_width="@dimen/normalIconSize"
+                    android:layout_height="@dimen/normalIconSize"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="@dimen/screenLRGap"
+                    android:layout_marginRight="@dimen/screenLRGap"
+                    android:gravity="center"
+                    android:text="@string/faw_bars"
+                    android:textColor="@color/textColorLight" />
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

@@ -80,7 +80,7 @@ class HomeItemDelegate : BottomItemDelegate(),
         //初始化banner
         initBanner()
         //设置左侧图标样式
-        delegate_mall_home_searchBar!!.setLeftIcon("{faw-bars}")
+        delegate_mall_home_searchBar!!.setLeftIcon(context?.getString(R.string.faw_bars))
         //toolbar左侧图标点击事件监听
         delegate_mall_home_searchBar!!.setLeftIconListener(this)
         //toolbar搜索按钮点击事件监听

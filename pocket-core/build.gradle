@@ -79,6 +79,7 @@ dependencies {
     api 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
     api 'com.ogaclejapan.smarttablayout:utils-v4:1.6.1@aar'
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //messageList
 }
 repositories {
     mavenCentral()

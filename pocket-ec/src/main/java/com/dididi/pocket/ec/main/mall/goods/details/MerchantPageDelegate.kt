@@ -43,7 +43,7 @@ private constructor() : PocketDelegate() {
         delegate_mall_goods_details_merchant_attention_num!!.text = 233.toString()
         delegate_mall_goods_details_merchant_fans_num!!.text = 666.toString()
         delegate_mall_goods_details_merchant_product_num!!.text = 6.toString()
-        delegate_mall_goods_details_merchant_searchbar!!.setLeftIcon("{faw-chevron-left}")
+        delegate_mall_goods_details_merchant_searchbar!!.setLeftIcon(context?.getString(R.string.faw_chevron_left))
         delegate_mall_goods_details_merchant_searchbar!!.setLeftIconListener { supportDelegate.pop() }
         delegate_mall_goods_details_merchant_recycler_view!!.layoutManager = gridLayoutManager
         mAdapter = MerchantPageAdapter(R.layout.item_mall_goods_details_merchant, goodsList)

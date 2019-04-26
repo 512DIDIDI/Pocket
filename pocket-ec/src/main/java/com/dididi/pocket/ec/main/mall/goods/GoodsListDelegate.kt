@@ -35,7 +35,7 @@ class GoodsListDelegate : PocketDelegate(), View.OnClickListener {
                 .create())
         delegate_mall_goods_viewpager!!.adapter = adapter
         delegate_mall_goods_chooseBar!!.setViewPager(delegate_mall_goods_viewpager)
-        delegate_mall_goods_searchBar!!.setLeftIcon("{faw-chevron-left}")
+        delegate_mall_goods_searchBar!!.setLeftIcon(context?.getString(R.string.faw_chevron_left))
         delegate_mall_goods_searchBar!!.setLeftIconListener(this)
     }
 

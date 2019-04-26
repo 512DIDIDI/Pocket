@@ -35,7 +35,7 @@ class MessageItemDelegate : BottomItemDelegate(), BaseQuickAdapter.OnItemChildCl
     }
 
     override fun onBindView(savedInstanceState: Bundle?, rootView: View?) {
-        delegate_msg_message_searchBar!!.setLeftIcon("{faw-plus}")
+        delegate_msg_message_searchBar!!.setLeftIcon(context?.getString(R.string.faw_plus))
         initFakeMessage()
         //设置布局方式
         layoutManager = LinearLayoutManager(context,
