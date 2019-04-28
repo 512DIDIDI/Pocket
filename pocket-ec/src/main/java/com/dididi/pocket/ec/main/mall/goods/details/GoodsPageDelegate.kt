@@ -3,12 +3,17 @@ package com.dididi.pocket.ec.main.mall.goods.details
 import android.annotation.SuppressLint
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v4.content.ContextCompat
+import android.support.v4.widget.NestedScrollView
+import android.util.Log
 import android.view.Gravity
 import android.view.View
+import android.widget.Toast
 
 import com.dididi.pocket.core.delegates.PocketDelegate
 import com.dididi.pocket.core.entity.Goods
+import com.dididi.pocket.core.ui.animation.PocketAnimation
 import com.dididi.pocket.ec.R
 import com.gyf.immersionbar.ktx.immersionBar
 import kotlinx.android.synthetic.main.delegate_mall_goods_details_goods.*
@@ -47,7 +52,9 @@ private constructor() : PocketDelegate() {
                 .setCollapsedTitleTextColor(ContextCompat.getColor(context!!, R.color.textColorWhite))
         delegate_mall_goods_details_goods_collapsing_toolbar.expandedTitleGravity = Gravity.CENTER
         delegate_mall_goods_details_goods_collapsing_toolbar.collapsedTitleGravity = Gravity.CENTER
-
+        delegate_mall_goods_details_goods_notify_chat.setOnClickListener {
+            Toast.makeText(context, "点击发起与店主聊天", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun getTitleBarId() = R.id.delegate_mall_goods_details_goods_toolbar
@@ -64,6 +71,8 @@ private constructor() : PocketDelegate() {
     }
 
     companion object {
+
+        const val SCROLL_CHANGE_HEIGHT = 100
 
         /**
          * 外部通过此方法来获取实例，

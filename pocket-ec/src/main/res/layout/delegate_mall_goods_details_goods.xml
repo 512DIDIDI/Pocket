@@ -47,28 +47,41 @@
                     android:layout_gravity="end|center_vertical"
                     android:layout_marginEnd="@dimen/screenLRGap"
                     android:layout_marginRight="@dimen/screenLRGap"
-                    android:gravity="center"
-                    android:text="@string/faw_bars"
-                    android:textColor="@color/textColorLight" />
+                    android:gravity="center" />
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/delegate_mall_goods_details_goods_scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <android.support.v4.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/test" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/test" />
+    </android.support.v4.widget.NestedScrollView>
 
-        </android.support.v4.widget.NestedScrollView>
-    </LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/delegate_mall_goods_details_goods_notify_chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|start"
+        android:layout_margin="16dp"
+        app:layout_anchor="@id/delegate_mall_goods_details_goods_scrollview"
+        app:layout_anchorGravity="top|end"
+        app:srcCompat="@drawable/notify_chat" />
+
+    <android.support.design.widget.FloatingActionButton
+        app:layout_behavior="com.dididi.pocket.core.ui.animation.FabScrollBehavior"
+        android:id="@+id/delegate_mall_goods_details_goods_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="16dp"
+        app:srcCompat="@drawable/float_bar"/>
 
 </android.support.design.widget.CoordinatorLayout>

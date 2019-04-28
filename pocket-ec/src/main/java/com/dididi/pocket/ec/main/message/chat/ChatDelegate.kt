@@ -101,11 +101,17 @@ class ChatDelegate : PocketDelegate(), TextView.OnEditorActionListener {
             Toast.makeText(context, "点击语音", Toast.LENGTH_SHORT).show()
         }
         mAdapter!!.setOnItemChildClickListener { adapter, view, position ->
-            val message = adapter.getItem(position) as Message
+            val messages = adapter.data as List<Message>
+            val photoList = mutableListOf<Bitmap>()
+            messages.forEach {
+                if (it.picture != null) {
+                    photoList.add(it.picture)
+                }
+            }
             when (view.id) {
                 R.id.item_message_chat_received_picture, R.id.item_message_chat_send_picture -> {
                     Toast.makeText(context, "点击图片", Toast.LENGTH_SHORT).show()
-                    val photoDialog = PhotoDialog().create(message.picture)
+                    val photoDialog = PhotoDialog().create(photoList)
                     photoDialog.show(fragmentManager!!)
                 }
             }
