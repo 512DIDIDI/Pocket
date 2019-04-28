@@ -5,15 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusable="true"
-    android:focusableInTouchMode="true"
-    android:orientation="vertical">
+    android:focusableInTouchMode="true">
     <!--CoordinatorLayout ->AppBarLayout-> Toolbar实现上滑隐藏toolbar-->
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dividerGap"
-        android:background="#EFEFEF"
-        android:paddingBottom="@dimen/bottomBarSize">
+        android:background="#EFEFEF">
         <!--toolbar-->
         <android.support.design.widget.AppBarLayout
             android:id="@+id/delegate_shoppingCart_shopcart_appbar"
@@ -54,15 +51,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#EFEFEF"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:ignore="PrivateResource" />
+            android:paddingBottom="@dimen/bottomBarSize"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
     </android.support.design.widget.CoordinatorLayout>
     <!--底部结算布局-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottomBarSize"
         android:layout_alignParentBottom="true"
-        android:background="@color/textColorWhite">
+        android:background="@color/textColorWhite"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
         <!--全选按钮-->
         <com.mikepenz.iconics.view.IconicsTextView
             android:id="@+id/delegate_shoppingCart_shopcart_all_selected"
@@ -130,6 +128,5 @@
             android:text="@string/compute_price"
             android:textColor="@color/textColorLight"
             android:textSize="@dimen/textNormalSize" />
-
     </RelativeLayout>
 </RelativeLayout>

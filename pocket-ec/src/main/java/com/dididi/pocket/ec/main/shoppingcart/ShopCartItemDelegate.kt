@@ -16,6 +16,7 @@ import com.dididi.pocket.ec.R
 import com.dididi.pocket.ec.main.mall.goods.details.MerchantPageDelegate
 import com.dididi.pocket.ec.main.message.chat.ChatDelegate
 import com.dididi.pocket.ec.main.shoppingcart.adapter.ShopCartAdapter
+import com.gyf.immersionbar.ktx.immersionBar
 import kotlinx.android.synthetic.main.delegate_shoppingcart_shopcart.*
 import java.math.BigDecimal
 import java.util.*
@@ -54,6 +55,15 @@ class ShopCartItemDelegate : BottomItemDelegate(),
         delegate_shoppingCart_shopcart_all_delete.setOnClickListener(this)
         delegate_shoppingCart_shopcart_all_selected.setOnClickListener(this)
         delegate_shoppingCart_shopcart_all_selected_text.setOnClickListener(this)
+    }
+
+    override fun getTitleBarId() = R.id.delegate_shoppingCart_shopcart_toolbar
+
+    override fun initImmersionBar() {
+        immersionBar {
+            flymeOSStatusBarFontColor(R.color.textColorWhite)
+            keyboardEnable(true)
+        }
     }
 
     /**

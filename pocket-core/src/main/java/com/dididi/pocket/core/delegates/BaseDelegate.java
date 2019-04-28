@@ -3,6 +3,7 @@ package com.dididi.pocket.core.delegates;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
@@ -11,7 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 
+import com.dididi.pocket.core.R;
 import com.dididi.pocket.core.activities.ProxyActivity;
+import com.gyf.immersionbar.ImmersionBar;
 
 import me.yokeyword.fragmentation.ExtraTransaction;
 import me.yokeyword.fragmentation.ISupportFragment;
@@ -30,10 +33,14 @@ public abstract class BaseDelegate extends SwipeBackFragment implements ISupport
     private final SupportFragmentDelegate DELEGATE = new SupportFragmentDelegate(this);
 
 
-    /** 抽象方法获取子类布局(可能传入view也可能是id，所以采用Object) */
+    /**
+     * 抽象方法获取子类布局(可能传入view也可能是id，所以采用Object)
+     */
     public abstract Object setLayout();
 
-    /** 抽象方法绑定子控件(如NavigationView当中的item控件) */
+    /**
+     * 抽象方法绑定子控件(如NavigationView当中的item控件)
+     */
     public abstract void onBindChildView(@Nullable Bundle savedInstanceState,
                                          View rootView);
 
@@ -66,10 +73,33 @@ public abstract class BaseDelegate extends SwipeBackFragment implements ISupport
         return attachToSwipeBack(rootView);
     }
 
+    /**
+     * immersionBar适配方案
+     */
+    protected int getTitleBarId() {
+        return 0;
+    }
+
+    protected int setStatusBarView() {
+        return 0;
+    }
+
+    public void initImmersionBar() {
+        ImmersionBar.with(this).keyboardEnable(true).init();
+    }
+
+    private boolean isImmersionBarEnabled() {
+        return true;
+    }
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        onBindView(savedInstanceState,view);
+        onBindView(savedInstanceState, view);
+        View statusBarView = view.findViewById(setStatusBarView());
+        ImmersionBar.setStatusBarView(mActivity, statusBarView);
+        View titleBarView = view.findViewById(getTitleBarId());
+        ImmersionBar.setTitleBar(mActivity,titleBarView);
     }
 
     public final ProxyActivity getProxyActivity() {
@@ -167,6 +197,9 @@ public abstract class BaseDelegate extends SwipeBackFragment implements ISupport
     @Override
     public void onSupportVisible() {
         DELEGATE.onSupportVisible();
+        if (isImmersionBarEnabled()) {
+            initImmersionBar();
+        }
     }
 
     @Override

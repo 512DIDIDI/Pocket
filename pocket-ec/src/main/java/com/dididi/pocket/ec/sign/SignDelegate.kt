@@ -2,7 +2,6 @@ package com.dididi.pocket.ec.sign
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.Toast
@@ -12,10 +11,10 @@ import com.dididi.pocket.core.app.Pocket
 import com.dididi.pocket.core.delegates.PocketDelegate
 import com.dididi.pocket.core.net.RestClient
 import com.dididi.pocket.core.ui.animation.PocketAnimation
-import com.dididi.pocket.core.util.AutoBarUtil
 import com.dididi.pocket.core.util.LogUtil
 import com.dididi.pocket.ec.R
 import com.dididi.pocket.ec.main.PocketBottomDelegate
+import com.gyf.immersionbar.ktx.immersionBar
 import kotlinx.android.synthetic.main.delegate_sign.*
 
 /**
@@ -57,12 +56,14 @@ class SignDelegate : PocketDelegate(), View.OnClickListener {
         delegate_sign_forget_password_layout_send_verify!!.setOnClickListener(this)
         delegate_sign_reset_password_layout_login!!.setOnClickListener(this)
         delegate_sign_reset_password_layout_back!!.setOnClickListener(this)
-        if (activity != null) {
-            Log.d("changeColor", "onBindChildView: ")
-            AutoBarUtil.changeBarColor(activity!!, AutoBarUtil.COLOR_GRAY.toInt())
-        }
     }
 
+    override fun initImmersionBar() {
+        immersionBar {
+            statusBarDarkFont(true)
+            keyboardEnable(true)
+        }
+    }
 
     override fun onClick(v: View) {
         when(v.id) {

@@ -8,6 +8,7 @@ import com.dididi.pocket.core.delegates.PocketDelegate
 import com.dididi.pocket.core.entity.Goods
 import com.dididi.pocket.ec.R
 import com.dididi.pocket.ec.main.mall.goods.details.adapter.MerchantPageAdapter
+import com.gyf.immersionbar.ktx.immersionBar
 import kotlinx.android.synthetic.main.delegate_mall_goods_details_merchant.*
 import java.util.*
 
@@ -48,6 +49,15 @@ private constructor() : PocketDelegate() {
         delegate_mall_goods_details_merchant_recycler_view!!.layoutManager = gridLayoutManager
         mAdapter = MerchantPageAdapter(R.layout.item_mall_goods_details_merchant, goodsList)
         delegate_mall_goods_details_merchant_recycler_view!!.adapter = mAdapter
+    }
+
+    override fun getTitleBarId() = R.id.delegate_mall_goods_details_merchant_toolbar
+
+    override fun initImmersionBar() {
+        immersionBar {
+            flymeOSStatusBarFontColor(R.color.textColorWhite)
+            keyboardEnable(true)
+        }
     }
 
     override fun setSwipeBackEnable(enable: Boolean) {

@@ -7,128 +7,140 @@
     android:focusableInTouchMode="true"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/delegate_personal_personal_toolbar"
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        android:background="@color/toolbarColor">
+        android:layout_height="match_parent">
 
-        <android.support.v7.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:foregroundGravity="center"
-            android:text="@string/personal"
-            android:textColor="@color/textColorLight"
-            android:textSize="@dimen/toolBarTextSize" />
-    </android.support.v7.widget.Toolbar>
-    <!--头部内容-->
-    <RelativeLayout
-        android:id="@+id/delegate_personal_personal_header"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/headerHeight"
-        android:background="@mipmap/header">
-        <!--头像-->
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/delegate_personal_personal_avatar"
-            android:layout_width="@dimen/bigAvatarSize"
-            android:layout_height="@dimen/bigAvatarSize"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="@dimen/screenLRGap"
-            android:layout_marginRight="@dimen/screenLRGap"
-            android:layout_marginTop="@dimen/screenLRGap"
-            android:layout_marginBottom="@dimen/screenLRGap"
-            android:background="@mipmap/avatarman01" />
-        <!--用户名-->
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/delegate_personal_personal_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/delegate_personal_personal_avatar"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginEnd="@dimen/screenLRGap"
-            android:layout_marginRight="@dimen/screenLRGap"
-            android:layout_marginBottom="@dimen/dividerGap"
-            android:text="@string/test"
-            android:textColor="@color/textColorWhite"
-            android:textSize="@dimen/textNormalSize" />
-        <!--用户邮箱-->
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/delegate_personal_personal_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/delegate_personal_personal_name"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginEnd="@dimen/screenLRGap"
-            android:layout_marginRight="@dimen/screenLRGap"
-            android:layout_marginBottom="@dimen/dividerGap"
-            android:text="@string/yc512yc_163_com"
-            android:textColor="@color/textColorWhite"
-            android:textSize="@dimen/textSmallSize" />
-
-    </RelativeLayout>
-
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/backgroundColorWhite">
-
-        <LinearLayout
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/delegate_personal_personal_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:background="@color/toolbarColor">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:foregroundGravity="center"
+                    android:text="@string/personal"
+                    android:textColor="@color/textColorLight"
+                    android:textSize="@dimen/toolBarTextSize" />
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@color/backgroundColorWhite"
-            android:orientation="vertical">
-            <!--钱包-->
-            <com.dididi.pocket.core.ui.item.ListButtonItem
-                android:id="@+id/delegate_personal_personal_wallet"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/elementGap"
-                app:list_button_content="@string/wallet"
-                app:list_button_icon="@string/faw_wallet" />
-            <!--订单-->
-            <com.dididi.pocket.core.ui.item.ListButtonItem
-                android:id="@+id/delegate_personal_personal_order"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:list_button_content="@string/order"
-                app:list_button_icon="@string/faw_shopping_basket" />
-            <!--评论-->
-            <com.dididi.pocket.core.ui.item.ListButtonItem
-                android:id="@+id/delegate_personal_personal_comment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/elementGap"
-                app:list_button_content="@string/comment"
-                app:list_button_icon="{faw-hashtag}" />
-            <!--收藏-->
-            <com.dididi.pocket.core.ui.item.ListButtonItem
-                android:id="@+id/delegate_personal_personal_collect"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:list_button_content="@string/collect"
-                app:list_button_icon="@string/faw_collect" />
-            <!--关注-->
-            <com.dididi.pocket.core.ui.item.ListButtonItem
-                android:id="@+id/delegate_personal_personal_attention"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/elementGap"
-                app:list_button_content="@string/attention"
-                app:list_button_icon="@string/faw_attention" />
-            <!--足迹-->
-            <com.dididi.pocket.core.ui.item.ListButtonItem
-                android:id="@+id/delegate_personal_personal_history"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:list_button_content="@string/foot"
-                app:list_button_icon="@string/faw_shoe_prints" />
-        </LinearLayout>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    </android.support.v4.widget.NestedScrollView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/backgroundColorWhite"
+                android:orientation="vertical">
 
+                <!--头部内容-->
+                <RelativeLayout
+                    android:id="@+id/delegate_personal_personal_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/headerHeight"
+                    android:background="@mipmap/header">
+                    <!--头像-->
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/delegate_personal_personal_avatar"
+                        android:layout_width="@dimen/bigAvatarSize"
+                        android:layout_height="@dimen/bigAvatarSize"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/screenLRGap"
+                        android:layout_marginEnd="@dimen/screenLRGap"
+                        android:layout_marginRight="@dimen/screenLRGap"
+                        android:layout_marginBottom="@dimen/screenLRGap"
+                        android:background="@mipmap/avatarman01" />
+                    <!--用户名-->
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/delegate_personal_personal_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/delegate_personal_personal_avatar"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginEnd="@dimen/screenLRGap"
+                        android:layout_marginRight="@dimen/screenLRGap"
+                        android:layout_marginBottom="@dimen/dividerGap"
+                        android:text="@string/test"
+                        android:textColor="@color/textColorWhite"
+                        android:textSize="@dimen/textNormalSize" />
+                    <!--用户邮箱-->
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/delegate_personal_personal_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/delegate_personal_personal_name"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginEnd="@dimen/screenLRGap"
+                        android:layout_marginRight="@dimen/screenLRGap"
+                        android:layout_marginBottom="@dimen/dividerGap"
+                        android:text="@string/yc512yc_163_com"
+                        android:textColor="@color/textColorWhite"
+                        android:textSize="@dimen/textSmallSize" />
+
+                </RelativeLayout>
+
+                <!--钱包-->
+                <com.dididi.pocket.core.ui.item.ListButtonItem
+                    android:id="@+id/delegate_personal_personal_wallet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/elementGap"
+                    app:list_button_content="@string/wallet"
+                    app:list_button_icon="@string/faw_wallet" />
+                <!--订单-->
+                <com.dididi.pocket.core.ui.item.ListButtonItem
+                    android:id="@+id/delegate_personal_personal_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:list_button_content="@string/order"
+                    app:list_button_icon="@string/faw_shopping_basket" />
+                <!--评论-->
+                <com.dididi.pocket.core.ui.item.ListButtonItem
+                    android:id="@+id/delegate_personal_personal_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/elementGap"
+                    app:list_button_content="@string/comment"
+                    app:list_button_icon="{faw-hashtag}" />
+                <!--收藏-->
+                <com.dididi.pocket.core.ui.item.ListButtonItem
+                    android:id="@+id/delegate_personal_personal_collect"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:list_button_content="@string/collect"
+                    app:list_button_icon="@string/faw_collect" />
+                <!--关注-->
+                <com.dididi.pocket.core.ui.item.ListButtonItem
+                    android:id="@+id/delegate_personal_personal_attention"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/elementGap"
+                    app:list_button_content="@string/attention"
+                    app:list_button_icon="@string/faw_attention" />
+                <!--足迹-->
+                <com.dididi.pocket.core.ui.item.ListButtonItem
+                    android:id="@+id/delegate_personal_personal_history"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:list_button_content="@string/foot"
+                    app:list_button_icon="@string/faw_shoe_prints" />
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+    </android.support.design.widget.CoordinatorLayout>
 </android.support.v7.widget.LinearLayoutCompat>

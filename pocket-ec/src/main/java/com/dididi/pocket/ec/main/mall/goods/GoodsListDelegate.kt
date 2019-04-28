@@ -7,6 +7,7 @@ import com.dididi.pocket.ec.R
 import com.dididi.pocket.ec.main.mall.goods.fragment.AllGoodsList
 import com.dididi.pocket.ec.main.mall.goods.fragment.BestGoodsList
 import com.dididi.pocket.ec.main.mall.goods.fragment.MerchantGoodsList
+import com.gyf.immersionbar.ktx.immersionBar
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems
 import kotlinx.android.synthetic.main.delegate_mall_goods_list.*
@@ -37,6 +38,15 @@ class GoodsListDelegate : PocketDelegate(), View.OnClickListener {
         delegate_mall_goods_chooseBar!!.setViewPager(delegate_mall_goods_viewpager)
         delegate_mall_goods_searchBar!!.setLeftIcon(context?.getString(R.string.faw_chevron_left))
         delegate_mall_goods_searchBar!!.setLeftIconListener(this)
+    }
+
+    override fun getTitleBarId() = R.id.delegate_mall_goods_toolbar
+
+    override fun initImmersionBar() {
+        immersionBar {
+            flymeOSStatusBarFontColor(R.color.textColorWhite)
+            keyboardEnable(true)
+        }
     }
 
     /**

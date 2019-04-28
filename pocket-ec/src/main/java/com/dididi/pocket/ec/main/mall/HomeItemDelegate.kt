@@ -19,7 +19,6 @@ import com.dididi.pocket.core.entity.News
 import com.dididi.pocket.core.fakedata.FakeUser
 import com.dididi.pocket.core.ui.GlideApp
 import com.dididi.pocket.core.ui.banner.GlideImageLoader
-import com.dididi.pocket.core.util.AutoBarUtil
 import com.dididi.pocket.core.util.PocketPreferences
 import com.dididi.pocket.ec.R
 import com.dididi.pocket.ec.main.PocketBottomDelegate
@@ -27,6 +26,7 @@ import com.dididi.pocket.ec.main.mall.adapter.NewsAdapter
 import com.dididi.pocket.ec.main.mall.goods.GoodsListDelegate
 import com.dididi.pocket.ec.main.mall.list.FakeImageList
 import com.dididi.pocket.ec.sign.SignDelegate
+import com.gyf.immersionbar.ktx.immersionBar
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
 import de.hdodenhof.circleimageview.CircleImageView
@@ -73,6 +73,17 @@ class HomeItemDelegate : BottomItemDelegate(),
         initUserIfo()
     }
 
+    override fun getTitleBarId(): Int {
+        return R.id.delegate_mall_home_toolbar
+    }
+
+    override fun initImmersionBar() {
+        immersionBar {
+            statusBarDarkFont(false)
+            keyboardEnable(true)
+        }
+    }
+
     override fun onBindView(savedInstanceState: Bundle?, rootView: View?) {
         //设置刷新样式
         delegate_mall_home_swipe_refresh!!.setColorSchemeColors(ContextCompat.getColor(context!!, R.color.textColorDark))
@@ -98,9 +109,6 @@ class HomeItemDelegate : BottomItemDelegate(),
         mAdapter = NewsAdapter(R.layout.item_home_news, mNews)
         mAdapter!!.onItemChildClickListener = this
         delegate_mall_home_discover!!.adapter = mAdapter
-        if (activity != null) {
-            AutoBarUtil.changeBarColor(activity!!, AutoBarUtil.COLOR_TOOLBAR.toInt())
-        }
     }
 
     override fun onStart() {

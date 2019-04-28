@@ -13,6 +13,7 @@ import com.dididi.pocket.core.ui.dialog.PocketDialog
 import com.dididi.pocket.ec.R
 import com.dididi.pocket.ec.main.message.adapter.MessageAdapter
 import com.dididi.pocket.ec.main.message.chat.ChatDelegate
+import com.gyf.immersionbar.ktx.immersionBar
 import kotlinx.android.synthetic.main.delegate_msg_message.*
 import java.util.*
 
@@ -44,6 +45,15 @@ class MessageItemDelegate : BottomItemDelegate(), BaseQuickAdapter.OnItemChildCl
         val mAdapter = MessageAdapter(R.layout.item_message_list, mMsgList)
         mAdapter.onItemChildClickListener = this
         delegate_msg_message_list_view!!.adapter = mAdapter
+    }
+
+    override fun getTitleBarId() = R.id.delegate_msg_message_toolbar
+
+    override fun initImmersionBar() {
+        immersionBar {
+            flymeOSStatusBarFontColor(R.color.textColorWhite)
+            keyboardEnable(true)
+        }
     }
 
     override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {

@@ -7,6 +7,7 @@ import android.view.View
 import com.dididi.pocket.core.delegates.bottom.BottomItemDelegate
 import com.dididi.pocket.core.ui.dialog.PhotoBottomDialog
 import com.dididi.pocket.ec.R
+import com.gyf.immersionbar.ktx.immersionBar
 import kotlinx.android.synthetic.main.delegate_personal_personal.*
 import me.yokeyword.fragmentation.ISupportFragment
 
@@ -33,6 +34,15 @@ class PersonalItemDelegate : BottomItemDelegate() {
             photoBottomDialog = PhotoBottomDialog().create(this)
             photoBottomDialog.show(fragmentManager!!)
             true
+        }
+    }
+
+    override fun getTitleBarId() = R.id.delegate_personal_personal_toolbar
+
+    override fun initImmersionBar() {
+        immersionBar {
+            flymeOSStatusBarFontColor(R.color.textColorWhite)
+            keyboardEnable(true)
         }
     }
 

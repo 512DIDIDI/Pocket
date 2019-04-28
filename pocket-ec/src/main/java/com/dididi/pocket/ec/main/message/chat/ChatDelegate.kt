@@ -18,6 +18,7 @@ import com.dididi.pocket.core.ui.item.MoreButtonItem
 import com.dididi.pocket.ec.R
 import com.dididi.pocket.ec.main.message.chat.adapter.ChatAdapter
 import com.dididi.pocket.ec.main.message.chat.adapter.MorePagerAdapter
+import com.gyf.immersionbar.ktx.immersionBar
 import kotlinx.android.synthetic.main.delegate_msg_chat.*
 import me.yokeyword.fragmentation.ISupportFragment
 import java.io.FileNotFoundException
@@ -75,6 +76,15 @@ class ChatDelegate : PocketDelegate(), TextView.OnEditorActionListener {
         //点击事件处理
         onClickEvent()
         delegate_msg_chat_recyclerView?.adapter = mAdapter
+    }
+
+    override fun getTitleBarId() = R.id.delegate_msg_chat_toolbar
+
+    override fun initImmersionBar() {
+        immersionBar {
+            flymeOSStatusBarFontColor(R.color.textColorWhite)
+            keyboardEnable(true)
+        }
     }
 
     private fun onClickEvent() {

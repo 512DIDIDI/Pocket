@@ -30,10 +30,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginEnd="@dimen/screenLRGap"
-                    android:layout_marginLeft="@dimen/screenLRGap"
-                    android:layout_marginRight="@dimen/screenLRGap"
                     android:layout_marginStart="@dimen/screenLRGap"
+                    android:layout_marginLeft="@dimen/screenLRGap"
+                    android:layout_marginEnd="@dimen/screenLRGap"
+                    android:layout_marginRight="@dimen/screenLRGap"
                     android:background="@drawable/search_bar_corner"
                     android:gravity="center" />
             </android.support.v7.widget.Toolbar>
@@ -49,8 +49,8 @@
             <android.support.v4.widget.NestedScrollView
                 android:id="@+id/delegate_mall_home_scroll_view"
                 android:layout_width="match_parent"
-                android:background="@color/backgroundColorWhite"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/backgroundColorWhite">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -66,13 +66,13 @@
                         android:id="@+id/delegate_mall_home_photography"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
                         android:layout_below="@id/delegate_mall_home_banner"
-                        android:layout_marginBottom="@dimen/dividerGap"
-                        android:layout_marginLeft="40dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
                         android:layout_marginStart="40dp"
+                        android:layout_marginLeft="40dp"
                         android:layout_marginTop="@dimen/elementGap"
+                        android:layout_marginBottom="@dimen/dividerGap"
                         app:circle_icon_src="@mipmap/camera"
                         app:circle_icon_text="@string/photography" />
                     <!--手绘快速入口-->
@@ -82,8 +82,8 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/delegate_mall_home_banner"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="@dimen/dividerGap"
                         android:layout_marginTop="@dimen/elementGap"
+                        android:layout_marginBottom="@dimen/dividerGap"
                         app:circle_icon_src="@mipmap/paint"
                         app:circle_icon_text="@string/paint" />
                     <!--代购快速入口-->
@@ -91,13 +91,13 @@
                         android:id="@+id/delegate_mall_home_purchaseAgency"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@id/delegate_mall_home_banner"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
-                        android:layout_below="@id/delegate_mall_home_banner"
-                        android:layout_marginBottom="@dimen/dividerGap"
+                        android:layout_marginTop="@dimen/elementGap"
                         android:layout_marginEnd="40dp"
                         android:layout_marginRight="40dp"
-                        android:layout_marginTop="@dimen/elementGap"
+                        android:layout_marginBottom="@dimen/dividerGap"
                         app:circle_icon_src="@mipmap/purchase_agency"
                         app:circle_icon_text="@string/purchase_agency" />
 
@@ -114,8 +114,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/delegate_mall_home_divider"
-                        android:layout_marginBottom="@dimen/dividerGap"
                         android:layout_marginTop="@dimen/dividerGap"
+                        android:layout_marginBottom="@dimen/dividerGap"
                         android:gravity="center"
                         android:text="@string/discover"
                         android:textColor="@color/textColorDark"

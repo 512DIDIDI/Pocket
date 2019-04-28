@@ -6,13 +6,12 @@
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="256dp"
-        android:fitsSystemWindows="true">
+        android:layout_height="200dp">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/delegate_mall_goods_details_goods_collapsing_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:contentScrim="@color/toolbarColor"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
@@ -25,6 +24,7 @@
                 app:layout_collapseParallaxMultiplier="0.7" />
 
             <android.support.v7.widget.Toolbar
+                android:id="@+id/delegate_mall_goods_details_goods_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
                 app:layout_collapseMode="pin">
@@ -59,9 +59,16 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <android.support.v7.widget.RecyclerView
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/test" />
+
+        </android.support.v4.widget.NestedScrollView>
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

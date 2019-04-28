@@ -10,6 +10,7 @@ import android.view.View
 import com.dididi.pocket.core.delegates.PocketDelegate
 import com.dididi.pocket.core.entity.Goods
 import com.dididi.pocket.ec.R
+import com.gyf.immersionbar.ktx.immersionBar
 import kotlinx.android.synthetic.main.delegate_mall_goods_details_goods.*
 
 /**
@@ -46,6 +47,16 @@ private constructor() : PocketDelegate() {
                 .setCollapsedTitleTextColor(ContextCompat.getColor(context!!, R.color.textColorWhite))
         delegate_mall_goods_details_goods_collapsing_toolbar.expandedTitleGravity = Gravity.CENTER
         delegate_mall_goods_details_goods_collapsing_toolbar.collapsedTitleGravity = Gravity.CENTER
+
+    }
+
+    override fun getTitleBarId() = R.id.delegate_mall_goods_details_goods_toolbar
+
+    override fun initImmersionBar() {
+        immersionBar {
+            flymeOSStatusBarFontColor(R.color.textColorWhite)
+            keyboardEnable(true)
+        }
     }
 
     override fun setSwipeBackEnable(enable: Boolean) {
