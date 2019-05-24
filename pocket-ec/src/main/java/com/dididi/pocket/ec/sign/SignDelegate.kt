@@ -4,17 +4,21 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Patterns
 import android.view.View
+import android.widget.AdapterView
 import android.widget.Toast
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.SizeUtils
 import com.dididi.pocket.core.app.Pocket
 import com.dididi.pocket.core.delegates.PocketDelegate
+import com.dididi.pocket.core.fakedata.FakeUser
 import com.dididi.pocket.core.net.RestClient
 import com.dididi.pocket.core.ui.animation.PocketAnimation
 import com.dididi.pocket.core.util.LogUtil
 import com.dididi.pocket.ec.R
 import com.dididi.pocket.ec.main.PocketBottomDelegate
 import com.gyf.immersionbar.ktx.immersionBar
+import com.tencent.imsdk.TIMCallBack
+import com.tencent.imsdk.TIMManager
 import kotlinx.android.synthetic.main.delegate_sign.*
 
 /**
@@ -29,6 +33,7 @@ class SignDelegate : PocketDelegate(), View.OnClickListener {
     private val threshold = 2000L
     private val curr = System.currentTimeMillis()
     private var last = 0L
+    private var currUser = FakeUser.getUserByName("dididi")
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -48,6 +53,8 @@ class SignDelegate : PocketDelegate(), View.OnClickListener {
         delegate_sign_background_layout_enter_sign!!.setOnClickListener(this)
         delegate_sign_sign_in_layout_sign_up!!.setOnClickListener(this)
         delegate_sign_sign_in_layout_forget_password!!.setOnClickListener(this)
+        delegate_sign_sign_in_layout_tim_test!!.setOnClickListener(this)
+        delegate_sign_tim_test_layout_back!!.setOnClickListener(this)
         delegate_sign_forget_password_layout_back!!.setOnClickListener(this)
         delegate_sign_sign_up_layout_back!!.setOnClickListener(this)
         delegate_sign_forget_password_layout_next!!.setOnClickListener(this)
@@ -56,6 +63,16 @@ class SignDelegate : PocketDelegate(), View.OnClickListener {
         delegate_sign_forget_password_layout_send_verify!!.setOnClickListener(this)
         delegate_sign_reset_password_layout_login!!.setOnClickListener(this)
         delegate_sign_reset_password_layout_back!!.setOnClickListener(this)
+        delegate_sign_tim_test_layout_sign_in!!.setOnClickListener(this)
+        delegate_sign_tim_test_layout_spinner!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val users = resources.getStringArray(R.array.spinner_tim_account)
+                currUser = FakeUser.getUserByName(users[position])
+            }
+        }
     }
 
     override fun initImmersionBar() {
@@ -66,14 +83,39 @@ class SignDelegate : PocketDelegate(), View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-        when(v.id) {
+        when (v.id) {
             R.id.delegate_sign_background_layout_enter_sign -> getSignAnimation()
             R.id.delegate_sign_sign_in_layout_sign_up -> getSignUpAnimation()
             R.id.delegate_sign_sign_in_layout_forget_password -> getForgetPasswordAnimation()
+            R.id.delegate_sign_sign_in_layout_tim_test -> getTimTestAnimation()
+            R.id.delegate_sign_tim_test_layout_back -> getTimTestBackAnimation()
+            R.id.delegate_sign_tim_test_layout_sign_in -> {
+                //测试账号登录
+                TIMManager.getInstance().login(currUser.name, currUser.userSig, object : TIMCallBack {
+                    override fun onSuccess() {
+                        SignHandler.onSignIn("" +
+                                "{\n" +
+                                "    \"user\": {\n" +
+                                "        \"name\": \"${currUser.name}\",\n" +
+                                "        \"avatar\": \"${currUser.avatar}\",\n" +
+                                "        \"email\": \"${currUser.email}\",\n" +
+                                "        \"sign\": \"${currUser.userSig}\"\n" +
+                                "    }\n" +
+                                "}",mSignListener)
+                        Toast.makeText(context, "登录成功", Toast.LENGTH_SHORT).show()
+                        supportDelegate.startWithPop(PocketBottomDelegate())
+                    }
+
+                    override fun onError(p0: Int, p1: String?) {
+
+                    }
+                })
+            }
             R.id.delegate_sign_sign_up_layout_back -> getSignUpBackAnimation()
             R.id.delegate_sign_forget_password_layout_back -> getForgetPasswordBackAnimation()
             R.id.delegate_sign_forget_password_layout_next -> getForgetPasswordNextAnimation()
-            R.id.delegate_sign_sign_up_layout_sign_up -> //注册事件
+            R.id.delegate_sign_sign_up_layout_sign_up ->
+                //注册事件
                 if (checkRegisterInputValid()) {
                     RestClient.builder()
                             .url("https://www.wanandroid.com/user/register")
@@ -186,6 +228,22 @@ class SignDelegate : PocketDelegate(), View.OnClickListener {
     }
 
     /**
+     * 测试账号登录页面动画切换
+     */
+    private fun getTimTestAnimation() {
+        PocketAnimation.setFlipAnimation(context, delegate_sign_sign_layout,
+                delegate_sign_sign_in_layout, delegate_sign_tim_test_layout)
+    }
+
+    /**
+     * 测试账号页面返回动画切换
+     */
+    private fun getTimTestBackAnimation() {
+        PocketAnimation.setFlipAnimation(context, delegate_sign_sign_layout,
+                delegate_sign_tim_test_layout, delegate_sign_sign_in_layout)
+    }
+
+    /**
      * 点击进入Sign页面动画
      */
     private fun getEnterSignAnimation() {
@@ -210,7 +268,8 @@ class SignDelegate : PocketDelegate(), View.OnClickListener {
                 SizeUtils.dp2px(100f).toFloat(), 0F, 1F, true,
                 1000, 100, 500,
                 delegate_sign_sign_in_layout_login, delegate_sign_sign_in_layout_account, delegate_sign_sign_in_layout_password,
-                delegate_sign_sign_in_layout_sign_in, delegate_sign_sign_in_layout_sign_up, delegate_sign_sign_in_layout_forget_password)
+                delegate_sign_sign_in_layout_sign_in, delegate_sign_sign_in_layout_sign_up, delegate_sign_sign_in_layout_forget_password,
+                delegate_sign_sign_in_layout_tim_test)
     }
 
     /**

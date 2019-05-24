@@ -18,4 +18,6 @@ public enum ConfigType {
     INTERCEPTOR,
     //全局activity
     ACTIVITY,
+    //腾讯云通信配置
+    TIM_BASE_CONFIG
 }

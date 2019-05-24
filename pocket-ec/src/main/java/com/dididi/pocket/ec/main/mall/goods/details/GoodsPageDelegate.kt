@@ -72,8 +72,6 @@ private constructor() : PocketDelegate() {
 
     companion object {
 
-        const val SCROLL_CHANGE_HEIGHT = 100
-
         /**
          * 外部通过此方法来获取实例，
          * @param goods 传入的goods信息

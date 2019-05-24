@@ -9,6 +9,8 @@ import com.dididi.pocket.core.entity.Message;
 import com.dididi.pocket.core.ui.GlideApp;
 import com.dididi.pocket.ec.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,7 +19,7 @@ import java.util.List;
  * @since 21/09/2018
  */
 
-public class MessageAdapter extends BaseQuickAdapter<Message,BaseViewHolder> {
+public class MessageAdapter extends BaseQuickAdapter<Message, BaseViewHolder> {
 
     public MessageAdapter(int layoutResId, @Nullable List<Message> data) {
         super(layoutResId, data);
@@ -27,11 +29,13 @@ public class MessageAdapter extends BaseQuickAdapter<Message,BaseViewHolder> {
     protected void convert(BaseViewHolder helper, Message item) {
         //todo:这里需要考虑一下load() 先写死传入id 后期再改
         GlideApp.with(mContext)
-                .load(Integer.parseInt(item.getReceivedUserAvatar()))
+                .load(Integer.parseInt(item.getTargetUser().getAvatar()))
                 .into((ImageView) helper.getView(R.id.item_message_avatar));
-        helper.setText(R.id.item_message_name,item.getReceivedUserName())
-                .setText(R.id.item_message_content,item.getContent())
-                .setText(R.id.item_message_date,item.getDate())
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String date = sdf.format(new Date(item.getDate()));
+        helper.setText(R.id.item_message_name, item.getTargetUser().getName())
+                //.setText(R.id.item_message_content,item.getContent())
+                .setText(R.id.item_message_date, date)
                 .addOnClickListener(R.id.item_message_main_layout)
                 .addOnClickListener(R.id.item_message_delete)
                 .addOnClickListener(R.id.item_message_top);

@@ -25,6 +25,8 @@ public class User implements Parcelable {
     private String address;
     /** 用户性别 */
     private String gender;
+    /** 用户密码(腾讯云通信) */
+    private String userSig;
 
     public String getGender() {
         return gender;
@@ -98,6 +100,15 @@ public class User implements Parcelable {
         return this;
     }
 
+    public String getUserSig() {
+        return userSig;
+    }
+
+    public User setUserSig(String userSig) {
+        this.userSig = userSig;
+        return this;
+    }
+
 
     @Override
     public int describeContents() {
@@ -114,6 +125,7 @@ public class User implements Parcelable {
         dest.writeString(this.phone);
         dest.writeString(this.address);
         dest.writeString(this.gender);
+        dest.writeString(this.userSig);
     }
 
     public User() {
@@ -128,9 +140,10 @@ public class User implements Parcelable {
         this.phone = in.readString();
         this.address = in.readString();
         this.gender = in.readString();
+        this.userSig = in.readString();
     }
 
-    public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
+    public static final Creator<User> CREATOR = new Creator<User>() {
         @Override
         public User createFromParcel(Parcel source) {
             return new User(source);

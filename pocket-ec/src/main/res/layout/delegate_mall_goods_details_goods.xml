@@ -1,87 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="wrap_content">
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/delegate_mall_goods_details_goods_collapsing_toolbar"
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+            <!--collapsing toolbar-->
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/delegate_mall_goods_details_goods_collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:contentScrim="@color/toolbarColor"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                <!--商品图片-->
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/delegate_mall_goods_details_goods_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    app:layout_collapseMode="parallax"
+                    app:layout_collapseParallaxMultiplier="0.7" />
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/delegate_mall_goods_details_goods_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?android:attr/actionBarSize"
+                    app:layout_collapseMode="pin">
+                    <!--返回按钮-->
+                    <com.mikepenz.iconics.view.IconicsTextView
+                        android:id="@+id/delegate_mall_goods_details_goods_back_btn"
+                        android:layout_width="@dimen/normalIconSize"
+                        android:layout_height="@dimen/normalIconSize"
+                        android:layout_gravity="start|center_vertical"
+                        android:layout_marginStart="@dimen/screenLRGap"
+                        android:layout_marginLeft="@dimen/screenLRGap"
+                        android:gravity="center"
+                        android:text="@string/faw_chevron_left"
+                        android:textColor="@color/textColorLight" />
+                    <!--商品名字-->
+                    <com.mikepenz.iconics.view.IconicsTextView
+                        android:id="@+id/delegate_mall_goods_details_goods_details"
+                        android:layout_width="@dimen/normalIconSize"
+                        android:layout_height="@dimen/normalIconSize"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_marginEnd="@dimen/screenLRGap"
+                        android:layout_marginRight="@dimen/screenLRGap"
+                        android:gravity="center" />
+                </android.support.v7.widget.Toolbar>
+            </android.support.design.widget.CollapsingToolbarLayout>
+        </android.support.design.widget.AppBarLayout>
+        <!--图文信息-->
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/delegate_mall_goods_details_goods_scrollview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:contentScrim="@color/toolbarColor"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            android:paddingBottom="@dimen/bottomBarSize"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <android.support.v7.widget.AppCompatImageView
-                android:id="@+id/delegate_mall_goods_details_goods_img"
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:scaleType="centerCrop"
-                app:layout_collapseMode="parallax"
-                app:layout_collapseParallaxMultiplier="0.7" />
+                android:text="@string/test" />
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/delegate_mall_goods_details_goods_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?android:attr/actionBarSize"
-                app:layout_collapseMode="pin">
-
-                <com.mikepenz.iconics.view.IconicsTextView
-                    android:id="@+id/delegate_mall_goods_details_goods_back_btn"
-                    android:layout_width="@dimen/normalIconSize"
-                    android:layout_height="@dimen/normalIconSize"
-                    android:layout_gravity="start|center_vertical"
-                    android:layout_marginStart="@dimen/screenLRGap"
-                    android:layout_marginLeft="@dimen/screenLRGap"
-                    android:gravity="center"
-                    android:text="@string/faw_chevron_left"
-                    android:textColor="@color/textColorLight" />
-
-                <com.mikepenz.iconics.view.IconicsTextView
-                    android:id="@+id/delegate_mall_goods_details_goods_details"
-                    android:layout_width="@dimen/normalIconSize"
-                    android:layout_height="@dimen/normalIconSize"
-                    android:layout_gravity="end|center_vertical"
-                    android:layout_marginEnd="@dimen/screenLRGap"
-                    android:layout_marginRight="@dimen/screenLRGap"
-                    android:gravity="center" />
-            </android.support.v7.widget.Toolbar>
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v4.widget.NestedScrollView
-        android:id="@+id/delegate_mall_goods_details_goods_scrollview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <TextView
+        </android.support.v4.widget.NestedScrollView>
+        <!--店主聊天-->
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/delegate_mall_goods_details_goods_notify_chat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/test" />
+            android:layout_gravity="center_vertical|start"
+            android:layout_margin="16dp"
+            app:layout_anchor="@id/delegate_mall_goods_details_goods_scrollview"
+            app:layout_anchorGravity="top|end"
+            app:srcCompat="@drawable/notify_chat" />
 
-    </android.support.v4.widget.NestedScrollView>
+    </android.support.design.widget.CoordinatorLayout>
+    <!--底部评论喜欢收藏栏-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottomBarSize"
+        android:layout_alignParentBottom="true"
+        android:background="@color/textColorWhite"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/delegate_mall_goods_details_goods_notify_chat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|start"
-        android:layout_margin="16dp"
-        app:layout_anchor="@id/delegate_mall_goods_details_goods_scrollview"
-        app:layout_anchorGravity="top|end"
-        app:srcCompat="@drawable/notify_chat" />
+        <com.mikepenz.iconics.view.IconicsTextView
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/screenLRGap"
+            android:layout_marginRight="@dimen/screenLRGap"
+            android:layout_width="@dimen/normalIconSize"
+            android:layout_height="@dimen/normalIconSize" />
 
-    <android.support.design.widget.FloatingActionButton
-        app:layout_behavior="com.dididi.pocket.core.ui.animation.FabScrollBehavior"
-        android:id="@+id/delegate_mall_goods_details_goods_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|start"
-        android:layout_margin="16dp"
-        app:srcCompat="@drawable/float_bar"/>
+    </RelativeLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

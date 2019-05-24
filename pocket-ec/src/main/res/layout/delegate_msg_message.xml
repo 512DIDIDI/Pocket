@@ -24,17 +24,34 @@
                 android:background="@color/toolbarColor"
                 app:layout_scrollFlags="scroll|enterAlways|snap">
 
-                <com.dididi.pocket.core.ui.item.SearchBarItem
-                    android:id="@+id/delegate_msg_message_searchBar"
+                <!--<com.dididi.pocket.core.ui.item.SearchBarItem-->
+                    <!--android:id="@+id/delegate_msg_message_searchBar"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_marginStart="@dimen/screenLRGap"-->
+                    <!--android:layout_marginLeft="@dimen/screenLRGap"-->
+                    <!--android:layout_marginEnd="@dimen/screenLRGap"-->
+                    <!--android:layout_marginRight="@dimen/screenLRGap"-->
+                    <!--android:background="@drawable/search_bar_corner"-->
+                    <!--android:gravity="center" />-->
+
+                <!--帐号选择栏-->
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/delegate_msg_message_layout_spinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:entries="@array/spinner_tim_account"
                     android:layout_marginStart="@dimen/screenLRGap"
                     android:layout_marginLeft="@dimen/screenLRGap"
                     android:layout_marginEnd="@dimen/screenLRGap"
                     android:layout_marginRight="@dimen/screenLRGap"
-                    android:background="@drawable/search_bar_corner"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="@color/textColorWhite"
+                    android:textSize="@dimen/toolBarTextSize"/>
+
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
 

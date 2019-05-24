@@ -1,21 +1,21 @@
 package com.dididi.pocket.core.delegates
 
 import android.Manifest
-import android.annotation.TargetApi
-import android.content.ContentUris
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
-import android.os.Environment
-import android.provider.DocumentsContract
 import android.provider.MediaStore
+import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.FileProvider
 import android.widget.Toast
+import com.dididi.pocket.core.util.Constants
+import com.dididi.pocket.core.util.FileUtil
 import java.io.File
 
 /**
@@ -31,8 +31,7 @@ abstract class PermissionCheckerDelegate : BaseDelegate() {
     //相册中相片地址
     private lateinit var albumPhotoPath: String
     //指定裁剪的相片文件
-    private val cropFile = File(Environment.getExternalStorageDirectory().absolutePath,
-            "/pocket/picture/" + "crop_photo.jpg")
+    private val cropFile = File(Constants.IMAGE_BASE_DIR + "crop_photo.jpg")
     //裁剪相片的Uri
     private val cropPhotoUri = Uri.fromFile(cropFile)
 
@@ -102,10 +101,10 @@ abstract class PermissionCheckerDelegate : BaseDelegate() {
      */
     private fun getAlbumPhotoUri(data: Intent): Uri {
         //根据版本获取相片真实路径
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            handleImageAfterKitKat(data)
+        albumPhotoPath = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            FileUtil.getPath(context!!, data.data)
         } else {
-            handleImageBeforeKitKat(data)
+            FileUtil.getRealFilePath(data.data)
         }
         //根据版本获取相片Uri
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -122,8 +121,7 @@ abstract class PermissionCheckerDelegate : BaseDelegate() {
      */
     private fun openCamera() {
         //创建file于sdcard/pocketPicture/ 以当前时间命名的jpg图像
-        File(Environment.getExternalStorageDirectory().absolutePath,
-                "/pocket/picture/" + System.currentTimeMillis() + ".jpg").apply {
+        File(Constants.IMAGE_BASE_DIR + System.currentTimeMillis() + ".jpg").apply {
             parentFile.mkdirs()
             cameraPhotoUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 //android7.0之后，不再允许app透露file://Uri给其他app
@@ -244,83 +242,115 @@ abstract class PermissionCheckerDelegate : BaseDelegate() {
         }
     }
 
-    /**
-     * android4.4之后，需要解析获取图片真实路径
-     */
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    private fun handleImageAfterKitKat(data: Intent) {
-        val uri = data.data
-        //document类型的Uri
-        when {
-            DocumentsContract.isDocumentUri(context, uri) -> {
-                //通过documentId处理
-                val docId = DocumentsContract.getDocumentId(uri)
-                when (uri?.authority) {
-                    "com.android.externalstorage.documents" -> {
-                        val type = docId.split(":")[0]
-                        if ("primary".equals(type, ignoreCase = true)) {
-                            albumPhotoPath = Environment.getExternalStorageDirectory()
-                                    .toString() + "/" + docId.split(":")[1]
-                        }
-                    }
-                    //media类型解析
-                    "com.android.providers.media.documents" -> {
-                        val id = docId.split(":")[1]
-                        val type = docId.split(":")[0]
-                        val contentUri: Uri? = when (type) {
-                            "image" -> MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-                            "video" -> MediaStore.Video.Media.EXTERNAL_CONTENT_URI
-                            "audio" -> MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
-                            else -> null
-                        }
-                        val selection = "_id=?"
-                        val selectionArgs: Array<String> = arrayOf(id)
-                        albumPhotoPath = getImagePath(contentUri!!, selection, selectionArgs)!!
-                    }
-                    //downloads文件解析
-                    "com.android.providers.downloads.documents" -> {
-                        ContentUris.withAppendedId(
-                                Uri.parse("content://downloads/public_downloads"), docId.toLong()
-                        ).apply {
-                            albumPhotoPath = getImagePath(this, null, null)!!
-                        }
-                    }
-                    else -> {
-                    }
-                }
+    fun checkPermission(activity: Activity,requestCode: Int): Boolean {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val permissions = ArrayList<String>()
+            if (PackageManager.PERMISSION_GRANTED !=
+                    ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
             }
-            "content".equals(uri?.scheme, ignoreCase = true) ->
-                //content类型数据不需要解析，直接传入生成即可
-                albumPhotoPath = getImagePath(uri!!, null, null)!!
-            "file".equals(uri?.scheme, ignoreCase = true) ->
-                //file类型的uri直接获取图片路径即可
-                albumPhotoPath = uri!!.path!!
+            if (PackageManager.PERMISSION_GRANTED !=
+                    ActivityCompat.checkSelfPermission(activity, Manifest.permission.CAMERA)) {
+                permissions.add(Manifest.permission.CAMERA)
+            }
+            if (PackageManager.PERMISSION_GRANTED !=
+                    ActivityCompat.checkSelfPermission(activity, Manifest.permission.RECORD_AUDIO)) {
+                permissions.add(Manifest.permission.RECORD_AUDIO)
+            }
+            if (PackageManager.PERMISSION_GRANTED !=
+                    ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_PHONE_STATE)) {
+                permissions.add(Manifest.permission.READ_PHONE_STATE)
+            }
+            if (PackageManager.PERMISSION_GRANTED !=
+                    ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE)
+            }
+            if (permissions.size > 0) {
+                val permissionsArray = permissions.toTypedArray()
+                ActivityCompat.requestPermissions(activity,permissionsArray, requestCode)
+                return false
+            }
         }
+        return true
     }
 
-    /**
-     * android4.4之前可直接获取图片真实uri
-     */
-    private fun handleImageBeforeKitKat(data: Intent) {
-        val uri = data.data
-        albumPhotoPath = getImagePath(uri!!, null, null)!!
-    }
-
-    /**
-     * 解析uri及selection
-     * 获取图片真实路径
-     */
-    private fun getImagePath(uri: Uri, selection: String?, selectionArgs: Array<String>?): String? {
-        var cursor: Cursor? = null
-        try {
-            cursor = context!!.contentResolver.query(uri, null, selection, selectionArgs, null)
-            if (cursor?.moveToFirst()!!) {
-                return cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA))
-            }
-        } finally {
-            cursor?.close()
-        }
-        return null
-    }
+//    /**
+//     * android4.4之后，需要解析获取图片真实路径
+//     */
+//    @TargetApi(Build.VERSION_CODES.KITKAT)
+//    private fun handleImageAfterKitKat(data: Intent) {
+//        val uri = data.data
+//        //document类型的Uri
+//        when {
+//            DocumentsContract.isDocumentUri(context, uri) -> {
+//                //通过documentId处理
+//                val docId = DocumentsContract.getDocumentId(uri)
+//                when (uri?.authority) {
+//                    "com.android.externalstorage.documents" -> {
+//                        val type = docId.split(":")[0]
+//                        if ("primary".equals(type, ignoreCase = true)) {
+//                            albumPhotoPath = Environment.getExternalStorageDirectory()
+//                                    .toString() + "/" + docId.split(":")[1]
+//                        }
+//                    }
+//                    //media类型解析
+//                    "com.android.providers.media.documents" -> {
+//                        val id = docId.split(":")[1]
+//                        val type = docId.split(":")[0]
+//                        val contentUri: Uri? = when (type) {
+//                            "image" -> MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+//                            "video" -> MediaStore.Video.Media.EXTERNAL_CONTENT_URI
+//                            "audio" -> MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
+//                            else -> null
+//                        }
+//                        val selection = "_id=?"
+//                        val selectionArgs: Array<String> = arrayOf(id)
+//                        albumPhotoPath = getImagePath(contentUri!!, selection, selectionArgs)!!
+//                    }
+//                    //downloads文件解析
+//                    "com.android.providers.downloads.documents" -> {
+//                        ContentUris.withAppendedId(
+//                                Uri.parse("content://downloads/public_downloads"), docId.toLong()
+//                        ).apply {
+//                            albumPhotoPath = getImagePath(this, null, null)!!
+//                        }
+//                    }
+//                    else -> {
+//                    }
+//                }
+//            }
+//            "content".equals(uri?.scheme, ignoreCase = true) ->
+//                //content类型数据不需要解析，直接传入生成即可
+//                albumPhotoPath = getImagePath(uri!!, null, null)!!
+//            "file".equals(uri?.scheme, ignoreCase = true) ->
+//                //file类型的uri直接获取图片路径即可
+//                albumPhotoPath = uri!!.path!!
+//        }
+//    }
+//
+//    /**
+//     * android4.4之前可直接获取图片真实uri
+//     */
+//    private fun handleImageBeforeKitKat(data: Intent) {
+//        val uri = data.data
+//        albumPhotoPath = getImagePath(uri!!, null, null)!!
+//    }
+//
+//    /**
+//     * 解析uri及selection
+//     * 获取图片真实路径
+//     */
+//    private fun getImagePath(uri: Uri, selection: String?, selectionArgs: Array<String>?): String? {
+//        var cursor: Cursor? = null
+//        try {
+//            cursor = context!!.contentResolver.query(uri, null, selection, selectionArgs, null)
+//            if (cursor?.moveToFirst()!!) {
+//                return cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA))
+//            }
+//        } finally {
+//            cursor?.close()
+//        }
+//        return null
+//    }
 }
 

@@ -3,26 +3,34 @@ package com.dididi.pocket.ec.main.message.chat
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import android.widget.Toast
+import com.dididi.pocket.core.BackgroundTasks
 import com.dididi.pocket.core.delegates.PocketDelegate
 import com.dididi.pocket.core.entity.Message
+import com.dididi.pocket.core.fakedata.FakeUser
+import com.dididi.pocket.core.im.IIMCallback
+import com.dididi.pocket.core.im.IIMEventListener
 import com.dididi.pocket.core.ui.animation.PocketAnimation
-import com.dididi.pocket.core.ui.dialog.PhotoDialog
 import com.dididi.pocket.core.ui.item.MoreButtonItem
+import com.dididi.pocket.core.util.MessageUtil
 import com.dididi.pocket.ec.R
 import com.dididi.pocket.ec.main.message.chat.adapter.ChatAdapter
 import com.dididi.pocket.ec.main.message.chat.adapter.MorePagerAdapter
+import com.dididi.pocket.ec.main.message.chat.model.C2CChatManager
 import com.gyf.immersionbar.ktx.immersionBar
+import com.tencent.imsdk.TIMMessage
 import kotlinx.android.synthetic.main.delegate_msg_chat.*
 import me.yokeyword.fragmentation.ISupportFragment
 import java.io.FileNotFoundException
-import java.util.*
+import java.lang.ref.WeakReference
 
 
 /**
@@ -37,13 +45,15 @@ import java.util.*
  * 防止外部实例化ChatDelegate而导致没有传入message bundle出现错误
  * 只能通过ChatDelegate的getStartChat()方法获取ChatDelegate
  */
-class ChatDelegate : PocketDelegate(), TextView.OnEditorActionListener {
+class ChatDelegate : PocketDelegate(), TextView.OnEditorActionListener, IIMEventListener {
 
-    private val mMessageList = ArrayList<Message>()
+    private var mMessageList = ArrayList<Message>()
     private var mAdapter: ChatAdapter? = null
-    private var getMessage: Message? = null
+    private var getName: String? = null
     private val mViewList = ArrayList<View>()
     private var morePagerView: View? = null
+    private var mRecyclerView: RecyclerView? = null
+
 
     override fun setLayout(): Any {
         return R.layout.delegate_msg_chat
@@ -51,20 +61,13 @@ class ChatDelegate : PocketDelegate(), TextView.OnEditorActionListener {
 
     override fun onBindChildView(savedInstanceState: Bundle?, rootView: View?) {
         //获取从bundle传入的数据
-        getMessage = arguments!!.get("message") as Message
-        if (getMessage!!.content != null) {
-            //如果传入的消息带有消息内容，则添加到头部list中
-            mMessageList.add(0, getMessage!!)
-        }
+        getName = arguments!!.getString("peer")!!
         mAdapter = ChatAdapter(R.layout.item_message_chat, mMessageList)
     }
 
     override fun onBindView(savedInstanceState: Bundle?, rootView: View?) {
         //设置chat页面标题
-        delegate_msg_chat_name?.text = getMessage!!.receivedUserName
-        val layoutManager = LinearLayoutManager(context)
-        //初始化消息页面
-        delegate_msg_chat_recyclerView?.layoutManager = layoutManager
+        delegate_msg_chat_name?.text = getName
         //输入框发送消息
         delegate_msg_chat_edit?.setOnEditorActionListener(this)
         //更多页面viewpager 添加view到list中
@@ -75,7 +78,22 @@ class ChatDelegate : PocketDelegate(), TextView.OnEditorActionListener {
         delegate_msg_chat_more_page?.adapter = moreAdapter
         //点击事件处理
         onClickEvent()
-        delegate_msg_chat_recyclerView?.adapter = mAdapter
+        mRecyclerView = rootView!!.findViewById(R.id.delegate_msg_chat_recyclerView)
+        mRecyclerView!!.layoutManager = LinearLayoutManager(context)
+        mRecyclerView!!.adapter = mAdapter
+
+        C2CChatManager.getInstance().loadChatMessages(null, object : IIMCallback {
+            override fun onSuccess(data: Any?) {
+                BackgroundTasks.instance?.runOnUiThread(Runnable {
+                    mAdapter?.updateMessage(data as List<Message>)
+                })
+                Toast.makeText(context, "加载成功", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onError(module: String, errCode: Int, errMsg: String?) {
+                Toast.makeText(context, "加载失败", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     override fun getTitleBarId() = R.id.delegate_msg_chat_toolbar
@@ -99,22 +117,6 @@ class ChatDelegate : PocketDelegate(), TextView.OnEditorActionListener {
         }
         delegate_msg_chat_voice?.setOnClickListener {
             Toast.makeText(context, "点击语音", Toast.LENGTH_SHORT).show()
-        }
-        mAdapter!!.setOnItemChildClickListener { adapter, view, position ->
-            val messages = adapter.data as List<Message>
-            val photoList = mutableListOf<Bitmap>()
-            messages.forEach {
-                if (it.picture != null) {
-                    photoList.add(it.picture)
-                }
-            }
-            when (view.id) {
-                R.id.item_message_chat_received_picture, R.id.item_message_chat_send_picture -> {
-                    Toast.makeText(context, "点击图片", Toast.LENGTH_SHORT).show()
-                    val photoDialog = PhotoDialog().create(photoList)
-                    photoDialog.show(fragmentManager!!)
-                }
-            }
         }
         //上拉页面的按钮
         //打开相机
@@ -148,11 +150,11 @@ class ChatDelegate : PocketDelegate(), TextView.OnEditorActionListener {
     private fun insertBitmapToList(bitmap: Bitmap) {
         try {
             //加载图片到消息列表中
-            val message = Message(bitmap, Message.TYPE_SENT, getMessage?.sendUser,
-                    getMessage?.receivedUser, "27/3/2019")
+            val message = Message()
+            //todo:这里有bug
             mMessageList.add(message)
             mAdapter?.notifyItemInserted(mMessageList.size)
-            delegate_msg_chat_recyclerView?.scrollToPosition(mMessageList.size - 1)
+            //delegate_msg_chat_recyclerView?.scrollToPosition(mMessageList.size - 1)
             isMoreVisible = true
             showMorePager()
         } catch (e: FileNotFoundException) {
@@ -193,18 +195,29 @@ class ChatDelegate : PocketDelegate(), TextView.OnEditorActionListener {
             if (delegate_msg_chat_edit?.text == null) {
                 Toast.makeText(context, "发送消息不能为空", Toast.LENGTH_SHORT).show()
             } else {
-                val message = Message(delegate_msg_chat_edit?.text.toString(), Message.TYPE_SENT,
-                        getMessage?.sendUser, getMessage?.receivedUser, "21/9/2018")
+                //新建文本消息
+                val message = MessageUtil.buildTextMessage(delegate_msg_chat_edit.text.toString())
                 mMessageList.add(message)
                 //插入数据源
                 mAdapter?.notifyItemInserted(mMessageList.size)
                 delegate_msg_chat_recyclerView?.scrollToPosition(mMessageList.size - 1)
+                C2CChatManager.getInstance().sendMessage(message, false, object : IIMCallback {
+                    override fun onSuccess(data: Any?) {
+                        if (data as Boolean)
+                            Toast.makeText(context, "发送成功", Toast.LENGTH_SHORT).show()
+                    }
+
+                    override fun onError(module: String, errCode: Int, errMsg: String?) {
+                        Toast.makeText(context, "发送失败", Toast.LENGTH_SHORT).show()
+                    }
+                })
             }
             //发送完成清空输入框
             delegate_msg_chat_edit?.setText("")
         }
         return false
     }
+
 
     companion object {
 
@@ -214,16 +227,24 @@ class ChatDelegate : PocketDelegate(), TextView.OnEditorActionListener {
          * 需要传入ChatDelegate的数据
          * 外界仅能通过此方法获取ChatDelegate实例
          *
-         * @param message 传入的消息
+         * @param targetUserName 目标聊天对象
          * @return 返回一个包装后的chatDelegate
          */
-        fun getStartChat(message: Message): ChatDelegate {
+        fun getStartChat(targetUserName: String): ChatDelegate {
             val chatDelegate = ChatDelegate()
             val bundle = Bundle()
-            bundle.putParcelable("message", message)
+            bundle.putString("peer", targetUserName)
             chatDelegate.arguments = bundle
             return chatDelegate
         }
     }
 
+    override fun onNewMessage(messages: List<TIMMessage>) {
+        val msgs = MessageUtil.TIMMessages2Messages(messages, false)
+        if (msgs != null) {
+            mMessageList.addAll(msgs)
+        }
+        Toast.makeText(context, "new Message", Toast.LENGTH_SHORT).show()
+        mAdapter?.notifyDataSetChanged()
+    }
 }

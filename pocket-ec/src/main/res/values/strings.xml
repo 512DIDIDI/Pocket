@@ -99,11 +99,27 @@
     <string name="video_chat">chat</string>
     <string name="transfer">transfer</string>
     <string name="favorite">favorite</string>
+    <string name="choose_account">选择帐号</string>
+    <string name="tim_test_login">测试账号登录</string>
     <string-array name="spinner_goods_sort">
         <item>综合排序</item>
         <item>好评优先</item>
         <item>价格降序</item>
         <item>价格升序</item>
+    </string-array>
+    <string-array name="spinner_tim_account">
+        <item>dididi</item>
+        <item>lalala</item>
+        <item>hahaha</item>
+        <item>wawawa</item>
+        <item>sasasa</item>
+        <item>dadada</item>
+        <item>mememe</item>
+        <item>huhuhu</item>
+        <item>tatata</item>
+        <item>bababa</item>
+        <item>gagaga</item>
+        <item>xixixi</item>
     </string-array>
 
 </resources>

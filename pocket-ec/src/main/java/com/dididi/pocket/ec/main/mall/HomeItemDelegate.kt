@@ -27,6 +27,8 @@ import com.dididi.pocket.ec.main.mall.goods.GoodsListDelegate
 import com.dididi.pocket.ec.main.mall.list.FakeImageList
 import com.dididi.pocket.ec.sign.SignDelegate
 import com.gyf.immersionbar.ktx.immersionBar
+import com.tencent.imsdk.TIMCallBack
+import com.tencent.imsdk.TIMManager
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
 import de.hdodenhof.circleimageview.CircleImageView
@@ -132,9 +134,24 @@ class HomeItemDelegate : BottomItemDelegate(),
             R.id.menu_home_item_nav_friends -> Toast.makeText(context, "点击跳转我的朋友界面", Toast.LENGTH_SHORT).show()
             R.id.menu_home_item_nav_account -> Toast.makeText(context, "点击跳转账户界面", Toast.LENGTH_SHORT).show()
             R.id.menu_home_item_nav_exit -> {
-                //清除sp中的内容以达到退出效果
-                PocketPreferences.clearPocketProfile()
-                getParentDelegate<PocketDelegate>().supportDelegate.startWithPop(SignDelegate())
+                if (TIMManager.getInstance().loginUser != null) {
+                    //腾讯云通信登出帐号
+                    TIMManager.getInstance().logout(object : TIMCallBack {
+                        override fun onSuccess() {
+                            //清除sp中的内容以达到退出效果
+                            PocketPreferences.clearPocketProfile()
+                            getParentDelegate<PocketDelegate>().supportDelegate.startWithPop(SignDelegate())
+                        }
+
+                        override fun onError(p0: Int, p1: String?) {
+                            Toast.makeText(context, "log failed code:$p0 | errMsg:$p1", Toast.LENGTH_SHORT).show()
+                        }
+                    })
+                } else {
+                    //清除sp中的内容以达到退出效果
+                    PocketPreferences.clearPocketProfile()
+                    getParentDelegate<PocketDelegate>().supportDelegate.startWithPop(SignDelegate())
+                }
             }
             R.id.menu_home_item_nav_setting -> Toast.makeText(context, "点击跳转设置界面", Toast.LENGTH_SHORT).show()
             R.id.menu_home_item_nav_help -> Toast.makeText(context, "点击跳转帮助界面", Toast.LENGTH_SHORT).show()

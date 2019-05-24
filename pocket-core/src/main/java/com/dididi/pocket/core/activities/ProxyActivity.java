@@ -4,9 +4,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.dididi.pocket.core.R;
+import com.dididi.pocket.core.app.Pocket;
 import com.dididi.pocket.core.delegates.PocketDelegate;
+import com.tencent.imsdk.TIMCallBack;
+import com.tencent.imsdk.TIMManager;
 
 import me.yokeyword.fragmentation.ExtraTransaction;
 import me.yokeyword.fragmentation.ISupportActivity;

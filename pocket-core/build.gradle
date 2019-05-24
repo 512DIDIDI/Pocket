@@ -85,6 +85,10 @@ dependencies {
     api 'com.gyf.immersionbar:immersionbar:3.0.0-beta02'
     api 'com.gyf.immersionbar:immersionbar-components:3.0.0-beta02'
     api 'com.gyf.immersionbar:immersionbar-ktx:3.0.0-beta02'
+    //腾讯云通信依赖
+    api 'com.tencent.imsdk:imsdk:4.3.118'
+    //multidex 方法数超过65536
+    api 'com.android.support:multidex:1.0.3'
 }
 repositories {
     mavenCentral()

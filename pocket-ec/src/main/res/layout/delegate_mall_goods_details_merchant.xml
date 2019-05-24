@@ -50,7 +50,7 @@
                 android:paddingTop="@dimen/dividerGap"
                 android:paddingRight="@dimen/screenLRGap"
                 android:paddingBottom="@dimen/dividerGap">
-
+                <!--店主头像-->
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/delegate_mall_goods_details_merchant_avatar"
                     android:layout_width="@dimen/bigAvatarSize"
@@ -60,7 +60,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="@dimen/screenLRGap"
                     android:layout_marginRight="@dimen/screenLRGap" />
-
+                <!--商店名字-->
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/delegate_mall_goods_details_merchant_name"
                     android:layout_width="wrap_content"
@@ -70,7 +70,7 @@
                     android:layout_toRightOf="@id/delegate_mall_goods_details_merchant_avatar"
                     android:textColor="@color/textColorDark"
                     android:textSize="@dimen/normalTitleSize" />
-
+                <!--商品标志-->
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/delegate_mall_goods_details_merchant_product_icon"
                     android:layout_width="@dimen/normalIconSize"
@@ -82,7 +82,7 @@
                     android:layout_toRightOf="@id/delegate_mall_goods_details_merchant_avatar"
                     android:gravity="center"
                     android:src="@drawable/product" />
-
+                <!--商品种类数量-->
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/delegate_mall_goods_details_merchant_product_num"
                     android:layout_width="wrap_content"
@@ -95,7 +95,7 @@
                     android:gravity="center"
                     android:textColor="@color/textColorDark"
                     android:textSize="@dimen/textSmallSize" />
-
+                <!--粉丝图标-->
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/delegate_mall_goods_details_merchant_fans_icon"
                     android:layout_width="@dimen/normalIconSize"
@@ -109,7 +109,7 @@
                     android:layout_toRightOf="@id/delegate_mall_goods_details_merchant_product_num"
                     android:gravity="center"
                     android:src="@drawable/fans" />
-
+                <!--粉丝数量-->
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/delegate_mall_goods_details_merchant_fans_num"
                     android:layout_width="wrap_content"
@@ -122,7 +122,7 @@
                     android:gravity="center"
                     android:textColor="@color/textColorDark"
                     android:textSize="@dimen/textSmallSize" />
-
+                <!--关注图标-->
                 <com.mikepenz.iconics.view.IconicsTextView
                     android:id="@+id/delegate_mall_goods_details_merchant_attention_icon"
                     android:layout_width="@dimen/normalIconSize"
@@ -137,7 +137,7 @@
                     android:gravity="center"
                     android:text="@string/faw_attention"
                     android:textColor="@color/textColorDark" />
-
+                <!--关注数量-->
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/delegate_mall_goods_details_merchant_attention_num"
                     android:layout_width="wrap_content"

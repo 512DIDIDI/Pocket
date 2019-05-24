@@ -3,6 +3,7 @@ package com.dididi.pocket.ec.main.message
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import android.widget.AdapterView
 import android.widget.Toast
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.dididi.pocket.core.delegates.PocketDelegate
@@ -10,10 +11,14 @@ import com.dididi.pocket.core.delegates.bottom.BottomItemDelegate
 import com.dididi.pocket.core.entity.Message
 import com.dididi.pocket.core.fakedata.FakeUser
 import com.dididi.pocket.core.ui.dialog.PocketDialog
+import com.dididi.pocket.core.util.PocketPreferences
 import com.dididi.pocket.ec.R
 import com.dididi.pocket.ec.main.message.adapter.MessageAdapter
 import com.dididi.pocket.ec.main.message.chat.ChatDelegate
+import com.dididi.pocket.ec.main.message.chat.model.C2CChatInfo
+import com.dididi.pocket.ec.main.message.chat.model.C2CChatManager
 import com.gyf.immersionbar.ktx.immersionBar
+import com.tencent.imsdk.TIMConversationType
 import kotlinx.android.synthetic.main.delegate_msg_message.*
 import java.util.*
 
@@ -36,7 +41,6 @@ class MessageItemDelegate : BottomItemDelegate(), BaseQuickAdapter.OnItemChildCl
     }
 
     override fun onBindView(savedInstanceState: Bundle?, rootView: View?) {
-        delegate_msg_message_searchBar!!.setLeftIcon(context?.getString(R.string.faw_plus))
         initFakeMessage()
         //设置布局方式
         layoutManager = LinearLayoutManager(context,
@@ -45,6 +49,21 @@ class MessageItemDelegate : BottomItemDelegate(), BaseQuickAdapter.OnItemChildCl
         val mAdapter = MessageAdapter(R.layout.item_message_list, mMsgList)
         mAdapter.onItemChildClickListener = this
         delegate_msg_message_list_view!!.adapter = mAdapter
+        delegate_msg_message_layout_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val users = resources.getStringArray(R.array.spinner_tim_account)
+                val message = Message()
+                        .setSelf(false)
+                        .setTargetUser(FakeUser.getUserByName(users[position]))
+                        .setFromUser(FakeUser.getUserByName(PocketPreferences.getCustomPocketProfile("userName")))
+                        .setDate(System.currentTimeMillis())
+                mMsgList.add(message)
+                mAdapter.notifyDataSetChanged()
+            }
+        }
     }
 
     override fun getTitleBarId() = R.id.delegate_msg_message_toolbar
@@ -92,7 +111,8 @@ class MessageItemDelegate : BottomItemDelegate(), BaseQuickAdapter.OnItemChildCl
         }
         if (view.id == R.id.item_message_main_layout) {
             //点击跳转Chat页面
-            getParentDelegate<PocketDelegate>().supportDelegate.start(ChatDelegate.getStartChat(message))
+            C2CChatManager.getInstance().setCurrentChatInfo(C2CChatInfo().apply { peer = message.targetUser.name;chatName = message.targetUser.name;type = TIMConversationType.C2C })
+            getParentDelegate<PocketDelegate>().supportDelegate.start(ChatDelegate.getStartChat(message.targetUser.name))
         }
     }
 
@@ -123,51 +143,72 @@ class MessageItemDelegate : BottomItemDelegate(), BaseQuickAdapter.OnItemChildCl
      * 初始化消息列表 不用管它什么意思
      */
     private fun initFakeMessage() {
-        val sendUser = FakeUser.getUser("1")
-        val msg1 = Message(sendUser.name + " 试试上下滑动",
-                Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("2"),
-                "27/7/2018")
-        val msg2 = Message(sendUser.name + " 试试向左滑动",
-                Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("3"),
-                "27/7/2018")
-        val msg3 = Message(sendUser.name + " 试试消息置顶",
-                Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("4"),
-                "27/7/2018")
-        val msg4 = Message(sendUser.name + " 试试删除消息",
-                Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("5"),
-                "27/7/2018")
-        val msg5 = Message(sendUser.name + "试试发送一条消息",
-                Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("6"),
-                "27/7/2018")
-        val msg6 = Message(sendUser.name + " 试试侧滑返回",
-                Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("7"),
-                "27/7/2018")
-        val msg7 = Message(sendUser.name + " 祝您阖家欢乐",
-                Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("8"),
-                "27/7/2018")
-        val msg8 = Message(sendUser.name + " 祝您六六大顺",
-                Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("9"),
-                "27/7/2018")
-        val msg9 = Message(sendUser.name + " 祝您福星高照",
-                Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("10"),
-                "27/7/2018")
-        val msg10 = Message(sendUser.name + " 祝您福如东海",
-                Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("11"),
-                "27/7/2018")
-        val msg11 = Message(sendUser.name + " 祝您寿比南山",
-                Message.TYPE_RECEIVED, sendUser, FakeUser.getUser("12"),
-                "27/7/2018")
-        mMsgList.add(msg1)
-        mMsgList.add(msg2)
-        mMsgList.add(msg3)
-        mMsgList.add(msg4)
-        mMsgList.add(msg5)
-        mMsgList.add(msg6)
-        mMsgList.add(msg7)
-        mMsgList.add(msg8)
-        mMsgList.add(msg9)
-        mMsgList.add(msg10)
-        mMsgList.add(msg11)
+//        val msg1 = Message()
+//                .setSelf(false)
+//                .setTargetUser(FakeUser.getUser("2"))
+//                .setFromUser(FakeUser.getUserByName(PocketPreferences.getCustomPocketProfile("userName")))
+//                .setDate(System.currentTimeMillis())
+//        val msg2 = Message()
+//                .setSelf(false)
+//                .setTargetUser(FakeUser.getUser("3"))
+//                .setFromUser(FakeUser.getUserByName(PocketPreferences.getCustomPocketProfile("userName")))
+//                .setDate(System.currentTimeMillis())
+//        val msg3 = Message()
+//                .setSelf(false)
+//                .setTargetUser(FakeUser.getUser("4"))
+//                .setFromUser(FakeUser.getUserByName(PocketPreferences.getCustomPocketProfile("userName")))
+//                .setDate(System.currentTimeMillis())
+//        val msg4 = Message()
+//                .setSelf(false)
+//                .setTargetUser(FakeUser.getUser("5"))
+//                .setFromUser(FakeUser.getUserByName(PocketPreferences.getCustomPocketProfile("userName")))
+//                .setDate(System.currentTimeMillis())
+//        val msg5 = Message()
+//                .setSelf(false)
+//                .setTargetUser(FakeUser.getUser("6"))
+//                .setFromUser(FakeUser.getUserByName(PocketPreferences.getCustomPocketProfile("userName")))
+//                .setDate(System.currentTimeMillis())
+//        val msg6 = Message()
+//                .setSelf(false)
+//                .setTargetUser(FakeUser.getUser("7"))
+//                .setFromUser(FakeUser.getUserByName(PocketPreferences.getCustomPocketProfile("userName")))
+//                .setDate(System.currentTimeMillis())
+//        val msg7 = Message()
+//                .setSelf(false)
+//                .setTargetUser(FakeUser.getUser("8"))
+//                .setFromUser(FakeUser.getUserByName(PocketPreferences.getCustomPocketProfile("userName")))
+//                .setDate(System.currentTimeMillis())
+//        val msg8 = Message()
+//                .setSelf(false)
+//                .setTargetUser(FakeUser.getUser("9"))
+//                .setFromUser(FakeUser.getUserByName(PocketPreferences.getCustomPocketProfile("userName")))
+//                .setDate(System.currentTimeMillis())
+//        val msg9 = Message()
+//                .setSelf(false)
+//                .setTargetUser(FakeUser.getUser("10"))
+//                .setFromUser(FakeUser.getUserByName(PocketPreferences.getCustomPocketProfile("userName")))
+//                .setDate(System.currentTimeMillis())
+//        val msg10 = Message()
+//                .setSelf(false)
+//                .setTargetUser(FakeUser.getUser("11"))
+//                .setFromUser(FakeUser.getUserByName(PocketPreferences.getCustomPocketProfile("userName")))
+//                .setDate(System.currentTimeMillis())
+//        val msg11 = Message()
+//                .setSelf(false)
+//                .setTargetUser(FakeUser.getUser("12"))
+//                .setFromUser(FakeUser.getUserByName(PocketPreferences.getCustomPocketProfile("userName")))
+//                .setDate(System.currentTimeMillis())
+//        mMsgList.add(msg1)
+//        mMsgList.add(msg2)
+//        mMsgList.add(msg3)
+//        mMsgList.add(msg4)
+//        mMsgList.add(msg5)
+//        mMsgList.add(msg6)
+//        mMsgList.add(msg7)
+//        mMsgList.add(msg8)
+//        mMsgList.add(msg9)
+//        mMsgList.add(msg10)
+//        mMsgList.add(msg11)
     }
 
 }

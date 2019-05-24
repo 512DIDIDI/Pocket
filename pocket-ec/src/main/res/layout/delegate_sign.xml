@@ -53,7 +53,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/dividerGap"
             android:alpha="0"
-            android:visibility="invisible"/>
+            android:visibility="invisible" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/delegate_sign_name"
@@ -63,8 +63,8 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/dividerGap"
             android:alpha="0"
-            android:visibility="invisible"
-            android:textSize="@dimen/bigTitleSize" />
+            android:textSize="@dimen/bigTitleSize"
+            android:visibility="invisible" />
         <!--重点在FrameLayout 登录注册找回密码都在此布局下-->
         <FrameLayout
             android:id="@+id/delegate_sign_sign_layout"
@@ -163,6 +163,75 @@
                     android:alpha="0"
                     android:text="@string/forget_password"
                     android:textColor="@color/textColorHint"
+                    android:textSize="@dimen/textSmallSize" />
+                <!--测试账号登录-->
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/delegate_sign_sign_in_layout_tim_test"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/delegate_sign_sign_in_layout_forget_password"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/elementGap"
+                    android:alpha="0"
+                    android:text="@string/tim_test_login"
+                    android:textColor="@color/textColorHint"
+                    android:textSize="@dimen/textSmallSize"/>
+
+            </RelativeLayout>
+            <!--腾讯云通信测试登录-->
+            <RelativeLayout
+                android:id="@+id/delegate_sign_tim_test_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:alpha="0"
+                android:visibility="invisible">
+                <!--选择帐号-->
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/delegate_sign_tim_test_layout_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="@dimen/screenLRGap"
+                    android:text="@string/choose_account"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/normalTitleSize" />
+                <!--帐号选择栏-->
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/delegate_sign_tim_test_layout_spinner"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_below="@id/delegate_sign_tim_test_layout_login"
+                    android:entries="@array/spinner_tim_account"
+                    android:layout_marginBottom="@dimen/elementGap"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="@color/textColorDark"
+                    android:textSize="@dimen/buttonTextSize"/>
+                <!--登录按钮-->
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/delegate_sign_tim_test_layout_sign_in"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_below="@id/delegate_sign_tim_test_layout_spinner"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/elementGap"
+                    android:background="@drawable/sign_button_corner"
+                    android:gravity="center"
+                    android:text="@string/sign_in"
+                    android:textColor="@color/textColorWhite"
+                    android:textSize="@dimen/buttonTextSize" />
+                <!--返回登录页面-->
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/delegate_sign_tim_test_layout_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/delegate_sign_tim_test_layout_sign_in"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/elementGap"
+                    android:text="@string/back"
+                    android:textColor="@color/textColorBlack"
                     android:textSize="@dimen/textSmallSize" />
 
             </RelativeLayout>
@@ -329,7 +398,7 @@
                     android:gravity="center"
                     android:text="@string/next_step"
                     android:textColor="@color/textColorWhite"
-                    android:textSize="@dimen/buttonTextSize"/>
+                    android:textSize="@dimen/buttonTextSize" />
                 <!--返回登录按钮-->
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/delegate_sign_forget_password_layout_back"

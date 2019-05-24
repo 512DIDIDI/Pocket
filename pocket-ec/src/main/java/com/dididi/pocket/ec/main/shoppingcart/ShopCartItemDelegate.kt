@@ -12,11 +12,15 @@ import com.dididi.pocket.core.entity.Message
 import com.dididi.pocket.core.entity.Shop
 import com.dididi.pocket.core.fakedata.FakeUser
 import com.dididi.pocket.core.ui.dialog.PocketDialog
+import com.dididi.pocket.core.util.PocketPreferences
 import com.dididi.pocket.ec.R
 import com.dididi.pocket.ec.main.mall.goods.details.MerchantPageDelegate
 import com.dididi.pocket.ec.main.message.chat.ChatDelegate
+import com.dididi.pocket.ec.main.message.chat.model.C2CChatInfo
+import com.dididi.pocket.ec.main.message.chat.model.C2CChatManager
 import com.dididi.pocket.ec.main.shoppingcart.adapter.ShopCartAdapter
 import com.gyf.immersionbar.ktx.immersionBar
+import com.tencent.imsdk.TIMConversationType
 import kotlinx.android.synthetic.main.delegate_shoppingcart_shopcart.*
 import java.math.BigDecimal
 import java.util.*
@@ -90,10 +94,14 @@ class ShopCartItemDelegate : BottomItemDelegate(),
             notifyPriceChanged()
         } else if (id == R.id.item_shopcart_shop_chat) {
             //点击选择发起店主聊天
-            val message = Message("你好", Message.TYPE_SENT, FakeUser.getUser("1"),
-                    FakeUser.getUser(shop.userId.toString()), "15/10/2018")
-            getParentDelegate<PocketDelegate>().supportDelegate.start(ChatDelegate.getStartChat(message))
+            val message = Message()
+                    .setSelf(true)
+                    .setTargetUser(FakeUser.getUser(shop.userId.toString()))
+                    .setFromUser(FakeUser.getUserByName(PocketPreferences.getCustomPocketProfile("userName")))
+            C2CChatManager.getInstance().setCurrentChatInfo(C2CChatInfo().apply { peer = message.targetUser.name;chatName = message.targetUser.name;type = TIMConversationType.C2C })
+            getParentDelegate<PocketDelegate>().supportDelegate.start(ChatDelegate.getStartChat(message.targetUser.name))
         } else if (id == R.id.item_shopcart_shop_name) {
+            //点击进入店铺页面
             getParentDelegate<PocketDelegate>().supportDelegate.start(MerchantPageDelegate.getStartShop(shop.shopId))
         } else if (id == R.id.item_shopcart_goods_select) {
             //点击选择商品

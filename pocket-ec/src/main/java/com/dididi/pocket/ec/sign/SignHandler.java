@@ -13,13 +13,15 @@ import com.google.gson.JsonParser;
 public class SignHandler {
     public static void onSignIn(String response, ISignListener listener) {
         JsonObject profile = new JsonParser().parse(response).getAsJsonObject();
-        String token = profile.get("token").toString();
+        //String token = profile.get("token").toString();
         String userName = profile.getAsJsonObject("user").get("name").toString();
+        String userSig = profile.getAsJsonObject("user").get("sign").toString();
         String userAvatar = profile.getAsJsonObject("user").get("avatar").toString();
         String userEmail = profile.getAsJsonObject("user").get("email").toString();
 
-        PocketPreferences.addCustomPocketProfile("token", token);
+        //PocketPreferences.addCustomPocketProfile("token", token);
         PocketPreferences.addCustomPocketProfile("userName", userName);
+        PocketPreferences.addCustomPocketProfile("userSig",userSig);
         PocketPreferences.addCustomPocketProfile("userAvatar", userAvatar);
         PocketPreferences.addCustomPocketProfile("userEmail", userEmail);
 
