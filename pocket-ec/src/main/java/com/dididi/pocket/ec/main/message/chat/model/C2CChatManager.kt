@@ -96,13 +96,13 @@ class C2CChatManager private constructor() : TIMMessageListener {
      * @param callback 回调
      */
     fun loadChatMessages(lastMessage: Message?, callback: IIMCallback) {
-        if (isLoading || mCurrentConversationExt == null) return
+        if (mCurrentConversationExt == null) return
         isLoading = true
-        if (!isMore) {
-            //callback.onSuccess(null)
-            isLoading = false
-            return
-        }
+//        if (!isMore) {
+//            //callback.onSuccess(null)
+//            isLoading = false
+//            return
+//        }
         val lastTimMessage: TIMMessage? = lastMessage?.timMessage
         val unread = mCurrentConversationExt!!.unreadMessageNum
         mCurrentConversationExt?.getMessage(if (unread > MESSAGE_PAGE_COUNT) {
@@ -175,6 +175,7 @@ class C2CChatManager private constructor() : TIMMessageListener {
                         msgId = timMessage.msgId
                         date = currentDate
                     }
+
                     callback?.onSuccess(true)
                 }
 

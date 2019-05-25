@@ -1,6 +1,7 @@
 package com.dididi.pocket.ec.main.message
 
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.AdapterView
@@ -8,19 +9,18 @@ import android.widget.Toast
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.dididi.pocket.core.delegates.PocketDelegate
 import com.dididi.pocket.core.delegates.bottom.BottomItemDelegate
-import com.dididi.pocket.core.entity.Message
-import com.dididi.pocket.core.fakedata.FakeUser
+import com.dididi.pocket.core.im.IIMCallback
 import com.dididi.pocket.core.ui.dialog.PocketDialog
-import com.dididi.pocket.core.util.PocketPreferences
 import com.dididi.pocket.ec.R
 import com.dididi.pocket.ec.main.message.adapter.MessageAdapter
 import com.dididi.pocket.ec.main.message.chat.ChatDelegate
 import com.dididi.pocket.ec.main.message.chat.model.C2CChatInfo
 import com.dididi.pocket.ec.main.message.chat.model.C2CChatManager
+import com.dididi.pocket.ec.main.message.model.MessageInfo
+import com.dididi.pocket.ec.main.message.model.MessageManager
 import com.gyf.immersionbar.ktx.immersionBar
 import com.tencent.imsdk.TIMConversationType
 import kotlinx.android.synthetic.main.delegate_msg_message.*
-import java.util.*
 
 
 /**
@@ -30,8 +30,9 @@ import java.util.*
 
 class MessageItemDelegate : BottomItemDelegate(), BaseQuickAdapter.OnItemChildClickListener {
 
-    private val mMsgList = ArrayList<Message>()
+    private var mMsgList = ArrayList<MessageInfo>()
     private var layoutManager: LinearLayoutManager? = null
+    private var mAdapter: MessageAdapter? = null
 
     override fun setLayout(): Any {
         return R.layout.delegate_msg_message
@@ -41,27 +42,41 @@ class MessageItemDelegate : BottomItemDelegate(), BaseQuickAdapter.OnItemChildCl
     }
 
     override fun onBindView(savedInstanceState: Bundle?, rootView: View?) {
-        initFakeMessage()
+
         //设置布局方式
         layoutManager = LinearLayoutManager(context,
                 LinearLayoutManager.VERTICAL, false)
         delegate_msg_message_list_view!!.layoutManager = layoutManager
-        val mAdapter = MessageAdapter(R.layout.item_message_list, mMsgList)
-        mAdapter.onItemChildClickListener = this
+        mAdapter = MessageAdapter(R.layout.item_message_list, mMsgList)
+        mAdapter!!.onItemChildClickListener = this
         delegate_msg_message_list_view!!.adapter = mAdapter
+        delegate_msg_message_refresh.setColorSchemeColors(ContextCompat.getColor(context!!, R.color.textColorDark))
+        delegate_msg_message_refresh.setOnRefreshListener {
+            MessageManager.getInstance().loadConversation(object :IIMCallback{
+                override fun onSuccess(data: Any?) {
+                    delegate_msg_message_refresh.isRefreshing = false
+                    mAdapter!!.updateConversations(data as ArrayList<MessageInfo>)
+                    Toast.makeText(context, "刷新成功", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onError(module: String, errCode: Int, errMsg: String?) {
+                }
+            })
+        }
+        initFakeMessage()
         delegate_msg_message_layout_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val users = resources.getStringArray(R.array.spinner_tim_account)
-                val message = Message()
-                        .setSelf(false)
-                        .setTargetUser(FakeUser.getUserByName(users[position]))
-                        .setFromUser(FakeUser.getUserByName(PocketPreferences.getCustomPocketProfile("userName")))
-                        .setDate(System.currentTimeMillis())
-                mMsgList.add(message)
-                mAdapter.notifyDataSetChanged()
+                val info = MessageInfo().apply {
+                    peer = users[position]
+                    title = peer
+                    lastMessageTime = System.currentTimeMillis()
+                }
+                mMsgList.add(info)
+                mAdapter!!.notifyDataSetChanged()
             }
         }
     }
@@ -76,7 +91,7 @@ class MessageItemDelegate : BottomItemDelegate(), BaseQuickAdapter.OnItemChildCl
     }
 
     override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
-        val message = adapter.getItem(position) as Message?
+        val message = adapter.getItem(position) as MessageInfo?
                 ?: throw RuntimeException("message can not be null")
         //删除消息
         if (view.id == R.id.item_message_delete) {
@@ -111,8 +126,8 @@ class MessageItemDelegate : BottomItemDelegate(), BaseQuickAdapter.OnItemChildCl
         }
         if (view.id == R.id.item_message_main_layout) {
             //点击跳转Chat页面
-            C2CChatManager.getInstance().setCurrentChatInfo(C2CChatInfo().apply { peer = message.targetUser.name;chatName = message.targetUser.name;type = TIMConversationType.C2C })
-            getParentDelegate<PocketDelegate>().supportDelegate.start(ChatDelegate.getStartChat(message.targetUser.name))
+            C2CChatManager.getInstance().setCurrentChatInfo(C2CChatInfo().apply { peer = message.peer;chatName = message.peer;type = TIMConversationType.C2C })
+            getParentDelegate<PocketDelegate>().supportDelegate.start(ChatDelegate.getStartChat(message.peer!!))
         }
     }
 
@@ -143,72 +158,16 @@ class MessageItemDelegate : BottomItemDelegate(), BaseQuickAdapter.OnItemChildCl
      * 初始化消息列表 不用管它什么意思
      */
     private fun initFakeMessage() {
-//        val msg1 = Message()
-//                .setSelf(false)
-//                .setTargetUser(FakeUser.getUser("2"))
-//                .setFromUser(FakeUser.getUserByName(PocketPreferences.getCustomPocketProfile("userName")))
-//                .setDate(System.currentTimeMillis())
-//        val msg2 = Message()
-//                .setSelf(false)
-//                .setTargetUser(FakeUser.getUser("3"))
-//                .setFromUser(FakeUser.getUserByName(PocketPreferences.getCustomPocketProfile("userName")))
-//                .setDate(System.currentTimeMillis())
-//        val msg3 = Message()
-//                .setSelf(false)
-//                .setTargetUser(FakeUser.getUser("4"))
-//                .setFromUser(FakeUser.getUserByName(PocketPreferences.getCustomPocketProfile("userName")))
-//                .setDate(System.currentTimeMillis())
-//        val msg4 = Message()
-//                .setSelf(false)
-//                .setTargetUser(FakeUser.getUser("5"))
-//                .setFromUser(FakeUser.getUserByName(PocketPreferences.getCustomPocketProfile("userName")))
-//                .setDate(System.currentTimeMillis())
-//        val msg5 = Message()
-//                .setSelf(false)
-//                .setTargetUser(FakeUser.getUser("6"))
-//                .setFromUser(FakeUser.getUserByName(PocketPreferences.getCustomPocketProfile("userName")))
-//                .setDate(System.currentTimeMillis())
-//        val msg6 = Message()
-//                .setSelf(false)
-//                .setTargetUser(FakeUser.getUser("7"))
-//                .setFromUser(FakeUser.getUserByName(PocketPreferences.getCustomPocketProfile("userName")))
-//                .setDate(System.currentTimeMillis())
-//        val msg7 = Message()
-//                .setSelf(false)
-//                .setTargetUser(FakeUser.getUser("8"))
-//                .setFromUser(FakeUser.getUserByName(PocketPreferences.getCustomPocketProfile("userName")))
-//                .setDate(System.currentTimeMillis())
-//        val msg8 = Message()
-//                .setSelf(false)
-//                .setTargetUser(FakeUser.getUser("9"))
-//                .setFromUser(FakeUser.getUserByName(PocketPreferences.getCustomPocketProfile("userName")))
-//                .setDate(System.currentTimeMillis())
-//        val msg9 = Message()
-//                .setSelf(false)
-//                .setTargetUser(FakeUser.getUser("10"))
-//                .setFromUser(FakeUser.getUserByName(PocketPreferences.getCustomPocketProfile("userName")))
-//                .setDate(System.currentTimeMillis())
-//        val msg10 = Message()
-//                .setSelf(false)
-//                .setTargetUser(FakeUser.getUser("11"))
-//                .setFromUser(FakeUser.getUserByName(PocketPreferences.getCustomPocketProfile("userName")))
-//                .setDate(System.currentTimeMillis())
-//        val msg11 = Message()
-//                .setSelf(false)
-//                .setTargetUser(FakeUser.getUser("12"))
-//                .setFromUser(FakeUser.getUserByName(PocketPreferences.getCustomPocketProfile("userName")))
-//                .setDate(System.currentTimeMillis())
-//        mMsgList.add(msg1)
-//        mMsgList.add(msg2)
-//        mMsgList.add(msg3)
-//        mMsgList.add(msg4)
-//        mMsgList.add(msg5)
-//        mMsgList.add(msg6)
-//        mMsgList.add(msg7)
-//        mMsgList.add(msg8)
-//        mMsgList.add(msg9)
-//        mMsgList.add(msg10)
-//        mMsgList.add(msg11)
+        MessageManager.getInstance().loadConversation(object : IIMCallback {
+            override fun onSuccess(data: Any?) {
+                mAdapter!!.addConversations(data as ArrayList<MessageInfo>)
+                Toast.makeText(context, "加载成功", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onError(module: String, errCode: Int, errMsg: String?) {
+                Toast.makeText(context, "加载失败", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
 }

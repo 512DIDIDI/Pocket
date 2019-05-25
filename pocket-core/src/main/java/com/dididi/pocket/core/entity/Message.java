@@ -1,8 +1,6 @@
 package com.dididi.pocket.core.entity;
 
 import android.net.Uri;
-import android.os.Parcel;
-import android.os.Parcelable;
 
 import com.tencent.imsdk.TIMMessage;
 

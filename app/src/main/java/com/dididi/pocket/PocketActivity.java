@@ -66,6 +66,7 @@ public class PocketActivity extends ProxyActivity implements ISignListener {
             case PERMISSION_CODE:
                 if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(this, "未全部授权，部分功能将无法使用", Toast.LENGTH_SHORT).show();
+                    FileUtil.initPath();
                 } else {
                     FileUtil.initPath();
                 }

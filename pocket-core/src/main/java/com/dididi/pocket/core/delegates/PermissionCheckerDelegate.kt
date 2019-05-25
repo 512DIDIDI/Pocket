@@ -27,7 +27,7 @@ import java.io.File
 abstract class PermissionCheckerDelegate : BaseDelegate() {
 
     //给子类用于显示的相片地址
-    private lateinit var cameraPhotoUri: Uri
+    protected lateinit var cameraPhotoUri: Uri
     //相册中相片地址
     private lateinit var albumPhotoPath: String
     //指定裁剪的相片文件
@@ -99,7 +99,7 @@ abstract class PermissionCheckerDelegate : BaseDelegate() {
      * 获取相册相片Uri
      * @param data 返回的data
      */
-    private fun getAlbumPhotoUri(data: Intent): Uri {
+    fun getAlbumPhotoUri(data: Intent): Uri {
         //根据版本获取相片真实路径
         albumPhotoPath = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             FileUtil.getPath(context!!, data.data)

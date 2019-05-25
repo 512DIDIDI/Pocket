@@ -23,9 +23,6 @@ class ChatAdapter(var layoutResId: Int, var messageList: ArrayList<Message>?) :
         BaseQuickAdapter<Message, BaseViewHolder>(layoutResId, messageList) {
 
     override fun convert(helper: BaseViewHolder, item: Message) {
-        LogUtil.d("chatMessage", "content:${item.extra} | " +
-                "targetUser:${item.targetUser.name} | fromUser:${item.fromUser.name} | " +
-                "isSelf:${item.isSelf} | type:${item.type}")
         //根据消息类型的不同决定隐藏显示哪边布局
         if (!item.isSelf) {
             //接收消息
@@ -44,6 +41,9 @@ class ChatAdapter(var layoutResId: Int, var messageList: ArrayList<Message>?) :
                 }
                 //图片消息
                 Message.MSG_TYPE_IMAGE -> {
+                    LogUtil.d("chatMessage", "content:${item.extra} | " +
+                            "targetUser:${item.targetUser.name} | fromUser:${item.fromUser.name} | " +
+                            "isSelf:${item.isSelf} | type:${item.type} | dataPath:${item.dataPath} | dataUri:${item.dataUri}")
                     showImage(helper, item.isSelf)
                     GlideApp.with(mContext)
                             .load(item.dataPath)
@@ -128,10 +128,17 @@ class ChatAdapter(var layoutResId: Int, var messageList: ArrayList<Message>?) :
         notifyDataSetChanged()
     }
 
+    private lateinit var mRecyclerView: RecyclerView
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        mRecyclerView = recyclerView
+    }
+
     fun updateMessage(messages: List<Message>) {
         messageList?.addAll(0, messages)
         LogUtil.d("chatMessage", "isUIThread :${Looper.getMainLooper().thread}")
         notifyDataSetChanged()
+        mRecyclerView.smoothScrollToPosition(messageList!!.size - 1)
     }
 
     /**

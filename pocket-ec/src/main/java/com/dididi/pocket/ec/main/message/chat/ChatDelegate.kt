@@ -2,8 +2,8 @@ package com.dididi.pocket.ec.main.message.chat
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.KeyEvent
@@ -30,7 +30,6 @@ import com.tencent.imsdk.TIMMessage
 import kotlinx.android.synthetic.main.delegate_msg_chat.*
 import me.yokeyword.fragmentation.ISupportFragment
 import java.io.FileNotFoundException
-import java.lang.ref.WeakReference
 
 
 /**
@@ -136,27 +135,37 @@ class ChatDelegate : PocketDelegate(), TextView.OnEditorActionListener, IIMEvent
         when (requestCode) {
             OPEN_CAMERA -> {
                 if (resultCode == ISupportFragment.RESULT_OK) {
-                    insertBitmapToList(getBitmapByCamera())
+                    insertBitmapToList(cameraPhotoUri)
                 }
             }
             OPEN_ALBUM -> {
                 if (resultCode == ISupportFragment.RESULT_OK) {
-                    insertBitmapToList(getBitmapByAlbum(data!!))
+                    insertBitmapToList(getAlbumPhotoUri(data!!))
                 }
             }
         }
     }
 
-    private fun insertBitmapToList(bitmap: Bitmap) {
+    private fun insertBitmapToList(uri: Uri) {
         try {
             //加载图片到消息列表中
-            val message = Message()
+            val message = MessageUtil.buildImageMessage(uri, true, true)
             //todo:这里有bug
-            mMessageList.add(message)
+            mMessageList.add(message!!)
             mAdapter?.notifyItemInserted(mMessageList.size)
-            //delegate_msg_chat_recyclerView?.scrollToPosition(mMessageList.size - 1)
+            delegate_msg_chat_recyclerView?.scrollToPosition(mMessageList.size - 1)
             isMoreVisible = true
             showMorePager()
+            C2CChatManager.getInstance().sendMessage(message, false, object : IIMCallback {
+                override fun onSuccess(data: Any?) {
+                    if (data is Boolean) {
+                        Toast.makeText(context!!, "发送成功", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onError(module: String, errCode: Int, errMsg: String?) {
+                }
+            })
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
         }

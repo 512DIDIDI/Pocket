@@ -39,6 +39,7 @@ public class PocketApplication extends MultiDexApplication {
                     .withTimConfig(this, Constants.SDK_APP_ID, BaseIMConfigs.Companion.getDefaultConfgis())
                     .configure();
             C2CChatManager.Companion.getInstance().init();
+
             FakeUser.init();
         }
     }
